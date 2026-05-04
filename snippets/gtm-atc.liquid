@@ -1,0 +1,30 @@
+<script>
+document.addEventListener('click', function(e) {
+  const btn = e.target.closest('[data-add-to-cart], .product-form__submit, button[name="add"]');
+  if (!btn) return;
+
+  const form = btn.closest('form[action*="/cart/add"]');
+  if (!form) return;
+
+  const productTitle = {{ product.title | json }};
+  const productId    = {{ product.id | json }};
+  const variantId    = {{ product.selected_or_first_available_variant.id | json }};
+  const price        = {{ product.selected_or_first_available_variant.price | divided_by: 100.0 | json }};
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ ecommerce: null });
+  window.dataLayer.push({
+    event: 'add_to_cart',
+    ecommerce: {
+      currency: 'EUR',
+      value: price,
+      items: [{
+        item_id: String(variantId),
+        item_name: productTitle,
+        price: price,
+        quantity: 1
+      }]
+    }
+  });
+});
+</script>
