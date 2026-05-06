@@ -54,9 +54,20 @@
         sizes: sizes
     }}
   {%- else -%}
-    <div class="placeholder-image border-style size-style" style="{{ image_border_style }}">
-      {{ 'detailed-apparel-1' | placeholder_svg_tag: 'hero__image' }}
-    </div>
+    {%- assign placeholder_asset = block_settings.placeholder | downcase -%}
+    {%- if placeholder_asset contains '.png' or placeholder_asset contains '.jpg' or placeholder_asset contains '.jpeg' or placeholder_asset contains '.webp' -%}
+      <img
+        src="{{ block_settings.placeholder | asset_url }}"
+        alt=""
+        class="image-block__image border-style"
+        style="{{ image_border_style }}"
+        loading="lazy"
+      >
+    {%- else -%}
+      <div class="placeholder-image border-style size-style" style="{{ image_border_style }}">
+        {{ 'detailed-apparel-1' | placeholder_svg_tag: 'hero__image' }}
+      </div>
+    {%- endif -%}
   {%- endif -%}
 {% endcapture %}
 
@@ -118,6 +129,11 @@
       "type": "image_picker",
       "id": "image",
       "label": "t:settings.image"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Placeholder asset (filename in /assets, used if no image)"
     },
     {
       "type": "url",

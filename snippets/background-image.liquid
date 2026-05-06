@@ -65,6 +65,15 @@
     {%- if placeholder_name == blank -%}
       {%- assign placeholder_name = 'hero-apparel-2' -%}
     {%- endif -%}
-    {{ placeholder_name | placeholder_svg_tag }}
+    {%- assign p_lower = placeholder_name | downcase -%}
+    {%- if p_lower contains '.png' or p_lower contains '.jpg' or p_lower contains '.jpeg' or p_lower contains '.webp' -%}
+      <img
+        src="{{ placeholder_name | asset_url }}"
+        alt=""
+        loading="lazy"
+      >
+    {%- else -%}
+      {{ placeholder_name | placeholder_svg_tag }}
+    {%- endif -%}
   {%- endif -%}
 </div>

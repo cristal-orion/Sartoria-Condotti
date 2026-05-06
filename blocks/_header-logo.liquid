@@ -96,14 +96,6 @@
 
     &[data-hidden-on-home-page] {
       display: none;
-
-      #header-component:is(
-          [sticky='always']:not([data-scroll-direction='none']),
-          [sticky='scroll-up'][data-scroll-direction='up']
-        )
-        & {
-        display: flex;
-      }
     }
 
     @media screen and (max-width: 749px) {

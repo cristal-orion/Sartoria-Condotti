@@ -1,1 +1,860 @@
-{"sections":{"hero_iyt6zg":{"type":"hero","blocks":{"group_6Q8dyq":{"type":"group","name":"t:names.group","settings":{"link":"","open_in_new_tab":false,"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":12,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fit","custom_height":100,"inherit_color_scheme":true,"color_scheme":"","background_media":"image","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"placeholder":"","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":0,"padding-block-end":0,"padding-inline-start":0,"padding-inline-end":0},"blocks":{}}},"block_order":["group_6Q8dyq"],"settings":{"media_type_1":"image","image_1":"shopify:\/\/shop_images\/ChatGPT_Image_27_feb_2026_11_58_12.png","media_type_2":"image","link":"","open_in_new_tab":false,"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"center","gap":0,"section_width":"page-width","section_height":"large","section_height_custom":50,"color_scheme":"scheme-6","toggle_overlay":true,"overlay_color":"#00000099","overlay_style":"gradient","gradient_direction":"to top","blurred_reflection":false,"reflection_opacity":75,"padding-block-start":0,"padding-block-end":10}},"section_hE3taU":{"type":"section","blocks":{"group_jH4Kh3":{"type":"group","settings":{"link":"shopify:\/\/collections\/all","open_in_new_tab":false,"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"space-between","gap":0,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fill","custom_height":100,"inherit_color_scheme":false,"color_scheme":"scheme-5","background_media":"image","video_position":"cover","background_image":"shopify:\/\/shop_images\/530FC321-A7A3-486D-BCAE-B35A14D2EADB.png","background_image_position":"cover","border":"solid","border_width":2.5,"border_opacity":50,"border_radius":0,"placeholder":"hero-apparel-2","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":40,"padding-block-end":40,"padding-inline-start":40,"padding-inline-end":40},"blocks":{"spacer_bi4gga":{"type":"spacer","settings":{"size":"pixel","percent_size":100,"pixel_size":100,"custom_mobile_size":false,"size_mobile":"percent","percent_size_mobile":100,"pixel_size_mobile":120},"blocks":{}},"button_XVLgHh":{"type":"button","settings":{"label":"NEW COLLECTION","link":"shopify:\/\/collections","open_in_new_tab":false,"style_class":"button-secondary","width":"fit-content","custom_width":15,"width_mobile":"fit-content","custom_width_mobile":15},"blocks":{}}},"block_order":["spacer_bi4gga","button_XVLgHh"]},"group_PrdNi7":{"type":"group","settings":{"link":"","open_in_new_tab":false,"content_direction":"column","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"center","vertical_alignment_flex_direction_column":"space-between","gap":32,"width":"fill","custom_width":100,"width_mobile":"fill","custom_width_mobile":100,"height":"fill","custom_height":100,"inherit_color_scheme":false,"color_scheme":"scheme-5","background_media":"image","video_position":"cover","background_image":"shopify:\/\/shop_images\/ChatGPT_Image_21_ott_2025_18_12_07.png","background_image_position":"cover","border":"solid","border_width":2.5,"border_opacity":50,"border_radius":0,"placeholder":"hero-apparel-1","toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":40,"padding-block-end":40,"padding-inline-start":40,"padding-inline-end":40},"blocks":{"spacer_nkXFwM":{"type":"spacer","settings":{"size":"pixel","percent_size":100,"pixel_size":16,"custom_mobile_size":false,"size_mobile":"percent","percent_size_mobile":100,"pixel_size_mobile":120},"blocks":{}},"button_QAGL9c":{"type":"button","settings":{"label":"PRENOTA APPUNTAMENTO","link":"shopify:\/\/pages\/contact","open_in_new_tab":false,"style_class":"button-secondary","width":"fit-content","custom_width":100,"width_mobile":"fit-content","custom_width_mobile":28},"blocks":{}}},"block_order":["spacer_nkXFwM","button_QAGL9c"]}},"block_order":["group_jH4Kh3","group_PrdNi7"],"name":"t:names.split_showcase","settings":{"content_direction":"row","vertical_on_mobile":true,"horizontal_alignment":"flex-start","vertical_alignment":"center","align_baseline":false,"horizontal_alignment_flex_direction_column":"flex-start","vertical_alignment_flex_direction_column":"center","gap":0,"section_width":"full-width","section_height":"large","section_height_custom":50,"color_scheme":"","background_media":"none","video_position":"cover","background_image_position":"cover","border":"none","border_width":1,"border_opacity":100,"border_radius":0,"toggle_overlay":false,"overlay_color":"#00000026","overlay_style":"solid","gradient_direction":"to top","padding-block-start":0,"padding-block-end":0}}},"order":["hero_iyt6zg","section_hE3taU"]}
+{
+  "sections": {
+    "hero_cucitura": {
+      "type": "hero-cucitura",
+      "settings": {
+        "eyebrow": "Roma · Atelier · Dal 1952",
+        "line_top": "SARTORIA",
+        "line_bottom": "CONDOTTI",
+        "display_size": 18,
+        "placeholder": "hero-apparel-1",
+        "color_scheme": "scheme-1",
+        "bg_color": "#F4EFE6",
+        "fg_color": "#0E0E0C"
+      }
+    },
+    "intro_brands": {
+      "type": "section",
+      "blocks": {
+        "eyebrow": {
+          "type": "text",
+          "name": "Eyebrow",
+          "settings": {
+            "text": "<p>L'azienda</p>",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "letter_spacing": "0.3em",
+            "case": "uppercase",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          }
+        },
+        "heading": {
+          "type": "text",
+          "name": "Heading",
+          "settings": {
+            "text": "<h2>Quattro mestieri, una sola firma.</h2>",
+            "type_preset": "h2",
+            "line_height": "1.05",
+            "letter_spacing": "-0.02em",
+            "wrap": "pretty",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          }
+        },
+        "body": {
+          "type": "text",
+          "name": "Body",
+          "settings": {
+            "text": "<p>Dal 1952 attorno allo stesso telaio sono cresciute quattro attività: sartoria su misura, casual contemporaneo, sarto a domicilio, ricami artigianali. Realtà distinte, stesso mestiere.</p>",
+            "type_preset": "rte",
+            "wrap": "pretty",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          }
+        }
+      },
+      "block_order": ["eyebrow", "heading", "body"],
+      "name": "Intro Brands",
+      "settings": {
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 28,
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "background_media": "none",
+        "border": "none",
+        "padding-block-start": 100,
+        "padding-block-end": 80
+      }
+    },
+    "brand_grid": {
+      "type": "section",
+      "blocks": {
+        "brand_sartoria": {
+          "type": "group",
+          "name": "Sartoria Condotti",
+          "settings": {
+            "link": "shopify://collections/sartoria-condotti",
+            "open_in_new_tab": false,
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "flex-end",
+            "gap": 12,
+            "width": "fill",
+            "width_mobile": "fill",
+            "height": "fill",
+            "inherit_color_scheme": false,
+            "color_scheme": "scheme-5",
+            "background_media": "image",
+            "background_image_position": "cover",
+            "placeholder": "sartoria34.png",
+            "border": "none",
+            "border_radius": 0,
+            "toggle_overlay": true,
+            "overlay_color": "#0000005c",
+            "overlay_style": "gradient",
+            "gradient_direction": "to top",
+            "padding-block-start": 32,
+            "padding-block-end": 40,
+            "padding-inline-start": 24,
+            "padding-inline-end": 24
+          },
+          "blocks": {
+            "spacer_1": {
+              "type": "spacer",
+              "settings": {
+                "size": "pixel",
+                "pixel_size": 400,
+                "custom_mobile_size": true,
+                "size_mobile": "pixel",
+                "pixel_size_mobile": 320
+              }
+            },
+            "tagline": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Su misura, dal 1952</p>",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "0.7rem",
+                "letter_spacing": "0.3em",
+                "case": "uppercase",
+                "wrap": "pretty",
+                "width": "fit-content",
+                "alignment": "center",
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              }
+            },
+            "label": {
+              "type": "text",
+              "settings": {
+                "text": "<h3>Sartoria Condotti</h3>",
+                "type_preset": "h3",
+                "font": "var(--font-heading--family)",
+                "line_height": "1",
+                "letter_spacing": "-0.01em",
+                "case": "none",
+                "wrap": "pretty",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "center",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            }
+          },
+          "block_order": ["spacer_1", "tagline", "label"]
+        },
+        "brand_condotti_co": {
+          "type": "group",
+          "name": "Condotti & Co",
+          "settings": {
+            "link": "shopify://collections/condotti-co",
+            "open_in_new_tab": false,
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "flex-end",
+            "gap": 12,
+            "width": "fill",
+            "width_mobile": "fill",
+            "height": "fill",
+            "inherit_color_scheme": false,
+            "color_scheme": "scheme-5",
+            "background_media": "image",
+            "background_image_position": "cover",
+            "placeholder": "casual34.png",
+            "border": "none",
+            "border_radius": 0,
+            "toggle_overlay": true,
+            "overlay_color": "#0000005c",
+            "overlay_style": "gradient",
+            "gradient_direction": "to top",
+            "padding-block-start": 32,
+            "padding-block-end": 40,
+            "padding-inline-start": 24,
+            "padding-inline-end": 24
+          },
+          "blocks": {
+            "spacer_1": {
+              "type": "spacer",
+              "settings": {
+                "size": "pixel",
+                "pixel_size": 400,
+                "custom_mobile_size": true,
+                "size_mobile": "pixel",
+                "pixel_size_mobile": 320
+              }
+            },
+            "tagline": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Casual contemporaneo</p>",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "0.7rem",
+                "letter_spacing": "0.3em",
+                "case": "uppercase",
+                "wrap": "pretty",
+                "width": "fit-content",
+                "alignment": "center",
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              }
+            },
+            "label": {
+              "type": "text",
+              "settings": {
+                "text": "<h3>Condotti &amp; Co</h3>",
+                "type_preset": "h3",
+                "font": "var(--font-heading--family)",
+                "line_height": "1",
+                "letter_spacing": "-0.01em",
+                "case": "none",
+                "wrap": "pretty",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "center",
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              }
+            }
+          },
+          "block_order": ["spacer_1", "tagline", "label"]
+        },
+        "brand_sarto_domicilio": {
+          "type": "group",
+          "name": "Sarto a Domicilio",
+          "settings": {
+            "link": "shopify://pages/sarto-a-domicilio",
+            "open_in_new_tab": false,
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "flex-end",
+            "gap": 12,
+            "width": "fill",
+            "width_mobile": "fill",
+            "height": "fill",
+            "inherit_color_scheme": false,
+            "color_scheme": "scheme-5",
+            "background_media": "image",
+            "background_image_position": "cover",
+            "placeholder": "sartodomicilio34.png",
+            "border": "none",
+            "border_radius": 0,
+            "toggle_overlay": true,
+            "overlay_color": "#0000005c",
+            "overlay_style": "gradient",
+            "gradient_direction": "to top",
+            "padding-block-start": 32,
+            "padding-block-end": 40,
+            "padding-inline-start": 24,
+            "padding-inline-end": 24
+          },
+          "blocks": {
+            "spacer_1": {
+              "type": "spacer",
+              "settings": {
+                "size": "pixel",
+                "pixel_size": 400,
+                "custom_mobile_size": true,
+                "size_mobile": "pixel",
+                "pixel_size_mobile": 320
+              }
+            },
+            "tagline": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Il tuo sarto, a casa tua</p>",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "0.7rem",
+                "letter_spacing": "0.3em",
+                "case": "uppercase",
+                "wrap": "pretty",
+                "width": "fit-content",
+                "alignment": "center",
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              }
+            },
+            "label": {
+              "type": "text",
+              "settings": {
+                "text": "<h3>Sarto a Domicilio</h3>",
+                "type_preset": "h3",
+                "font": "var(--font-heading--family)",
+                "line_height": "1",
+                "letter_spacing": "-0.01em",
+                "case": "none",
+                "wrap": "pretty",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "center",
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              }
+            }
+          },
+          "block_order": ["spacer_1", "tagline", "label"]
+        },
+        "brand_ricameria": {
+          "type": "group",
+          "name": "Ricameria",
+          "settings": {
+            "link": "shopify://pages/ricameria",
+            "open_in_new_tab": false,
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "flex-end",
+            "gap": 12,
+            "width": "fill",
+            "width_mobile": "fill",
+            "height": "fill",
+            "inherit_color_scheme": false,
+            "color_scheme": "scheme-5",
+            "background_media": "image",
+            "background_image_position": "cover",
+            "placeholder": "ricameria34.png",
+            "border": "none",
+            "border_radius": 0,
+            "toggle_overlay": true,
+            "overlay_color": "#0000005c",
+            "overlay_style": "gradient",
+            "gradient_direction": "to top",
+            "padding-block-start": 32,
+            "padding-block-end": 40,
+            "padding-inline-start": 24,
+            "padding-inline-end": 24
+          },
+          "blocks": {
+            "spacer_1": {
+              "type": "spacer",
+              "settings": {
+                "size": "pixel",
+                "pixel_size": 400,
+                "custom_mobile_size": true,
+                "size_mobile": "pixel",
+                "pixel_size_mobile": 320
+              }
+            },
+            "tagline": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Ricami su misura</p>",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "0.7rem",
+                "letter_spacing": "0.3em",
+                "case": "uppercase",
+                "wrap": "pretty",
+                "width": "fit-content",
+                "alignment": "center",
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              }
+            },
+            "label": {
+              "type": "text",
+              "settings": {
+                "text": "<h3>Ricameria</h3>",
+                "type_preset": "h3",
+                "font": "var(--font-heading--family)",
+                "line_height": "1",
+                "letter_spacing": "-0.01em",
+                "case": "none",
+                "wrap": "pretty",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "center",
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              }
+            }
+          },
+          "block_order": ["spacer_1", "tagline", "label"]
+        }
+      },
+      "block_order": ["brand_sartoria", "brand_condotti_co", "brand_sarto_domicilio", "brand_ricameria"],
+      "name": "Brand Grid",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 4,
+        "section_width": "full-width",
+        "section_height": "",
+        "color_scheme": "",
+        "background_media": "none",
+        "border": "none",
+        "border_radius": 0,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "brand_marquee": {
+      "type": "marquee",
+      "blocks": {
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>· Fatti a mano · Tessuti italiani · Ricami su misura · Su misura · Dal 1952 · Roma · L'arte della sartoria · Tre generazioni</p>",
+            "type_preset": "custom",
+            "font": "var(--font-heading--family)",
+            "font_size": "var(--font-size--h4)",
+            "line_height": "tight",
+            "letter_spacing": "-0.01em",
+            "case": "none",
+            "wrap": "nowrap",
+            "width": "fit-content"
+          }
+        }
+      },
+      "block_order": ["text"],
+      "settings": {
+        "movement_direction": "normal",
+        "color_scheme": "scheme-3",
+        "padding-block-start": 40,
+        "padding-block-end": 40,
+        "gap_between_elements": 48
+      }
+    },
+    "storia": {
+      "type": "section",
+      "blocks": {
+        "image": {
+          "type": "image",
+          "settings": {
+            "image": "",
+            "image_ratio": "portrait",
+            "width": "fill",
+            "placeholder": "sartoriaesternovintage.png"
+          }
+        },
+        "content_group": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 28,
+            "width": "fill",
+            "height": "fit",
+            "inherit_color_scheme": true,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 40,
+            "padding-inline-end": 40
+          },
+          "blocks": {
+            "eyebrow": {
+              "type": "text",
+              "name": "Eyebrow",
+              "settings": {
+                "text": "<p>La nostra storia</p>",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "0.75rem",
+                "letter_spacing": "0.3em",
+                "case": "uppercase",
+                "width": "fit-content",
+                "max_width": "narrow",
+                "alignment": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              }
+            },
+            "heading": {
+              "type": "text",
+              "name": "Heading",
+              "settings": {
+                "text": "<h2>Tre generazioni di sartoria, una sola vocazione.</h2>",
+                "type_preset": "h2",
+                "line_height": "1.05",
+                "letter_spacing": "-0.02em",
+                "wrap": "pretty",
+                "width": "fill",
+                "max_width": "normal",
+                "alignment": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              }
+            },
+            "body": {
+              "type": "text",
+              "name": "Body",
+              "settings": {
+                "text": "<p>[TESTO PLACEHOLDER — DA RIFINIRE CON UI DESIGNER] Sartoria Condotti nasce nel cuore di Roma, dove l'eleganza non è un concetto: è un mestiere tramandato. Dal 1952 vestiamo chi cerca un capo che parli di sé, cucito su misura con tessuti scelti uno per uno. Tre generazioni di sarti, una sola idea di stile: discreto, sicuro, italiano.</p>",
+                "type_preset": "rte",
+                "wrap": "pretty",
+                "width": "fill",
+                "max_width": "normal",
+                "alignment": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              }
+            },
+            "cta": {
+              "type": "button",
+              "settings": {
+                "label": "Scopri la nostra storia",
+                "link": "shopify://pages/storia",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "width_mobile": "fit-content"
+              }
+            }
+          },
+          "block_order": ["eyebrow", "heading", "body", "cta"]
+        }
+      },
+      "block_order": ["image", "content_group"],
+      "name": "Storia",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 64,
+        "section_width": "page-width",
+        "section_height": "",
+        "color_scheme": "scheme-1",
+        "background_media": "none",
+        "border": "none",
+        "padding-block-start": 100,
+        "padding-block-end": 100
+      }
+    },
+    "vision": {
+      "type": "section",
+      "blocks": {
+        "eyebrow": {
+          "type": "text",
+          "name": "Eyebrow",
+          "settings": {
+            "text": "<p>Filosofia</p>",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "letter_spacing": "0.3em",
+            "case": "uppercase",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          }
+        },
+        "quote": {
+          "type": "text",
+          "name": "Quote",
+          "settings": {
+            "text": "<p>Crediamo che l'eleganza non si esibisca: si indossi. Ogni capo che lascia la nostra sartoria è il risultato di mani esperte, ascolto e tempo. Non vendiamo abiti, costruiamo identità.</p>",
+            "type_preset": "h2",
+            "line_height": "1.25",
+            "letter_spacing": "-0.01em",
+            "wrap": "pretty",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          }
+        },
+        "signature": {
+          "type": "text",
+          "name": "Signature",
+          "settings": {
+            "text": "<p>— La famiglia Condotti</p>",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "0.875rem",
+            "letter_spacing": "normal",
+            "case": "none",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          }
+        }
+      },
+      "block_order": ["eyebrow", "quote", "signature"],
+      "name": "Vision",
+      "settings": {
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 40,
+        "section_width": "page-width",
+        "section_height": "",
+        "color_scheme": "scheme-5",
+        "background_media": "none",
+        "border": "none",
+        "padding-block-start": 100,
+        "padding-block-end": 100
+      }
+    },
+    "newsletter": {
+      "type": "section",
+      "blocks": {
+        "eyebrow": {
+          "type": "text",
+          "name": "Eyebrow",
+          "settings": {
+            "text": "<p>Iscriviti</p>",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "0.75rem",
+            "letter_spacing": "0.3em",
+            "case": "uppercase",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          }
+        },
+        "heading": {
+          "type": "text",
+          "name": "Heading",
+          "settings": {
+            "text": "<h2>Resta in contatto con l'atelier</h2>",
+            "type_preset": "h3",
+            "line_height": "1.1",
+            "letter_spacing": "-0.01em",
+            "wrap": "pretty",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          }
+        },
+        "subtitle": {
+          "type": "text",
+          "name": "Subtitle",
+          "settings": {
+            "text": "<p>Anteprime, eventi privati e consigli di stile, direttamente da Roma.</p>",
+            "type_preset": "paragraph",
+            "wrap": "pretty",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          }
+        },
+        "email_signup": {
+          "type": "email-signup",
+          "settings": {
+            "width": "custom",
+            "custom_width": 40,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "style_class": "button-unstyled",
+            "display_type": "arrow",
+            "label": "Iscriviti",
+            "integrated_button": true
+          }
+        }
+      },
+      "block_order": ["eyebrow", "heading", "subtitle", "email_signup"],
+      "name": "Newsletter",
+      "settings": {
+        "content_direction": "column",
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 20,
+        "section_width": "page-width",
+        "section_height": "",
+        "color_scheme": "scheme-3",
+        "background_media": "none",
+        "border": "none",
+        "padding-block-start": 96,
+        "padding-block-end": 96
+      }
+    },
+    "split_cta": {
+      "type": "section",
+      "blocks": {
+        "cta_collection": {
+          "type": "group",
+          "settings": {
+            "link": "shopify://collections/all",
+            "open_in_new_tab": false,
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "space-between",
+            "gap": 0,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fill",
+            "custom_height": 100,
+            "inherit_color_scheme": false,
+            "color_scheme": "scheme-5",
+            "background_media": "image",
+            "background_image": "shopify://shop_images/530FC321-A7A3-486D-BCAE-B35A14D2EADB.png",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 0,
+            "border_opacity": 50,
+            "border_radius": 0,
+            "placeholder": "hero-apparel-2",
+            "toggle_overlay": true,
+            "overlay_color": "#00000033",
+            "overlay_style": "gradient",
+            "gradient_direction": "to top",
+            "padding-block-start": 40,
+            "padding-block-end": 40,
+            "padding-inline-start": 40,
+            "padding-inline-end": 40
+          },
+          "blocks": {
+            "spacer": {
+              "type": "spacer",
+              "settings": {
+                "size": "pixel",
+                "percent_size": 100,
+                "pixel_size": 100,
+                "custom_mobile_size": false,
+                "size_mobile": "percent",
+                "percent_size_mobile": 100,
+                "pixel_size_mobile": 120
+              }
+            },
+            "button": {
+              "type": "button",
+              "settings": {
+                "label": "Scopri le collezioni",
+                "link": "shopify://collections",
+                "open_in_new_tab": false,
+                "style_class": "button-secondary",
+                "width": "fit-content",
+                "custom_width": 15,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 15
+              }
+            }
+          },
+          "block_order": ["spacer", "button"]
+        },
+        "cta_appointment": {
+          "type": "group",
+          "settings": {
+            "link": "shopify://pages/contact",
+            "open_in_new_tab": false,
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "horizontal_alignment_flex_direction_column": "center",
+            "vertical_alignment_flex_direction_column": "space-between",
+            "gap": 32,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fill",
+            "custom_height": 100,
+            "inherit_color_scheme": false,
+            "color_scheme": "scheme-5",
+            "background_media": "image",
+            "background_image": "shopify://shop_images/ChatGPT_Image_21_ott_2025_18_12_07.png",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 0,
+            "border_opacity": 50,
+            "border_radius": 0,
+            "placeholder": "hero-apparel-1",
+            "toggle_overlay": true,
+            "overlay_color": "#00000033",
+            "overlay_style": "gradient",
+            "gradient_direction": "to top",
+            "padding-block-start": 40,
+            "padding-block-end": 40,
+            "padding-inline-start": 40,
+            "padding-inline-end": 40
+          },
+          "blocks": {
+            "spacer": {
+              "type": "spacer",
+              "settings": {
+                "size": "pixel",
+                "percent_size": 100,
+                "pixel_size": 16,
+                "custom_mobile_size": false,
+                "size_mobile": "percent",
+                "percent_size_mobile": 100,
+                "pixel_size_mobile": 120
+              }
+            },
+            "button": {
+              "type": "button",
+              "settings": {
+                "label": "Prenota appuntamento",
+                "link": "shopify://pages/contact",
+                "open_in_new_tab": false,
+                "style_class": "button-secondary",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 28
+              }
+            }
+          },
+          "block_order": ["spacer", "button"]
+        }
+      },
+      "block_order": ["cta_collection", "cta_appointment"],
+      "name": "Split CTA",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 0,
+        "section_width": "full-width",
+        "section_height": "large",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "border": "none",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    }
+  },
+  "order": ["hero_cucitura", "intro_brands", "brand_grid", "brand_marquee", "storia", "vision", "newsletter", "split_cta"]
+}

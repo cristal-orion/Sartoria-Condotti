@@ -60,6 +60,92 @@
   %}
 </div>
 
+{% stylesheet %}
+  /* Sartoria Condotti — list-collections: hover-cover desktop, titolo sopra immagine mobile */
+
+  [data-template="list-collections"] .collection-card__image .image-block__image {
+    transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @media (min-width: 750px) {
+    [data-template="list-collections"] .collection-card__inner {
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+    }
+
+    [data-template="list-collections"] .collection-card__content {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      padding: 24px;
+      margin: 0;
+      gap: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: rgb(14 14 12 / 0.62);
+      transform: translateY(101%);
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+      pointer-events: none;
+    }
+
+    [data-template="list-collections"] .collection-card__content > * {
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.35s ease 0.18s, transform 0.45s cubic-bezier(0.22, 1, 0.36, 1) 0.15s;
+    }
+
+    [data-template="list-collections"] .collection-card__content,
+    [data-template="list-collections"] .collection-card__content p,
+    [data-template="list-collections"] .collection-card__content .text-block {
+      color: #fff;
+    }
+
+    [data-template="list-collections"] .collection-card__content p {
+      margin: 0;
+      font-family: var(--font-heading--family, serif);
+      font-size: clamp(1.5rem, 2.2vw, 2.4rem);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    [data-template="list-collections"] .collection-card:hover .collection-card__content,
+    [data-template="list-collections"] .collection-card:focus-within .collection-card__content {
+      transform: translateY(0);
+    }
+
+    [data-template="list-collections"] .collection-card:hover .collection-card__content > *,
+    [data-template="list-collections"] .collection-card:focus-within .collection-card__content > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    [data-template="list-collections"] .collection-card:hover .collection-card__image .image-block__image {
+      transform: scale(1.04);
+    }
+  }
+
+  @media (max-width: 749px) {
+    /* Mobile: titolo sopra l'immagine per allineamento garantito */
+    [data-template="list-collections"] .collection-card__inner {
+      flex-direction: column-reverse;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-template="list-collections"] .collection-card__content,
+    [data-template="list-collections"] .collection-card__content > *,
+    [data-template="list-collections"] .collection-card__image .image-block__image {
+      transition: none !important;
+    }
+  }
+{% endstylesheet %}
+
 {% schema %}
 {
   "name": "t:names.collection_list",
