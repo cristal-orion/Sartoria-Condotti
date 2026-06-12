@@ -27,7 +27,9 @@ html {
   /* Firefox */
   scrollbar-width: thin;
   scrollbar-color: rgb(var(--color-foreground-rgb) / var(--opacity-40)) var(--color-background);
-  scroll-behavior: smooth;
+  /* NB: tenere "auto". scroll-behavior: smooth sull'html rompe il pin di
+     ScrollTrigger (hero-cucitura): a ogni refresh la hero si apre/sbianca. */
+  scroll-behavior: auto;
 }
 
 html[scroll-lock] {
@@ -4186,9 +4188,12 @@ text-component {
   background-color: rgb(var(--color-foreground-rgb) / var(--opacity-60));
 }
 
+/* Mantenere "auto": scroll-behavior: smooth sull'html è incompatibile con il
+   pin di ScrollTrigger (vedi hero-cucitura). Per lo smooth sugli anchor usare
+   element.scrollIntoView({ behavior: 'smooth' }) lato JS, non questa regola. */
 @media (prefers-reduced-motion: no-preference) {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
 }
 
