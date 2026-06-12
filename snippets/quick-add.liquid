@@ -132,7 +132,9 @@
 </quick-add-component>
 
 {% stylesheet %}
-  /* Quick Add */
+  /* Quick Add — Atelier style
+     Desktop: trigger nascosto, appare al hover della card-gallery.
+     Mobile: trigger sempre visibile ma discreto (opacity ridotta, niente shadow forte). */
   .quick-add {
     --quick-add-offset: var(--padding-sm);
     --quick-add-top: calc(var(--quick-add-offset) + var(--padding-block-start));
@@ -158,6 +160,28 @@
       --quick-add-offset: var(--padding-md);
 
       display: var(--quick-add-display, flex);
+    }
+  }
+
+  /* Mobile: discrezione — pulsante semi-trasparente che si attiva al tap */
+  @media screen and (max-width: 749px) {
+    .quick-add__button {
+      opacity: 0.72;
+      box-shadow: 0 1px 4px rgb(0 0 0 / 0.08);
+      background-color: rgb(var(--color-background-rgb, 255 255 255) / 0.92);
+      backdrop-filter: blur(6px);
+      transition: opacity 0.2s var(--animation-easing), transform 0.2s var(--animation-easing);
+    }
+
+    .quick-add__button:active {
+      opacity: 1;
+      transform: scale(0.96);
+    }
+
+    /* Quando il dito tocca la card, alza l'opacità del trigger */
+    product-card:focus-within .quick-add__button,
+    .card-gallery:active .quick-add__button {
+      opacity: 1;
     }
   }
 

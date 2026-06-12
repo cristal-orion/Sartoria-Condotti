@@ -4197,6 +4197,112 @@ text-component {
   }
 }
 
+/* Brand grid (home): affordance hover/focus sui 4 pannelli brand.
+   Selettore stabile sulla chiave di sezione del template (brand_grid). */
+[id$='__brand_grid'] .group-block {
+  overflow: hidden;
+  position: relative;
+}
+
+[id$='__brand_grid'] .group-block .background-image-container img {
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[id$='__brand_grid'] .group-block:hover .background-image-container img,
+[id$='__brand_grid'] .group-block:focus-within .background-image-container img {
+  transform: scale(1.045);
+}
+
+/* Scrim per la leggibilità delle etichette sopra le foto chiare */
+[id$='__brand_grid'] .group-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(8 10 18 / 0.45), rgb(8 10 18 / 0.12) 38%, transparent 60%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+[id$='__brand_grid'] .group-block .text-block {
+  position: relative;
+  z-index: 2;
+}
+
+/* Filo oro che si "cuce" sul bordo inferiore del pannello */
+[id$='__brand_grid'] .group-block::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 3px;
+  background: #c9a24b;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: 2;
+}
+
+[id$='__brand_grid'] .group-block:hover::after,
+[id$='__brand_grid'] .group-block:focus-within::after {
+  transform: scaleX(1);
+}
+
+[id$='__brand_grid'] .group-block .group-block__link:focus-visible {
+  outline: 2px solid #f4efe6;
+  outline-offset: -6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [id$='__brand_grid'] .group-block .background-image-container img {
+    transition: none;
+    transform: none !important;
+  }
+  [id$='__brand_grid'] .group-block::after {
+    transition: none;
+  }
+}
+
+/* Storia (home): il CTA testuale deve leggersi come link, non come testo spento */
+[id$='__storia'] a.link,
+[id$='__storia'] .link {
+  color: rgb(var(--color-foreground-rgb));
+  text-decoration: underline;
+  text-decoration-color: rgb(var(--color-foreground-rgb) / 0.3);
+  text-underline-offset: 0.35em;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color var(--hover-transition-duration, 0.25s) ease-out;
+}
+
+[id$='__storia'] a.link:hover,
+[id$='__storia'] .link:hover {
+  text-decoration-color: #c9a24b;
+}
+
+/* Split CTA (home): grading unificato sulle due foto + scrim dietro i bottoni */
+[id$='__split_cta'] .group-block .background-image-container img {
+  filter: saturate(0.92) contrast(0.97) brightness(0.96);
+}
+
+[id$='__split_cta'] .group-block::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(8 10 18 / 0.35), transparent 45%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+[id$='__split_cta'] .group-block {
+  position: relative;
+}
+
+[id$='__split_cta'] .group-block .button,
+[id$='__split_cta'] .group-block a {
+  position: relative;
+  z-index: 2;
+}
+
 /* Product card title truncation - applied only to zoom-out view */
 [product-grid-view='zoom-out'] :is(.product-card, .product-grid__card) :is(h4, .h4) {
   display: -webkit-box;

@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "brand-ricameria",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

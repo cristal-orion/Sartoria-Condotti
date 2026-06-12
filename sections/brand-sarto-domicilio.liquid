@@ -1,0 +1,173 @@
+{%- liquid
+  assign s = section.settings
+  assign hero_title = s.hero_title | default: 'Sarto a Domicilio'
+  assign eyebrow = s.eyebrow | default: 'Napoli · Dal 1954'
+-%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap">
+{{ 'brand-page.css' | asset_url | stylesheet_tag }}
+
+<section class="bp" data-bp-root>
+  <!-- HERO -->
+  <header class="bp__hero">
+    <div class="bp__hero-media">
+      {%- if s.hero_image != blank -%}
+        {{ s.hero_image | image_url: width: 2400 | image_tag: widths: '900,1400,1900,2400', sizes: '100vw', fetchpriority: 'high' }}
+      {%- else -%}
+        <img src="{{ 'sartodomicilio34.png' | asset_url }}" alt="" fetchpriority="high">
+      {%- endif -%}
+    </div>
+    <div class="bp__hero-inner bp__wrap">
+      <p class="bp__eyebrow" data-reveal>{{ eyebrow }}</p>
+      <h1 class="bp__display bp__hero-title" data-reveal>{{ hero_title }}</h1>
+      <p class="bp__hero-sub" data-reveal>{{ s.hero_sub | default: 'Il tuo sarto, a casa tua. Presa misure, prove e piccole riparazioni nel comfort del tuo spazio.' }}</p>
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <div class="bp__section bp__wrap">
+    <div class="bp__intro">
+      <p class="bp__eyebrow" data-reveal>{{ s.intro_eyebrow | default: 'Il servizio' }}</p>
+      <h2 class="bp__h2" data-reveal>{{ s.intro_heading | default: 'L’atelier che viene da te.' }}</h2>
+      <p class="bp__lead bp__body" data-reveal>{{ s.intro_body | default: 'Su appuntamento, un nostro sarto raggiunge la tua abitazione o il tuo ufficio con tessuti e campionari. La stessa esperienza dell’atelier, senza spostarti.' }}</p>
+    </div>
+  </div>
+
+  <span class="bp__stitch bp__wrap" aria-hidden="true">
+    <svg viewBox="0 0 1000 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="1000" y2="1" stroke="currentColor" stroke-width="1.4" stroke-dasharray="7 5" vector-effect="non-scaling-stroke"/></svg>
+  </span>
+
+  <!-- COME FUNZIONA -->
+  <div class="bp__section bp__wrap">
+    <div class="bp__section-head">
+      <p class="bp__eyebrow" data-reveal>{{ s.how_eyebrow | default: 'Come funziona' }}</p>
+      <h2 class="bp__h2" data-reveal>{{ s.how_heading | default: 'Tre passi, zero spostamenti.' }}</h2>
+    </div>
+    <div class="bp__steps">
+      <div class="bp__step" data-reveal>
+        <span class="bp__num">01</span>
+        <h3>Richiedi</h3>
+        <p class="bp__body">Compila il modulo qui sotto indicando zona, servizio e data che preferisci. Ti ricontattiamo per confermare.</p>
+      </div>
+      <div class="bp__step" data-reveal>
+        <span class="bp__num">02</span>
+        <h3>Ti raggiungiamo</h3>
+        <p class="bp__body">Il sarto arriva a casa o in ufficio con tessuti e strumenti. Presa misure, consigli, prove: tutto da te.</p>
+      </div>
+      <div class="bp__step" data-reveal>
+        <span class="bp__num">03</span>
+        <h3>Ricevi il capo</h3>
+        <p class="bp__body">Realizziamo o sistemiamo il capo in atelier e te lo riconsegniamo, di nuovo a domicilio se vuoi.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM RICHIESTA (ink) -->
+  <div class="bp bp--ink" style="background:rgb(var(--bp-ink));color:rgb(var(--bp-cream));">
+    <div class="bp__section bp__wrap" id="prenota">
+      <div class="bp__form-layout">
+        <div class="bp__diptych-text">
+          <p class="bp__eyebrow" data-reveal>{{ s.form_eyebrow | default: 'Prenota' }}</p>
+          <h2 class="bp__h2" data-reveal>{{ s.form_heading | default: 'Richiedi il sarto a domicilio' }}</h2>
+          <p class="bp__body" data-reveal>{{ s.form_body | default: 'Raccontaci di cosa hai bisogno: ti rispondiamo entro 24 ore per concordare giorno e orario. Nessun pagamento richiesto in questa fase.' }}</p>
+        </div>
+
+        <div data-reveal>
+          {%- form 'contact', id: 'sarto-domicilio-form' -%}
+            {%- if form.posted_successfully? -%}
+              <div class="bp__form-success">Richiesta inviata. Ti ricontatteremo a breve per confermare l’appuntamento. Grazie.</div>
+            {%- endif -%}
+            {%- if form.errors -%}
+              <div class="bp__form-success" style="background:rgba(180,60,40,.18);border-color:#b43c28;">
+                {{ form.errors | default_errors }}
+              </div>
+            {%- endif -%}
+
+            <input type="hidden" name="contact[Tipo richiesta]" value="Sarto a domicilio">
+
+            <div class="bp__form">
+              <div class="bp__field">
+                <label for="sd-name">Nome e cognome</label>
+                <input type="text" id="sd-name" name="contact[name]" required value="{{ form.name }}">
+              </div>
+              <div class="bp__field">
+                <label for="sd-phone">Telefono</label>
+                <input type="tel" id="sd-phone" name="contact[phone]" placeholder="+39" value="{{ form.phone }}">
+              </div>
+              <div class="bp__field">
+                <label for="sd-email">Email</label>
+                <input type="email" id="sd-email" name="contact[email]" required value="{{ form.email }}">
+              </div>
+              <div class="bp__field">
+                <label for="sd-zona">Zona / Città</label>
+                <input type="text" id="sd-zona" name="contact[Zona]" placeholder="Napoli, Vomero…">
+              </div>
+              <div class="bp__field">
+                <label for="sd-servizio">Servizio</label>
+                <select id="sd-servizio" name="contact[Servizio]">
+                  <option value="Presa misure su misura">Presa misure su misura</option>
+                  <option value="Prova capo">Prova capo</option>
+                  <option value="Riparazione / modifica">Riparazione / modifica</option>
+                  <option value="Consulenza di stile">Consulenza di stile</option>
+                </select>
+              </div>
+              <div class="bp__field">
+                <label for="sd-data">Data preferita</label>
+                <input type="date" id="sd-data" name="contact[Data preferita]">
+              </div>
+              <div class="bp__field">
+                <label for="sd-fascia">Fascia oraria</label>
+                <select id="sd-fascia" name="contact[Fascia oraria]">
+                  <option value="Mattina (9–13)">Mattina (9–13)</option>
+                  <option value="Pomeriggio (14–18)">Pomeriggio (14–18)</option>
+                  <option value="Sera (18–20)">Sera (18–20)</option>
+                </select>
+              </div>
+              <div class="bp__field bp__field--full">
+                <label for="sd-note">Note</label>
+                <textarea id="sd-note" name="contact[body]" placeholder="Cosa ti serve, indirizzo di massima, dettagli utili…"></textarea>
+              </div>
+              <div class="bp__form-actions">
+                <button type="submit" class="bp__btn">Invia richiesta</button>
+                <p class="bp__form-note">Ti ricontattiamo per confermare. Nessun addebito in questa fase.</p>
+              </div>
+            </div>
+          {%- endform -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
+<script src="{{ 'ScrollTrigger.min.js' | asset_url }}" defer></script>
+<script src="{{ 'brand-page.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Brand · Sarto a Domicilio",
+  "tag": "section",
+  "class": "brand-page-section",
+  "settings": [
+    { "type": "header", "content": "Hero" },
+    { "type": "image_picker", "id": "hero_image", "label": "Immagine hero" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Napoli · Dal 1954" },
+    { "type": "text", "id": "hero_title", "label": "Titolo", "default": "Sarto a Domicilio" },
+    { "type": "textarea", "id": "hero_sub", "label": "Sottotitolo" },
+    { "type": "header", "content": "Intro" },
+    { "type": "text", "id": "intro_eyebrow", "label": "Eyebrow intro" },
+    { "type": "text", "id": "intro_heading", "label": "Titolo intro" },
+    { "type": "textarea", "id": "intro_body", "label": "Testo intro" },
+    { "type": "header", "content": "Come funziona" },
+    { "type": "text", "id": "how_eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "how_heading", "label": "Titolo" },
+    { "type": "header", "content": "Form richiesta" },
+    { "type": "text", "id": "form_eyebrow", "label": "Eyebrow form" },
+    { "type": "text", "id": "form_heading", "label": "Titolo form" },
+    { "type": "textarea", "id": "form_body", "label": "Testo form" }
+  ],
+  "presets": [{ "name": "Brand · Sarto a Domicilio" }]
+}
+{% endschema %}

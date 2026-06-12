@@ -1,0 +1,16 @@
+{
+  "sections": {
+    "main": {
+      "type": "collection-sartoria",
+      "settings": {
+        "eyebrow": "Sartoria Condotti",
+        "intro": "Capi su misura tagliati uno a uno. Ogni pezzo nasce dalla stessa cura dell’atelier napoletano, dal 1954.",
+        "products_per_page": 12,
+        "color_variant": "cream",
+        "padding-block-start": 80,
+        "padding-block-end": 96
+      }
+    }
+  },
+  "order": ["main"]
+}

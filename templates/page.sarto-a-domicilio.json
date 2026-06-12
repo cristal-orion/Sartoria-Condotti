@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "brand-sarto-domicilio",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

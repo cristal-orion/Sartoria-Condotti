@@ -3,36 +3,20 @@
     "hero_cucitura": {
       "type": "hero-cucitura",
       "settings": {
-        "eyebrow": "Roma · Atelier · Dal 1952",
+        "eyebrow": "Napoli · Atelier · Dal 1954",
         "line_top": "SARTORIA",
         "line_bottom": "CONDOTTI",
         "display_size": 18,
         "placeholder": "hero-apparel-1",
         "color_scheme": "scheme-1",
-        "bg_color": "#F4EFE6",
-        "fg_color": "#0E0E0C"
+        "bg_color": "#14213D",
+        "fg_color": "#F4EFE6",
+        "swan_color": "#D4A24C"
       }
     },
     "intro_brands": {
       "type": "section",
       "blocks": {
-        "eyebrow": {
-          "type": "text",
-          "name": "Eyebrow",
-          "settings": {
-            "text": "<p>L'azienda</p>",
-            "type_preset": "custom",
-            "font": "var(--font-body--family)",
-            "font_size": "0.75rem",
-            "letter_spacing": "0.3em",
-            "case": "uppercase",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "padding-block-start": 0,
-            "padding-block-end": 0
-          }
-        },
         "heading": {
           "type": "text",
           "name": "Heading",
@@ -44,7 +28,7 @@
             "wrap": "pretty",
             "width": "100%",
             "max_width": "normal",
-            "alignment": "center",
+            "alignment": "left",
             "padding-block-start": 0,
             "padding-block-end": 0
           }
@@ -53,30 +37,33 @@
           "type": "text",
           "name": "Body",
           "settings": {
-            "text": "<p>Dal 1952 attorno allo stesso telaio sono cresciute quattro attività: sartoria su misura, casual contemporaneo, sarto a domicilio, ricami artigianali. Realtà distinte, stesso mestiere.</p>",
+            "text": "<p>Dal 1954 attorno allo stesso telaio sono cresciute quattro attività: sartoria su misura, casual contemporaneo, sarto a domicilio, ricami artigianali. Realtà distinte, stesso mestiere.</p>",
             "type_preset": "rte",
             "wrap": "pretty",
             "width": "100%",
             "max_width": "narrow",
-            "alignment": "center",
+            "alignment": "left",
             "padding-block-start": 0,
             "padding-block-end": 0
           }
         }
       },
-      "block_order": ["eyebrow", "heading", "body"],
+      "block_order": [
+        "heading",
+        "body"
+      ],
       "name": "Intro Brands",
       "settings": {
         "content_direction": "column",
-        "horizontal_alignment_flex_direction_column": "center",
+        "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
         "gap": 28,
         "section_width": "page-width",
         "color_scheme": "scheme-1",
         "background_media": "none",
         "border": "none",
-        "padding-block-start": 100,
-        "padding-block-end": 80
+        "padding-block-start": 96,
+        "padding-block-end": 56
       }
     },
     "brand_grid": {
@@ -86,7 +73,7 @@
           "type": "group",
           "name": "Sartoria Condotti",
           "settings": {
-            "link": "shopify://collections/sartoria-condotti",
+            "link": "shopify://pages/sartoria-condotti",
             "open_in_new_tab": false,
             "content_direction": "column",
             "vertical_on_mobile": true,
@@ -126,7 +113,7 @@
             "tagline": {
               "type": "text",
               "settings": {
-                "text": "<p>Su misura, dal 1952</p>",
+                "text": "<p>Su misura, dal 1954</p>",
                 "type_preset": "custom",
                 "font": "var(--font-body--family)",
                 "font_size": "0.7rem",
@@ -159,13 +146,17 @@
               }
             }
           },
-          "block_order": ["spacer_1", "tagline", "label"]
+          "block_order": [
+            "spacer_1",
+            "tagline",
+            "label"
+          ]
         },
         "brand_condotti_co": {
           "type": "group",
           "name": "Condotti & Co",
           "settings": {
-            "link": "shopify://collections/condotti-co",
+            "link": "shopify://pages/condotti-co",
             "open_in_new_tab": false,
             "content_direction": "column",
             "vertical_on_mobile": true,
@@ -236,7 +227,11 @@
               }
             }
           },
-          "block_order": ["spacer_1", "tagline", "label"]
+          "block_order": [
+            "spacer_1",
+            "tagline",
+            "label"
+          ]
         },
         "brand_sarto_domicilio": {
           "type": "group",
@@ -313,7 +308,11 @@
               }
             }
           },
-          "block_order": ["spacer_1", "tagline", "label"]
+          "block_order": [
+            "spacer_1",
+            "tagline",
+            "label"
+          ]
         },
         "brand_ricameria": {
           "type": "group",
@@ -390,10 +389,19 @@
               }
             }
           },
-          "block_order": ["spacer_1", "tagline", "label"]
+          "block_order": [
+            "spacer_1",
+            "tagline",
+            "label"
+          ]
         }
       },
-      "block_order": ["brand_sartoria", "brand_condotti_co", "brand_sarto_domicilio", "brand_ricameria"],
+      "block_order": [
+        "brand_sartoria",
+        "brand_condotti_co",
+        "brand_sarto_domicilio",
+        "brand_ricameria"
+      ],
       "name": "Brand Grid",
       "settings": {
         "content_direction": "row",
@@ -419,7 +427,7 @@
         "text": {
           "type": "text",
           "settings": {
-            "text": "<p>· Fatti a mano · Tessuti italiani · Ricami su misura · Su misura · Dal 1952 · Roma · L'arte della sartoria · Tre generazioni</p>",
+            "text": "<p>· Fatti a mano · Tessuti italiani · Ricami su misura · Su misura · Dal 1954 · Napoli · L’arte della sartoria · Tre generazioni</p>",
             "type_preset": "custom",
             "font": "var(--font-heading--family)",
             "font_size": "var(--font-size--h4)",
@@ -431,7 +439,9 @@
           }
         }
       },
-      "block_order": ["text"],
+      "block_order": [
+        "text"
+      ],
       "settings": {
         "movement_direction": "normal",
         "color_scheme": "scheme-3",
@@ -447,9 +457,10 @@
           "type": "image",
           "settings": {
             "image": "",
-            "image_ratio": "portrait",
-            "width": "fill",
-            "placeholder": "sartoriaesternovintage.png"
+            "image_ratio": "adapt",
+            "width": "custom",
+            "placeholder": "sartoriaesternovintage.png",
+            "custom_width": 38
           }
         },
         "content_group": {
@@ -468,23 +479,6 @@
             "padding-inline-end": 40
           },
           "blocks": {
-            "eyebrow": {
-              "type": "text",
-              "name": "Eyebrow",
-              "settings": {
-                "text": "<p>La nostra storia</p>",
-                "type_preset": "custom",
-                "font": "var(--font-body--family)",
-                "font_size": "0.75rem",
-                "letter_spacing": "0.3em",
-                "case": "uppercase",
-                "width": "fit-content",
-                "max_width": "narrow",
-                "alignment": "left",
-                "padding-block-start": 0,
-                "padding-block-end": 0
-              }
-            },
             "heading": {
               "type": "text",
               "name": "Heading",
@@ -505,7 +499,7 @@
               "type": "text",
               "name": "Body",
               "settings": {
-                "text": "<p>[TESTO PLACEHOLDER — DA RIFINIRE CON UI DESIGNER] Sartoria Condotti nasce nel cuore di Roma, dove l'eleganza non è un concetto: è un mestiere tramandato. Dal 1952 vestiamo chi cerca un capo che parli di sé, cucito su misura con tessuti scelti uno per uno. Tre generazioni di sarti, una sola idea di stile: discreto, sicuro, italiano.</p>",
+                "text": "<p>Sartoria Condotti nasce nel cuore di Napoli, dove l’eleganza non è un concetto ma un mestiere che si tramanda. Dal 1954 vestiamo chi cerca un capo che parli di sé: cucito su misura, con tessuti scelti uno a uno. Tre generazioni di sarti, una sola idea di stile — discreto, sicuro, italiano.</p>",
                 "type_preset": "rte",
                 "wrap": "pretty",
                 "width": "fill",
@@ -518,7 +512,7 @@
             "cta": {
               "type": "button",
               "settings": {
-                "label": "Scopri la nostra storia",
+                "label": "Scopri la nostra storia →",
                 "link": "shopify://pages/storia",
                 "open_in_new_tab": false,
                 "style_class": "link",
@@ -527,10 +521,17 @@
               }
             }
           },
-          "block_order": ["eyebrow", "heading", "body", "cta"]
+          "block_order": [
+            "heading",
+            "body",
+            "cta"
+          ]
         }
       },
-      "block_order": ["image", "content_group"],
+      "block_order": [
+        "image",
+        "content_group"
+      ],
       "name": "Storia",
       "settings": {
         "content_direction": "row",
@@ -539,14 +540,14 @@
         "vertical_alignment": "center",
         "horizontal_alignment_flex_direction_column": "flex-start",
         "vertical_alignment_flex_direction_column": "center",
-        "gap": 64,
+        "gap": 48,
         "section_width": "page-width",
         "section_height": "",
         "color_scheme": "scheme-1",
         "background_media": "none",
         "border": "none",
-        "padding-block-start": 100,
-        "padding-block-end": 100
+        "padding-block-start": 88,
+        "padding-block-end": 88
       }
     },
     "vision": {
@@ -573,8 +574,8 @@
           "type": "text",
           "name": "Quote",
           "settings": {
-            "text": "<p>Crediamo che l'eleganza non si esibisca: si indossi. Ogni capo che lascia la nostra sartoria è il risultato di mani esperte, ascolto e tempo. Non vendiamo abiti, costruiamo identità.</p>",
-            "type_preset": "h2",
+            "text": "<p>Crediamo che l’eleganza non si esibisca: si indossi. Ogni capo che lascia la nostra sartoria è il risultato di mani esperte, ascolto e tempo.</p>",
+            "type_preset": "rte",
             "line_height": "1.25",
             "letter_spacing": "-0.01em",
             "wrap": "pretty",
@@ -601,9 +602,30 @@
             "padding-block-start": 0,
             "padding-block-end": 0
           }
+        },
+        "claim": {
+          "type": "text",
+          "name": "Quote",
+          "settings": {
+            "text": "<h2>Non vendiamo abiti, costruiamo identità.</h2>",
+            "type_preset": "h2",
+            "line_height": "1.25",
+            "letter_spacing": "-0.01em",
+            "wrap": "pretty",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
+            "padding-block-start": 0,
+            "padding-block-end": 0
+          }
         }
       },
-      "block_order": ["eyebrow", "quote", "signature"],
+      "block_order": [
+        "eyebrow",
+        "quote",
+        "claim",
+        "signature"
+      ],
       "name": "Vision",
       "settings": {
         "content_direction": "column",
@@ -616,86 +638,6 @@
         "background_media": "none",
         "border": "none",
         "padding-block-start": 100,
-        "padding-block-end": 100
-      }
-    },
-    "newsletter": {
-      "type": "section",
-      "blocks": {
-        "eyebrow": {
-          "type": "text",
-          "name": "Eyebrow",
-          "settings": {
-            "text": "<p>Iscriviti</p>",
-            "type_preset": "custom",
-            "font": "var(--font-body--family)",
-            "font_size": "0.75rem",
-            "letter_spacing": "0.3em",
-            "case": "uppercase",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "padding-block-start": 0,
-            "padding-block-end": 0
-          }
-        },
-        "heading": {
-          "type": "text",
-          "name": "Heading",
-          "settings": {
-            "text": "<h2>Resta in contatto con l'atelier</h2>",
-            "type_preset": "h3",
-            "line_height": "1.1",
-            "letter_spacing": "-0.01em",
-            "wrap": "pretty",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "padding-block-start": 0,
-            "padding-block-end": 0
-          }
-        },
-        "subtitle": {
-          "type": "text",
-          "name": "Subtitle",
-          "settings": {
-            "text": "<p>Anteprime, eventi privati e consigli di stile, direttamente da Roma.</p>",
-            "type_preset": "paragraph",
-            "wrap": "pretty",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "padding-block-start": 0,
-            "padding-block-end": 0
-          }
-        },
-        "email_signup": {
-          "type": "email-signup",
-          "settings": {
-            "width": "custom",
-            "custom_width": 40,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "style_class": "button-unstyled",
-            "display_type": "arrow",
-            "label": "Iscriviti",
-            "integrated_button": true
-          }
-        }
-      },
-      "block_order": ["eyebrow", "heading", "subtitle", "email_signup"],
-      "name": "Newsletter",
-      "settings": {
-        "content_direction": "column",
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 20,
-        "section_width": "page-width",
-        "section_height": "",
-        "color_scheme": "scheme-3",
-        "background_media": "none",
-        "border": "none",
-        "padding-block-start": 96,
         "padding-block-end": 96
       }
     },
@@ -766,7 +708,10 @@
               }
             }
           },
-          "block_order": ["spacer", "button"]
+          "block_order": [
+            "spacer",
+            "button"
+          ]
         },
         "cta_appointment": {
           "type": "group",
@@ -832,10 +777,16 @@
               }
             }
           },
-          "block_order": ["spacer", "button"]
+          "block_order": [
+            "spacer",
+            "button"
+          ]
         }
       },
-      "block_order": ["cta_collection", "cta_appointment"],
+      "block_order": [
+        "cta_collection",
+        "cta_appointment"
+      ],
       "name": "Split CTA",
       "settings": {
         "content_direction": "row",
@@ -854,7 +805,81 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
+    },
+    "dove_trovarci": {
+      "type": "dove-trovarci",
+      "blocks": {
+        "loc1": {
+          "type": "location",
+          "settings": {
+            "brand": "Sartoria Condotti",
+            "tag": "Boutique",
+            "name": "Via S. Caterina, 69",
+            "address": "80121 Napoli",
+            "phone": "081 038 2204",
+            "hours": "Lun–Sab 09–20 · Dom 10–14 / 16–20"
+          }
+        },
+        "loc2": {
+          "type": "location",
+          "settings": {
+            "brand": "Sartoria Condotti",
+            "tag": "Boutique",
+            "name": "Via Vittoria Colonna, 15/D",
+            "address": "80100 Napoli",
+            "phone": "081 410 4424",
+            "hours": "Tutti i giorni · 09:00–20:00"
+          }
+        },
+        "loc3": {
+          "type": "location",
+          "settings": {
+            "brand": "Atelier del Ricamo",
+            "tag": "Atelier",
+            "name": "Atelier del Ricamo",
+            "address": "Viale Comandante Umberto Maddalena, 136\n80144 Napoli",
+            "phone": "",
+            "hours": "Lun–Sab 10–19 · Dom chiuso",
+            "maps_url": "https://www.google.com/maps/search/?api=1&query=Viale%20Comandante%20Umberto%20Maddalena%2C%20136%2C%2080144%20Napoli"
+          }
+        },
+        "loc4": {
+          "type": "location",
+          "settings": {
+            "brand": "Condotti & Co",
+            "tag": "Store",
+            "name": "Condotti & Co",
+            "address": "Viale Comandante Umberto Maddalena, 136\n80144 Napoli",
+            "phone": "081 1786 1111",
+            "hours": "Lun–Sab 10–19 · Dom chiuso"
+          }
+        }
+      },
+      "block_order": [
+        "loc1",
+        "loc2",
+        "loc3",
+        "loc4"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "Vieni a trovarci a Napoli.",
+        "intro": "Quattro indirizzi, una sola firma. Passa in atelier o in boutique: ti aspettiamo.",
+        "color_scheme": "scheme-1",
+        "bg_color": "#F4EFE6",
+        "fg_color": "#0E0E0C",
+        "gold_color": "#C9A24B"
+      }
     }
   },
-  "order": ["hero_cucitura", "intro_brands", "brand_grid", "brand_marquee", "storia", "vision", "newsletter", "split_cta"]
+  "order": [
+    "hero_cucitura",
+    "intro_brands",
+    "brand_grid",
+    "brand_marquee",
+    "storia",
+    "vision",
+    "dove_trovarci",
+    "split_cta"
+  ]
 }

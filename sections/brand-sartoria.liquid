@@ -1,0 +1,179 @@
+{%- liquid
+  assign s = section.settings
+  assign hero_title = s.hero_title | default: 'Sartoria Condotti'
+  assign eyebrow = s.eyebrow | default: 'Napoli · Dal 1954'
+-%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap">
+{{ 'brand-page.css' | asset_url | stylesheet_tag }}
+
+<section class="bp" data-bp-root>
+  <!-- HERO (titolo + striscia foto) -->
+  <header class="bp__hero-strip">
+    <div class="bp__wrap bp__hero-strip__head">
+      <p class="bp__eyebrow" data-reveal>{{ eyebrow }}</p>
+      <h1 class="bp__display bp__hero-strip__title" data-reveal>{{ hero_title }}</h1>
+      <p class="bp__hero-strip__sub" data-reveal>{{ s.hero_sub | default: 'Alta sartoria su misura. Capi costruiti addosso a te, uno alla volta, con la calma di chi non ha fretta.' }}</p>
+    </div>
+    {%- if s.gallery_images != blank -%}
+      <div class="bp-gallery__track" data-reveal role="list">
+        {%- assign gallery_files = s.gallery_images | split: ',' -%}
+        {%- for raw in gallery_files -%}{%- assign file = raw | strip -%}{%- if file != blank -%}
+          <figure class="bp-gallery__item" role="listitem"><img src="{{ file | asset_url }}" width="1100" height="1650" loading="lazy" alt="{{ hero_title }}"></figure>
+        {%- endif -%}{%- endfor -%}
+      </div>
+      {%- if s.gallery_hint != blank -%}<p class="bp-gallery__hint" data-reveal>{{ s.gallery_hint }}</p>{%- endif -%}
+    {%- endif -%}
+  </header>
+
+  <!-- INTRO -->
+  <div class="bp__section bp__wrap">
+    <div class="bp__intro">
+      {%- if s.intro_eyebrow != blank -%}<p class="bp__eyebrow" data-reveal>{{ s.intro_eyebrow }}</p>{%- endif -%}
+      <h2 class="bp__h2" data-reveal>{{ s.intro_heading | default: 'Un capo su misura non si compra: si costruisce insieme.' }}</h2>
+      <p class="bp__lead bp__body" data-reveal>{{ s.intro_body | default: 'Dalla scelta del tessuto all’ultima prova, ogni passaggio passa dalle stesse mani. È così che un abito smette di essere un vestito e diventa il tuo.' }}</p>
+    </div>
+  </div>
+
+  <span class="bp__stitch bp__wrap" aria-hidden="true">
+    <svg viewBox="0 0 1000 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="1000" y2="1" stroke="currentColor" stroke-width="1.4" stroke-dasharray="7 5" vector-effect="non-scaling-stroke"/></svg>
+  </span>
+
+  <!-- IMMAGINE + STORE (diptych) -->
+  <div class="bp__section bp__wrap">
+    <div class="bp__diptych">
+      <div class="bp__diptych-media" data-reveal>
+        {%- if s.store_image != blank -%}
+          {{ s.store_image | image_url: width: 1200 | image_tag: widths: '600,900,1200', sizes: '(max-width:900px) 100vw, 50vw' }}
+        {%- else -%}
+          <img src="{{ s.store_image_asset | default: 'sartoria-04.jpg' | asset_url }}" width="1100" height="1650" alt="Sartoria Condotti — capi su misura" loading="lazy">
+        {%- endif -%}
+      </div>
+      <div class="bp__diptych-text">
+        {%- if s.store_eyebrow != blank -%}<p class="bp__eyebrow" data-reveal>{{ s.store_eyebrow }}</p>{%- endif -%}
+        <h2 class="bp__h2" data-reveal>{{ s.store_heading | default: 'I capi su misura, a portata di mano.' }}</h2>
+        <p class="bp__body" data-reveal>{{ s.store_body | default: 'Scopri la selezione di abiti, giacche e camicie della Sartoria Condotti. Ogni pezzo nasce dalla stessa cura dell’atelier, pronto per essere reso tuo.' }}</p>
+        <a class="bp__btn" href="{{ s.store_link | default: '/collections/sartoria-condotti' }}" data-reveal>{{ s.store_label | default: 'Entra nello store' }}</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESSO SU MISURA (ink) -->
+  <div class="bp bp--ink" style="background:rgb(var(--bp-ink));color:rgb(var(--bp-cream));">
+    <div class="bp__section bp__wrap">
+      <div class="bp__section-head">
+        {%- if s.process_eyebrow != blank -%}<p class="bp__eyebrow" data-reveal>{{ s.process_eyebrow }}</p>{%- endif -%}
+        <h2 class="bp__h2" data-reveal>{{ s.process_heading | default: 'Quattro tempi, una sola misura: la tua.' }}</h2>
+      </div>
+      <div class="bp__steps">
+        <div class="bp__step" data-reveal>
+          <span class="bp__num">01</span>
+          <h3>Il tessuto</h3>
+          <p class="bp__body">Scegliamo insieme la stoffa tra lane, cotoni e sete dei migliori lanifici italiani. Mano, peso, comportamento: ogni tessuto racconta un abito diverso.</p>
+        </div>
+        <div class="bp__step" data-reveal>
+          <span class="bp__num">02</span>
+          <h3>La presa misure</h3>
+          <p class="bp__body">Oltre venti misure e l’osservazione della postura. Il cartamodello nasce solo per te, da zero, su carta.</p>
+        </div>
+        <div class="bp__step" data-reveal>
+          <span class="bp__num">03</span>
+          <h3>Le prove</h3>
+          <p class="bp__body">Una o più prove in tela e in tessuto per correggere ogni dettaglio: spalla, giro manica, equilibrio. La forma si affina addosso.</p>
+        </div>
+        <div class="bp__step" data-reveal>
+          <span class="bp__num">04</span>
+          <h3>La consegna</h3>
+          <p class="bp__body">Cuciture rifinite a mano, asole, bottoni. Il capo è pronto quando è perfetto, non quando è finito.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOWCASE CAPI -->
+  <div class="bp__section bp__wrap">
+    <div class="bp__section-head">
+      {%- if s.collection_eyebrow != blank -%}<p class="bp__eyebrow" data-reveal>{{ s.collection_eyebrow }}</p>{%- endif -%}
+      <h2 class="bp__h2" data-reveal>{{ s.collection_heading | default: 'Alta sartoria su misura' }}</h2>
+    </div>
+    {%- if s.collection != blank and s.collection.products_count > 0 -%}
+      <div class="bp__products" data-reveal>
+        {%- for product in s.collection.products limit: s.products_limit -%}
+          <a class="bp__product" href="{{ product.url }}">
+            <div class="bp__product-media">
+              {%- if product.featured_image -%}
+                {{ product.featured_image | image_url: width: 800 | image_tag: widths: '300,500,800', sizes: '(max-width:640px) 50vw, 25vw', loading: 'lazy' }}
+              {%- endif -%}
+            </div>
+            <p class="bp__product-title">{{ product.title }}</p>
+            <p class="bp__product-price">{{ product.price | money }}</p>
+          </a>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p class="bp__body" data-reveal style="max-width:46ch;">Le collezioni su misura sono in preparazione. Per vedere tessuti e modelli, prenota un appuntamento in atelier.</p>
+      <p class="bp__placeholder-note">› Collega una collezione a questa sezione dal personalizzatore per mostrare qui i capi.</p>
+    {%- endif -%}
+  </div>
+
+  <!-- CTA (ink) -->
+  <div class="bp bp--ink" style="background:rgb(var(--bp-ink));color:rgb(var(--bp-cream));">
+    <div class="bp__section bp__wrap">
+      <div class="bp__cta">
+        {%- if s.cta_eyebrow != blank -%}<p class="bp__eyebrow" data-reveal>{{ s.cta_eyebrow }}</p>{%- endif -%}
+        <h2 class="bp__display" data-reveal>{{ s.cta_heading | default: 'Iniziamo dalla tua misura.' }}</h2>
+        <a class="bp__btn" href="{{ s.cta_link | default: '/pages/sarto-a-domicilio' }}" data-reveal>{{ s.cta_label | default: 'Prenota una presa misure' }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
+<script src="{{ 'ScrollTrigger.min.js' | asset_url }}" defer></script>
+<script src="{{ 'brand-page.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Brand · Sartoria",
+  "tag": "section",
+  "class": "brand-page-section",
+  "settings": [
+    { "type": "header", "content": "Hero" },
+    { "type": "image_picker", "id": "hero_image", "label": "Immagine hero" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Napoli · Dal 1954" },
+    { "type": "text", "id": "hero_title", "label": "Titolo", "default": "Sartoria Condotti" },
+    { "type": "textarea", "id": "hero_sub", "label": "Sottotitolo" },
+    { "type": "header", "content": "Intro" },
+    { "type": "text", "id": "intro_eyebrow", "label": "Eyebrow intro" },
+    { "type": "text", "id": "intro_heading", "label": "Titolo intro" },
+    { "type": "textarea", "id": "intro_body", "label": "Testo intro" },
+    { "type": "header", "content": "Hero · striscia foto" },
+    { "type": "textarea", "id": "gallery_images", "label": "Foto hero (file in assets/, separati da virgola)", "info": "Lascia vuoto per nascondere la striscia.", "default": "sartoria-01.jpg, sartoria-02.jpg, sartoria-03.jpg, sartoria-04.jpg, sartoria-05.jpg, sartoria-06.jpg, sartoria-07.jpg, sartoria-08.jpg, sartoria-09.jpg" },
+    { "type": "text", "id": "gallery_hint", "label": "Nota striscia", "default": "‹ scorri ›" },
+    { "type": "header", "content": "Immagine + Store" },
+    { "type": "image_picker", "id": "store_image", "label": "Immagine (upload, opzionale)", "info": "Se vuota, usa la foto in 'File immagine' qui sotto." },
+    { "type": "text", "id": "store_image_asset", "label": "File immagine (assets/)", "default": "sartoria-04.jpg" },
+    { "type": "text", "id": "store_eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "store_heading", "label": "Titolo" },
+    { "type": "textarea", "id": "store_body", "label": "Descrizione" },
+    { "type": "text", "id": "store_label", "label": "Etichetta bottone", "default": "Entra nello store" },
+    { "type": "url", "id": "store_link", "label": "Link store" },
+    { "type": "header", "content": "Processo" },
+    { "type": "text", "id": "process_eyebrow", "label": "Eyebrow processo" },
+    { "type": "text", "id": "process_heading", "label": "Titolo processo" },
+    { "type": "header", "content": "Showcase capi" },
+    { "type": "text", "id": "collection_eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "collection_heading", "label": "Titolo" },
+    { "type": "collection", "id": "collection", "label": "Collezione capi" },
+    { "type": "range", "id": "products_limit", "label": "Prodotti mostrati", "min": 4, "max": 12, "step": 4, "default": 8 },
+    { "type": "header", "content": "CTA finale" },
+    { "type": "text", "id": "cta_eyebrow", "label": "Eyebrow CTA" },
+    { "type": "text", "id": "cta_heading", "label": "Titolo CTA" },
+    { "type": "text", "id": "cta_label", "label": "Etichetta bottone", "default": "Prenota una presa misure" },
+    { "type": "url", "id": "cta_link", "label": "Link bottone" }
+  ],
+  "presets": [{ "name": "Brand · Sartoria" }]
+}
+{% endschema %}

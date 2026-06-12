@@ -28,6 +28,8 @@
   style="
     --hc-bg: {{ section.settings.bg_color.red }} {{ section.settings.bg_color.green }} {{ section.settings.bg_color.blue }};
     --hc-fg: {{ section.settings.fg_color.red }} {{ section.settings.fg_color.green }} {{ section.settings.fg_color.blue }};
+    --hc-swan: {{ section.settings.swan_color.red }} {{ section.settings.swan_color.green }} {{ section.settings.swan_color.blue }};
+    --hc-swan-url: url('{{ 'cigno.svg' | asset_url }}');
     --hc-display-size: {{ section.settings.display_size }}vw;
   "
   {% if request.visual_preview_mode %}
@@ -67,22 +69,12 @@
         <p class="hero-cucitura__eyebrow">{{ eyebrow_text }}</p>
       {%- endif -%}
       <span class="hero-cucitura__line">{{ line_top }}</span>
-      <img
-        class="hero-cucitura__swan hero-cucitura__swan--top"
-        src="{{ 'cigno.svg' | asset_url }}"
-        alt=""
-        aria-hidden="true"
-      >
+      <span class="hero-cucitura__swan hero-cucitura__swan--top" aria-hidden="true"></span>
     </div>
 
     <div class="hero-cucitura__panel hero-cucitura__panel--bot" data-hc-bot aria-hidden="true">
       <span class="hero-cucitura__line">{{ line_bottom }}</span>
-      <img
-        class="hero-cucitura__swan hero-cucitura__swan--bot"
-        src="{{ 'cigno.svg' | asset_url }}"
-        alt=""
-        aria-hidden="true"
-      >
+      <span class="hero-cucitura__swan hero-cucitura__swan--bot" aria-hidden="true"></span>
     </div>
 
     <div class="hero-cucitura__stitch" data-hc-stitch aria-hidden="true">
@@ -212,12 +204,21 @@
   .hero-cucitura__swan {
     position: absolute;
     left: 50%;
-    width: min(110vh, 110vw);
-    height: auto;
+    width: min(140vh, 140vw);
+    aspect-ratio: 1 / 1;
     pointer-events: none;
     user-select: none;
-    opacity: 0.18;
+    opacity: 0.55;
     z-index: 2;
+    background-color: rgb(var(--hc-swan, 212 162 76));
+    -webkit-mask-image: var(--hc-swan-url);
+    mask-image: var(--hc-swan-url);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
   }
 
   .hero-cucitura__panel--top .hero-cucitura__swan {
@@ -288,7 +289,7 @@
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "Roma · Atelier · Dal 1952"
+      "default": "Napoli · Atelier · Dal 1954"
     },
     {
       "type": "text",
@@ -346,14 +347,20 @@
     {
       "type": "color",
       "id": "bg_color",
-      "label": "Sfondo (cream)",
-      "default": "#F4EFE6"
+      "label": "Sfondo",
+      "default": "#14213D"
     },
     {
       "type": "color",
       "id": "fg_color",
       "label": "Testo / cucitura",
-      "default": "#0E0E0C"
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "color",
+      "id": "swan_color",
+      "label": "Cigno (filigrana)",
+      "default": "#D4A24C"
     }
   ],
   "presets": [
@@ -361,7 +368,7 @@
       "name": "Hero Cucitura",
       "category": "Banners",
       "settings": {
-        "eyebrow": "Roma · Atelier · Dal 1952",
+        "eyebrow": "Napoli · Atelier · Dal 1954",
         "line_top": "SARTORIA",
         "line_bottom": "CONDOTTI"
       }

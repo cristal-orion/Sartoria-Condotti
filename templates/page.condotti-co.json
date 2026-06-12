@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "brand-condotti-co",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

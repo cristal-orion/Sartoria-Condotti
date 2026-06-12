@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "main": {
+      "type": "brand-sartoria",
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

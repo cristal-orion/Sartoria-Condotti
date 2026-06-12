@@ -1,0 +1,144 @@
+{%- liquid
+  assign s = section.settings
+  assign hero_title = s.hero_title | default: 'Ricameria'
+  assign eyebrow = s.eyebrow | default: 'Napoli · Dal 1954'
+-%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap">
+{{ 'brand-page.css' | asset_url | stylesheet_tag }}
+
+<section class="bp" data-bp-root>
+  <!-- HERO -->
+  <header class="bp__hero">
+    <div class="bp__hero-media">
+      {%- if s.hero_image != blank -%}
+        {{ s.hero_image | image_url: width: 2400 | image_tag: widths: '900,1400,1900,2400', sizes: '100vw', fetchpriority: 'high' }}
+      {%- else -%}
+        <img src="{{ 'ricameria34.png' | asset_url }}" alt="" fetchpriority="high">
+      {%- endif -%}
+    </div>
+    <div class="bp__hero-inner bp__wrap">
+      <p class="bp__eyebrow" data-reveal>{{ eyebrow }}</p>
+      <h1 class="bp__display bp__hero-title" data-reveal>{{ hero_title }}</h1>
+      <p class="bp__hero-sub" data-reveal>{{ s.hero_sub | default: 'Piccole riparazioni e ricami su misura. Diamo nuova vita ai capi e firmiamo ciò che è tuo.' }}</p>
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <div class="bp__section bp__wrap">
+    <div class="bp__intro">
+      <p class="bp__eyebrow" data-reveal>{{ s.intro_eyebrow | default: 'Il laboratorio' }}</p>
+      <h2 class="bp__h2" data-reveal>{{ s.intro_heading | default: 'Ogni capo merita una seconda vita.' }}</h2>
+      <p class="bp__lead bp__body" data-reveal>{{ s.intro_body | default: 'Dall’orlo da sistemare al monogramma da ricamare, ci prendiamo cura dei dettagli con la precisione della sartoria. Niente è troppo piccolo per essere fatto bene.' }}</p>
+    </div>
+  </div>
+
+  <span class="bp__stitch bp__wrap" aria-hidden="true">
+    <svg viewBox="0 0 1000 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="1000" y2="1" stroke="currentColor" stroke-width="1.4" stroke-dasharray="7 5" vector-effect="non-scaling-stroke"/></svg>
+  </span>
+
+  <!-- SERVIZI -->
+  <div class="bp__section bp__wrap">
+    <div class="bp__section-head">
+      <p class="bp__eyebrow" data-reveal>{{ s.services_eyebrow | default: 'Cosa facciamo' }}</p>
+      <h2 class="bp__h2" data-reveal>{{ s.services_heading | default: 'Riparazioni e ricami' }}</h2>
+    </div>
+    <div class="bp__services">
+      <div class="bp__service" data-reveal>
+        <span class="bp__num">01</span>
+        <h3>Piccole riparazioni</h3>
+        <ul>
+          <li>Orli e accorciature (pantaloni, gonne, abiti)</li>
+          <li>Sostituzione cerniere e bottoni</li>
+          <li>Restringimenti e adattamenti di vestibilità</li>
+          <li>Rammendi invisibili e rinforzi</li>
+          <li>Sostituzione fodere e rifiniture</li>
+        </ul>
+      </div>
+      <div class="bp__service" data-reveal>
+        <span class="bp__num">02</span>
+        <h3>Ricami su misura</h3>
+        <ul>
+          <li>Monogrammi e iniziali su camicie e capi</li>
+          <li>Loghi e divise aziendali</li>
+          <li>Personalizzazioni e ricami decorativi</li>
+          <li>Ricami su biancheria e accessori</li>
+          <li>Restauro di ricami antichi</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- COME FUNZIONA (ink) -->
+  <div class="bp bp--ink" style="background:rgb(var(--bp-ink));color:rgb(var(--bp-cream));">
+    <div class="bp__section bp__wrap">
+      <div class="bp__section-head">
+        <p class="bp__eyebrow" data-reveal>{{ s.how_eyebrow | default: 'Come funziona' }}</p>
+        <h2 class="bp__h2" data-reveal>{{ s.how_heading | default: 'Dal capo al risultato.' }}</h2>
+      </div>
+      <div class="bp__steps">
+        <div class="bp__step" data-reveal>
+          <span class="bp__num">01</span>
+          <h3>Portaci il capo</h3>
+          <p class="bp__body">Vieni in atelier o richiedi il ritiro a domicilio. Valutiamo insieme l’intervento.</p>
+        </div>
+        <div class="bp__step" data-reveal>
+          <span class="bp__num">02</span>
+          <h3>Preventivo</h3>
+          <p class="bp__body">Ti diamo tempi e costo prima di iniziare. Nessuna sorpresa.</p>
+        </div>
+        <div class="bp__step" data-reveal>
+          <span class="bp__num">03</span>
+          <h3>Riconsegna</h3>
+          <p class="bp__body">Lavoriamo con cura e ti riconsegniamo il capo come nuovo, o meglio.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="bp__section bp__wrap">
+    <div class="bp__cta">
+      <p class="bp__eyebrow" data-reveal>{{ s.cta_eyebrow | default: 'Su richiesta' }}</p>
+      <h2 class="bp__display" data-reveal>{{ s.cta_heading | default: 'Diamo nuova vita ai tuoi capi.' }}</h2>
+      <a class="bp__btn" href="{{ s.cta_link | default: '/pages/sarto-a-domicilio#prenota' }}" data-reveal>{{ s.cta_label | default: 'Richiedi un preventivo' }}</a>
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
+<script src="{{ 'ScrollTrigger.min.js' | asset_url }}" defer></script>
+<script src="{{ 'brand-page.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Brand · Ricameria",
+  "tag": "section",
+  "class": "brand-page-section",
+  "settings": [
+    { "type": "header", "content": "Hero" },
+    { "type": "image_picker", "id": "hero_image", "label": "Immagine hero" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Napoli · Dal 1954" },
+    { "type": "text", "id": "hero_title", "label": "Titolo", "default": "Ricameria" },
+    { "type": "textarea", "id": "hero_sub", "label": "Sottotitolo" },
+    { "type": "header", "content": "Intro" },
+    { "type": "text", "id": "intro_eyebrow", "label": "Eyebrow intro" },
+    { "type": "text", "id": "intro_heading", "label": "Titolo intro" },
+    { "type": "textarea", "id": "intro_body", "label": "Testo intro" },
+    { "type": "header", "content": "Servizi" },
+    { "type": "text", "id": "services_eyebrow", "label": "Eyebrow servizi" },
+    { "type": "text", "id": "services_heading", "label": "Titolo servizi" },
+    { "type": "header", "content": "Come funziona" },
+    { "type": "text", "id": "how_eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "how_heading", "label": "Titolo" },
+    { "type": "header", "content": "CTA finale" },
+    { "type": "text", "id": "cta_eyebrow", "label": "Eyebrow CTA" },
+    { "type": "text", "id": "cta_heading", "label": "Titolo CTA" },
+    { "type": "text", "id": "cta_label", "label": "Etichetta bottone", "default": "Richiedi un preventivo" },
+    { "type": "url", "id": "cta_link", "label": "Link bottone" }
+  ],
+  "presets": [{ "name": "Brand · Ricameria" }]
+}
+{% endschema %}
