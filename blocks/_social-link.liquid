@@ -14,6 +14,13 @@
     if url_parts.size > 1 and url_parts[1] != ''
       assign has_profile = true
     endif
+
+    # Normalize WhatsApp links (wa.me / whatsapp.com) to the whatsapp icon
+    assign link_lower = block_settings.link | downcase
+    if link_lower contains 'wa.me' or link_lower contains 'whatsapp'
+      assign platform = 'whatsapp'
+      assign has_profile = true
+    endif
   endif
 %}
 

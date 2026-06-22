@@ -2,6 +2,29 @@
   assign s = section.settings
   assign hero_title = s.hero_title | default: 'Sarto a Domicilio'
   assign eyebrow = s.eyebrow | default: 'Napoli · Dal 1954'
+
+  assign has_negozio = false
+  if s.cal_link != blank and s.cal_link_negozio != blank
+    assign has_negozio = true
+  endif
+
+  assign form_heading = s.form_heading
+  if form_heading == blank
+    if has_negozio
+      assign form_heading = 'Prenota un appuntamento'
+    else
+      assign form_heading = 'Richiedi il sarto a domicilio'
+    endif
+  endif
+
+  assign form_body = s.form_body
+  if form_body == blank
+    if has_negozio
+      assign form_body = 'Scegli se ricevere il sarto a casa o venire in una delle nostre boutique. In entrambi i casi confermiamo noi giorno e orario — nessun addebito in questa fase.'
+    else
+      assign form_body = 'Raccontaci di cosa hai bisogno: ti rispondiamo entro 24 ore per concordare giorno e orario. Nessun pagamento richiesto in questa fase.'
+    endif
+  endif
 -%}
 
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
@@ -49,7 +72,7 @@
       <div class="bp__step" data-reveal>
         <span class="bp__num">01</span>
         <h3>Richiedi</h3>
-        <p class="bp__body">Compila il modulo qui sotto indicando zona, servizio e data che preferisci. Ti ricontattiamo per confermare.</p>
+        <p class="bp__body">Indica giorno, ora e di cosa hai bisogno qui sotto. Confermiamo noi l’appuntamento.</p>
       </div>
       <div class="bp__step" data-reveal>
         <span class="bp__num">02</span>
@@ -70,11 +93,61 @@
       <div class="bp__form-layout">
         <div class="bp__diptych-text">
           <p class="bp__eyebrow" data-reveal>{{ s.form_eyebrow | default: 'Prenota' }}</p>
-          <h2 class="bp__h2" data-reveal>{{ s.form_heading | default: 'Richiedi il sarto a domicilio' }}</h2>
-          <p class="bp__body" data-reveal>{{ s.form_body | default: 'Raccontaci di cosa hai bisogno: ti rispondiamo entro 24 ore per concordare giorno e orario. Nessun pagamento richiesto in questa fase.' }}</p>
+          <h2 class="bp__h2" data-reveal>{{ form_heading }}</h2>
+          <p class="bp__body" data-reveal>{{ form_body }}</p>
         </div>
 
         <div data-reveal>
+          {%- if s.cal_link != blank -%}
+            <style>
+              .bp__cal-tabs { display: flex; gap: .5rem; margin-bottom: 1.4rem; flex-wrap: wrap; }
+              .bp__cal-tab { appearance: none; -webkit-appearance: none; cursor: pointer; background: transparent; color: rgb(var(--bp-cream) / 0.7); border: 1px solid rgb(var(--bp-cream) / 0.25); border-radius: 999px; padding: .62em 1.5em; font-family: var(--font-body--family, system-ui); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; transition: background .25s ease, color .25s ease, border-color .25s ease; }
+              .bp__cal-tab:hover { border-color: rgb(var(--bp-cream) / 0.55); color: rgb(var(--bp-cream)); }
+              .bp__cal-tab.is-active { background: #C9A24B; border-color: #C9A24B; color: #0e0e0c; }
+            </style>
+            {%- if has_negozio -%}
+              <div class="bp__cal-tabs" role="tablist" aria-label="Tipo di appuntamento">
+                <button type="button" class="bp__cal-tab is-active" data-cal-tab="domicilio" role="tab" aria-selected="true">A domicilio</button>
+                <button type="button" class="bp__cal-tab" data-cal-tab="negozio" role="tab" aria-selected="false">In boutique</button>
+              </div>
+            {%- endif -%}
+            <div id="sd-cal" class="bp__cal" data-cal-panel="domicilio" aria-label="Calendario sarto a domicilio" style="min-height:560px;width:100%"></div>
+            {%- if has_negozio -%}
+              <div id="sd-cal-negozio" class="bp__cal" data-cal-panel="negozio" aria-label="Calendario visita in boutique" style="min-height:560px;width:100%;display:none"></div>
+            {%- endif -%}
+            <p class="bp__form-note" style="margin-top:1.1rem;">Scegli giorno e ora dal calendario: confermiamo noi l’appuntamento. Nessun addebito in questa fase.</p>
+            <script type="text/javascript">
+              (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.eu/embed/embed.js", "init");
+              Cal("init", "sarto", {origin:"https://cal.eu"});
+              Cal.ns.sarto("inline", {
+                elementOrSelector: "#sd-cal",
+                calLink: {{ s.cal_link | json }},
+                config: { "layout": "month_view", "theme": "dark" }
+              });
+              Cal.ns.sarto("ui", { "theme": "dark", "cssVarsPerTheme": { "dark": { "cal-brand": "#C9A24B" } }, "hideEventTypeDetails": false, "layout": "month_view" });
+              {%- if has_negozio -%}
+              var sdNegozioInit = false;
+              function sdInitNegozio() {
+                if (sdNegozioInit) return; sdNegozioInit = true;
+                Cal("init", "negozio", { origin: "https://cal.eu" });
+                Cal.ns.negozio("inline", { elementOrSelector: "#sd-cal-negozio", calLink: {{ s.cal_link_negozio | json }}, config: { "layout": "month_view", "theme": "dark" } });
+                Cal.ns.negozio("ui", { "theme": "dark", "cssVarsPerTheme": { "dark": { "cal-brand": "#C9A24B" } }, "hideEventTypeDetails": false, "layout": "month_view" });
+              }
+              (function () {
+                var tabs = document.querySelectorAll('.bp__cal-tab');
+                var panels = { domicilio: document.getElementById('sd-cal'), negozio: document.getElementById('sd-cal-negozio') };
+                tabs.forEach(function (tab) {
+                  tab.addEventListener('click', function () {
+                    var key = tab.getAttribute('data-cal-tab');
+                    tabs.forEach(function (t) { var on = t === tab; t.classList.toggle('is-active', on); t.setAttribute('aria-selected', on ? 'true' : 'false'); });
+                    Object.keys(panels).forEach(function (k) { if (panels[k]) panels[k].style.display = (k === key ? 'block' : 'none'); });
+                    if (key === 'negozio') sdInitNegozio();
+                  });
+                });
+              })();
+              {%- endif -%}
+            </script>
+          {%- else -%}
           {%- form 'contact', id: 'sarto-domicilio-form' -%}
             {%- if form.posted_successfully? -%}
               <div class="bp__form-success">Richiesta inviata. Ti ricontatteremo a breve per confermare l’appuntamento. Grazie.</div>
@@ -135,6 +208,7 @@
               </div>
             </div>
           {%- endform -%}
+          {%- endif -%}
         </div>
       </div>
     </div>
@@ -163,6 +237,9 @@
     { "type": "header", "content": "Come funziona" },
     { "type": "text", "id": "how_eyebrow", "label": "Eyebrow" },
     { "type": "text", "id": "how_heading", "label": "Titolo" },
+    { "type": "header", "content": "Prenotazione (cal.com)" },
+    { "type": "text", "id": "cal_link", "label": "Link cal.com — Sarto a domicilio", "info": "Incolla username/evento di cal.eu, es. sartoriacondotti/sarto-a-domicilio. Se vuoto, resta il vecchio form via email." },
+    { "type": "text", "id": "cal_link_negozio", "label": "Link cal.com — Visita in boutique", "info": "Secondo evento cal.eu, es. sartoriacondotti/visita-in-boutique. Se compilato, sulla pagina compaiono i due tab 'A domicilio / In boutique'." },
     { "type": "header", "content": "Form richiesta" },
     { "type": "text", "id": "form_eyebrow", "label": "Eyebrow form" },
     { "type": "text", "id": "form_heading", "label": "Titolo form" },

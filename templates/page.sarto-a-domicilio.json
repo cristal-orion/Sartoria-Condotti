@@ -2,7 +2,9 @@
   "sections": {
     "main": {
       "type": "brand-sarto-domicilio",
-      "settings": {}
+      "settings": {
+        "cal_link": "sartoriacondotti/sarto-a-domicilio"
+      }
     }
   },
   "order": ["main"]

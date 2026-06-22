@@ -354,6 +354,14 @@
                   },
                   "blocks": {}
                 },
+                "social_link_WhatsAp": {
+                  "type": "_social-link",
+                  "name": "WhatsApp",
+                  "settings": {
+                    "link": "https://wa.me/393793480144"
+                  },
+                  "blocks": {}
+                },
                 "social_link_XLRrJj": {
                   "type": "_social-link",
                   "name": "TikTok",
@@ -382,6 +390,7 @@
               "block_order": [
                 "social_link_RQNdgj",
                 "social_link_nJ8rCy",
+                "social_link_WhatsAp",
                 "social_link_XLRrJj",
                 "social_link_fEwdRd",
                 "social_link_EHYCPE"
