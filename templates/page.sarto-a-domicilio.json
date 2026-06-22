@@ -3,7 +3,8 @@
     "main": {
       "type": "brand-sarto-domicilio",
       "settings": {
-        "cal_link": "sartoriacondotti/sarto-a-domicilio"
+        "cal_link": "sartoriacondotti/sarto-a-domicilio",
+        "cal_link_negozio": "sartoriacondotti/visita-in-boutique"
       }
     }
   },
