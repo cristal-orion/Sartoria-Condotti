@@ -248,6 +248,16 @@
   display: block;
 }
 
+/* Foto storica orizzontale: mostrata intera, senza crop verticale */
+.bp__diptych-media--photo {
+  aspect-ratio: auto;
+  background: transparent;
+}
+
+.bp__diptych-media--photo img {
+  height: auto;
+}
+
 .bp__diptych-text {
   display: flex;
   flex-direction: column;
