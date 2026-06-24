@@ -285,7 +285,7 @@
               "type": "text",
               "name": "Colophon riga",
               "settings": {
-                "text": "<p>Napoli, dal 1954 — quattro mestieri, una sola firma.</p>",
+                "text": "<p>Napoli, dal 1954 — quattro realtà, una sola firma.</p>",
                 "type_preset": "custom",
                 "font": "var(--font-body--family)",
                 "font_size": "0.875rem",

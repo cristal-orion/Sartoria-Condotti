@@ -21,7 +21,7 @@
           "type": "text",
           "name": "Heading",
           "settings": {
-            "text": "<h2>Quattro mestieri, una sola firma.</h2>",
+            "text": "<h2>Quattro realtà, una sola firma.</h2>",
             "type_preset": "h2",
             "line_height": "1.05",
             "letter_spacing": "-0.02em",
@@ -118,7 +118,7 @@
             "tagline": {
               "type": "text",
               "settings": {
-                "text": "<p>Su misura, dal 1954</p>",
+                "text": "<p>Alta sartoria fatta a mano</p>",
                 "type_preset": "custom",
                 "font": "var(--font-body--family)",
                 "font_size": "0.7rem",
@@ -582,7 +582,7 @@
             "text": "<p>Crediamo che l’eleganza non si esibisca: si indossi. Ogni capo che lascia la nostra sartoria è il risultato di mani esperte, ascolto e tempo.</p>",
             "type_preset": "custom",
             "font": "var(--font-body--family)",
-            "font_size": "1.25rem",
+            "font_size": "1.45rem",
             "line_height": "normal",
             "letter_spacing": "tight",
             "case": "none",
@@ -684,6 +684,7 @@
             "name": "Atelier del Ricamo",
             "address": "Viale Comandante Umberto Maddalena, 136\n80144 Napoli",
             "phone": "",
+            "whatsapp": "+39 379 348 0144",
             "hours": "Lun–Sab 10–19 · Dom chiuso",
             "maps_url": "https://www.google.com/maps/search/?api=1&query=Viale%20Comandante%20Umberto%20Maddalena%2C%20136%2C%2080144%20Napoli"
           }
@@ -696,6 +697,7 @@
             "name": "Condotti & Co",
             "address": "Viale Comandante Umberto Maddalena, 136\n80144 Napoli",
             "phone": "081 1786 1111",
+            "whatsapp": "+39 379 348 0144",
             "hours": "Lun–Sab 10–19 · Dom chiuso"
           }
         }

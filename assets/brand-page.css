@@ -81,6 +81,12 @@
   margin-top: 1.1em;
 }
 
+/* Variante ingrandita (es. sotto-testo sezione storica) */
+.bp__body--lg {
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  line-height: 1.6;
+}
+
 .bp__num {
   font-family: var(--font-body--family, system-ui);
   font-variant-numeric: tabular-nums;
