@@ -464,7 +464,7 @@
             "image": "",
             "image_ratio": "adapt",
             "width": "custom",
-            "placeholder": "sartoriaesternovintage.png",
+            "placeholder": "sartoria-store-storico.jpg",
             "custom_width": 38
           }
         },
@@ -505,7 +505,10 @@
               "name": "Body",
               "settings": {
                 "text": "<p>Sartoria Condotti nasce nel cuore di Napoli, dove l’eleganza non è un concetto ma un mestiere che si tramanda. Dal 1954 vestiamo chi cerca un capo che parli di sé: cucito su misura, con tessuti scelti uno a uno. Tre generazioni di sarti, una sola idea di stile — discreto, sicuro, italiano.</p>",
-                "type_preset": "rte",
+                "type_preset": "custom",
+                "font": "var(--font-body--family)",
+                "font_size": "1.2rem",
+                "line_height": "1.6",
                 "wrap": "pretty",
                 "width": "fill",
                 "max_width": "normal",
@@ -513,23 +516,11 @@
                 "padding-block-start": 0,
                 "padding-block-end": 0
               }
-            },
-            "cta": {
-              "type": "button",
-              "settings": {
-                "label": "Scopri la nostra storia →",
-                "link": "shopify://pages/storia",
-                "open_in_new_tab": false,
-                "style_class": "link",
-                "width": "fit-content",
-                "width_mobile": "fit-content"
-              }
             }
           },
           "block_order": [
             "heading",
-            "body",
-            "cta"
+            "body"
           ]
         }
       },
