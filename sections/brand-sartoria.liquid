@@ -18,11 +18,20 @@
       <p class="bp__hero-strip__sub" data-reveal>{{ s.hero_sub | default: 'Alta sartoria su misura. Capi costruiti addosso a te, uno alla volta, con la calma di chi non ha fretta.' }}</p>
     </div>
     {%- if s.gallery_images != blank -%}
+      {%- assign gallery_url_default = s.gallery_link | default: '/collections/sartoria-condotti' -%}
       <div class="bp-gallery__track" data-reveal role="list">
         {%- assign gallery_files = s.gallery_images | split: ',' -%}
-        {%- for raw in gallery_files -%}{%- assign file = raw | strip -%}{%- if file != blank -%}
-          <figure class="bp-gallery__item" role="listitem"><img src="{{ file | asset_url }}" width="1100" height="1650" loading="lazy" alt="{{ hero_title }}"></figure>
-        {%- endif -%}{%- endfor -%}
+        {%- for raw in gallery_files -%}
+          {%- assign parts = raw | split: '|' -%}
+          {%- assign file = parts[0] | strip -%}
+          {%- assign link = parts[1] | strip -%}
+          {%- assign caption = parts[2] | strip -%}
+          {%- if link == blank -%}{%- assign link = gallery_url_default -%}{%- endif -%}
+          {%- assign a11y = caption | default: hero_title -%}
+          {%- if file != blank -%}
+            <figure class="bp-gallery__item" role="listitem"><a class="bp-gallery__link" href="{{ link }}" aria-label="{{ a11y | escape }} — vai alla collezione"><img src="{{ file | asset_url }}" width="1100" height="1650" loading="lazy" alt="{{ a11y | escape }}"><span class="bp-gallery__caption">{{ caption }}</span></a></figure>
+          {%- endif -%}
+        {%- endfor -%}
       </div>
       {%- if s.gallery_hint != blank -%}<p class="bp-gallery__hint" data-reveal>{{ s.gallery_hint }}</p>{%- endif -%}
     {%- endif -%}
@@ -44,13 +53,13 @@
   <!-- IMMAGINE + STORE (diptych) -->
   <div class="bp__section bp__wrap">
     <div class="bp__diptych">
-      <div class="bp__diptych-media" data-reveal>
+      <a class="bp__diptych-media bp__diptych-media--link" href="{{ s.store_link | default: '/collections/sartoria-condotti' }}" data-reveal aria-label="{{ s.store_heading | default: 'I capi su misura' }} — vai alla collezione">
         {%- if s.store_image != blank -%}
           {{ s.store_image | image_url: width: 1200 | image_tag: widths: '600,900,1200', sizes: '(max-width:900px) 100vw, 50vw' }}
         {%- else -%}
           <img src="{{ s.store_image_asset | default: 'sartoria-04.jpg' | asset_url }}" width="1100" height="1650" alt="Sartoria Condotti — capi su misura" loading="lazy">
         {%- endif -%}
-      </div>
+      </a>
       <div class="bp__diptych-text">
         {%- if s.store_eyebrow != blank -%}<p class="bp__eyebrow" data-reveal>{{ s.store_eyebrow }}</p>{%- endif -%}
         <h2 class="bp__h2" data-reveal>{{ s.store_heading | default: 'I capi su misura, a portata di mano.' }}</h2>
@@ -150,7 +159,8 @@
     { "type": "text", "id": "intro_heading", "label": "Titolo intro" },
     { "type": "textarea", "id": "intro_body", "label": "Testo intro" },
     { "type": "header", "content": "Hero · striscia foto" },
-    { "type": "textarea", "id": "gallery_images", "label": "Foto hero (file in assets/, separati da virgola)", "info": "Lascia vuoto per nascondere la striscia.", "default": "sartoria-01.jpg, sartoria-02.jpg, sartoria-03.jpg, sartoria-04.jpg, sartoria-05.jpg, sartoria-06.jpg, sartoria-07.jpg, sartoria-08.jpg, sartoria-09.jpg" },
+    { "type": "textarea", "id": "gallery_images", "label": "Foto hero (file in assets/, separati da virgola)", "info": "Formato per ogni foto: nomefile | /collections/handle | Nome collezione. Le ultime due parti sono opzionali. Verifica che gli handle delle collezioni siano corretti e abbina ogni foto alla collezione giusta. Lascia vuoto per nascondere la striscia.", "default": "sartoria-abiti.jpg | /collections/abiti-sartoriale | Abiti, sartoria-giacche.jpg | /collections/giacche-sartoriali | Giacche, sartoria-camicie.jpg | /collections/camicie-sartoriali | Camicie, sartoria-polo.jpg | /collections/polo-t-shirt-sartoriali | Polo & T-Shirt" },
+    { "type": "url", "id": "gallery_link", "label": "Link foto hero (collezione di riserva)", "info": "Dove portano le foto SENZA link specifico (formato sopra). Default: collezione Sartoria Condotti." },
     { "type": "text", "id": "gallery_hint", "label": "Nota striscia", "default": "‹ scorri ›" },
     { "type": "header", "content": "Immagine + Store" },
     { "type": "image_picker", "id": "store_image", "label": "Immagine (upload, opzionale)", "info": "Se vuota, usa la foto in 'File immagine' qui sotto." },

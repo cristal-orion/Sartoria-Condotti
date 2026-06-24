@@ -1,6 +1,6 @@
 {%- liquid
   assign s = section.settings
-  assign hero_title = s.hero_title | default: 'Ricameria'
+  assign hero_title = s.hero_title | default: 'Atelier del Ricamo'
   assign eyebrow = s.eyebrow | default: 'Napoli · Dal 1954'
 -%}
 
@@ -121,7 +121,7 @@
     { "type": "header", "content": "Hero" },
     { "type": "image_picker", "id": "hero_image", "label": "Immagine hero" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Napoli · Dal 1954" },
-    { "type": "text", "id": "hero_title", "label": "Titolo", "default": "Ricameria" },
+    { "type": "text", "id": "hero_title", "label": "Titolo", "default": "Atelier del Ricamo" },
     { "type": "textarea", "id": "hero_sub", "label": "Sottotitolo" },
     { "type": "header", "content": "Intro" },
     { "type": "text", "id": "intro_eyebrow", "label": "Eyebrow intro" },

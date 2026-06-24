@@ -1,7 +1,8 @@
 
 
 {% liquid
-  assign section_collections = collections
+  # Ordina le collezioni: prima quelle con più prodotti, le vuote finiscono in fondo
+  assign section_collections = collections | sort: 'all_products_count' | reverse
   assign max_items = 20
 %}
 
@@ -34,13 +35,21 @@
   {% endif %}
 
   {% capture list_items %}
+    {% assign rendered_count = 0 %}
     {% for collection in section_collections limit: max_items %}
-      <div class="resource-list__item">
-        {% content_for 'block', type: '_collection-card', id: 'static-collection-card', closest.collection: collection %}
-      </div>
-      {% unless forloop.last %}
-        <!--@list/split-->
-      {% endunless %}
+      {% assign collection_title_lc = collection.title | downcase %}
+      {% assign is_appointment = false %}
+      {% if collection_title_lc contains 'appuntament' %}
+        {% assign is_appointment = true %}
+      {% endif %}
+      {% comment %} Mostra solo collezioni con prodotti ed escludi "Richiedi appuntamento" (app Appointo, non è una vera collezione) {% endcomment %}
+      {% if collection.all_products_count > 0 and is_appointment == false %}
+        {% if rendered_count > 0 %}<!--@list/split-->{% endif %}
+        <div class="resource-list__item">
+          {% content_for 'block', type: '_collection-card', id: 'static-collection-card', closest.collection: collection %}
+        </div>
+        {% assign rendered_count = rendered_count | plus: 1 %}
+      {% endif %}
     {% endfor %}
   {% endcapture %}
 

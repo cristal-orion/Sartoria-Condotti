@@ -22,13 +22,13 @@
 {% case variant %}
   {% when 'mobile' %}
     <div
-      class="header__drawer desktop:hidden"
+      class="header__drawer"
       ref="headerDrawerContainer"
       style="{{ title_case_style }}"
       {{ block.shopify_attributes }}
     >
       {% render 'header-drawer',
-        class: 'header__drawer--mobile',
+        class: 'header__drawer--mobile header__drawer--desktop',
         linklist: block_settings.menu,
         data_header_drawer_type: 'mobile-drawer'
       %}
@@ -66,7 +66,7 @@
   {% else %}
     <header-menu
       ref="headerMenu"
-      class="header-menu mobile:hidden"
+      class="header-menu mobile:hidden desktop:hidden"
       data-animation-delay="{{ animation_speed }}"
       {{ block.shopify_attributes }}
       style="--submenu-animation-speed: {{ animation_speed }}ms;{{ title_case_style }}"

@@ -18,11 +18,20 @@
       <p class="bp__hero-strip__sub" data-reveal>{{ s.hero_sub | default: 'Il guardaroba di tutti i giorni con la mano della sartoria. Casual contemporaneo, mai casuale.' }}</p>
     </div>
     {%- if s.gallery_images != blank -%}
+      {%- assign gallery_url_default = s.gallery_link | default: '/collections/condotti-co' -%}
       <div class="bp-gallery__track" data-reveal role="list">
         {%- assign gallery_files = s.gallery_images | split: ',' -%}
-        {%- for raw in gallery_files -%}{%- assign file = raw | strip -%}{%- if file != blank -%}
-          <figure class="bp-gallery__item" role="listitem"><img src="{{ file | asset_url }}" width="1100" height="1650" loading="lazy" alt="{{ hero_title }}"></figure>
-        {%- endif -%}{%- endfor -%}
+        {%- for raw in gallery_files -%}
+          {%- assign parts = raw | split: '|' -%}
+          {%- assign file = parts[0] | strip -%}
+          {%- assign link = parts[1] | strip -%}
+          {%- assign caption = parts[2] | strip -%}
+          {%- if link == blank -%}{%- assign link = gallery_url_default -%}{%- endif -%}
+          {%- assign a11y = caption | default: hero_title -%}
+          {%- if file != blank -%}
+            <figure class="bp-gallery__item" role="listitem"><a class="bp-gallery__link" href="{{ link }}" aria-label="{{ a11y | escape }} — vai alla collezione"><img src="{{ file | asset_url }}" width="1100" height="1650" loading="lazy" alt="{{ a11y | escape }}"><span class="bp-gallery__caption">{{ caption }}</span></a></figure>
+          {%- endif -%}
+        {%- endfor -%}
       </div>
       {%- if s.gallery_hint != blank -%}<p class="bp-gallery__hint" data-reveal>{{ s.gallery_hint }}</p>{%- endif -%}
     {%- endif -%}
@@ -126,7 +135,8 @@
     { "type": "text", "id": "intro_heading", "label": "Titolo intro" },
     { "type": "textarea", "id": "intro_body", "label": "Testo intro" },
     { "type": "header", "content": "Hero · striscia foto" },
-    { "type": "textarea", "id": "gallery_images", "label": "Foto hero (file in assets/, separati da virgola)", "info": "Lascia vuoto per nascondere la striscia.", "default": "condottico-01.jpg, condottico-02.jpg, condottico-03.jpg, condottico-04.jpg, condottico-05.jpg, condottico-06.jpg, condottico-07.jpg, condottico-08.jpg, condottico-09.jpg, condottico-10.jpg, condottico-11.jpg" },
+    { "type": "textarea", "id": "gallery_images", "label": "Foto hero (file in assets/, separati da virgola)", "info": "Formato per ogni foto: nomefile | /collections/handle | Nome collezione. Le ultime due parti sono opzionali. Verifica che gli handle delle collezioni siano corretti e abbina ogni foto alla collezione giusta. Lascia vuoto per nascondere la striscia.", "default": "condottico-abiti.jpg | /collections/maglioni | Abiti, condottico-giacche.jpg | /collections/cappotti | Giacche, condottico-camicie.jpg | /collections/camicie | Camicie, condottico-polo.jpg | /collections/polo-t-shirt | Polo & T-Shirt" },
+    { "type": "url", "id": "gallery_link", "label": "Link foto hero (collezione di riserva)", "info": "Dove portano le foto SENZA link specifico (formato sopra). Default: collezione Condotti & Co." },
     { "type": "text", "id": "gallery_hint", "label": "Nota striscia", "default": "‹ scorri ›" },
     { "type": "header", "content": "Valori" },
     { "type": "text", "id": "values_eyebrow", "label": "Eyebrow valori" },

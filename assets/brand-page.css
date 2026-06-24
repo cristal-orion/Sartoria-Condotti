@@ -578,7 +578,7 @@
   display: flex;
   gap: clamp(10px, 1.4vw, 20px);
   overflow-x: auto;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x proximity;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   padding-inline: var(--bp-pad-x);
@@ -587,6 +587,17 @@
 
 .bp-gallery__track::-webkit-scrollbar {
   display: none;
+}
+
+/* Trascinamento col mouse: cursore "afferra" e niente snap/selezione */
+.bp-gallery__track.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
+}
+
+.bp-gallery__track.is-dragging .bp-gallery__link {
+  cursor: grabbing;
 }
 
 .bp-gallery__item {
@@ -602,6 +613,47 @@
   aspect-ratio: 2 / 3;
   object-fit: cover;
   background: rgb(var(--bp-bone));
+}
+
+/* ---- Immagini cliccabili (link a collezione) ---- */
+.bp-gallery__link {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+a.bp__diptych-media {
+  display: block;
+}
+
+.bp-gallery__link img,
+a.bp__diptych-media img {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) {
+  .bp-gallery__link:hover img,
+  a.bp__diptych-media:hover img {
+    transform: scale(1.04);
+  }
+}
+
+/* Didascalia col nome della collezione sulla foto */
+.bp-gallery__caption {
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  padding: 28px 18px 16px;
+  font-size: 0.82rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #fff;
+  background: linear-gradient(to top, rgb(0 0 0 / 0.55), transparent);
+  pointer-events: none;
+}
+
+.bp-gallery__caption:empty {
+  display: none;
 }
 
 .bp-gallery__hint {

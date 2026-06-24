@@ -38,7 +38,12 @@
           "name": "Body",
           "settings": {
             "text": "<p>Dal 1954 attorno allo stesso telaio sono cresciute quattro attività: sartoria su misura, casual contemporaneo, sarto a domicilio, ricami artigianali. Realtà distinte, stesso mestiere.</p>",
-            "type_preset": "rte",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1.25rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
             "wrap": "pretty",
             "width": "100%",
             "max_width": "narrow",
@@ -316,7 +321,7 @@
         },
         "brand_ricameria": {
           "type": "group",
-          "name": "Ricameria",
+          "name": "Atelier del Ricamo",
           "settings": {
             "link": "shopify://pages/ricameria",
             "open_in_new_tab": false,
@@ -374,7 +379,7 @@
             "label": {
               "type": "text",
               "settings": {
-                "text": "<h3>Ricameria</h3>",
+                "text": "<h3>Atelier del Ricamo</h3>",
                 "type_preset": "h3",
                 "font": "var(--font-heading--family)",
                 "line_height": "1",
@@ -575,9 +580,12 @@
           "name": "Quote",
           "settings": {
             "text": "<p>Crediamo che l’eleganza non si esibisca: si indossi. Ogni capo che lascia la nostra sartoria è il risultato di mani esperte, ascolto e tempo.</p>",
-            "type_preset": "rte",
-            "line_height": "1.25",
-            "letter_spacing": "-0.01em",
+            "type_preset": "custom",
+            "font": "var(--font-body--family)",
+            "font_size": "1.25rem",
+            "line_height": "normal",
+            "letter_spacing": "tight",
+            "case": "none",
             "wrap": "pretty",
             "width": "100%",
             "max_width": "narrow",
@@ -641,171 +649,6 @@
         "padding-block-end": 96
       }
     },
-    "split_cta": {
-      "type": "section",
-      "blocks": {
-        "cta_collection": {
-          "type": "group",
-          "settings": {
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "space-between",
-            "gap": 0,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fill",
-            "custom_height": 100,
-            "inherit_color_scheme": false,
-            "color_scheme": "scheme-5",
-            "background_media": "image",
-            "background_image": "shopify://shop_images/530FC321-A7A3-486D-BCAE-B35A14D2EADB.png",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 0,
-            "border_opacity": 50,
-            "border_radius": 0,
-            "placeholder": "hero-apparel-2",
-            "toggle_overlay": true,
-            "overlay_color": "#00000033",
-            "overlay_style": "gradient",
-            "gradient_direction": "to top",
-            "padding-block-start": 40,
-            "padding-block-end": 40,
-            "padding-inline-start": 40,
-            "padding-inline-end": 40
-          },
-          "blocks": {
-            "spacer": {
-              "type": "spacer",
-              "settings": {
-                "size": "pixel",
-                "percent_size": 100,
-                "pixel_size": 100,
-                "custom_mobile_size": false,
-                "size_mobile": "percent",
-                "percent_size_mobile": 100,
-                "pixel_size_mobile": 120
-              }
-            },
-            "button": {
-              "type": "button",
-              "settings": {
-                "label": "Scopri le collezioni",
-                "link": "shopify://collections",
-                "open_in_new_tab": false,
-                "style_class": "button-secondary",
-                "width": "fit-content",
-                "custom_width": 15,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 15
-              }
-            }
-          },
-          "block_order": [
-            "spacer",
-            "button"
-          ]
-        },
-        "cta_appointment": {
-          "type": "group",
-          "settings": {
-            "link": "shopify://pages/contact",
-            "open_in_new_tab": false,
-            "content_direction": "column",
-            "vertical_on_mobile": true,
-            "horizontal_alignment": "flex-start",
-            "vertical_alignment": "center",
-            "horizontal_alignment_flex_direction_column": "center",
-            "vertical_alignment_flex_direction_column": "space-between",
-            "gap": 32,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fill",
-            "custom_height": 100,
-            "inherit_color_scheme": false,
-            "color_scheme": "scheme-5",
-            "background_media": "image",
-            "background_image": "shopify://shop_images/ChatGPT_Image_21_ott_2025_18_12_07.png",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 0,
-            "border_opacity": 50,
-            "border_radius": 0,
-            "placeholder": "hero-apparel-1",
-            "toggle_overlay": true,
-            "overlay_color": "#00000033",
-            "overlay_style": "gradient",
-            "gradient_direction": "to top",
-            "padding-block-start": 40,
-            "padding-block-end": 40,
-            "padding-inline-start": 40,
-            "padding-inline-end": 40
-          },
-          "blocks": {
-            "spacer": {
-              "type": "spacer",
-              "settings": {
-                "size": "pixel",
-                "percent_size": 100,
-                "pixel_size": 16,
-                "custom_mobile_size": false,
-                "size_mobile": "percent",
-                "percent_size_mobile": 100,
-                "pixel_size_mobile": 120
-              }
-            },
-            "button": {
-              "type": "button",
-              "settings": {
-                "label": "Prenota appuntamento",
-                "link": "shopify://pages/contact",
-                "open_in_new_tab": false,
-                "style_class": "button-secondary",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 28
-              }
-            }
-          },
-          "block_order": [
-            "spacer",
-            "button"
-          ]
-        }
-      },
-      "block_order": [
-        "cta_collection",
-        "cta_appointment"
-      ],
-      "name": "Split CTA",
-      "settings": {
-        "content_direction": "row",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "horizontal_alignment_flex_direction_column": "flex-start",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 0,
-        "section_width": "full-width",
-        "section_height": "large",
-        "section_height_custom": 50,
-        "color_scheme": "",
-        "background_media": "none",
-        "border": "none",
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
-    },
     "dove_trovarci": {
       "type": "dove-trovarci",
       "blocks": {
@@ -827,7 +670,7 @@
             "brand": "Sartoria Condotti",
             "tag": "Boutique",
             "name": "Via Vittoria Colonna, 15/D",
-            "address": "80100 Napoli",
+            "address": "80121 Napoli",
             "phone": "081 410 4424",
             "whatsapp": "+39 379 348 0144",
             "hours": "Tutti i giorni · 09:00–20:00"
@@ -881,7 +724,6 @@
     "brand_marquee",
     "storia",
     "vision",
-    "dove_trovarci",
-    "split_cta"
+    "dove_trovarci"
   ]
 }

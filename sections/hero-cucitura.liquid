@@ -52,13 +52,19 @@
             fetchpriority: 'high'
         }}
       {%- else -%}
-        <img
-          src="{{ 'hero169.png' | asset_url }}"
-          alt=""
-          class="hero-cucitura__image"
-          fetchpriority="high"
-          loading="eager"
-        >
+        <picture class="hero-cucitura__picture">
+          <source
+            media="(max-width: 749px)"
+            srcset="{{ 'fotohomemobile.jpg' | asset_url }}"
+          >
+          <img
+            src="{{ 'fotohome.jpg' | asset_url }}"
+            alt=""
+            class="hero-cucitura__image"
+            fetchpriority="high"
+            loading="eager"
+          >
+        </picture>
       {%- endif -%}
     </div>
 
@@ -121,6 +127,12 @@
     z-index: 1;
   }
 
+  .hero-cucitura__picture {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
   .hero-cucitura__image {
     width: 100%;
     height: 100%;
@@ -141,6 +153,7 @@
     align-items: center;
     overflow: hidden;
     will-change: transform;
+    cursor: pointer;
   }
 
   .hero-cucitura__panel--top {

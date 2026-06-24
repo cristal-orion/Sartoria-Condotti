@@ -34,29 +34,15 @@
 
     const mm = gsap.matchMedia();
 
-    mm.add('(min-width: 750px)', () => {
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: root,
-          start: 'top top',
-          end: () => '+=' + Math.round(window.innerHeight * 1.4),
-          pin: viewport,
-          pinSpacing: true,
-          scrub: 0.8,
-          invalidateOnRefresh: true,
-        },
-      });
-      tl.to(top, { yPercent: -100, ease: 'none' }, 0)
-        .to(bot, { yPercent: 100, ease: 'none' }, 0)
-        .to(stitch, { opacity: 0, ease: 'power1.out' }, 0);
-    });
+    // ScrollTrigger attivo per il breakpoint corrente (lo usa l'apertura al clic).
+    let activeST = null;
 
-    mm.add('(max-width: 749px)', () => {
+    function buildTimeline(endFactor) {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: root,
           start: 'top top',
-          end: () => '+=' + Math.round(window.innerHeight * 1.0),
+          end: () => '+=' + Math.round(window.innerHeight * endFactor),
           pin: viewport,
           pinSpacing: true,
           scrub: 0.8,
@@ -66,7 +52,38 @@
       tl.to(top, { yPercent: -100, ease: 'none' }, 0)
         .to(bot, { yPercent: 100, ease: 'none' }, 0)
         .to(stitch, { opacity: 0, ease: 'power1.out' }, 0);
-    });
+
+      activeST = tl.scrollTrigger;
+      return () => {
+        if (activeST === tl.scrollTrigger) activeST = null;
+      };
+    }
+
+    mm.add('(min-width: 750px)', () => buildTimeline(1.4));
+    mm.add('(max-width: 749px)', () => buildTimeline(1.0));
+
+    // Apertura "a sipario" anche con un semplice clic sulla hero:
+    // scorre dolcemente fino a fine range pinnato, così l'animazione scrub
+    // si apre da sola restando sincronizzata con ScrollTrigger.
+    let opening = false;
+    const openOnClick = () => {
+      if (!activeST || opening) return;
+      const targetY = activeST.end;
+      if (Math.abs(window.scrollY - targetY) < 2) return;
+      opening = true;
+      const proxy = { y: window.scrollY };
+      gsap.to(proxy, {
+        y: targetY,
+        duration: 1.1,
+        ease: 'power2.inOut',
+        overwrite: true,
+        onUpdate: () => window.scrollTo(0, proxy.y),
+        onComplete: () => {
+          opening = false;
+        },
+      });
+    };
+    if (viewport) viewport.addEventListener('click', openOnClick);
   }
 
   function init() {

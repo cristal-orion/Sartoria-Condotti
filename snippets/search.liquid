@@ -21,6 +21,7 @@
       >
         {{ 'icon-search.svg' | inline_asset_content }}
       </span>
+      <span class="header__icon-label mobile:hidden">Cerca</span>
     </button>
   </search-button>
 {% endunless %}
@@ -33,14 +34,27 @@
     display: flex;
   }
 
+  /* Icon + "Cerca" label inline (Armani-style minimal bar) */
+  .search-modal__button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--padding-2xs);
+  }
+
   .header__column--center .search-action {
     width: auto;
     flex-grow: 1;
   }
 
-  :is(.header__column--left, .header__column--center) .search-action {
+  .header__column--center .search-action {
     @media screen and (min-width: 750px) {
       margin-inline: calc(var(--padding-lg) * -1);
+    }
+  }
+
+  .header__column--left .search-action {
+    @media screen and (min-width: 750px) {
+      margin-inline: 0;
     }
   }
 

@@ -2,7 +2,9 @@
   "sections": {
     "main": {
       "type": "brand-condotti-co",
-      "settings": {}
+      "settings": {
+        "gallery_images": "condottico-abiti.jpg | /collections/maglioni | Abiti, condottico-giacche.jpg | /collections/cappotti | Giacche, condottico-camicie.jpg | /collections/camicie | Camicie, condottico-polo.jpg | /collections/polo-t-shirt | Polo & T-Shirt"
+      }
     }
   },
   "order": ["main"]

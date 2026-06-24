@@ -65,6 +65,7 @@
       <span class="svg-wrapper header-drawer-icon header-drawer-icon--close">
         {{- 'icon-close.svg' | inline_asset_content -}}
       </span>
+      <span class="header__icon-label mobile:hidden">{{ 'accessibility.menu' | t }}</span>
     </summary>
     <div
       data-header-drawer
@@ -103,6 +104,21 @@
             {% assign animation_index = 0 %}
             {%- for link in linklist.links -%}
               {% assign animation_index = animation_index | plus: 1 %}
+              {%- comment -%} Nascondi un gruppo se TUTTE le sue collezioni figlie sono vuote {%- endcomment -%}
+              {%- liquid
+                assign has_visible_child = false
+                if link.links == blank
+                  assign has_visible_child = true
+                else
+                  for childlink in link.links
+                    unless childlink.type == 'collection_link' and childlink.object.all_products_count == 0
+                      assign has_visible_child = true
+                      break
+                    endunless
+                  endfor
+                endif
+              -%}
+              {%- unless has_visible_child -%}{%- continue -%}{%- endunless -%}
               <li
                 style="--menu-drawer-animation-index: {{ animation_index }};"
                 class="{%- if block_settings.drawer_accordion -%}menu-drawer__list-item--deep{%- else -%}menu-drawer__list-item--flat{%- endif -%}{% if block_settings.drawer_dividers %} menu-drawer__list-item--divider{% endif %}"
@@ -149,6 +165,8 @@
                         tabindex="-1"
                       >
                         {%- for childlink in link.links -%}
+                          {%- comment -%} Salta le collezioni vuote (ricompaiono quando hanno prodotti) {%- endcomment -%}
+                          {%- if childlink.type == 'collection_link' and childlink.object.all_products_count == 0 -%}{%- continue -%}{%- endif -%}
                           <li
                             class="menu-drawer__list-item"
                             style="--menu-drawer-animation-index: {{ forloop.index }};"
@@ -206,6 +224,8 @@
                     tabindex="-1"
                   >
                     {%- for childlink in link.links -%}
+                      {%- comment -%} Salta le collezioni vuote (ricompaiono quando hanno prodotti) {%- endcomment -%}
+                      {%- if childlink.type == 'collection_link' and childlink.object.all_products_count == 0 -%}{%- continue -%}{%- endif -%}
                       <li
                         class="menu-drawer__list-item"
                         style="--menu-drawer-animation-index: {{ animation_index }};"
@@ -650,6 +670,32 @@
   @media screen and (min-width: 750px) {
     .header--desktop header-menu + .header__drawer header-drawer {
       display: none;
+    }
+  }
+
+  /* Armani-style minimal bar: text label next to the icon (Menu / Cerca) */
+  .header__icon-label {
+    font-family: var(--font-body--family);
+    font-size: 0.8125rem;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: var(--color-foreground);
+    white-space: nowrap;
+  }
+
+  .header__icon--summary {
+    gap: var(--padding-2xs);
+  }
+
+  /* Keep the drawer trigger visible on desktop and align the left group flush
+     to the page margin (the inline desktop menu is hidden everywhere). */
+  @media screen and (min-width: 750px) {
+    .header__column--left {
+      gap: var(--gap-md);
+    }
+
+    .header .menu-drawer-container .header__icon--summary {
+      padding-inline: 0;
     }
   }
 
