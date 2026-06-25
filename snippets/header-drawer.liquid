@@ -902,6 +902,12 @@
     min-height: auto;
   }
 
+  /* Un filo di respiro in più tra le voci principali del drawer.
+     Scoped al solo livello superiore (> li): non tocca le sotto-voci. */
+  .menu-drawer__menu.has-submenu > li + li {
+    margin-block-start: 0.6rem;
+  }
+
   .menu-drawer__menu .menu-drawer__list-item--flat {
     display: flex;
     flex-direction: column;
