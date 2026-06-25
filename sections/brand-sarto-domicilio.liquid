@@ -10,7 +10,9 @@
 
   assign form_heading = s.form_heading
   if form_heading == blank
-    if has_negozio
+    if s.deposit_enabled
+      assign form_heading = 'Prenota il sarto a domicilio'
+    elsif has_negozio
       assign form_heading = 'Prenota un appuntamento'
     else
       assign form_heading = 'Richiedi il sarto a domicilio'
@@ -19,7 +21,9 @@
 
   assign form_body = s.form_body
   if form_body == blank
-    if has_negozio
+    if s.deposit_enabled
+      assign form_body = 'Per fissare la visita è richiesto un acconto di 100 €, che viene scalato sull’acquisto finale. Dopo il pagamento ricevi via email il link per scegliere giorno e ora.'
+    elsif has_negozio
       assign form_body = 'Scegli se ricevere il sarto a casa o venire in una delle nostre boutique. In entrambi i casi confermiamo noi giorno e orario — nessun addebito in questa fase.'
     else
       assign form_body = 'Raccontaci di cosa hai bisogno: ti rispondiamo entro 24 ore per concordare giorno e orario. Nessun pagamento richiesto in questa fase.'
@@ -98,7 +102,12 @@
         </div>
 
         <div data-reveal>
-          {%- if s.cal_link != blank -%}
+          {%- if s.deposit_enabled and s.deposit_variant_id != blank -%}
+            <div class="bp__deposit">
+              <a class="bp__btn" href="/cart/{{ s.deposit_variant_id }}:1">{{ s.deposit_button_label | default: 'Paga l’acconto e prenota — 100 €' }}</a>
+              <p class="bp__form-note" style="margin-top:1.2rem;">{{ s.deposit_note | default: 'Acconto di 100 €, scalato sull’acquisto finale. Dopo il pagamento ricevi via email il link per scegliere giorno e ora dell’appuntamento.' }}</p>
+            </div>
+          {%- elsif s.cal_link != blank -%}
             <style>
               .bp__cal-tabs { display: flex; gap: .5rem; margin-bottom: 1.4rem; flex-wrap: wrap; }
               .bp__cal-tab { appearance: none; -webkit-appearance: none; cursor: pointer; background: transparent; color: rgb(var(--bp-cream) / 0.7); border: 1px solid rgb(var(--bp-cream) / 0.25); border-radius: 999px; padding: .62em 1.5em; font-family: var(--font-body--family, system-ui); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; transition: background .25s ease, color .25s ease, border-color .25s ease; }
@@ -237,6 +246,11 @@
     { "type": "header", "content": "Come funziona" },
     { "type": "text", "id": "how_eyebrow", "label": "Eyebrow" },
     { "type": "text", "id": "how_heading", "label": "Titolo" },
+    { "type": "header", "content": "Acconto (prenotazione a pagamento)" },
+    { "type": "checkbox", "id": "deposit_enabled", "label": "Richiedi acconto per prenotare", "info": "Se attivo, al posto del calendario/form compare il bottone per pagare l’acconto. Il link cal.com per scegliere data/ora va inserito nell’email di conferma ordine.", "default": false },
+    { "type": "text", "id": "deposit_variant_id", "label": "ID variante prodotto acconto", "info": "ID numerico della variante del prodotto ‘Sarto a domicilio’ (100 €).", "default": "53840584933714" },
+    { "type": "text", "id": "deposit_button_label", "label": "Etichetta bottone", "default": "Paga l’acconto e prenota — 100 €" },
+    { "type": "textarea", "id": "deposit_note", "label": "Nota sotto il bottone" },
     { "type": "header", "content": "Prenotazione (cal.com)" },
     { "type": "text", "id": "cal_link", "label": "Link cal.com — Sarto a domicilio", "info": "Incolla username/evento di cal.eu, es. sartoriacondotti/sarto-a-domicilio. Se vuoto, resta il vecchio form via email." },
     { "type": "text", "id": "cal_link_negozio", "label": "Link cal.com — Visita in boutique", "info": "Secondo evento cal.eu, es. sartoriacondotti/visita-in-boutique. Se compilato, sulla pagina compaiono i due tab 'A domicilio / In boutique'." },
