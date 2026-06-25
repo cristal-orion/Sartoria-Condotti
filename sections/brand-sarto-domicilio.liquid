@@ -10,7 +10,9 @@
 
   assign form_heading = s.form_heading
   if form_heading == blank
-    if s.deposit_enabled
+    if s.deposit_enabled and s.cal_link_negozio != blank
+      assign form_heading = 'Prenota un appuntamento'
+    elsif s.deposit_enabled
       assign form_heading = 'Prenota il sarto a domicilio'
     elsif has_negozio
       assign form_heading = 'Prenota un appuntamento'
@@ -21,7 +23,9 @@
 
   assign form_body = s.form_body
   if form_body == blank
-    if s.deposit_enabled
+    if s.deposit_enabled and s.cal_link_negozio != blank
+      assign form_body = 'Scegli se ricevere il sarto a casa o venire in una delle nostre boutique. Per il sarto a domicilio è previsto un acconto di 100 €, scalato sull’acquisto finale; la visita in boutique è gratuita.'
+    elsif s.deposit_enabled
       assign form_body = 'Per fissare la visita è richiesto un acconto di 100 €, che viene scalato sull’acquisto finale. Dopo il pagamento ricevi via email il link per scegliere giorno e ora.'
     elsif has_negozio
       assign form_body = 'Scegli se ricevere il sarto a casa o venire in una delle nostre boutique. In entrambi i casi confermiamo noi giorno e orario — nessun addebito in questa fase.'
@@ -102,39 +106,76 @@
         </div>
 
         <div data-reveal>
-          {%- if s.deposit_enabled and s.deposit_variant_id != blank -%}
-            <div class="bp__deposit">
-              <a class="bp__btn" href="/cart/{{ s.deposit_variant_id }}:1">{{ s.deposit_button_label | default: 'Paga l’acconto e prenota — 100 €' }}</a>
-              <p class="bp__form-note" style="margin-top:1.2rem;">{{ s.deposit_note | default: 'Acconto di 100 €, scalato sull’acquisto finale. Dopo il pagamento ricevi via email il link per scegliere giorno e ora dell’appuntamento.' }}</p>
-            </div>
-          {%- elsif s.cal_link != blank -%}
+          {%- liquid
+            assign show_deposit = false
+            if s.deposit_enabled and s.deposit_variant_id != blank
+              assign show_deposit = true
+            endif
+            assign has_boutique = false
+            if s.cal_link_negozio != blank
+              assign has_boutique = true
+            endif
+            assign has_domicilio_cal = false
+            if s.cal_link != blank and show_deposit == false
+              assign has_domicilio_cal = true
+            endif
+            assign has_domicilio = false
+            if show_deposit or has_domicilio_cal
+              assign has_domicilio = true
+            endif
+            assign show_tabs = false
+            if has_domicilio and has_boutique
+              assign show_tabs = true
+            endif
+            assign needs_cal = false
+            if has_domicilio_cal or has_boutique
+              assign needs_cal = true
+            endif
+          -%}
+          {%- if show_deposit or has_domicilio_cal or has_boutique -%}
             <style>
               .bp__cal-tabs { display: flex; gap: .5rem; margin-bottom: 1.4rem; flex-wrap: wrap; }
               .bp__cal-tab { appearance: none; -webkit-appearance: none; cursor: pointer; background: transparent; color: rgb(var(--bp-cream) / 0.7); border: 1px solid rgb(var(--bp-cream) / 0.25); border-radius: 999px; padding: .62em 1.5em; font-family: var(--font-body--family, system-ui); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; transition: background .25s ease, color .25s ease, border-color .25s ease; }
               .bp__cal-tab:hover { border-color: rgb(var(--bp-cream) / 0.55); color: rgb(var(--bp-cream)); }
               .bp__cal-tab.is-active { background: #C9A24B; border-color: #C9A24B; color: #0e0e0c; }
             </style>
-            {%- if has_negozio -%}
+            {%- if show_tabs -%}
               <div class="bp__cal-tabs" role="tablist" aria-label="Tipo di appuntamento">
                 <button type="button" class="bp__cal-tab is-active" data-cal-tab="domicilio" role="tab" aria-selected="true">A domicilio</button>
                 <button type="button" class="bp__cal-tab" data-cal-tab="negozio" role="tab" aria-selected="false">In boutique</button>
               </div>
             {%- endif -%}
-            <div id="sd-cal" class="bp__cal" data-cal-panel="domicilio" aria-label="Calendario sarto a domicilio" style="min-height:560px;width:100%"></div>
-            {%- if has_negozio -%}
-              <div id="sd-cal-negozio" class="bp__cal" data-cal-panel="negozio" aria-label="Calendario visita in boutique" style="min-height:560px;width:100%;display:none"></div>
+
+            {%- comment -%} Pannello A DOMICILIO: acconto (a pagamento) oppure calendario {%- endcomment -%}
+            <div data-cal-panel="domicilio">
+              {%- if show_deposit -%}
+                <div class="bp__deposit">
+                  <a class="bp__btn" href="/cart/{{ s.deposit_variant_id }}:1">{{ s.deposit_button_label | default: 'Paga l’acconto e prenota — 100 €' }}</a>
+                  <p class="bp__form-note" style="margin-top:1.2rem;">{{ s.deposit_note | default: 'Acconto di 100 €, scalato sull’acquisto finale. Dopo il pagamento ricevi via email il link per scegliere giorno e ora dell’appuntamento.' }}</p>
+                </div>
+              {%- elsif has_domicilio_cal -%}
+                <div id="sd-cal" class="bp__cal" aria-label="Calendario sarto a domicilio" style="min-height:560px;width:100%"></div>
+                <p class="bp__form-note" style="margin-top:1.1rem;">Scegli giorno e ora dal calendario: confermiamo noi l’appuntamento. Nessun addebito in questa fase.</p>
+              {%- endif -%}
+            </div>
+
+            {%- comment -%} Pannello IN BOUTIQUE: sempre gratuito {%- endcomment -%}
+            {%- if has_boutique -%}
+              <div data-cal-panel="negozio"{% if show_tabs %} style="display:none"{% endif %}>
+                <div id="sd-cal-negozio" class="bp__cal" aria-label="Calendario visita in boutique" style="min-height:560px;width:100%"></div>
+                <p class="bp__form-note" style="margin-top:1.1rem;">Scegli giorno e ora dal calendario: confermiamo noi l’appuntamento. La visita in boutique è gratuita.</p>
+              </div>
             {%- endif -%}
-            <p class="bp__form-note" style="margin-top:1.1rem;">Scegli giorno e ora dal calendario: confermiamo noi l’appuntamento. Nessun addebito in questa fase.</p>
+
+            {%- if needs_cal -%}
             <script type="text/javascript">
               (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; d.head.appendChild(d.createElement("script")).src = A; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if(typeof namespace === "string"){cal.ns[namespace] = cal.ns[namespace] || api;p(cal.ns[namespace], ar);p(cal, ["initNamespace", namespace]);} else p(cal, ar); return;} p(cal, ar); }; })(window, "https://app.cal.eu/embed/embed.js", "init");
+              {%- if has_domicilio_cal -%}
               Cal("init", "sarto", {origin:"https://cal.eu"});
-              Cal.ns.sarto("inline", {
-                elementOrSelector: "#sd-cal",
-                calLink: {{ s.cal_link | json }},
-                config: { "layout": "month_view", "theme": "dark" }
-              });
+              Cal.ns.sarto("inline", { elementOrSelector: "#sd-cal", calLink: {{ s.cal_link | json }}, config: { "layout": "month_view", "theme": "dark" } });
               Cal.ns.sarto("ui", { "theme": "dark", "cssVarsPerTheme": { "dark": { "cal-brand": "#C9A24B" } }, "hideEventTypeDetails": false, "layout": "month_view" });
-              {%- if has_negozio -%}
+              {%- endif -%}
+              {%- if has_boutique -%}
               var sdNegozioInit = false;
               function sdInitNegozio() {
                 if (sdNegozioInit) return; sdNegozioInit = true;
@@ -142,9 +183,14 @@
                 Cal.ns.negozio("inline", { elementOrSelector: "#sd-cal-negozio", calLink: {{ s.cal_link_negozio | json }}, config: { "layout": "month_view", "theme": "dark" } });
                 Cal.ns.negozio("ui", { "theme": "dark", "cssVarsPerTheme": { "dark": { "cal-brand": "#C9A24B" } }, "hideEventTypeDetails": false, "layout": "month_view" });
               }
+              {%- unless show_tabs -%}
+              sdInitNegozio();
+              {%- endunless -%}
+              {%- endif -%}
+              {%- if show_tabs -%}
               (function () {
                 var tabs = document.querySelectorAll('.bp__cal-tab');
-                var panels = { domicilio: document.getElementById('sd-cal'), negozio: document.getElementById('sd-cal-negozio') };
+                var panels = { domicilio: document.querySelector('[data-cal-panel="domicilio"]'), negozio: document.querySelector('[data-cal-panel="negozio"]') };
                 tabs.forEach(function (tab) {
                   tab.addEventListener('click', function () {
                     var key = tab.getAttribute('data-cal-tab');
@@ -156,6 +202,7 @@
               })();
               {%- endif -%}
             </script>
+            {%- endif -%}
           {%- else -%}
           {%- form 'contact', id: 'sarto-domicilio-form' -%}
             {%- if form.posted_successfully? -%}
