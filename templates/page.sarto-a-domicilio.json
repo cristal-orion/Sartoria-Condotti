@@ -5,6 +5,7 @@
       "settings": {
         "deposit_enabled": true,
         "deposit_variant_id": "53840584933714",
+        "deposit_note": "L’acconto di 100 € viene scalato per intero sull’acquisto finale. Subito dopo il pagamento riceverai via email il link per scegliere giorno e ora della visita.",
         "cal_link": "sartoriacondotti/sarto-a-domicilio",
         "cal_link_negozio": "sartoriacondotti/visita-in-boutique"
       }
