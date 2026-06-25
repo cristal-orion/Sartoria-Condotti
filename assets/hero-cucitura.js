@@ -36,8 +36,14 @@
 
     // ScrollTrigger attivo per il breakpoint corrente (lo usa l'apertura al clic).
     let activeST = null;
+    // Frazione di scroll a cui i pannelli risultano completamente aperti.
+    // Il tratto restante è una pausa "hold" in cui si vede la foto per intero
+    // prima che la hero scorra via.
+    let openProgress = 1;
 
     function buildTimeline(endFactor) {
+      const OPEN = 1; // durata apertura pannelli
+      const HOLD = 0.4; // pausa a pannelli aperti prima di sganciare il pin
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: root,
@@ -49,18 +55,20 @@
           invalidateOnRefresh: true,
         },
       });
-      tl.to(top, { yPercent: -100, ease: 'none' }, 0)
-        .to(bot, { yPercent: 100, ease: 'none' }, 0)
-        .to(stitch, { opacity: 0, ease: 'power1.out' }, 0);
+      tl.to(top, { yPercent: -100, ease: 'none', duration: OPEN }, 0)
+        .to(bot, { yPercent: 100, ease: 'none', duration: OPEN }, 0)
+        .to(stitch, { opacity: 0, ease: 'power1.out', duration: OPEN }, 0)
+        .to({}, { duration: HOLD }); // hold: foto intera visibile, hero ancora ferma
 
       activeST = tl.scrollTrigger;
+      openProgress = OPEN / (OPEN + HOLD);
       return () => {
         if (activeST === tl.scrollTrigger) activeST = null;
       };
     }
 
-    mm.add('(min-width: 750px)', () => buildTimeline(1.4));
-    mm.add('(max-width: 749px)', () => buildTimeline(1.0));
+    mm.add('(min-width: 750px)', () => buildTimeline(1.9));
+    mm.add('(max-width: 749px)', () => buildTimeline(1.4));
 
     // Apertura "a sipario" anche con un semplice clic sulla hero:
     // scorre dolcemente fino a fine range pinnato, così l'animazione scrub
@@ -68,7 +76,9 @@
     let opening = false;
     const openOnClick = () => {
       if (!activeST || opening) return;
-      const targetY = activeST.end;
+      // Porta lo scroll fino al punto in cui i pannelli sono completamente aperti
+      // (inizio dell'hold): la foto si vede per intero e resta un margine sotto.
+      const targetY = activeST.start + openProgress * (activeST.end - activeST.start);
       if (Math.abs(window.scrollY - targetY) < 2) return;
       opening = true;
       const proxy = { y: window.scrollY };
