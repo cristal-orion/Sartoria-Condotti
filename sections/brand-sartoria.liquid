@@ -50,24 +50,6 @@
     <svg viewBox="0 0 1000 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="1000" y2="1" stroke="currentColor" stroke-width="1.4" stroke-dasharray="7 5" vector-effect="non-scaling-stroke"/></svg>
   </span>
 
-  <!-- IMMAGINE + STORE (diptych) -->
-  <div class="bp__section bp__wrap">
-    <div class="bp__diptych">
-      <div class="bp__diptych-media" data-reveal>
-        {%- if s.store_image != blank -%}
-          {{ s.store_image | image_url: width: 1200 | image_tag: widths: '600,900,1200', sizes: '(max-width:900px) 100vw, 50vw' }}
-        {%- else -%}
-          <img src="{{ s.store_image_asset | default: 'sartoria-04.jpg' | asset_url }}" width="1100" height="1650" alt="Sartoria Condotti — capi su misura" loading="lazy">
-        {%- endif -%}
-      </div>
-      <div class="bp__diptych-text">
-        {%- if s.store_eyebrow != blank -%}<p class="bp__eyebrow" data-reveal>{{ s.store_eyebrow }}</p>{%- endif -%}
-        <h2 class="bp__h2" data-reveal>{{ s.store_heading | default: 'I capi su misura, a portata di mano.' }}</h2>
-        <p class="bp__body" data-reveal>{{ s.store_body | default: 'Scopri la selezione di abiti, giacche e camicie della Sartoria Condotti. Ogni pezzo nasce dalla stessa cura dell’atelier, pronto per essere reso tuo.' }}</p>
-      </div>
-    </div>
-  </div>
-
   <!-- PROCESSO SU MISURA (ink) -->
   <div class="bp bp--ink" style="background:rgb(var(--bp-ink));color:rgb(var(--bp-cream));">
     <div class="bp__section bp__wrap">
@@ -161,12 +143,6 @@
     { "type": "textarea", "id": "gallery_images", "label": "Foto hero (file in assets/, separati da virgola)", "info": "Formato per ogni foto: nomefile | /collections/handle | Nome collezione. Le ultime due parti sono opzionali. Verifica che gli handle delle collezioni siano corretti e abbina ogni foto alla collezione giusta. Lascia vuoto per nascondere la striscia.", "default": "sartoria-abiti.jpg | /collections/abiti-sartoriale | Abiti, sartoria-giacche.jpg | /collections/giacche-sartoriali | Giacche, sartoria-giubbotti.jpg | /collections/giubbotti-sartoriali | Giubbotti, sartoria-camicie.jpg | /collections/camicie-sartoriali | Camicie, sartoria-polo.jpg | /collections/polo-t-shirt-sartoriali | Polo & T-Shirt, sartoria-scarpe.jpg | /collections/scarpe-sartoria | Scarpe" },
     { "type": "url", "id": "gallery_link", "label": "Link foto hero (collezione di riserva)", "info": "Dove portano le foto SENZA link specifico (formato sopra). Default: collezione Sartoria Condotti." },
     { "type": "text", "id": "gallery_hint", "label": "Nota striscia", "default": "‹ scorri ›" },
-    { "type": "header", "content": "Immagine + Store" },
-    { "type": "image_picker", "id": "store_image", "label": "Immagine (upload, opzionale)", "info": "Se vuota, usa la foto in 'File immagine' qui sotto." },
-    { "type": "text", "id": "store_image_asset", "label": "File immagine (assets/)", "default": "sartoria-store-storico.jpg" },
-    { "type": "text", "id": "store_eyebrow", "label": "Eyebrow" },
-    { "type": "text", "id": "store_heading", "label": "Titolo" },
-    { "type": "textarea", "id": "store_body", "label": "Descrizione" },
     { "type": "header", "content": "Processo" },
     { "type": "text", "id": "process_eyebrow", "label": "Eyebrow processo" },
     { "type": "text", "id": "process_heading", "label": "Titolo processo" },
