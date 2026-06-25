@@ -3,7 +3,7 @@
     "main": {
       "type": "brand-condotti-co",
       "settings": {
-        "gallery_images": "condottico-abiti.jpg | /collections/maglioni | Abiti, condottico-giacche.jpg | /collections/cappotti | Giacche, condottico-giubbotti.jpg | /collections/giubbotti | Giubbotti, condottico-camicie.jpg | /collections/camicie | Camicie, condottico-polo.jpg | /collections/polo-t-shirt | Polo & T-Shirt, condottico-scarpe.jpg | /collections/scarpe | Scarpe"
+        "gallery_images": "condottico-abiti.jpg | /collections/maglioni | Abiti, condottico-giacche.jpg | /collections/cappotti | Giacche, condottico-camicie.jpg | /collections/camicie | Camicie, condottico-polo.jpg | /collections/polo-t-shirt | Polo & T-Shirt, condottico-scarpe.jpg | /collections/scarpe | Scarpe, condottico-giubbotti.jpg | /collections/giubbotti | Giubbotti"
       }
     }
   },

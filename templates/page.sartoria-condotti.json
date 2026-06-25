@@ -3,7 +3,7 @@
     "main": {
       "type": "brand-sartoria",
       "settings": {
-        "gallery_images": "sartoria-abiti.jpg | /collections/abiti-sartoriale | Abiti, sartoria-giacche.jpg | /collections/giacche-sartoriali | Giacche, sartoria-giubbotti.jpg | /collections/giubbotti-sartoriali | Giubbotti, sartoria-camicie.jpg | /collections/camicie-sartoriali | Camicie, sartoria-polo.jpg | /collections/polo-t-shirt-sartoriali | Polo & T-Shirt, sartoria-scarpe.jpg | /collections/scarpe-sartoria | Scarpe",
+        "gallery_images": "sartoria-abiti.jpg | /collections/abiti-sartoriale | Abiti, sartoria-giacche.jpg | /collections/giacche-sartoriali | Giacche, sartoria-camicie.jpg | /collections/camicie-sartoriali | Camicie, sartoria-polo.jpg | /collections/polo-t-shirt-sartoriali | Polo & T-Shirt, sartoria-scarpe.jpg | /collections/scarpe-sartoria | Scarpe, sartoria-giubbotti.jpg | /collections/giubbotti-sartoriali | Giubbotti",
         "collection": "abiti-sartoriale"
       }
     }
