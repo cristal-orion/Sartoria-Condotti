@@ -98,17 +98,22 @@
       moved = false;
       startX = e.clientX;
       startScroll = track.scrollLeft;
-      track.classList.add('is-dragging');
-      try {
-        track.setPointerCapture(e.pointerId);
-      } catch (err) {}
     });
 
     track.addEventListener('pointermove', function (e) {
       if (!down) return;
       var dx = e.clientX - startX;
-      if (Math.abs(dx) > 4) moved = true; // soglia: oltre 4px è un drag
-      track.scrollLeft = startScroll - dx;
+      // Attiva il drag (cursore + pointer capture) SOLO oltre la soglia: così
+      // un semplice click NON cattura il pointer e il link naviga normalmente.
+      // (setPointerCapture su pointerdown sopprimeva il click su desktop.)
+      if (!moved && Math.abs(dx) > 4) {
+        moved = true;
+        track.classList.add('is-dragging');
+        try {
+          track.setPointerCapture(e.pointerId);
+        } catch (err) {}
+      }
+      if (moved) track.scrollLeft = startScroll - dx;
     });
 
     function endDrag(e) {
