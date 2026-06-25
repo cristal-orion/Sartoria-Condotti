@@ -71,6 +71,7 @@
 
     // Rotellina verticale del mouse → scroll orizzontale.
     // Solo finché c'è spazio: ai bordi lascia scorrere la pagina.
+    var wheelTimer = null;
     track.addEventListener(
       'wheel',
       function (e) {
@@ -81,7 +82,16 @@
           track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
         if ((e.deltaY < 0 && atStart) || (e.deltaY > 0 && atEnd)) return;
         e.preventDefault();
+        // Disattiva lo snap mentre la rotellina è in uso: senza questo lo
+        // scroll-snap riporta indietro ogni nudge e la striscia non scorre.
+        // A scorrimento fermo (dopo il debounce) lo snap torna attivo e
+        // rifinisce dolcemente la posizione.
+        track.classList.add('is-wheeling');
         track.scrollLeft += e.deltaY;
+        if (wheelTimer) clearTimeout(wheelTimer);
+        wheelTimer = setTimeout(function () {
+          track.classList.remove('is-wheeling');
+        }, 220);
       },
       { passive: false }
     );

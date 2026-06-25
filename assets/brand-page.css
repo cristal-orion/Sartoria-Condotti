@@ -589,10 +589,16 @@
   display: none;
 }
 
-/* Trascinamento col mouse: cursore "afferra" e niente snap/selezione */
+/* Durante drag o rotellina: niente snap, altrimenti lo scroll-snap "ritira"
+   ogni spostamento e la striscia sembra bloccata (la rotellina non scorre). */
+.bp-gallery__track.is-dragging,
+.bp-gallery__track.is-wheeling {
+  scroll-snap-type: none;
+}
+
+/* Trascinamento col mouse: cursore "afferra" e niente selezione */
 .bp-gallery__track.is-dragging {
   cursor: grabbing;
-  scroll-snap-type: none;
   user-select: none;
 }
 
