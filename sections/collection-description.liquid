@@ -1,0 +1,53 @@
+{%- comment -%}
+  Collection · Descrizione categoria.
+  Stampa titolo + descrizione della collezione in cima alla pagina, SOLO se la
+  collezione ha una descrizione. Aggiunto ai template collezione di default così
+  appare automaticamente su ogni categoria che ha una descrizione (Sartoria,
+  Condotti & Co, ...). Le collezioni senza descrizione non mostrano nulla.
+{%- endcomment -%}
+
+{%- if collection.description != blank -%}
+  {%- assign s = section.settings -%}
+  <div id="ci-{{ section.id }}" class="collection-intro">
+    {%- if s.show_heading -%}
+      <h1 class="collection-intro__title">{{ collection.title }}</h1>
+    {%- endif -%}
+    <div class="collection-intro__body rte">{{ collection.description }}</div>
+  </div>
+
+  {%- style -%}
+    #ci-{{ section.id }}.collection-intro {
+      padding-block: {{ s['padding-block-start'] }}px {{ s['padding-block-end'] }}px;
+      padding-inline: clamp(20px, 5vw, 64px);
+      text-align: center;
+    }
+    #ci-{{ section.id }} .collection-intro__title {
+      margin: 0 0 0.4em;
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      line-height: 1.08;
+    }
+    #ci-{{ section.id }} .collection-intro__body {
+      max-width: 68ch;
+      margin-inline: auto;
+      line-height: 1.6;
+      color: rgb(var(--color-foreground) / 0.78);
+    }
+    #ci-{{ section.id }} .collection-intro__body > p {
+      margin: 0;
+    }
+  {%- endstyle -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Descrizione collezione",
+  "tag": "section",
+  "settings": [
+    { "type": "paragraph", "content": "Mostra titolo + descrizione della collezione in cima alla pagina, solo se la collezione ha una descrizione impostata." },
+    { "type": "checkbox", "id": "show_heading", "label": "Mostra titolo collezione", "default": true },
+    { "type": "range", "id": "padding-block-start", "label": "Padding sopra", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 32 },
+    { "type": "range", "id": "padding-block-end", "label": "Padding sotto", "min": 0, "max": 100, "step": 2, "unit": "px", "default": 8 }
+  ],
+  "presets": [{ "name": "Descrizione collezione" }]
+}
+{% endschema %}
