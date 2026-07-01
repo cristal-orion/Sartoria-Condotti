@@ -1,0 +1,71 @@
+{%- comment -%}
+  Testata dinamica per le collezioni Condotti & Co: eyebrow oro + NOME reale della
+  collezione ({{ collection.title }}) + descrizione opzionale. Sostituisce i blocchi
+  di testo STATICI del vecchio template (che mostravano sempre "Condotti & Co").
+  Pensata per essere assegnata a TUTTE le collezioni Condotti & Co.
+{%- endcomment -%}
+{%- assign s = section.settings -%}
+
+<div
+  class="cc-collhead section color-{{ s.color_scheme }} section--page-width"
+  style="padding-block-start: {{ s['padding-block-start'] }}px; padding-block-end: {{ s['padding-block-end'] }}px;"
+>
+  <div class="cc-collhead__inner">
+    {%- if s.eyebrow != blank -%}
+      <p class="cc-collhead__eyebrow">{{ s.eyebrow }}</p>
+    {%- endif -%}
+    <h1 class="cc-collhead__title">{{ collection.title }}</h1>
+    {%- if s.show_description and collection.description != blank -%}
+      <div class="cc-collhead__desc rte">{{ collection.description }}</div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .cc-collhead__inner {
+    max-width: var(--page-width, 1400px);
+    margin-inline: auto;
+    padding-inline: var(--page-margin, 20px);
+    display: grid;
+    gap: 12px;
+  }
+
+  .cc-collhead__eyebrow {
+    margin: 0;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    /* oro del logo Condotti & Co */
+    color: rgb(176, 144, 96);
+  }
+
+  .cc-collhead__title {
+    margin: 0;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .cc-collhead__desc {
+    max-width: 62ch;
+    color: var(--color-foreground-muted, var(--color-foreground));
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Testata · Condotti",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Casual contemporaneo" },
+    { "type": "checkbox", "id": "show_description", "label": "Mostra la descrizione della collezione", "default": false },
+    {
+      "type": "color_scheme", "id": "color_scheme", "label": "Schema colore", "default": "scheme-1"
+    },
+    { "type": "range", "id": "padding-block-start", "label": "Padding sopra", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 56 },
+    { "type": "range", "id": "padding-block-end", "label": "Padding sotto", "min": 0, "max": 100, "step": 4, "unit": "px", "default": 24 }
+  ],
+  "presets": [
+    { "name": "Testata · Condotti" }
+  ]
+}
+{% endschema %}

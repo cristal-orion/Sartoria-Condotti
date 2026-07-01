@@ -21,6 +21,23 @@
   endif
 %}
 
+{%- comment -%} Sub-brand: logo Condotti & Co dedicato nelle collezioni Condotti & Co {%- endcomment -%}
+{%- capture brand_context -%}{%- render 'brand-context' -%}{%- endcapture -%}
+{%- liquid
+  assign brand_context = brand_context | strip
+  assign use_condotti_logo = false
+  if brand_context == 'condotti-co' and settings.condotti_logo_enabled
+    assign use_condotti_logo = true
+    assign condotti_ar = 1.349
+    assign condotti_scale = settings.condotti_logo_scale | default: 130
+    assign condotti_h = block_settings.custom_height | times: condotti_scale | divided_by: 100
+    assign condotti_h_mobile = block_settings.custom_height_mobile | times: condotti_scale | divided_by: 100
+    assign condotti_w = condotti_h | times: condotti_ar | ceil
+    assign condotti_w_mobile = condotti_h_mobile | times: condotti_ar | ceil
+    assign condotti_style = '--header-logo-image-width: ' | append: condotti_w | append: 'px; --header-logo-image-width-mobile: ' | append: condotti_w_mobile | append: 'px; --header-logo-image-height: ' | append: condotti_h | append: 'px; --header-logo-image-height-mobile: ' | append: condotti_h_mobile | append: 'px;'
+  endif
+-%}
+
 {% comment %}
   Output all logo variants, use CSS to hide/show the appropriate one
   based on the .header[transparent] selector
@@ -53,13 +70,25 @@
     class="header-logo__image-container header-logo__image-container--original"
     data-testid="header-logo"
   >
-    {% render 'image',
-      image: settings.logo,
-      class: 'header-logo__image',
-      height: block_settings.custom_height,
-      text_fallback: shop.name,
-      style: logo_style
-    %}
+    {%- if use_condotti_logo -%}
+      <img
+        src="{{ 'condottiecologo.png' | asset_url }}"
+        alt="Condotti & Co"
+        width="580"
+        height="430"
+        class="header-logo__image"
+        style="{{ condotti_style }}"
+        loading="eager"
+      >
+    {%- else -%}
+      {% render 'image',
+        image: settings.logo,
+        class: 'header-logo__image',
+        height: block_settings.custom_height,
+        text_fallback: shop.name,
+        style: logo_style
+      %}
+    {%- endif -%}
   </span>
 
   {% if use_inverse_logo %}

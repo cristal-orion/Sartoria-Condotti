@@ -59,9 +59,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       blocking="render"
     ></script>
 
+    {%- comment -%} Sub-brand: classe sul contenuto per differenziare le due linee {%- endcomment -%}
+    {%- capture current_brand -%}{%- render 'brand-context' -%}{%- endcapture -%}
+    {%- assign current_brand = current_brand | strip -%}
+    {%- if current_brand == 'condotti-co' -%}
+      <style>
+        /* Accento Condotti & Co (navy + oro dal logo). Sovrascrive le var di ogni color scheme dentro il contenuto. */
+        .brand--condotti-co :is(.color-scheme-1, .color-scheme-2, .color-scheme-3, .color-scheme-4, .color-scheme-5, .color-scheme-6) {
+          --color-primary: rgb(48, 64, 112);
+          --color-primary-rgb: 48 64 112;
+          --color-primary-hover: rgb(176, 144, 96);
+          --color-primary-hover-rgb: 176 144 96;
+          --color-primary-button-background: rgb(48, 64, 112);
+          --color-primary-button-border: rgb(48, 64, 112);
+          --color-primary-button-text: rgb(255, 255, 255);
+          --color-primary-button-hover-background: rgb(176, 144, 96);
+          --color-primary-button-hover-border: rgb(176, 144, 96);
+          --color-primary-button-hover-text: rgb(255, 255, 255);
+        }
+      </style>
+    {%- endif -%}
     <main
       id="MainContent"
-      class="content-for-layout"
+      class="content-for-layout{% if current_brand != blank %} brand--{{ current_brand }}{% endif %}"
       role="main"
       data-page-transition-enabled="{{ settings.page_transition_enabled }}"
       data-product-transition="{{ settings.transition_to_main_product }}"

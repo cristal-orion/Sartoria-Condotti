@@ -33,6 +33,46 @@
     ]
   },
   {
+    "name": "Sub-brand",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Differenzia le due linee sullo stesso sito. Elenca gli handle delle collezioni di ciascun brand (separati da virgola). In una collezione Condotti & Co l'header mostra il logo Condotti & Co al posto di quello principale."
+      },
+      {
+        "type": "checkbox",
+        "id": "condotti_logo_enabled",
+        "label": "Logo Condotti & Co nell'header",
+        "info": "Mostra il logo Condotti & Co nelle collezioni elencate qui sotto.",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "condotti_logo_scale",
+        "label": "Dimensione logo Condotti & Co",
+        "min": 100,
+        "max": 200,
+        "step": 5,
+        "unit": "%",
+        "info": "Percentuale rispetto all'altezza del logo principale.",
+        "default": 130
+      },
+      {
+        "type": "textarea",
+        "id": "condotti_collection_handles",
+        "label": "Handle collezioni Condotti & Co",
+        "info": "Es: condotti-co,abiti,camicie. L'handle è la parte finale dell'URL della collezione.",
+        "default": "condotti-co,abiti,camicie,cappelli,accessori,giacche,giubbotti,papillon,polo-t-shirt,scarpe"
+      },
+      {
+        "type": "textarea",
+        "id": "sartoria_collection_handles",
+        "label": "Handle collezioni Sartoria",
+        "default": "sartoria-condotti,abiti-sartoriale,camicie-sartoriali,giacche-sartoriali,giubbotti-sartoriali,pantaloni-sartoriali,polo-t-shirt-sartoriali,scarpe-sartoria"
+      }
+    ]
+  },
+  {
     "name": "t:names.colors",
     "settings": [
       {

@@ -1,0 +1,55 @@
+{%- comment -%}
+  Ritorna lo slug del sub-brand della pagina corrente: 'condotti-co', 'sartoria' o vuoto.
+
+  Uso (in una sezione/blocco/layout):
+    {%- capture brand -%}{%- render 'brand-context' -%}{%- endcapture -%}
+    {%- assign brand = brand | strip -%}
+    {%- if brand == 'condotti-co' -%} ... {%- endif -%}
+
+  Come riconosce il brand:
+    - COLLEZIONE: template_suffix ('condotti-co'/'sartoria') se assegnato, altrimenti
+      l'handle della collezione nelle liste editabili (Impostazioni tema → "Sub-brand").
+    - PRODOTTO: se si arriva da una collezione di brand (URL /collections/x/products/y)
+      si usa quella; altrimenti si guarda a QUALI collezioni appartiene il prodotto
+      (product.collections) e si confronta con le liste. Serve perché i prodotti sono
+      taggati con codici numerici (nessun tag/metafield "brand" affidabile) e le
+      famiglie Condotti e Sartoria sono cataloghi separati.
+{%- endcomment -%}
+{%- liquid
+  assign brand = ''
+  assign cc = settings.condotti_collection_handles | downcase | replace: ' ', '' | split: ','
+  assign sa = settings.sartoria_collection_handles | downcase | replace: ' ', '' | split: ','
+
+  if template.name == 'collection' and collection != blank
+    if collection.template_suffix == 'condotti-co'
+      assign brand = 'condotti-co'
+    elsif collection.template_suffix == 'sartoria'
+      assign brand = 'sartoria'
+    elsif cc contains collection.handle
+      assign brand = 'condotti-co'
+    elsif sa contains collection.handle
+      assign brand = 'sartoria'
+    endif
+
+  elsif template.name == 'product' and product != blank
+    # 1. contesto di navigazione: prodotto aperto dentro una collezione
+    if collection != blank and cc contains collection.handle
+      assign brand = 'condotti-co'
+    elsif collection != blank and sa contains collection.handle
+      assign brand = 'sartoria'
+    else
+      # 2. fallback: a quali collezioni appartiene il prodotto
+      for c in product.collections
+        if cc contains c.handle
+          assign brand = 'condotti-co'
+          break
+        elsif sa contains c.handle
+          assign brand = 'sartoria'
+          break
+        endif
+      endfor
+    endif
+  endif
+
+  echo brand
+-%}
