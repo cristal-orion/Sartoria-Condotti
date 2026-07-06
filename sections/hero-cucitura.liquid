@@ -68,8 +68,6 @@
       {%- endif -%}
     </div>
 
-    <span class="hero-cucitura__mark" aria-hidden="true"></span>
-
     <h1 class="hero-cucitura__sr">{{ sr_text }}</h1>
 
     <div class="hero-cucitura__panel hero-cucitura__panel--top" data-hc-top aria-hidden="true">
@@ -141,29 +139,6 @@
     object-fit: cover;
     object-position: center;
     display: block;
-  }
-
-  /* Logo cigno piccolo, in alto a destra sopra la hero (desktop + mobile).
-     Sta sopra i pannelli e sotto la barra header, così non copre le icone. */
-  .hero-cucitura__mark {
-    position: absolute;
-    top: calc(var(--header-height, 60px) + clamp(10px, 2vw, 22px));
-    right: clamp(16px, 3vw, 40px);
-    z-index: 4;
-    width: clamp(34px, 4vw, 52px);
-    aspect-ratio: 1 / 1;
-    pointer-events: none;
-    user-select: none;
-    background-color: rgb(var(--hc-swan, 212 162 76));
-    -webkit-mask-image: var(--hc-swan-url);
-    mask-image: var(--hc-swan-url);
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    -webkit-mask-position: center;
-    mask-position: center;
-    -webkit-mask-size: contain;
-    mask-size: contain;
-    filter: drop-shadow(0 1px 3px rgb(0 0 0 / 0.35));
   }
 
   .hero-cucitura__panel {
@@ -294,11 +269,6 @@
     .hero-cucitura__eyebrow {
       font-size: 0.66rem;
       letter-spacing: 0.36em;
-    }
-    .hero-cucitura__mark {
-      width: clamp(30px, 9vw, 42px);
-      top: calc(var(--header-height, 56px) + clamp(8px, 3vw, 16px));
-      right: clamp(12px, 4vw, 20px);
     }
   }
 

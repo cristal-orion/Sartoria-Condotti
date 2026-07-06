@@ -59,5 +59,12 @@
   /* Il dropdown dei risultati deve stare sopra al resto e non essere tagliato */
   .header-search-inline__field .predictive-search-form__content-wrapper {
     z-index: var(--layer-overlay);
+    /* Il pannello risultati (prodotti/recenti) resta chiuso finché non si
+       clicca nel campo. Senza questo, inline nell'header si apre da solo
+       al caricamento e finisce sopra la hero (non c'è il dialog a nasconderlo). */
+    display: none;
+  }
+  .header-search-inline__field .predictive-search-form:focus-within .predictive-search-form__content-wrapper {
+    display: flex;
   }
 {% endstylesheet %}
