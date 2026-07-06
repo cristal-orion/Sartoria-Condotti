@@ -4420,6 +4420,13 @@ text-component {
   margin: 0 0 1.1em;
 }
 
+.shopify-policy__body .rte h1 {
+  font-size: clamp(1.5rem, 2.6vw, 2rem) !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.01em;
+  margin: 1.6em 0 0.5em;
+}
+
 .shopify-policy__body .rte h2 {
   font-size: clamp(1.3rem, 2vw, 1.6rem) !important;
   line-height: 1.2 !important;
@@ -4430,6 +4437,13 @@ text-component {
 .shopify-policy__body .rte h4 {
   font-size: 1.05rem !important;
   margin: 1.4em 0 0.4em;
+}
+
+/* Alcune policy incollate hanno paragrafi-titolo in maiuscolo/grassetto molto grandi:
+   teniamo sotto controllo anche eventuali font-size inline enormi ereditati. */
+.shopify-policy__body .rte :is(h5, h6) {
+  font-size: 1rem !important;
+  margin: 1.2em 0 0.4em;
 }
 
 .shopify-policy__body .rte :is(ul, ol) {
