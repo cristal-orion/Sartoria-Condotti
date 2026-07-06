@@ -1,7 +1,26 @@
 {%- liquid
   assign s = section.settings
   assign hero_title = s.hero_title | default: 'Condotti & Co'
-  assign eyebrow = s.eyebrow | default: 'Napoli · Dal 1954'
+
+  # Testo: usa l'impostazione se compilata, altrimenti la traduzione (locales/*.json → brand.condotti.*)
+  assign eyebrow = 'brand.condotti.eyebrow' | t
+  assign eyebrow = s.eyebrow | default: eyebrow
+  assign hero_sub = 'brand.condotti.hero_sub' | t
+  assign hero_sub = s.hero_sub | default: hero_sub
+  assign intro_heading = 'brand.condotti.intro_heading' | t
+  assign intro_heading = s.intro_heading | default: intro_heading
+  assign intro_body = 'brand.condotti.intro_body' | t
+  assign intro_body = s.intro_body | default: intro_body
+  assign values_heading = 'brand.condotti.values_heading' | t
+  assign values_heading = s.values_heading | default: values_heading
+  assign collection_heading = 'brand.condotti.collection_heading' | t
+  assign collection_heading = s.collection_heading | default: collection_heading
+  assign cta_heading = 'brand.condotti.cta_heading' | t
+  assign cta_heading = s.cta_heading | default: cta_heading
+  assign cta_label = 'brand.condotti.cta_label' | t
+  assign cta_label = s.cta_label | default: cta_label
+  assign gallery_hint = 'brand.condotti.gallery_hint' | t
+  assign gallery_hint = s.gallery_hint | default: gallery_hint
 -%}
 
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
@@ -15,7 +34,7 @@
     <div class="bp__wrap bp__hero-strip__head">
       <p class="bp__eyebrow" data-reveal>{{ eyebrow }}</p>
       <h1 class="bp__display bp__hero-strip__title" data-reveal>{{ hero_title }}</h1>
-      <p class="bp__hero-strip__sub" data-reveal>{{ s.hero_sub | default: 'Il guardaroba di tutti i giorni con la mano della sartoria. Casual contemporaneo, mai casuale.' }}</p>
+      <p class="bp__hero-strip__sub" data-reveal>{{ hero_sub }}</p>
     </div>
     {%- if s.gallery_images != blank -%}
       {%- assign gallery_url_default = s.gallery_link | default: '/collections/condotti-co' -%}
@@ -33,7 +52,7 @@
           {%- endif -%}
         {%- endfor -%}
       </div>
-      {%- if s.gallery_hint != blank -%}<p class="bp-gallery__hint" data-reveal>{{ s.gallery_hint }}</p>{%- endif -%}
+      {%- if gallery_hint != blank -%}<p class="bp-gallery__hint" data-reveal>{{ gallery_hint }}</p>{%- endif -%}
     {%- endif -%}
   </header>
 
@@ -41,8 +60,8 @@
   <div class="bp__section bp__wrap">
     <div class="bp__intro">
       {%- if s.intro_eyebrow != blank -%}<p class="bp__eyebrow" data-reveal>{{ s.intro_eyebrow }}</p>{%- endif -%}
-      <h2 class="bp__h2" data-reveal>{{ s.intro_heading | default: 'La stessa cura del su misura, in chiave quotidiana.' }}</h2>
-      <p class="bp__lead bp__body" data-reveal>{{ s.intro_body | default: 'Capi pensati per essere vissuti: tessuti italiani, vestibilità pulite, dettagli che durano. La sartoria che esce dall’atelier e ti segue ovunque.' }}</p>
+      <h2 class="bp__h2" data-reveal>{{ intro_heading }}</h2>
+      <p class="bp__lead bp__body" data-reveal>{{ intro_body }}</p>
     </div>
   </div>
 
@@ -54,23 +73,23 @@
   <div class="bp__section bp__wrap">
     <div class="bp__section-head">
       {%- if s.values_eyebrow != blank -%}<p class="bp__eyebrow" data-reveal>{{ s.values_eyebrow }}</p>{%- endif -%}
-      <h2 class="bp__h2" data-reveal>{{ s.values_heading | default: 'Essenziale, ma mai banale.' }}</h2>
+      <h2 class="bp__h2" data-reveal>{{ values_heading }}</h2>
     </div>
     <div class="bp__steps">
       <div class="bp__step" data-reveal>
         <span class="bp__num">01</span>
-        <h3>Tessuti italiani</h3>
-        <p class="bp__body">Cotoni, lini e jersey selezionati per durare e invecchiare bene. La qualità si sente alla prima volta che lo indossi.</p>
+        <h3>{{ 'brand.condotti.value1_title' | t }}</h3>
+        <p class="bp__body">{{ 'brand.condotti.value1_body' | t }}</p>
       </div>
       <div class="bp__step" data-reveal>
         <span class="bp__num">02</span>
-        <h3>Vestibilità studiate</h3>
-        <p class="bp__body">Linee pulite, comode senza essere sciatte. La proporzione giusta tra agio e forma.</p>
+        <h3>{{ 'brand.condotti.value2_title' | t }}</h3>
+        <p class="bp__body">{{ 'brand.condotti.value2_body' | t }}</p>
       </div>
       <div class="bp__step" data-reveal>
         <span class="bp__num">03</span>
-        <h3>Dettagli sartoriali</h3>
-        <p class="bp__body">Cuciture, bottoni, finiture: la mano dell’atelier resta anche nel capo più semplice.</p>
+        <h3>{{ 'brand.condotti.value3_title' | t }}</h3>
+        <p class="bp__body">{{ 'brand.condotti.value3_body' | t }}</p>
       </div>
     </div>
   </div>
@@ -80,7 +99,7 @@
     <div class="bp__section bp__wrap">
       <div class="bp__section-head">
         {%- if s.collection_eyebrow != blank -%}<p class="bp__eyebrow" data-reveal>{{ s.collection_eyebrow }}</p>{%- endif -%}
-        <h2 class="bp__h2" data-reveal>{{ s.collection_heading | default: 'Da indossare ogni giorno' }}</h2>
+        <h2 class="bp__h2" data-reveal>{{ collection_heading }}</h2>
       </div>
       {%- if s.collection != blank and s.collection.products_count > 0 -%}
         <div class="bp__products" data-reveal>
@@ -97,10 +116,10 @@
           {%- endfor -%}
         </div>
         <div data-reveal style="margin-top:clamp(36px,4vw,56px);">
-          <a class="bp__btn" href="{{ s.collection.url }}">Vedi tutta la collezione</a>
+          <a class="bp__btn" href="{{ s.collection.url }}">{{ 'brand.common.view_all_collection' | t }}</a>
         </div>
       {%- else -%}
-        <p class="bp__body" data-reveal style="max-width:46ch;">La collezione casual è in arrivo. Collega una collezione a questa sezione dal personalizzatore per mostrare qui i capi.</p>
+        <p class="bp__body" data-reveal style="max-width:46ch;">{{ 'brand.condotti.collection_empty' | t }}</p>
       {%- endif -%}
     </div>
   </div>
@@ -109,8 +128,8 @@
   <div class="bp__section bp__wrap">
     <div class="bp__cta">
       {%- if s.cta_eyebrow != blank -%}<p class="bp__eyebrow" data-reveal>{{ s.cta_eyebrow }}</p>{%- endif -%}
-      <h2 class="bp__display" data-reveal>{{ s.cta_heading | default: 'La sartoria, ogni giorno.' }}</h2>
-      <a class="bp__btn" href="{{ s.cta_link | default: '/collections/condotti-co' }}" data-reveal>{{ s.cta_label | default: 'Scopri i capi' }}</a>
+      <h2 class="bp__display" data-reveal>{{ cta_heading }}</h2>
+      <a class="bp__btn" href="{{ s.cta_link | default: '/collections/condotti-co' }}" data-reveal>{{ cta_label }}</a>
     </div>
   </div>
 </section>
@@ -127,29 +146,29 @@
   "settings": [
     { "type": "header", "content": "Hero" },
     { "type": "image_picker", "id": "hero_image", "label": "Immagine hero" },
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Napoli · Dal 1954" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "info": "Vuoto = usa la traduzione (brand.condotti.eyebrow)." },
     { "type": "text", "id": "hero_title", "label": "Titolo", "default": "Condotti & Co" },
-    { "type": "textarea", "id": "hero_sub", "label": "Sottotitolo" },
+    { "type": "textarea", "id": "hero_sub", "label": "Sottotitolo", "info": "Vuoto = usa la traduzione." },
     { "type": "header", "content": "Intro" },
     { "type": "text", "id": "intro_eyebrow", "label": "Eyebrow intro" },
-    { "type": "text", "id": "intro_heading", "label": "Titolo intro" },
-    { "type": "textarea", "id": "intro_body", "label": "Testo intro" },
+    { "type": "text", "id": "intro_heading", "label": "Titolo intro", "info": "Vuoto = usa la traduzione." },
+    { "type": "textarea", "id": "intro_body", "label": "Testo intro", "info": "Vuoto = usa la traduzione." },
     { "type": "header", "content": "Hero · striscia foto" },
     { "type": "textarea", "id": "gallery_images", "label": "Foto hero (file in assets/, separati da virgola)", "info": "Formato per ogni foto: nomefile | /collections/handle | Nome collezione. Le ultime due parti sono opzionali. Verifica che gli handle delle collezioni siano corretti e abbina ogni foto alla collezione giusta. Lascia vuoto per nascondere la striscia.", "default": "condottico-abiti.jpg | /collections/maglioni | Abiti, condottico-giacche.jpg | /collections/cappotti | Giacche, condottico-camicie.jpg | /collections/camicie | Camicie, condottico-polo.jpg | /collections/polo-t-shirt | Polo & T-Shirt, condottico-scarpe.jpg | /collections/scarpe | Scarpe, condottico-giubbotti.jpg | /collections/giubbotti | Giubbotti" },
     { "type": "url", "id": "gallery_link", "label": "Link foto hero (collezione di riserva)", "info": "Dove portano le foto SENZA link specifico (formato sopra). Default: collezione Condotti & Co." },
-    { "type": "text", "id": "gallery_hint", "label": "Nota striscia", "default": "‹ scorri ›" },
+    { "type": "text", "id": "gallery_hint", "label": "Nota striscia", "info": "Vuoto = usa la traduzione (‹ scorri ›)." },
     { "type": "header", "content": "Valori" },
     { "type": "text", "id": "values_eyebrow", "label": "Eyebrow valori" },
-    { "type": "text", "id": "values_heading", "label": "Titolo valori" },
+    { "type": "text", "id": "values_heading", "label": "Titolo valori", "info": "Vuoto = usa la traduzione." },
     { "type": "header", "content": "Showcase prodotti" },
     { "type": "text", "id": "collection_eyebrow", "label": "Eyebrow" },
-    { "type": "text", "id": "collection_heading", "label": "Titolo" },
+    { "type": "text", "id": "collection_heading", "label": "Titolo", "info": "Vuoto = usa la traduzione." },
     { "type": "collection", "id": "collection", "label": "Collezione" },
     { "type": "range", "id": "products_limit", "label": "Prodotti mostrati", "min": 4, "max": 12, "step": 4, "default": 8 },
     { "type": "header", "content": "CTA finale" },
     { "type": "text", "id": "cta_eyebrow", "label": "Eyebrow CTA" },
-    { "type": "text", "id": "cta_heading", "label": "Titolo CTA" },
-    { "type": "text", "id": "cta_label", "label": "Etichetta bottone", "default": "Scopri i capi" },
+    { "type": "text", "id": "cta_heading", "label": "Titolo CTA", "info": "Vuoto = usa la traduzione." },
+    { "type": "text", "id": "cta_label", "label": "Etichetta bottone", "info": "Vuoto = usa la traduzione." },
     { "type": "url", "id": "cta_link", "label": "Link bottone" }
   ],
   "presets": [{ "name": "Brand · Condotti & Co" }]

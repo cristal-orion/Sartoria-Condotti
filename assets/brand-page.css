@@ -359,6 +359,57 @@
   background: rgb(var(--bp-gold));
 }
 
+/* ---- Settori / Campi di applicazione ---- */
+.bp__sectors {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: clamp(20px, 2.4vw, 40px);
+}
+
+.bp__sector {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.bp__sector-media {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  background: rgb(var(--bp-bone));
+}
+
+.bp__sector-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (hover: hover) {
+  .bp__sector:hover .bp__sector-media img {
+    transform: scale(1.045);
+  }
+}
+
+.bp__sector-title {
+  font-family: 'Fraunces', var(--font-heading--family, serif);
+  font-weight: 300;
+  font-variation-settings: 'opsz' 72;
+  font-size: 1.35rem;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0;
+  padding-top: 4px;
+  border-top: 1px solid rgb(var(--bp-gold));
+}
+
+.bp__sector .bp__body {
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
 /* ---- Product showcase ---- */
 .bp__products {
   display: grid;

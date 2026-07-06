@@ -100,8 +100,33 @@
     document.querySelectorAll('[data-hc-root]').forEach(setupOne);
     const header = document.getElementById('header-component');
     if (header && window.ResizeObserver) {
-      const ro = new ResizeObserver(() => window.ScrollTrigger && window.ScrollTrigger.refresh());
+      // Mentre un drawer/modale blocca lo scroll (html[scroll-lock]), NON
+      // ricalcolare il pin: overflow:hidden può cambiare la larghezza e
+      // desincronizzare la hero (freeze aprendo/chiudendo il Menu). Il refresh
+      // eventualmente rimandato viene eseguito una sola volta allo sblocco.
+      let pendingRefresh = false;
+      const isLocked = () => document.documentElement.hasAttribute('scroll-lock');
+      const refreshHero = () => {
+        if (!window.ScrollTrigger) return;
+        if (isLocked()) {
+          pendingRefresh = true;
+          return;
+        }
+        window.ScrollTrigger.refresh();
+      };
+      const ro = new ResizeObserver(refreshHero);
       ro.observe(header);
+
+      const lockObserver = new MutationObserver(() => {
+        if (!isLocked() && pendingRefresh) {
+          pendingRefresh = false;
+          if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+        }
+      });
+      lockObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['scroll-lock'],
+      });
     }
   }
 

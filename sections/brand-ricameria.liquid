@@ -1,7 +1,45 @@
 {%- liquid
   assign s = section.settings
-  assign hero_title = s.hero_title | default: 'Atelier del Ricamo'
-  assign eyebrow = s.eyebrow | default: 'Napoli · Dal 1954'
+
+  # Testo: usa l'impostazione se compilata, altrimenti la traduzione (locales/*.json → brand.ricameria.*)
+  assign eyebrow = 'brand.ricameria.eyebrow' | t
+  assign eyebrow = s.eyebrow | default: eyebrow
+  assign hero_title = 'brand.ricameria.hero_title' | t
+  assign hero_title = s.hero_title | default: hero_title
+  assign hero_sub = 'brand.ricameria.hero_sub' | t
+  assign hero_sub = s.hero_sub | default: hero_sub
+
+  assign intro_eyebrow = 'brand.ricameria.intro_eyebrow' | t
+  assign intro_eyebrow = s.intro_eyebrow | default: intro_eyebrow
+  assign intro_heading = 'brand.ricameria.intro_heading' | t
+  assign intro_heading = s.intro_heading | default: intro_heading
+  assign intro_body = 'brand.ricameria.intro_body' | t
+  assign intro_body = s.intro_body | default: intro_body
+
+  assign services_eyebrow = 'brand.ricameria.services_eyebrow' | t
+  assign services_eyebrow = s.services_eyebrow | default: services_eyebrow
+  assign services_heading = 'brand.ricameria.services_heading' | t
+  assign services_heading = s.services_heading | default: services_heading
+
+  assign sectors_eyebrow = 'brand.ricameria.sectors_eyebrow' | t
+  assign sectors_eyebrow = s.sectors_eyebrow | default: sectors_eyebrow
+  assign sectors_heading = 'brand.ricameria.sectors_heading' | t
+  assign sectors_heading = s.sectors_heading | default: sectors_heading
+  assign sectors_body = 'brand.ricameria.sectors_body' | t
+  assign sectors_body = s.sectors_body | default: sectors_body
+  assign sector_fallback = 'brand.ricameria.sector_fallback' | t
+
+  assign how_eyebrow = 'brand.ricameria.how_eyebrow' | t
+  assign how_eyebrow = s.how_eyebrow | default: how_eyebrow
+  assign how_heading = 'brand.ricameria.how_heading' | t
+  assign how_heading = s.how_heading | default: how_heading
+
+  assign form_eyebrow = 'brand.ricameria.form_eyebrow' | t
+  assign form_eyebrow = s.form_eyebrow | default: form_eyebrow
+  assign form_heading = 'brand.ricameria.form_heading' | t
+  assign form_heading = s.form_heading | default: form_heading
+  assign form_body = 'brand.ricameria.form_body' | t
+  assign form_body = s.form_body | default: form_body
 -%}
 
 <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
@@ -16,22 +54,22 @@
       {%- if s.hero_image != blank -%}
         {{ s.hero_image | image_url: width: 2400 | image_tag: widths: '900,1400,1900,2400', sizes: '100vw', fetchpriority: 'high' }}
       {%- else -%}
-        <img src="{{ 'ricameria34.png' | asset_url }}" alt="" fetchpriority="high">
+        <img src="{{ 'ricameria-hero.png' | asset_url }}" alt="" fetchpriority="high">
       {%- endif -%}
     </div>
     <div class="bp__hero-inner bp__wrap">
       <p class="bp__eyebrow" data-reveal>{{ eyebrow }}</p>
       <h1 class="bp__display bp__hero-title" data-reveal>{{ hero_title }}</h1>
-      <p class="bp__hero-sub" data-reveal>{{ s.hero_sub | default: 'Piccole riparazioni e ricami su misura. Diamo nuova vita ai capi e firmiamo ciò che è tuo.' }}</p>
+      <p class="bp__hero-sub" data-reveal>{{ hero_sub }}</p>
     </div>
   </header>
 
   <!-- INTRO -->
   <div class="bp__section bp__wrap">
     <div class="bp__intro">
-      <p class="bp__eyebrow" data-reveal>{{ s.intro_eyebrow | default: 'Il laboratorio' }}</p>
-      <h2 class="bp__h2" data-reveal>{{ s.intro_heading | default: 'Ogni capo merita una seconda vita.' }}</h2>
-      <p class="bp__lead bp__body" data-reveal>{{ s.intro_body | default: 'Dall’orlo da sistemare al monogramma da ricamare, ci prendiamo cura dei dettagli con la precisione della sartoria. Niente è troppo piccolo per essere fatto bene.' }}</p>
+      <p class="bp__eyebrow" data-reveal>{{ intro_eyebrow }}</p>
+      <h2 class="bp__h2" data-reveal>{{ intro_heading }}</h2>
+      <p class="bp__lead bp__body" data-reveal>{{ intro_body }}</p>
     </div>
   </div>
 
@@ -42,68 +80,168 @@
   <!-- SERVIZI -->
   <div class="bp__section bp__wrap">
     <div class="bp__section-head">
-      <p class="bp__eyebrow" data-reveal>{{ s.services_eyebrow | default: 'Cosa facciamo' }}</p>
-      <h2 class="bp__h2" data-reveal>{{ s.services_heading | default: 'Riparazioni e ricami' }}</h2>
+      <p class="bp__eyebrow" data-reveal>{{ services_eyebrow }}</p>
+      <h2 class="bp__h2" data-reveal>{{ services_heading }}</h2>
     </div>
     <div class="bp__services">
       <div class="bp__service" data-reveal>
         <span class="bp__num">01</span>
-        <h3>Piccole riparazioni</h3>
+        <h3>{{ 'brand.ricameria.service1_title' | t }}</h3>
         <ul>
-          <li>Orli e accorciature (pantaloni, gonne, abiti)</li>
-          <li>Sostituzione cerniere e bottoni</li>
-          <li>Restringimenti e adattamenti di vestibilità</li>
-          <li>Rammendi invisibili e rinforzi</li>
-          <li>Sostituzione fodere e rifiniture</li>
+          <li>{{ 'brand.ricameria.service1_item1' | t }}</li>
+          <li>{{ 'brand.ricameria.service1_item2' | t }}</li>
+          <li>{{ 'brand.ricameria.service1_item3' | t }}</li>
+          <li>{{ 'brand.ricameria.service1_item4' | t }}</li>
+          <li>{{ 'brand.ricameria.service1_item5' | t }}</li>
         </ul>
       </div>
       <div class="bp__service" data-reveal>
         <span class="bp__num">02</span>
-        <h3>Ricami su misura</h3>
+        <h3>{{ 'brand.ricameria.service2_title' | t }}</h3>
         <ul>
-          <li>Monogrammi e iniziali su camicie e capi</li>
-          <li>Loghi e divise aziendali</li>
-          <li>Personalizzazioni e ricami decorativi</li>
-          <li>Ricami su biancheria e accessori</li>
-          <li>Restauro di ricami antichi</li>
+          <li>{{ 'brand.ricameria.service2_item1' | t }}</li>
+          <li>{{ 'brand.ricameria.service2_item2' | t }}</li>
+          <li>{{ 'brand.ricameria.service2_item3' | t }}</li>
+          <li>{{ 'brand.ricameria.service2_item4' | t }}</li>
+          <li>{{ 'brand.ricameria.service2_item5' | t }}</li>
         </ul>
       </div>
     </div>
   </div>
+
+  <!-- CAMPI DI APPLICAZIONE / SETTORI -->
+  {%- if section.blocks.size > 0 -%}
+    <span class="bp__stitch bp__wrap" aria-hidden="true">
+      <svg viewBox="0 0 1000 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="1000" y2="1" stroke="currentColor" stroke-width="1.4" stroke-dasharray="7 5" vector-effect="non-scaling-stroke"/></svg>
+    </span>
+
+    <div class="bp__section bp__wrap">
+      <div class="bp__section-head">
+        <p class="bp__eyebrow" data-reveal>{{ sectors_eyebrow }}</p>
+        <h2 class="bp__h2" data-reveal>{{ sectors_heading }}</h2>
+        <p class="bp__body" data-reveal>{{ sectors_body }}</p>
+      </div>
+      <div class="bp__sectors">
+        {%- for block in section.blocks -%}
+          <article class="bp__sector" data-reveal {{ block.shopify_attributes }}>
+            <div class="bp__sector-media">
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 800 | image_tag: widths: '300,500,800', sizes: '(max-width: 640px) 90vw, 25vw', loading: 'lazy', alt: block.settings.label }}
+              {%- endif -%}
+            </div>
+            <h3 class="bp__sector-title">{{ block.settings.label | default: sector_fallback }}</h3>
+            {%- if block.settings.desc != blank -%}
+              <p class="bp__body">{{ block.settings.desc }}</p>
+            {%- endif -%}
+          </article>
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
 
   <!-- COME FUNZIONA (ink) -->
   <div class="bp bp--ink" style="background:rgb(var(--bp-ink));color:rgb(var(--bp-cream));">
     <div class="bp__section bp__wrap">
       <div class="bp__section-head">
-        <p class="bp__eyebrow" data-reveal>{{ s.how_eyebrow | default: 'Come funziona' }}</p>
-        <h2 class="bp__h2" data-reveal>{{ s.how_heading | default: 'Dal capo al risultato.' }}</h2>
+        <p class="bp__eyebrow" data-reveal>{{ how_eyebrow }}</p>
+        <h2 class="bp__h2" data-reveal>{{ how_heading }}</h2>
       </div>
       <div class="bp__steps">
         <div class="bp__step" data-reveal>
           <span class="bp__num">01</span>
-          <h3>Portaci il capo</h3>
-          <p class="bp__body">Vieni in atelier o richiedi il ritiro a domicilio. Valutiamo insieme l’intervento.</p>
+          <h3>{{ 'brand.ricameria.how_step1_title' | t }}</h3>
+          <p class="bp__body">{{ 'brand.ricameria.how_step1_body' | t }}</p>
         </div>
         <div class="bp__step" data-reveal>
           <span class="bp__num">02</span>
-          <h3>Preventivo</h3>
-          <p class="bp__body">Ti diamo tempi e costo prima di iniziare. Nessuna sorpresa.</p>
+          <h3>{{ 'brand.ricameria.how_step2_title' | t }}</h3>
+          <p class="bp__body">{{ 'brand.ricameria.how_step2_body' | t }}</p>
         </div>
         <div class="bp__step" data-reveal>
           <span class="bp__num">03</span>
-          <h3>Riconsegna</h3>
-          <p class="bp__body">Lavoriamo con cura e ti riconsegniamo il capo come nuovo, o meglio.</p>
+          <h3>{{ 'brand.ricameria.how_step3_title' | t }}</h3>
+          <p class="bp__body">{{ 'brand.ricameria.how_step3_body' | t }}</p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- CTA -->
-  <div class="bp__section bp__wrap">
-    <div class="bp__cta">
-      <p class="bp__eyebrow" data-reveal>{{ s.cta_eyebrow | default: 'Su richiesta' }}</p>
-      <h2 class="bp__display" data-reveal>{{ s.cta_heading | default: 'Diamo nuova vita ai tuoi capi.' }}</h2>
-      <a class="bp__btn" href="{{ s.cta_link | default: '/pages/sarto-a-domicilio#prenota' }}" data-reveal>{{ s.cta_label | default: 'Richiedi un preventivo' }}</a>
+  <!-- FORM PREVENTIVO -->
+  <div class="bp__section bp__wrap" id="preventivo">
+    <div class="bp__form-layout">
+      <div class="bp__diptych-text">
+        <p class="bp__eyebrow" data-reveal>{{ form_eyebrow }}</p>
+        <h2 class="bp__h2" data-reveal>{{ form_heading }}</h2>
+        <p class="bp__body" data-reveal>{{ form_body }}</p>
+      </div>
+
+      <div data-reveal>
+        {%- form 'contact', id: 'ricamo-preventivo-form' -%}
+          {%- if form.posted_successfully? -%}
+            <div class="bp__form-success">{{ 'brand.ricameria.form_success' | t }}</div>
+          {%- endif -%}
+          {%- if form.errors -%}
+            <div class="bp__form-success" style="background:rgba(180,60,40,.14);border-color:#b43c28;">
+              {{ form.errors | default_errors }}
+            </div>
+          {%- endif -%}
+
+          <input type="hidden" name="contact[Tipo richiesta]" value="Preventivo ricamo">
+
+          <div class="bp__form">
+            <div class="bp__field">
+              <label for="rp-name">{{ 'brand.ricameria.form_name' | t }}</label>
+              <input type="text" id="rp-name" name="contact[name]" required value="{{ form.name }}">
+            </div>
+            <div class="bp__field">
+              <label for="rp-azienda">{{ 'brand.ricameria.form_company' | t }}</label>
+              <input type="text" id="rp-azienda" name="contact[Azienda]" placeholder="{{ 'brand.ricameria.form_optional' | t | escape }}">
+            </div>
+            <div class="bp__field">
+              <label for="rp-email">{{ 'brand.ricameria.form_email' | t }}</label>
+              <input type="email" id="rp-email" name="contact[email]" required value="{{ form.email }}">
+            </div>
+            <div class="bp__field">
+              <label for="rp-phone">{{ 'brand.ricameria.form_phone' | t }}</label>
+              <input type="tel" id="rp-phone" name="contact[phone]" placeholder="+39" value="{{ form.phone }}">
+            </div>
+            <div class="bp__field bp__field--full">
+              <label for="rp-settore">{{ 'brand.ricameria.form_sector_label' | t }}</label>
+              <select id="rp-settore" name="contact[Settore]" required>
+                <option value="" disabled selected>{{ 'brand.ricameria.form_sector_placeholder' | t }}</option>
+                {%- for block in section.blocks -%}
+                  {%- if block.settings.label != blank -%}
+                    <option value="{{ block.settings.label | escape }}">{{ block.settings.label | escape }}</option>
+                  {%- endif -%}
+                {%- endfor -%}
+                <option value="Altro / Privato">{{ 'brand.ricameria.form_sector_other' | t }}</option>
+              </select>
+            </div>
+            <div class="bp__field">
+              <label for="rp-tipo">{{ 'brand.ricameria.form_type_label' | t }}</label>
+              <select id="rp-tipo" name="contact[Tipo di ricamo]">
+                <option value="Logo / divise">{{ 'brand.ricameria.form_type_1' | t }}</option>
+                <option value="Monogrammi / iniziali">{{ 'brand.ricameria.form_type_2' | t }}</option>
+                <option value="Personalizzazioni decorative">{{ 'brand.ricameria.form_type_3' | t }}</option>
+                <option value="Restauro ricami">{{ 'brand.ricameria.form_type_4' | t }}</option>
+                <option value="Altro">{{ 'brand.ricameria.form_type_5' | t }}</option>
+              </select>
+            </div>
+            <div class="bp__field">
+              <label for="rp-qta">{{ 'brand.ricameria.form_qty_label' | t }}</label>
+              <input type="text" id="rp-qta" name="contact[Quantità]" placeholder="{{ 'brand.ricameria.form_qty_placeholder' | t | escape }}">
+            </div>
+            <div class="bp__field bp__field--full">
+              <label for="rp-note">{{ 'brand.ricameria.form_details_label' | t }}</label>
+              <textarea id="rp-note" name="contact[body]" placeholder="{{ 'brand.ricameria.form_details_placeholder' | t | escape }}"></textarea>
+            </div>
+            <div class="bp__form-actions">
+              <button type="submit" class="bp__btn">{{ 'brand.ricameria.form_submit' | t }}</button>
+              <p class="bp__form-note">{{ 'brand.ricameria.form_note' | t }}</p>
+            </div>
+          </div>
+        {%- endform -%}
+      </div>
     </div>
   </div>
 </section>
@@ -133,12 +271,40 @@
     { "type": "header", "content": "Come funziona" },
     { "type": "text", "id": "how_eyebrow", "label": "Eyebrow" },
     { "type": "text", "id": "how_heading", "label": "Titolo" },
-    { "type": "header", "content": "CTA finale" },
-    { "type": "text", "id": "cta_eyebrow", "label": "Eyebrow CTA" },
-    { "type": "text", "id": "cta_heading", "label": "Titolo CTA" },
-    { "type": "text", "id": "cta_label", "label": "Etichetta bottone", "default": "Richiedi un preventivo" },
-    { "type": "url", "id": "cta_link", "label": "Link bottone" }
+    { "type": "header", "content": "Campi di applicazione", "info": "I settori si gestiscono come blocchi qui sotto. Le stesse voci compaiono nel menu a tendina del form preventivo." },
+    { "type": "text", "id": "sectors_eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "sectors_heading", "label": "Titolo" },
+    { "type": "textarea", "id": "sectors_body", "label": "Testo introduttivo" },
+    { "type": "header", "content": "Form preventivo" },
+    { "type": "text", "id": "form_eyebrow", "label": "Eyebrow form" },
+    { "type": "text", "id": "form_heading", "label": "Titolo form" },
+    { "type": "textarea", "id": "form_body", "label": "Testo form" }
   ],
-  "presets": [{ "name": "Brand · Ricameria" }]
+  "blocks": [
+    {
+      "type": "settore",
+      "name": "Settore",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Foto" },
+        { "type": "text", "id": "label", "label": "Settore", "default": "Settore" },
+        { "type": "textarea", "id": "desc", "label": "Esempi di lavori" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand · Ricameria",
+      "blocks": [
+        { "type": "settore", "settings": { "label": "Hotel", "desc": "Accappatoi, asciugamani e biancheria con logo ricamato. Divise per reception, sala e housekeeping." } },
+        { "type": "settore", "settings": { "label": "Ristorazione", "desc": "Grembiuli, giacche da cuoco e camicie di sala personalizzate con nome e logo del locale." } },
+        { "type": "settore", "settings": { "label": "Aziende", "desc": "Divise da lavoro, polo e camicie con logo aziendale ricamato su misura." } },
+        { "type": "settore", "settings": { "label": "Nautica", "desc": "Polo, felpe e cappellini equipaggio con il nome dell’imbarcazione. Teli e accessori ricamati." } },
+        { "type": "settore", "settings": { "label": "Sanitario", "desc": "Camici, casacche e divise per cliniche e studi medici con logo e nome dello staff." } },
+        { "type": "settore", "settings": { "label": "Scuole", "desc": "Grembiuli, felpe e tute con lo stemma dell’istituto. Divise sportive e kit personalizzati." } },
+        { "type": "settore", "settings": { "label": "Eventi", "desc": "Ricami personalizzati per matrimoni, cerimonie e occasioni speciali. Monogrammi e date." } },
+        { "type": "settore", "settings": { "label": "Associazioni", "desc": "Magliette, felpe e gagliardetti con logo e stemma. Divise per squadre e gruppi." } }
+      ]
+    }
+  ]
 }
 {% endschema %}

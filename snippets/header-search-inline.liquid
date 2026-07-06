@@ -1,0 +1,63 @@
+{%- doc -%}
+  Ricerca nell'header:
+  - Desktop (≥750px): campo di ricerca predittivo visibile (una vera "barra").
+  - Mobile (<750px): icona che apre il modale di ricerca a tutto schermo.
+
+  Riusa lo snippet `predictive-search` (motore già esistente nel tema) per il
+  campo desktop e lo snippet `search` (bottone → #search-modal) per il mobile.
+
+  @param {string} [style] - 'modal' | 'none' (passato da header.liquid).
+  @param {string} [class] - Classi extra (es. 'mobile:hidden' quando gli account
+    sono attivi: in quel caso il mobile è gestito dal blocco mobile_search).
+
+  @example
+  {% render 'header-search-inline', style: 'modal' %}
+{%- enddoc -%}
+
+{% unless style == 'none' %}
+  <div class="header-search-inline{% if class != blank %} {{ class | strip }}{% endif %}">
+    {%- comment -%} Desktop: campo di ricerca visibile {%- endcomment -%}
+    <div class="header-search-inline__field mobile:hidden">
+      {% render 'predictive-search',
+        input_id: 'header-search',
+        search_test_id: 'header-search-inline',
+        products_test_id: 'products-list-default--header'
+      %}
+    </div>
+    {%- comment -%} Mobile: icona che apre il modale {%- endcomment -%}
+    <div class="header-search-inline__icon desktop:hidden">
+      {% render 'search', style: style %}
+    </div>
+  </div>
+{% endunless %}
+
+{% stylesheet %}
+  .header-search-inline {
+    display: flex;
+    align-items: center;
+  }
+
+  .header-search-inline__field {
+    width: clamp(180px, 24vw, 320px);
+  }
+
+  /* Il campo predittivo nasce per un popover: qui lo adattiamo alla barra header */
+  .header-search-inline__field predictive-search-component {
+    background-color: transparent;
+    width: 100%;
+  }
+
+  .header-search-inline__field .predictive-search-form__header {
+    position: static;
+  }
+
+  .header-search-inline__field .search-input {
+    padding-block: var(--padding-2xs);
+    font-size: var(--font-size--sm);
+  }
+
+  /* Il dropdown dei risultati deve stare sopra al resto e non essere tagliato */
+  .header-search-inline__field .predictive-search-form__content-wrapper {
+    z-index: var(--layer-overlay);
+  }
+{% endstylesheet %}

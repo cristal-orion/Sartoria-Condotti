@@ -1,7 +1,24 @@
 {%- liquid
   assign s = section.settings
   assign hero_title = s.hero_title | default: 'Sarto a Domicilio'
-  assign eyebrow = s.eyebrow | default: 'Napoli · Dal 1954'
+
+  # Testo: usa l'impostazione se compilata, altrimenti la traduzione (locales/*.json → brand.sarto_domicilio.*)
+  assign eyebrow = 'brand.sarto_domicilio.eyebrow' | t
+  assign eyebrow = s.eyebrow | default: eyebrow
+  assign hero_sub = 'brand.sarto_domicilio.hero_sub' | t
+  assign hero_sub = s.hero_sub | default: hero_sub
+  assign intro_eyebrow = 'brand.sarto_domicilio.intro_eyebrow' | t
+  assign intro_eyebrow = s.intro_eyebrow | default: intro_eyebrow
+  assign intro_heading = 'brand.sarto_domicilio.intro_heading' | t
+  assign intro_heading = s.intro_heading | default: intro_heading
+  assign intro_body = 'brand.sarto_domicilio.intro_body' | t
+  assign intro_body = s.intro_body | default: intro_body
+  assign how_eyebrow = 'brand.sarto_domicilio.how_eyebrow' | t
+  assign how_eyebrow = s.how_eyebrow | default: how_eyebrow
+  assign how_heading = 'brand.sarto_domicilio.how_heading' | t
+  assign how_heading = s.how_heading | default: how_heading
+  assign form_eyebrow = 'brand.sarto_domicilio.form_eyebrow' | t
+  assign form_eyebrow = s.form_eyebrow | default: form_eyebrow
 
   assign has_negozio = false
   if s.cal_link != blank and s.cal_link_negozio != blank
@@ -11,26 +28,26 @@
   assign form_heading = s.form_heading
   if form_heading == blank
     if s.deposit_enabled and s.cal_link_negozio != blank
-      assign form_heading = 'Prenota un appuntamento'
+      assign form_heading = 'brand.sarto_domicilio.form_heading_appointment' | t
     elsif s.deposit_enabled
-      assign form_heading = 'Prenota il sarto a domicilio'
+      assign form_heading = 'brand.sarto_domicilio.form_heading_domicilio_deposit' | t
     elsif has_negozio
-      assign form_heading = 'Prenota un appuntamento'
+      assign form_heading = 'brand.sarto_domicilio.form_heading_appointment' | t
     else
-      assign form_heading = 'Richiedi il sarto a domicilio'
+      assign form_heading = 'brand.sarto_domicilio.form_heading_domicilio' | t
     endif
   endif
 
   assign form_body = s.form_body
   if form_body == blank
     if s.deposit_enabled and s.cal_link_negozio != blank
-      assign form_body = 'Scegli se ricevere il sarto a casa o venire in una delle nostre boutique. Per il sarto a domicilio è previsto un acconto di 100 €, scalato sull’acquisto finale; la visita in boutique è gratuita.'
+      assign form_body = 'brand.sarto_domicilio.form_body_both_deposit' | t
     elsif s.deposit_enabled
-      assign form_body = 'Per fissare la visita è richiesto un acconto di 100 €, che viene scalato sull’acquisto finale. Dopo il pagamento ricevi via email il link per scegliere giorno e ora.'
+      assign form_body = 'brand.sarto_domicilio.form_body_deposit' | t
     elsif has_negozio
-      assign form_body = 'Scegli se ricevere il sarto a casa o venire in una delle nostre boutique. In entrambi i casi confermiamo noi giorno e orario — nessun addebito in questa fase.'
+      assign form_body = 'brand.sarto_domicilio.form_body_both' | t
     else
-      assign form_body = 'Raccontaci di cosa hai bisogno: ti rispondiamo entro 24 ore per concordare giorno e orario. Nessun pagamento richiesto in questa fase.'
+      assign form_body = 'brand.sarto_domicilio.form_body_simple' | t
     endif
   endif
 -%}
@@ -53,16 +70,16 @@
     <div class="bp__hero-inner bp__wrap">
       <p class="bp__eyebrow" data-reveal>{{ eyebrow }}</p>
       <h1 class="bp__display bp__hero-title" data-reveal>{{ hero_title }}</h1>
-      <p class="bp__hero-sub" data-reveal>{{ s.hero_sub | default: 'Il tuo sarto, a casa tua. Presa misure, prove e piccole riparazioni nel comfort del tuo spazio.' }}</p>
+      <p class="bp__hero-sub" data-reveal>{{ hero_sub }}</p>
     </div>
   </header>
 
   <!-- INTRO -->
   <div class="bp__section bp__wrap">
     <div class="bp__intro">
-      <p class="bp__eyebrow" data-reveal>{{ s.intro_eyebrow | default: 'Il servizio' }}</p>
-      <h2 class="bp__h2" data-reveal>{{ s.intro_heading | default: 'L’atelier che viene da te.' }}</h2>
-      <p class="bp__lead bp__body" data-reveal>{{ s.intro_body | default: 'Su appuntamento, un nostro sarto raggiunge la tua abitazione o il tuo ufficio con tessuti e campionari. La stessa esperienza dell’atelier, senza spostarti.' }}</p>
+      <p class="bp__eyebrow" data-reveal>{{ intro_eyebrow }}</p>
+      <h2 class="bp__h2" data-reveal>{{ intro_heading }}</h2>
+      <p class="bp__lead bp__body" data-reveal>{{ intro_body }}</p>
     </div>
   </div>
 
@@ -73,24 +90,24 @@
   <!-- COME FUNZIONA -->
   <div class="bp__section bp__wrap">
     <div class="bp__section-head">
-      <p class="bp__eyebrow" data-reveal>{{ s.how_eyebrow | default: 'Come funziona' }}</p>
-      <h2 class="bp__h2" data-reveal>{{ s.how_heading | default: 'Tre passi, zero spostamenti.' }}</h2>
+      <p class="bp__eyebrow" data-reveal>{{ how_eyebrow }}</p>
+      <h2 class="bp__h2" data-reveal>{{ how_heading }}</h2>
     </div>
     <div class="bp__steps">
       <div class="bp__step" data-reveal>
         <span class="bp__num">01</span>
-        <h3>Richiedi</h3>
-        <p class="bp__body">Indica giorno, ora e di cosa hai bisogno qui sotto. Confermiamo noi l’appuntamento.</p>
+        <h3>{{ 'brand.sarto_domicilio.step1_title' | t }}</h3>
+        <p class="bp__body">{{ 'brand.sarto_domicilio.step1_body' | t }}</p>
       </div>
       <div class="bp__step" data-reveal>
         <span class="bp__num">02</span>
-        <h3>Ti raggiungiamo</h3>
-        <p class="bp__body">Il sarto arriva a casa o in ufficio con tessuti e strumenti. Presa misure, consigli, prove: tutto da te.</p>
+        <h3>{{ 'brand.sarto_domicilio.step2_title' | t }}</h3>
+        <p class="bp__body">{{ 'brand.sarto_domicilio.step2_body' | t }}</p>
       </div>
       <div class="bp__step" data-reveal>
         <span class="bp__num">03</span>
-        <h3>Ricevi il capo</h3>
-        <p class="bp__body">Realizziamo o sistemiamo il capo in atelier e te lo riconsegniamo, di nuovo a domicilio se vuoi.</p>
+        <h3>{{ 'brand.sarto_domicilio.step3_title' | t }}</h3>
+        <p class="bp__body">{{ 'brand.sarto_domicilio.step3_body' | t }}</p>
       </div>
     </div>
   </div>
@@ -100,7 +117,7 @@
     <div class="bp__section bp__wrap" id="prenota">
       <div class="bp__form-layout">
         <div class="bp__diptych-text">
-          <p class="bp__eyebrow" data-reveal>{{ s.form_eyebrow | default: 'Prenota' }}</p>
+          <p class="bp__eyebrow" data-reveal>{{ form_eyebrow }}</p>
           <h2 class="bp__h2" data-reveal>{{ form_heading }}</h2>
           <p class="bp__body" data-reveal>{{ form_body }}</p>
         </div>
@@ -140,9 +157,9 @@
               .bp__cal-tab.is-active { background: #C9A24B; border-color: #C9A24B; color: #0e0e0c; }
             </style>
             {%- if show_tabs -%}
-              <div class="bp__cal-tabs" role="tablist" aria-label="Tipo di appuntamento">
-                <button type="button" class="bp__cal-tab is-active" data-cal-tab="domicilio" role="tab" aria-selected="true">A domicilio</button>
-                <button type="button" class="bp__cal-tab" data-cal-tab="negozio" role="tab" aria-selected="false">In boutique</button>
+              <div class="bp__cal-tabs" role="tablist" aria-label="{{ 'brand.sarto_domicilio.tabs_aria' | t | escape }}">
+                <button type="button" class="bp__cal-tab is-active" data-cal-tab="domicilio" role="tab" aria-selected="true">{{ 'brand.sarto_domicilio.tab_domicilio' | t }}</button>
+                <button type="button" class="bp__cal-tab" data-cal-tab="negozio" role="tab" aria-selected="false">{{ 'brand.sarto_domicilio.tab_negozio' | t }}</button>
               </div>
             {%- endif -%}
 
@@ -155,7 +172,7 @@
                 </div>
               {%- elsif has_domicilio_cal -%}
                 <div id="sd-cal" class="bp__cal" aria-label="Calendario sarto a domicilio" style="min-height:560px;width:100%"></div>
-                <p class="bp__form-note" style="margin-top:1.1rem;">Scegli giorno e ora dal calendario: confermiamo noi l’appuntamento. Nessun addebito in questa fase.</p>
+                <p class="bp__form-note" style="margin-top:1.1rem;">{{ 'brand.sarto_domicilio.cal_note_domicilio' | t }}</p>
               {%- endif -%}
             </div>
 
@@ -163,7 +180,7 @@
             {%- if has_boutique -%}
               <div data-cal-panel="negozio"{% if show_tabs %} style="display:none"{% endif %}>
                 <div id="sd-cal-negozio" class="bp__cal" aria-label="Calendario visita in boutique" style="min-height:560px;width:100%"></div>
-                <p class="bp__form-note" style="margin-top:1.1rem;">Scegli giorno e ora dal calendario: confermiamo noi l’appuntamento. La visita in boutique è gratuita.</p>
+                <p class="bp__form-note" style="margin-top:1.1rem;">{{ 'brand.sarto_domicilio.cal_note_negozio' | t }}</p>
               </div>
             {%- endif -%}
 
@@ -206,7 +223,7 @@
           {%- else -%}
           {%- form 'contact', id: 'sarto-domicilio-form' -%}
             {%- if form.posted_successfully? -%}
-              <div class="bp__form-success">Richiesta inviata. Ti ricontatteremo a breve per confermare l’appuntamento. Grazie.</div>
+              <div class="bp__form-success">{{ 'brand.sarto_domicilio.form_success' | t }}</div>
             {%- endif -%}
             {%- if form.errors -%}
               <div class="bp__form-success" style="background:rgba(180,60,40,.18);border-color:#b43c28;">
@@ -218,49 +235,49 @@
 
             <div class="bp__form">
               <div class="bp__field">
-                <label for="sd-name">Nome e cognome</label>
+                <label for="sd-name">{{ 'brand.sarto_domicilio.fld_name' | t }}</label>
                 <input type="text" id="sd-name" name="contact[name]" required value="{{ form.name }}">
               </div>
               <div class="bp__field">
-                <label for="sd-phone">Telefono</label>
+                <label for="sd-phone">{{ 'brand.sarto_domicilio.fld_phone' | t }}</label>
                 <input type="tel" id="sd-phone" name="contact[phone]" placeholder="+39" value="{{ form.phone }}">
               </div>
               <div class="bp__field">
-                <label for="sd-email">Email</label>
+                <label for="sd-email">{{ 'brand.sarto_domicilio.fld_email' | t }}</label>
                 <input type="email" id="sd-email" name="contact[email]" required value="{{ form.email }}">
               </div>
               <div class="bp__field">
-                <label for="sd-zona">Zona / Città</label>
-                <input type="text" id="sd-zona" name="contact[Zona]" placeholder="Napoli, Vomero…">
+                <label for="sd-zona">{{ 'brand.sarto_domicilio.fld_zona' | t }}</label>
+                <input type="text" id="sd-zona" name="contact[Zona]" placeholder="{{ 'brand.sarto_domicilio.zona_placeholder' | t | escape }}">
               </div>
               <div class="bp__field">
-                <label for="sd-servizio">Servizio</label>
+                <label for="sd-servizio">{{ 'brand.sarto_domicilio.fld_servizio' | t }}</label>
                 <select id="sd-servizio" name="contact[Servizio]">
-                  <option value="Presa misure su misura">Presa misure su misura</option>
-                  <option value="Prova capo">Prova capo</option>
-                  <option value="Riparazione / modifica">Riparazione / modifica</option>
-                  <option value="Consulenza di stile">Consulenza di stile</option>
+                  <option value="Presa misure su misura">{{ 'brand.sarto_domicilio.servizio_1' | t }}</option>
+                  <option value="Prova capo">{{ 'brand.sarto_domicilio.servizio_2' | t }}</option>
+                  <option value="Riparazione / modifica">{{ 'brand.sarto_domicilio.servizio_3' | t }}</option>
+                  <option value="Consulenza di stile">{{ 'brand.sarto_domicilio.servizio_4' | t }}</option>
                 </select>
               </div>
               <div class="bp__field">
-                <label for="sd-data">Data preferita</label>
+                <label for="sd-data">{{ 'brand.sarto_domicilio.fld_data' | t }}</label>
                 <input type="date" id="sd-data" name="contact[Data preferita]">
               </div>
               <div class="bp__field">
-                <label for="sd-fascia">Fascia oraria</label>
+                <label for="sd-fascia">{{ 'brand.sarto_domicilio.fld_fascia' | t }}</label>
                 <select id="sd-fascia" name="contact[Fascia oraria]">
-                  <option value="Mattina (9–13)">Mattina (9–13)</option>
-                  <option value="Pomeriggio (14–18)">Pomeriggio (14–18)</option>
-                  <option value="Sera (18–20)">Sera (18–20)</option>
+                  <option value="Mattina (9–13)">{{ 'brand.sarto_domicilio.fascia_1' | t }}</option>
+                  <option value="Pomeriggio (14–18)">{{ 'brand.sarto_domicilio.fascia_2' | t }}</option>
+                  <option value="Sera (18–20)">{{ 'brand.sarto_domicilio.fascia_3' | t }}</option>
                 </select>
               </div>
               <div class="bp__field bp__field--full">
-                <label for="sd-note">Note</label>
-                <textarea id="sd-note" name="contact[body]" placeholder="Cosa ti serve, indirizzo di massima, dettagli utili…"></textarea>
+                <label for="sd-note">{{ 'brand.sarto_domicilio.fld_note' | t }}</label>
+                <textarea id="sd-note" name="contact[body]" placeholder="{{ 'brand.sarto_domicilio.note_placeholder' | t | escape }}"></textarea>
               </div>
               <div class="bp__form-actions">
-                <button type="submit" class="bp__btn">Invia richiesta</button>
-                <p class="bp__form-note">Ti ricontattiamo per confermare. Nessun addebito in questa fase.</p>
+                <button type="submit" class="bp__btn">{{ 'brand.sarto_domicilio.submit' | t }}</button>
+                <p class="bp__form-note">{{ 'brand.sarto_domicilio.form_note' | t }}</p>
               </div>
             </div>
           {%- endform -%}
@@ -283,16 +300,16 @@
   "settings": [
     { "type": "header", "content": "Hero" },
     { "type": "image_picker", "id": "hero_image", "label": "Immagine hero" },
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Napoli · Dal 1954" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "info": "Vuoto = usa la traduzione (brand.sarto_domicilio.eyebrow)." },
     { "type": "text", "id": "hero_title", "label": "Titolo", "default": "Sarto a Domicilio" },
-    { "type": "textarea", "id": "hero_sub", "label": "Sottotitolo" },
+    { "type": "textarea", "id": "hero_sub", "label": "Sottotitolo", "info": "Vuoto = usa la traduzione." },
     { "type": "header", "content": "Intro" },
-    { "type": "text", "id": "intro_eyebrow", "label": "Eyebrow intro" },
-    { "type": "text", "id": "intro_heading", "label": "Titolo intro" },
-    { "type": "textarea", "id": "intro_body", "label": "Testo intro" },
+    { "type": "text", "id": "intro_eyebrow", "label": "Eyebrow intro", "info": "Vuoto = usa la traduzione." },
+    { "type": "text", "id": "intro_heading", "label": "Titolo intro", "info": "Vuoto = usa la traduzione." },
+    { "type": "textarea", "id": "intro_body", "label": "Testo intro", "info": "Vuoto = usa la traduzione." },
     { "type": "header", "content": "Come funziona" },
-    { "type": "text", "id": "how_eyebrow", "label": "Eyebrow" },
-    { "type": "text", "id": "how_heading", "label": "Titolo" },
+    { "type": "text", "id": "how_eyebrow", "label": "Eyebrow", "info": "Vuoto = usa la traduzione." },
+    { "type": "text", "id": "how_heading", "label": "Titolo", "info": "Vuoto = usa la traduzione." },
     { "type": "header", "content": "Acconto (prenotazione a pagamento)" },
     { "type": "checkbox", "id": "deposit_enabled", "label": "Richiedi acconto per prenotare", "info": "Se attivo, al posto del calendario/form compare il bottone per pagare l’acconto. Il link cal.com per scegliere data/ora va inserito nell’email di conferma ordine.", "default": false },
     { "type": "text", "id": "deposit_variant_id", "label": "ID variante prodotto acconto", "info": "ID numerico della variante del prodotto ‘Sarto a domicilio’ (100 €).", "default": "53840584933714" },
@@ -302,9 +319,9 @@
     { "type": "text", "id": "cal_link", "label": "Link cal.com — Sarto a domicilio", "info": "Incolla username/evento di cal.eu, es. sartoriacondotti/sarto-a-domicilio. Se vuoto, resta il vecchio form via email." },
     { "type": "text", "id": "cal_link_negozio", "label": "Link cal.com — Visita in boutique", "info": "Secondo evento cal.eu, es. sartoriacondotti/visita-in-boutique. Se compilato, sulla pagina compaiono i due tab 'A domicilio / In boutique'." },
     { "type": "header", "content": "Form richiesta" },
-    { "type": "text", "id": "form_eyebrow", "label": "Eyebrow form" },
-    { "type": "text", "id": "form_heading", "label": "Titolo form" },
-    { "type": "textarea", "id": "form_body", "label": "Testo form" }
+    { "type": "text", "id": "form_eyebrow", "label": "Eyebrow form", "info": "Vuoto = usa la traduzione." },
+    { "type": "text", "id": "form_heading", "label": "Titolo form", "info": "Vuoto = usa la traduzione." },
+    { "type": "textarea", "id": "form_body", "label": "Testo form", "info": "Vuoto = usa la traduzione." }
   ],
   "presets": [{ "name": "Brand · Sarto a Domicilio" }]
 }

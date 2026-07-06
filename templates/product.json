@@ -24,7 +24,7 @@
             "slideshow_mobile_controls_style": "counter",
             "thumbnail_position": "left",
             "thumbnail_width": 57,
-            "aspect_ratio": "1/1.25",
+            "aspect_ratio": "adapt",
             "media_radius": 0,
             "extend_media": false,
             "constrain_to_viewport": false,

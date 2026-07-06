@@ -1,0 +1,384 @@
+{%- liquid
+  assign s = section.settings
+  assign eyebrow = s.eyebrow | default: 'Contatti'
+  assign heading = s.heading | default: 'Restiamo in contatto.'
+
+  assign maps_url = s.maps_url
+  if maps_url == blank and s.address != blank
+    assign q = s.name | append: ' ' | append: s.address | url_encode
+    assign maps_url = 'https://www.google.com/maps/search/?api=1&query=' | append: q
+  endif
+
+  assign has_legal = false
+  if s.legal_name != blank or s.vat != blank
+    assign has_legal = true
+  endif
+-%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap">
+
+<section
+  id="Contatti-{{ section.id }}"
+  class="ct color-{{ s.color_scheme }}"
+  data-ct-root
+  style="--ct-bg: {{ s.bg_color.red }} {{ s.bg_color.green }} {{ s.bg_color.blue }}; --ct-fg: {{ s.fg_color.red }} {{ s.fg_color.green }} {{ s.fg_color.blue }}; --ct-gold: {{ s.gold_color.red }} {{ s.gold_color.green }} {{ s.gold_color.blue }};"
+>
+  <div class="ct__wrap">
+    <header class="ct__head">
+      {%- if eyebrow != blank -%}<p class="ct__eyebrow" data-ct-reveal>{{ eyebrow }}</p>{%- endif -%}
+      {%- if heading != blank -%}<h1 class="ct__h1" data-ct-reveal>{{ heading }}</h1>{%- endif -%}
+      {%- if s.intro != blank -%}<p class="ct__intro" data-ct-reveal>{{ s.intro }}</p>{%- endif -%}
+    </header>
+
+    <span class="ct__stitch" aria-hidden="true" data-ct-reveal>
+      <svg viewBox="0 0 1000 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="1000" y2="1" stroke="currentColor" stroke-width="1.4" stroke-dasharray="7 5" vector-effect="non-scaling-stroke"/></svg>
+    </span>
+
+    <div class="ct__grid">
+      {%- if s.name != blank or s.address != blank -%}
+        <div class="ct__item" data-ct-reveal>
+          <span class="ct__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.3-6-10a6 6 0 1 1 12 0c0 4.7-6 10-6 10Z"/><circle cx="12" cy="11" r="2.2"/></svg>
+          </span>
+          <p class="ct__label">Dove siamo</p>
+          {%- if s.name != blank -%}<p class="ct__value ct__value--name">{{ s.name }}</p>{%- endif -%}
+          {%- if s.address != blank -%}<p class="ct__value">{{ s.address | newline_to_br }}</p>{%- endif -%}
+          {%- if maps_url != blank -%}
+            <a class="ct__link" href="{{ maps_url }}" target="_blank" rel="noopener">Apri su Google Maps</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if s.phone != blank or s.phone2 != blank -%}
+        <div class="ct__item" data-ct-reveal>
+          <span class="ct__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8a12.5 12.5 0 0 0 5.6 5.6l1.9-1.9c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A16 16 0 0 1 3 5c0-.6.4-1 1-1h3.1c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.3 1l-1.8 1.3Z"/></svg>
+          </span>
+          <p class="ct__label">Telefono</p>
+          {%- if s.phone != blank -%}
+            <p class="ct__value"><a class="ct__phone" href="tel:{{ s.phone | remove: ' ' | remove: '-' }}">{{ s.phone }}</a></p>
+          {%- endif -%}
+          {%- if s.phone2 != blank -%}
+            <p class="ct__value"><a class="ct__phone" href="tel:{{ s.phone2 | remove: ' ' | remove: '-' }}">{{ s.phone2 }}</a></p>
+          {%- endif -%}
+          {%- if s.whatsapp != blank -%}
+            {%- assign wa_digits = s.whatsapp | remove: ' ' | remove: '+' | remove: '-' | remove: '(' | remove: ')' | remove: '.' -%}
+            <p class="ct__value">
+              <a class="ct__wa" href="https://wa.me/{{ wa_digits }}" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="currentColor"><path d="M19.05 4.91A9.82 9.82 0 0 0 12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.004c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.02zM12.04 20.15h-.003a8.23 8.23 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.2 8.2 0 0 1-1.26-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.7 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.43.13-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.14-1.18-.06-.1-.22-.16-.47-.28z"/></svg>
+                <span>WhatsApp</span>
+              </a>
+            </p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if s.email != blank -%}
+        <div class="ct__item" data-ct-reveal>
+          <span class="ct__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+          </span>
+          <p class="ct__label">Email</p>
+          <p class="ct__value"><a class="ct__phone" href="mailto:{{ s.email }}">{{ s.email }}</a></p>
+          {%- if s.hours != blank -%}<p class="ct__value ct__value--muted">{{ s.hours }}</p>{%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if s.cta1_label != blank or s.cta2_label != blank -%}
+      <div class="ct__actions" data-ct-reveal>
+        {%- if s.cta1_label != blank -%}
+          <a class="ct__btn" href="{{ s.cta1_link | default: '/pages/sarto-a-domicilio' }}">{{ s.cta1_label }}</a>
+        {%- endif -%}
+        {%- if s.cta2_label != blank -%}
+          <a class="ct__btn ct__btn--ghost" href="{{ s.cta2_link | default: '/pages/dove-trovarci' }}">{{ s.cta2_label }}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if has_legal -%}
+      <p class="ct__legal" data-ct-reveal>
+        {%- if s.legal_name != blank -%}{{ s.legal_name }}{%- endif -%}
+        {%- if s.legal_address != blank -%} · {{ s.legal_address }}{%- endif -%}
+        {%- if s.vat != blank -%} · P.IVA {{ s.vat }}{%- endif -%}
+      </p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .ct {
+    --ct-bg-rgb: var(--ct-bg, 244 239 230);
+    --ct-fg-rgb: var(--ct-fg, 14 14 12);
+    --ct-gold-rgb: var(--ct-gold, 201 162 75);
+    background: rgb(var(--ct-bg-rgb));
+    color: rgb(var(--ct-fg-rgb));
+    padding-block: clamp(72px, 12vw, 150px);
+  }
+
+  .ct__wrap {
+    width: min(960px, 100% - clamp(32px, 8vw, 120px));
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .ct__eyebrow {
+    margin: 0 0 1.1rem;
+    font-family: var(--font-body--family, system-ui);
+    font-size: 0.72rem;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: rgb(var(--ct-gold-rgb));
+  }
+
+  .ct__h1 {
+    margin: 0;
+    font-family: 'Fraunces', var(--font-heading--family, serif);
+    font-weight: 300;
+    font-variation-settings: 'opsz' 144;
+    font-size: clamp(2.4rem, 6vw, 4.4rem);
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+  }
+
+  .ct__intro {
+    margin: 1.4rem auto 0;
+    max-width: 46ch;
+    font-family: var(--font-body--family, system-ui);
+    font-size: 1.02rem;
+    line-height: 1.65;
+    color: rgb(var(--ct-fg-rgb) / 0.78);
+  }
+
+  .ct__stitch {
+    display: block;
+    width: min(220px, 60%);
+    height: 2px;
+    margin: clamp(36px, 5vw, 60px) auto;
+    color: rgb(var(--ct-fg-rgb) / 0.4);
+  }
+  .ct__stitch svg { width: 100%; height: 100%; display: block; }
+
+  .ct__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 3vw, 40px);
+    text-align: center;
+  }
+
+  .ct__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: clamp(28px, 3vw, 40px) clamp(18px, 2vw, 28px);
+    background: rgb(var(--ct-fg-rgb) / 0.02);
+    border: 1px solid rgb(var(--ct-fg-rgb) / 0.12);
+    border-radius: 2px;
+    transition: border-color 0.4s ease, transform 0.4s ease, background 0.4s ease;
+  }
+  .ct__item:hover {
+    border-color: rgb(var(--ct-gold-rgb) / 0.6);
+    background: rgb(var(--ct-fg-rgb) / 0.035);
+    transform: translateY(-3px);
+  }
+
+  .ct__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    margin-bottom: 1.1rem;
+    border-radius: 50%;
+    border: 1px solid rgb(var(--ct-gold-rgb) / 0.5);
+    color: rgb(var(--ct-gold-rgb));
+  }
+
+  .ct__label {
+    margin: 0 0 0.7rem;
+    font-family: var(--font-body--family, system-ui);
+    font-size: 0.64rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgb(var(--ct-fg-rgb) / 0.5);
+  }
+
+  .ct__value {
+    margin: 0 0 0.4rem;
+    font-family: var(--font-body--family, system-ui);
+    font-size: 0.98rem;
+    line-height: 1.5;
+    color: rgb(var(--ct-fg-rgb) / 0.85);
+  }
+
+  .ct__value--name {
+    font-family: 'Fraunces', var(--font-heading--family, serif);
+    font-weight: 400;
+    font-variation-settings: 'opsz' 40;
+    font-size: 1.16rem;
+    color: rgb(var(--ct-fg-rgb));
+    margin-bottom: 0.6rem;
+  }
+
+  .ct__value--muted {
+    color: rgb(var(--ct-fg-rgb) / 0.55);
+    font-size: 0.86rem;
+    margin-top: 0.5rem;
+  }
+
+  .ct__phone,
+  .ct__link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  .ct__phone:hover,
+  .ct__link:hover { border-bottom-color: rgb(var(--ct-gold-rgb)); }
+
+  .ct__link {
+    display: inline-block;
+    margin-top: 0.6rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgb(var(--ct-fg-rgb) / 0.7);
+    border-bottom-color: rgb(var(--ct-fg-rgb) / 0.25);
+    padding-bottom: 2px;
+  }
+
+  .ct__wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4em;
+    color: inherit;
+    text-decoration: none;
+  }
+  .ct__wa svg { color: rgb(var(--ct-gold-rgb)); flex-shrink: 0; }
+  .ct__wa span { border-bottom: 1px solid transparent; transition: border-color 0.3s ease; }
+  .ct__wa:hover span { border-bottom-color: rgb(var(--ct-gold-rgb)); }
+
+  .ct__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: clamp(40px, 5vw, 64px);
+  }
+
+  .ct__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em 2.4em;
+    font-family: var(--font-body--family, system-ui);
+    font-size: 0.76rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: rgb(var(--ct-fg-rgb));
+    color: rgb(var(--ct-bg-rgb));
+    border: 1px solid rgb(var(--ct-fg-rgb));
+    border-radius: 999px;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  .ct__btn:hover { background: rgb(var(--ct-gold-rgb)); border-color: rgb(var(--ct-gold-rgb)); color: #0e0e0c; }
+
+  .ct__btn--ghost {
+    background: transparent;
+    color: rgb(var(--ct-fg-rgb));
+  }
+  .ct__btn--ghost:hover { background: rgb(var(--ct-fg-rgb)); color: rgb(var(--ct-bg-rgb)); border-color: rgb(var(--ct-fg-rgb)); }
+
+  .ct__legal {
+    margin: clamp(44px, 6vw, 72px) auto 0;
+    max-width: 60ch;
+    font-family: var(--font-body--family, system-ui);
+    font-size: 0.76rem;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    color: rgb(var(--ct-fg-rgb) / 0.5);
+  }
+
+  [data-ct-reveal] {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  [data-ct-reveal].is-in { opacity: 1; transform: none; }
+
+  @media screen and (max-width: 860px) {
+    .ct__grid { grid-template-columns: 1fr; max-width: 420px; margin-inline: auto; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    [data-ct-reveal] { opacity: 1 !important; transform: none !important; transition: none; }
+    .ct__item, .ct__item:hover { transform: none; }
+  }
+{% endstylesheet %}
+
+<script>
+  (function () {
+    var root = document.querySelector('#Contatti-{{ section.id }}');
+    if (!root) return;
+    var items = root.querySelectorAll('[data-ct-reveal]');
+    if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      items.forEach(function (el) { el.classList.add('is-in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          setTimeout(function () { el.classList.add('is-in'); }, (el.dataset.ctDelay || 0) * 1);
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    items.forEach(function (el, i) {
+      el.dataset.ctDelay = Math.min(i, 6) * 70;
+      io.observe(el);
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Contatti",
+  "tag": "section",
+  "class": "contatti-wrapper section-wrapper",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    { "type": "header", "content": "Testata" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Contatti" },
+    { "type": "text", "id": "heading", "label": "Titolo", "default": "Restiamo in contatto." },
+    { "type": "textarea", "id": "intro", "label": "Testo introduttivo", "default": "Siamo a disposizione per informazioni, appuntamenti e consulenze. Scrivici o passa a trovarci: ti rispondiamo con piacere." },
+    { "type": "header", "content": "Recapiti" },
+    { "type": "text", "id": "name", "label": "Nome / Insegna", "default": "Sartoria Condotti Napoli" },
+    { "type": "textarea", "id": "address", "label": "Indirizzo", "default": "Via Santa Caterina a Chiaia, 69\n80121 Napoli" },
+    { "type": "url", "id": "maps_url", "label": "Link Google Maps (opzionale)", "info": "Se vuoto, viene generato da nome + indirizzo." },
+    { "type": "text", "id": "phone", "label": "Telefono", "default": "081 1970 8285" },
+    { "type": "text", "id": "phone2", "label": "Telefono 2 (opzionale)", "default": "081 038 2204" },
+    { "type": "text", "id": "whatsapp", "label": "WhatsApp (numero, opzionale)", "info": "Es. +39 379 348 0144. Genera un link che apre la chat." },
+    { "type": "text", "id": "email", "label": "Email", "default": "infosartoriacondotti@gmail.com" },
+    { "type": "text", "id": "hours", "label": "Orari (opzionale)" },
+    { "type": "header", "content": "Pulsanti" },
+    { "type": "text", "id": "cta1_label", "label": "Pulsante 1 · etichetta", "default": "Prenota un appuntamento" },
+    { "type": "url", "id": "cta1_link", "label": "Pulsante 1 · link" },
+    { "type": "text", "id": "cta2_label", "label": "Pulsante 2 · etichetta", "default": "Dove trovarci" },
+    { "type": "url", "id": "cta2_link", "label": "Pulsante 2 · link" },
+    { "type": "header", "content": "Dati legali (opzionale)", "info": "Compila solo se vuoi mostrare ragione sociale, sede legale e Partita IVA in fondo alla pagina." },
+    { "type": "text", "id": "legal_name", "label": "Ragione sociale" },
+    { "type": "text", "id": "legal_address", "label": "Sede legale" },
+    { "type": "text", "id": "vat", "label": "Partita IVA" },
+    { "type": "header", "content": "Cromia" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "Color scheme", "default": "scheme-1" },
+    { "type": "color", "id": "bg_color", "label": "Sfondo", "default": "#F4EFE6" },
+    { "type": "color", "id": "fg_color", "label": "Testo", "default": "#0E0E0C" },
+    { "type": "color", "id": "gold_color", "label": "Accento oro", "default": "#C9A24B" }
+  ],
+  "presets": [{ "name": "Contatti", "category": "Storefront" }]
+}
+{% endschema %}

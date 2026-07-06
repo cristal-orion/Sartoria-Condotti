@@ -2,6 +2,17 @@
   "sections": {
     "main": {
       "type": "brand-ricameria",
+      "blocks": {
+        "hotel": { "type": "settore", "settings": { "label": "Hotel", "desc": "Accappatoi, asciugamani e biancheria con logo ricamato. Divise per reception, sala e housekeeping." } },
+        "ristorazione": { "type": "settore", "settings": { "label": "Ristorazione", "desc": "Grembiuli, giacche da cuoco e camicie di sala personalizzate con nome e logo del locale." } },
+        "aziende": { "type": "settore", "settings": { "label": "Aziende", "desc": "Divise da lavoro, polo e camicie con logo aziendale ricamato su misura." } },
+        "nautica": { "type": "settore", "settings": { "label": "Nautica", "desc": "Polo, felpe e cappellini equipaggio con il nome dell’imbarcazione. Teli e accessori ricamati." } },
+        "sanitario": { "type": "settore", "settings": { "label": "Sanitario", "desc": "Camici, casacche e divise per cliniche e studi medici con logo e nome dello staff." } },
+        "scuole": { "type": "settore", "settings": { "label": "Scuole", "desc": "Grembiuli, felpe e tute con lo stemma dell’istituto. Divise sportive e kit personalizzati." } },
+        "eventi": { "type": "settore", "settings": { "label": "Eventi", "desc": "Ricami personalizzati per matrimoni, cerimonie e occasioni speciali. Monogrammi e date." } },
+        "associazioni": { "type": "settore", "settings": { "label": "Associazioni", "desc": "Magliette, felpe e gagliardetti con logo e stemma. Divise per squadre e gruppi." } }
+      },
+      "block_order": ["hotel", "ristorazione", "aziende", "nautica", "sanitario", "scuole", "eventi", "associazioni"],
       "settings": {}
     }
   },

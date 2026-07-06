@@ -30,6 +30,11 @@ html {
   /* NB: tenere "auto". scroll-behavior: smooth sull'html rompe il pin di
      ScrollTrigger (hero-cucitura): a ogni refresh la hero si apre/sbianca. */
   scroll-behavior: auto;
+  /* Riserva sempre lo spazio della scrollbar: quando un drawer/modale applica
+     html[scroll-lock]{overflow:hidden} la larghezza NON cambia, così il
+     ResizeObserver dell'header non lancia ScrollTrigger.refresh() e il pin della
+     hero non si desincronizza (freeze della home aprendo/chiudendo il Menu). */
+  scrollbar-gutter: stable;
 }
 
 html[scroll-lock] {
