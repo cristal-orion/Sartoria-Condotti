@@ -164,6 +164,43 @@
               },
               "block_order": []
             },
+            "text_paySecHd1": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Pagamenti Sicuri con</p>",
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "center",
+                "type_preset": "h6",
+                "font": "var(--font-secondary--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 16,
+                "padding-block-end": 8,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "payment_icons_paySec1": {
+              "type": "payment-icons",
+              "settings": {
+                "horizontal_alignment": "center",
+                "gap": 14,
+                "padding-block-start": 0,
+                "padding-block-end": 16,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
             "accordion_NKWPiW": {
               "type": "accordion",
               "name": "t:names.accordion",
@@ -186,7 +223,7 @@
                 "accordion_row_NdBezV": {
                   "type": "_accordion-row",
                   "settings": {
-                    "heading": "Description",
+                    "heading": "Descrizione",
                     "open_by_default": false
                   },
                   "blocks": {
@@ -219,87 +256,19 @@
                   "block_order": [
                     "text_n7A9da"
                   ]
-                },
-                "accordion_row_iJM37V": {
-                  "type": "_accordion-row",
-                  "settings": {
-                    "heading": "Care",
-                    "open_by_default": false
-                  },
-                  "blocks": {
-                    "text_VdG98J": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>To maintain the beauty and integrity of your purchase, we recommend treating it with care. Simple maintenance practices, such as gentle washing and proper storage, can effectively preserve the longevity of your favorites. We encourage you to refer to the care instructions included with each item, designed to help you keep your purchase in top condition.</p>",
-                        "width": "100%",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "custom",
-                        "font": "var(--font-secondary--family)",
-                        "font_size": "var(--font-size--body-lg)",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 12,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_VdG98J"
-                  ]
-                },
-                "accordion_row_pLFDcD": {
-                  "type": "_accordion-row",
-                  "settings": {
-                    "heading": "Design",
-                    "open_by_default": false
-                  },
-                  "blocks": {
-                    "text_qLGEN9": {
-                      "type": "text",
-                      "settings": {
-                        "text": "<p>Our dedication to excellence extends beyond materials; it encompasses the artistry and craftsmanship illustrated in every piece we create.</p>",
-                        "width": "100%",
-                        "max_width": "normal",
-                        "alignment": "left",
-                        "type_preset": "custom",
-                        "font": "var(--font-secondary--family)",
-                        "font_size": "var(--font-size--body-lg)",
-                        "line_height": "normal",
-                        "letter_spacing": "normal",
-                        "case": "none",
-                        "wrap": "pretty",
-                        "color": "",
-                        "background": false,
-                        "background_color": "#00000026",
-                        "corner_radius": 0,
-                        "padding-block-start": 12,
-                        "padding-block-end": 0,
-                        "padding-inline-start": 0,
-                        "padding-inline-end": 0
-                      },
-                      "blocks": {}
-                    }
-                  },
-                  "block_order": [
-                    "text_qLGEN9"
-                  ]
                 }
               },
               "block_order": [
-                "accordion_row_NdBezV",
-                "accordion_row_iJM37V",
-                "accordion_row_pLFDcD"
+                "accordion_row_NdBezV"
               ]
+            },
+            "dettagli_modello_dm": {
+              "type": "custom-liquid",
+              "name": "Dettagli modello",
+              "settings": {
+                "custom_liquid": "{%- assign dm = closest.product.metafields.custom.dettagli_modello -%}{%- if dm.value != blank -%}<style>.dm-accordion{width:100%;}.dm-accordion .dm-details{border-block-start:var(--style-border-width,1px) solid var(--color-border);}.dm-accordion .dm-summary{display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;list-style:none;padding-block:var(--padding-md,16px);min-height:var(--minimum-touch-target,44px);font-family:var(--font-h6--family);font-weight:var(--font-h6--weight);font-size:var(--font-h6--size);line-height:var(--font-h6--line-height);text-transform:var(--font-h6--case);color:var(--color-foreground);}.dm-accordion .dm-summary::-webkit-details-marker{display:none;}.dm-accordion .dm-caret{flex:0 0 auto;transition:transform .25s ease;}.dm-accordion .dm-details[open] .dm-caret{transform:rotate(180deg);}.dm-accordion .dm-content{padding-block-end:var(--padding-md,16px);}</style><div class=\"dm-accordion\"><details class=\"dm-details\"><summary class=\"dm-summary\"><span>Dettagli modello</span><svg class=\"dm-caret\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></summary><div class=\"dm-content rte\">{{ dm.value | newline_to_br }}</div></details></div>{%- endif -%}"
+              },
+              "blocks": {}
             }
           },
           "block_order": [
@@ -308,7 +277,10 @@
             "divider_HrJgFt",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
-            "accordion_NKWPiW"
+            "text_paySecHd1",
+            "payment_icons_paySec1",
+            "accordion_NKWPiW",
+            "dettagli_modello_dm"
           ]
         }
       },
@@ -374,7 +346,7 @@
               "type": "_product-card-gallery",
               "name": "t:names.product_card_media",
               "settings": {
-                "image_ratio": "portrait",
+                "image_ratio": "adapt",
                 "border": "none",
                 "border_width": 1,
                 "border_opacity": 100,

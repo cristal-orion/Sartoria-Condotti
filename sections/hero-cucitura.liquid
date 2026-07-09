@@ -4,6 +4,10 @@
   assign sr_text = line_top | append: ' ' | append: line_bottom
   assign eyebrow_text = section.settings.eyebrow
   assign placeholder_key = section.settings.placeholder | default: 'hero-apparel-1'
+  assign show_cta = section.settings.show_cta
+  assign cta_text = section.settings.cta_text
+  assign cta_label = section.settings.cta_label
+  assign cta_link = section.settings.cta_link
 %}
 
 <link
@@ -58,7 +62,7 @@
             srcset="{{ 'fotohomemobile.jpg' | asset_url }}"
           >
           <img
-            src="{{ 'fotohome.jpg' | asset_url }}"
+            src="{{ 'fotohomelogoblu.jpg' | asset_url }}"
             alt=""
             class="hero-cucitura__image"
             fetchpriority="high"
@@ -94,6 +98,22 @@
         />
       </svg>
     </div>
+
+    {%- if show_cta and cta_label != blank -%}
+      <div class="hero-cucitura__cta" data-hc-cta>
+        {%- if cta_text != blank -%}
+          <p class="hero-cucitura__cta-text">{{ cta_text }}</p>
+        {%- endif -%}
+        <a
+          class="hero-cucitura__cta-btn"
+          href="{{ cta_link | default: '#' }}"
+          data-hc-cta-btn
+        >
+          <span>{{ cta_label }}</span>
+          <span class="hero-cucitura__cta-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+    {%- endif -%}
   </div>
 </div>
 
@@ -282,6 +302,92 @@
     .hero-cucitura__stitch {
       opacity: 0 !important;
     }
+    .hero-cucitura__cta {
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+  }
+
+  /* CTA che compare a tende aperte (rivelato via JS con autoAlpha) */
+  .hero-cucitura__cta {
+    position: absolute;
+    z-index: 5;
+    left: clamp(20px, 6vw, 96px);
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: min(420px, 82vw);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    text-align: left;
+    color: #fff;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .hero-cucitura__cta-text {
+    margin: 0;
+    font-family: 'Fraunces', var(--font-heading--family, serif);
+    font-weight: 300;
+    font-size: clamp(1.5rem, 2.6vw, 2.5rem);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    color: #fff;
+    text-shadow: 0 1px 28px rgb(0 0 0 / 0.45), 0 1px 3px rgb(0 0 0 / 0.35);
+  }
+
+  .hero-cucitura__cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7em;
+    padding: 15px 28px;
+    font-family: var(--font-body--family, system-ui);
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: rgb(var(--hc-bg-rgb, 20 33 61));
+    background-color: rgb(var(--hc-fg-rgb, 255 255 255));
+    border: 1px solid transparent;
+    border-radius: 2px;
+    cursor: pointer;
+    box-shadow: 0 8px 34px rgb(0 0 0 / 0.28);
+    transition:
+      background-color 0.3s var(--animation-easing, ease),
+      color 0.3s var(--animation-easing, ease),
+      transform 0.3s var(--animation-easing, ease);
+  }
+
+  .hero-cucitura__cta-btn:hover {
+    background-color: rgb(var(--hc-swan, 212 162 76));
+    color: rgb(var(--hc-bg-rgb, 20 33 61));
+    transform: translateY(-2px);
+  }
+
+  .hero-cucitura__cta-arrow {
+    transition: transform 0.3s var(--animation-easing, ease);
+  }
+
+  .hero-cucitura__cta-btn:hover .hero-cucitura__cta-arrow {
+    transform: translateX(4px);
+  }
+
+  @media screen and (max-width: 749px) {
+    .hero-cucitura__cta {
+      left: 50%;
+      right: auto;
+      top: auto;
+      bottom: clamp(44px, 12vh, 120px);
+      transform: translateX(-50%);
+      align-items: center;
+      text-align: center;
+      max-width: 86vw;
+      gap: 18px;
+    }
+    .hero-cucitura__cta-text {
+      font-size: clamp(1.4rem, 6vw, 2rem);
+    }
   }
 {% endstylesheet %}
 
@@ -346,6 +452,34 @@
         { "value": "detail-1", "label": "Detail 1" }
       ],
       "default": "hero-apparel-1"
+    },
+    {
+      "type": "header",
+      "content": "Call to action (compare a tende aperte)"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cta",
+      "label": "Mostra call to action",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "Testo",
+      "default": "Una firma, quattro modi di indossarla."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Testo del bottone",
+      "default": "Scopri le sezioni"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "Link del bottone",
+      "info": "Lascia vuoto per scorrere alla sezione qui sotto (la scelta dei brand)."
     },
     {
       "type": "header",

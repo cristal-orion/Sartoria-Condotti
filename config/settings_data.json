@@ -46,7 +46,7 @@
     "secondary_button_border_width": 1,
     "button_border_radius_secondary": 0,
     "button_text_case_secondary": "uppercase",
-    "cart_type": "drawer",
+    "cart_type": "page",
     "cart_price_font": "primary",
     "show_add_discount_code": false,
     "icon_stroke": "thin",
@@ -67,6 +67,11 @@
     "variant_button_width": "default-width-buttons",
     "content_for_index": [],
     "blocks": {
+      "14952540001915115444": {
+        "type": "shopify://apps/upcart-cart-drawer/blocks/app-embed/af3da5fb-f5f7-40ec-8273-41bf50059d4b",
+        "disabled": false,
+        "settings": {}
+      },
       "9278379683843197553": {
         "type": "shopify://apps/appointment-booking-appointo/blocks/app-embed/8e9086b8-9c22-4cd3-b1d1-0967727a5d97",
         "disabled": false,

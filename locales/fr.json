@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "brand": {
     "ricameria": {
@@ -7,6 +16,7 @@
       "intro_eyebrow": "L’atelier",
       "intro_heading": "Chaque vêtement mérite une seconde vie.",
       "intro_body": "De l’ourlet à reprendre au monogramme à broder, nous prenons soin de chaque détail avec la précision de la haute couture. Rien n’est trop petit pour être bien fait.",
+      "intro_cta": "Demander un devis",
       "services_eyebrow": "Ce que nous faisons",
       "services_heading": "Retouches et broderies",
       "service1_title": "Petites retouches",

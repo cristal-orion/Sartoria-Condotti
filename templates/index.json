@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero_cucitura": {
@@ -22,13 +31,13 @@
           "name": "Heading",
           "settings": {
             "text": "<h2>Quattro realtà, una sola firma.</h2>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
             "type_preset": "h2",
             "line_height": "1.05",
             "letter_spacing": "-0.02em",
             "wrap": "pretty",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "left",
             "padding-block-start": 0,
             "padding-block-end": 0
           }
@@ -38,6 +47,9 @@
           "name": "Body",
           "settings": {
             "text": "<p>Dal 1954 attorno allo stesso telaio sono cresciute quattro attività: sartoria su misura, casual contemporaneo, sarto a domicilio, ricami artigianali. Realtà distinte, stesso mestiere.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "left",
             "type_preset": "custom",
             "font": "var(--font-body--family)",
             "font_size": "1.25rem",
@@ -45,9 +57,6 @@
             "letter_spacing": "normal",
             "case": "none",
             "wrap": "pretty",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "left",
             "padding-block-start": 0,
             "padding-block-end": 0
           }
@@ -92,9 +101,9 @@
             "color_scheme": "scheme-5",
             "background_media": "image",
             "background_image_position": "cover",
-            "placeholder": "sartoria34.png",
             "border": "none",
             "border_radius": 0,
+            "placeholder": "sartoria34.png",
             "toggle_overlay": true,
             "overlay_color": "#0000005c",
             "overlay_style": "gradient",
@@ -119,14 +128,14 @@
               "type": "text",
               "settings": {
                 "text": "<p>Alta sartoria fatta a mano</p>",
+                "width": "fit-content",
+                "alignment": "center",
                 "type_preset": "custom",
                 "font": "var(--font-body--family)",
                 "font_size": "0.7rem",
                 "letter_spacing": "0.3em",
                 "case": "uppercase",
                 "wrap": "pretty",
-                "width": "fit-content",
-                "alignment": "center",
                 "padding-block-start": 0,
                 "padding-block-end": 0
               }
@@ -135,15 +144,15 @@
               "type": "text",
               "settings": {
                 "text": "<h3>Sartoria Condotti</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "center",
                 "type_preset": "h3",
                 "font": "var(--font-heading--family)",
                 "line_height": "1",
                 "letter_spacing": "-0.01em",
                 "case": "none",
                 "wrap": "pretty",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "center",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -175,9 +184,9 @@
             "color_scheme": "scheme-5",
             "background_media": "image",
             "background_image_position": "cover",
-            "placeholder": "casual34.png",
             "border": "none",
             "border_radius": 0,
+            "placeholder": "casual34.png",
             "toggle_overlay": true,
             "overlay_color": "#0000005c",
             "overlay_style": "gradient",
@@ -202,14 +211,14 @@
               "type": "text",
               "settings": {
                 "text": "<p>Casual contemporaneo</p>",
+                "width": "fit-content",
+                "alignment": "center",
                 "type_preset": "custom",
                 "font": "var(--font-body--family)",
                 "font_size": "0.7rem",
                 "letter_spacing": "0.3em",
                 "case": "uppercase",
                 "wrap": "pretty",
-                "width": "fit-content",
-                "alignment": "center",
                 "padding-block-start": 0,
                 "padding-block-end": 0
               }
@@ -218,15 +227,15 @@
               "type": "text",
               "settings": {
                 "text": "<h3>Condotti &amp; Co</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "center",
                 "type_preset": "h3",
                 "font": "var(--font-heading--family)",
                 "line_height": "1",
                 "letter_spacing": "-0.01em",
                 "case": "none",
                 "wrap": "pretty",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "center",
                 "padding-block-start": 0,
                 "padding-block-end": 0
               }
@@ -256,9 +265,9 @@
             "color_scheme": "scheme-5",
             "background_media": "image",
             "background_image_position": "cover",
-            "placeholder": "sartodomicilio34.png",
             "border": "none",
             "border_radius": 0,
+            "placeholder": "sartodomicilio34.png",
             "toggle_overlay": true,
             "overlay_color": "#0000005c",
             "overlay_style": "gradient",
@@ -283,14 +292,14 @@
               "type": "text",
               "settings": {
                 "text": "<p>Il tuo sarto, a casa tua</p>",
+                "width": "fit-content",
+                "alignment": "center",
                 "type_preset": "custom",
                 "font": "var(--font-body--family)",
                 "font_size": "0.7rem",
                 "letter_spacing": "0.3em",
                 "case": "uppercase",
                 "wrap": "pretty",
-                "width": "fit-content",
-                "alignment": "center",
                 "padding-block-start": 0,
                 "padding-block-end": 0
               }
@@ -299,15 +308,15 @@
               "type": "text",
               "settings": {
                 "text": "<h3>Sarto a Domicilio</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "center",
                 "type_preset": "h3",
                 "font": "var(--font-heading--family)",
                 "line_height": "1",
                 "letter_spacing": "-0.01em",
                 "case": "none",
                 "wrap": "pretty",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "center",
                 "padding-block-start": 0,
                 "padding-block-end": 0
               }
@@ -337,9 +346,9 @@
             "color_scheme": "scheme-5",
             "background_media": "image",
             "background_image_position": "cover",
-            "placeholder": "ricameria34.png",
             "border": "none",
             "border_radius": 0,
+            "placeholder": "ricameria34.png",
             "toggle_overlay": true,
             "overlay_color": "#0000005c",
             "overlay_style": "gradient",
@@ -364,14 +373,14 @@
               "type": "text",
               "settings": {
                 "text": "<p>Ricami su misura</p>",
+                "width": "fit-content",
+                "alignment": "center",
                 "type_preset": "custom",
                 "font": "var(--font-body--family)",
                 "font_size": "0.7rem",
                 "letter_spacing": "0.3em",
                 "case": "uppercase",
                 "wrap": "pretty",
-                "width": "fit-content",
-                "alignment": "center",
                 "padding-block-start": 0,
                 "padding-block-end": 0
               }
@@ -380,15 +389,15 @@
               "type": "text",
               "settings": {
                 "text": "<h3>Atelier del Ricamo</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "center",
                 "type_preset": "h3",
                 "font": "var(--font-heading--family)",
                 "line_height": "1",
                 "letter_spacing": "-0.01em",
                 "case": "none",
                 "wrap": "pretty",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "center",
                 "padding-block-start": 0,
                 "padding-block-end": 0
               }
@@ -433,14 +442,14 @@
           "type": "text",
           "settings": {
             "text": "<p>· Fatti a mano · Tessuti italiani · Ricami su misura · Su misura · Dal 1954 · Napoli · L’arte della sartoria · Tre generazioni</p>",
+            "width": "fit-content",
             "type_preset": "custom",
             "font": "var(--font-heading--family)",
             "font_size": "var(--font-size--h4)",
             "line_height": "tight",
             "letter_spacing": "-0.01em",
             "case": "none",
-            "wrap": "nowrap",
-            "width": "fit-content"
+            "wrap": "nowrap"
           }
         }
       },
@@ -462,9 +471,9 @@
           "type": "image",
           "settings": {
             "image": "",
+            "placeholder": "sartoria-store-storico.jpg",
             "image_ratio": "adapt",
             "width": "custom",
-            "placeholder": "sartoria-store-storico.jpg",
             "custom_width": 38
           }
         },
@@ -489,13 +498,13 @@
               "name": "Heading",
               "settings": {
                 "text": "<h2>Tre generazioni di sartoria, una sola vocazione.</h2>",
+                "width": "fill",
+                "max_width": "normal",
+                "alignment": "left",
                 "type_preset": "h2",
                 "line_height": "1.05",
                 "letter_spacing": "-0.02em",
                 "wrap": "pretty",
-                "width": "fill",
-                "max_width": "normal",
-                "alignment": "left",
                 "padding-block-start": 0,
                 "padding-block-end": 0
               }
@@ -505,14 +514,14 @@
               "name": "Body",
               "settings": {
                 "text": "<p>Sartoria Condotti nasce nel cuore di Napoli, dove l’eleganza non è un concetto ma un mestiere che si tramanda. Dal 1954 vestiamo chi cerca un capo che parli di sé: cucito su misura, con tessuti scelti uno a uno. Tre generazioni di sarti, una sola idea di stile — discreto, sicuro, italiano.</p>",
+                "width": "fill",
+                "max_width": "normal",
+                "alignment": "left",
                 "type_preset": "custom",
                 "font": "var(--font-body--family)",
                 "font_size": "1.2rem",
                 "line_height": "1.6",
                 "wrap": "pretty",
-                "width": "fill",
-                "max_width": "normal",
-                "alignment": "left",
                 "padding-block-start": 0,
                 "padding-block-end": 0
               }
@@ -554,14 +563,14 @@
           "name": "Eyebrow",
           "settings": {
             "text": "<p>Filosofia</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
             "type_preset": "custom",
             "font": "var(--font-body--family)",
             "font_size": "0.75rem",
             "letter_spacing": "0.3em",
             "case": "uppercase",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
             "padding-block-start": 0,
             "padding-block-end": 0
           }
@@ -571,6 +580,9 @@
           "name": "Quote",
           "settings": {
             "text": "<p>Crediamo che l’eleganza non si esibisca: si indossi. Ogni capo che lascia la nostra sartoria è il risultato di mani esperte, ascolto e tempo.</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
             "type_preset": "custom",
             "font": "var(--font-body--family)",
             "font_size": "1.45rem",
@@ -578,9 +590,6 @@
             "letter_spacing": "tight",
             "case": "none",
             "wrap": "pretty",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
             "padding-block-start": 0,
             "padding-block-end": 0
           }
@@ -590,14 +599,14 @@
           "name": "Signature",
           "settings": {
             "text": "<p>— La famiglia Condotti</p>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
             "type_preset": "custom",
             "font": "var(--font-body--family)",
             "font_size": "0.875rem",
             "letter_spacing": "normal",
             "case": "none",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
             "padding-block-start": 0,
             "padding-block-end": 0
           }
@@ -607,13 +616,13 @@
           "name": "Quote",
           "settings": {
             "text": "<h2>Non vendiamo abiti, costruiamo identità.</h2>",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "center",
             "type_preset": "h2",
             "line_height": "1.25",
             "letter_spacing": "-0.01em",
             "wrap": "pretty",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
             "padding-block-start": 0,
             "padding-block-end": 0
           }
@@ -708,6 +717,374 @@
         "fg_color": "#0E0E0C",
         "gold_color": "#C9A24B"
       }
+    },
+    "bestseller_sartoria": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h3>I nostri bestseller Sartoria</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-heading--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            },
+            "product_list_button": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "settings": {
+                "label": "Scopri tutta la collezione",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            }
+          },
+          "block_order": [
+            "product_list_text",
+            "product_list_button"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product-card-gallery": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            },
+            "product_title": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            },
+            "price": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            }
+          },
+          "block_order": [
+            "product-card-gallery",
+            "product_title",
+            "price"
+          ]
+        }
+      },
+      "name": "Bestseller Sartoria",
+      "settings": {
+        "collection": "bestseller-sartoria",
+        "layout_type": "grid",
+        "carousel_on_mobile": true,
+        "max_products": 4,
+        "columns": 4,
+        "mobile_columns": "2",
+        "columns_gap": 8,
+        "rows_gap": 24,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 28,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
+    },
+    "bestseller_condotti_co": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h3>I nostri bestseller Condotti &amp; Co.</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-heading--family)",
+                "font_size": "",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            },
+            "product_list_button": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "settings": {
+                "label": "Scopri tutta la collezione",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              }
+            }
+          },
+          "block_order": [
+            "product_list_text",
+            "product_list_button"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product-card-gallery": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            },
+            "product_title": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            },
+            "price": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
+            }
+          },
+          "block_order": [
+            "product-card-gallery",
+            "product_title",
+            "price"
+          ]
+        }
+      },
+      "name": "Bestseller Condotti & Co",
+      "settings": {
+        "collection": "bestseller-condotti-co",
+        "layout_type": "grid",
+        "carousel_on_mobile": true,
+        "max_products": 4,
+        "columns": 4,
+        "mobile_columns": "2",
+        "columns_gap": 8,
+        "rows_gap": 24,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 28,
+        "color_scheme": "scheme-3",
+        "padding-block-start": 56,
+        "padding-block-end": 56
+      }
     }
   },
   "order": [
@@ -715,6 +1092,8 @@
     "intro_brands",
     "brand_grid",
     "brand_marquee",
+    "bestseller_sartoria",
+    "bestseller_condotti_co",
     "storia",
     "vision",
     "dove_trovarci"

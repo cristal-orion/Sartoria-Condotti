@@ -20,6 +20,8 @@
     const bot = root.querySelector('[data-hc-bot]');
     const stitch = root.querySelector('[data-hc-stitch]');
     const viewport = root.querySelector('.hero-cucitura__viewport');
+    const cta = root.querySelector('[data-hc-cta]');
+    const ctaBtn = root.querySelector('[data-hc-cta-btn]');
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const { gsap, ScrollTrigger } = window;
@@ -29,6 +31,7 @@
       gsap.set(top, { yPercent: -100 });
       gsap.set(bot, { yPercent: 100 });
       if (stitch) gsap.set(stitch, { opacity: 0 });
+      if (cta) gsap.set(cta, { autoAlpha: 1 });
       return;
     }
 
@@ -43,7 +46,12 @@
 
     function buildTimeline(endFactor) {
       const OPEN = 1; // durata apertura pannelli
-      const HOLD = 0.4; // pausa a pannelli aperti prima di sganciare il pin
+      const CTA = 0.3; // fade-in del CTA subito dopo l'apertura
+      const HOLD = 0.4; // pausa a CTA visibile prima di sganciare il pin
+      const total = OPEN + CTA + HOLD;
+
+      if (cta) gsap.set(cta, { autoAlpha: 0 });
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: root,
@@ -57,18 +65,23 @@
       });
       tl.to(top, { yPercent: -100, ease: 'none', duration: OPEN }, 0)
         .to(bot, { yPercent: 100, ease: 'none', duration: OPEN }, 0)
-        .to(stitch, { opacity: 0, ease: 'power1.out', duration: OPEN }, 0)
-        .to({}, { duration: HOLD }); // hold: foto intera visibile, hero ancora ferma
+        .to(stitch, { opacity: 0, ease: 'power1.out', duration: OPEN }, 0);
+      if (cta) {
+        // compare solo dopo che i pannelli sono completamente aperti
+        tl.to(cta, { autoAlpha: 1, ease: 'power1.out', duration: CTA }, OPEN);
+      }
+      tl.to({}, { duration: HOLD }, OPEN + CTA); // hold: foto + CTA visibili, hero ferma
 
       activeST = tl.scrollTrigger;
-      openProgress = OPEN / (OPEN + HOLD);
+      // clic sulla hero: apre i pannelli E mostra il CTA, lasciando l'hold come margine
+      openProgress = (OPEN + CTA) / total;
       return () => {
         if (activeST === tl.scrollTrigger) activeST = null;
       };
     }
 
-    mm.add('(min-width: 750px)', () => buildTimeline(1.9));
-    mm.add('(max-width: 749px)', () => buildTimeline(1.4));
+    mm.add('(min-width: 750px)', () => buildTimeline(2.3));
+    mm.add('(max-width: 749px)', () => buildTimeline(1.7));
 
     // Apertura "a sipario" anche con un semplice clic sulla hero:
     // scorre dolcemente fino a fine range pinnato, così l'animazione scrub
@@ -94,6 +107,76 @@
       });
     };
     if (viewport) viewport.addEventListener('click', openOnClick);
+
+    // Scroll morbido programmatico (via GSAP, non CSS scroll-behavior che
+    // romperebbe il pin ScrollTrigger).
+    function gsapScrollTo(y) {
+      const proxy = { y: window.scrollY };
+      gsap.to(proxy, {
+        y: Math.max(0, y),
+        duration: 1.0,
+        ease: 'power2.inOut',
+        overwrite: true,
+        onUpdate: () => window.scrollTo(0, proxy.y),
+      });
+    }
+
+    // Scrolla a un elemento tenendo conto dell'header sticky.
+    function scrollToEl(el) {
+      const header = document.getElementById('header-component');
+      const offset = header ? header.getBoundingClientRect().height : 0;
+      gsapScrollTo(window.scrollY + el.getBoundingClientRect().top - offset - 8);
+    }
+
+    // Trova la sezione "scelta dei brand" (intro + griglia delle 4 card) che
+    // segue la hero. Strategie a cascata, dalla più precisa alla più generica.
+    function findBrandChoice() {
+      // 1) sezioni del template JSON: l'id del wrapper termina con __intro_brands / __brand_grid
+      const byId =
+        document.querySelector('[id$="__intro_brands"]') ||
+        document.querySelector('[id$="__brand_grid"]');
+      if (byId) return byId;
+      // 2) prima sezione dopo la hero che contiene un link a una pagina brand
+      const heroSection = root.closest('.shopify-section') || root;
+      const brandLink =
+        'a[href*="/pages/sartoria-condotti"],' +
+        'a[href*="/pages/condotti-co"],' +
+        'a[href*="/pages/ricameria"],' +
+        'a[href*="/pages/sarto-a-domicilio"]';
+      let sib = heroSection.nextElementSibling;
+      while (sib) {
+        if (sib.querySelector && sib.querySelector(brandLink)) return sib;
+        sib = sib.nextElementSibling;
+      }
+      // 3) fallback: la sezione subito dopo la hero
+      return heroSection.nextElementSibling || null;
+    }
+
+    // Bottone del CTA: URL vero → naviga; '#id' → scorre a quell'ancora;
+    // '#'/vuoto → scorre alla sezione "scelta dei brand" sotto la hero.
+    if (ctaBtn) {
+      ctaBtn.addEventListener('click', (e) => {
+        e.stopPropagation(); // non far scattare l'apertura al clic sulla hero
+        const href = (ctaBtn.getAttribute('href') || '').trim();
+        if (href && href !== '#') {
+          if (href.charAt(0) === '#') {
+            const tgt = document.querySelector(href);
+            if (tgt) {
+              e.preventDefault();
+              scrollToEl(tgt);
+            }
+          }
+          return; // URL vero → navigazione normale del browser
+        }
+        e.preventDefault();
+        const choice = findBrandChoice();
+        if (choice) {
+          scrollToEl(choice);
+        } else {
+          gsapScrollTo(activeST ? activeST.end + 2 : window.scrollY + window.innerHeight);
+        }
+      });
+    }
   }
 
   function init() {

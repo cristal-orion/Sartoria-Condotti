@@ -15,6 +15,8 @@
   assign intro_heading = s.intro_heading | default: intro_heading
   assign intro_body = 'brand.ricameria.intro_body' | t
   assign intro_body = s.intro_body | default: intro_body
+  assign intro_cta = 'brand.ricameria.intro_cta' | t
+  assign intro_cta = s.intro_cta | default: intro_cta
 
   assign services_eyebrow = 'brand.ricameria.services_eyebrow' | t
   assign services_eyebrow = s.services_eyebrow | default: services_eyebrow
@@ -70,6 +72,11 @@
       <p class="bp__eyebrow" data-reveal>{{ intro_eyebrow }}</p>
       <h2 class="bp__h2" data-reveal>{{ intro_heading }}</h2>
       <p class="bp__lead bp__body" data-reveal>{{ intro_body }}</p>
+      {%- if intro_cta != blank -%}
+        <div class="bp__intro-actions" data-reveal>
+          <a class="bp__btn" href="#preventivo" data-bp-scroll>{{ intro_cta }}</a>
+        </div>
+      {%- endif -%}
     </div>
   </div>
 
@@ -123,17 +130,23 @@
       </div>
       <div class="bp__sectors">
         {%- for block in section.blocks -%}
-          <article class="bp__sector" data-reveal {{ block.shopify_attributes }}>
-            <div class="bp__sector-media">
-              {%- if block.settings.image != blank -%}
-                {{ block.settings.image | image_url: width: 800 | image_tag: widths: '300,500,800', sizes: '(max-width: 640px) 90vw, 25vw', loading: 'lazy', alt: block.settings.label }}
-              {%- endif -%}
-            </div>
-            <h3 class="bp__sector-title">{{ block.settings.label | default: sector_fallback }}</h3>
+          {%- assign b_label = block.settings.label | default: sector_fallback -%}
+          <a
+            class="bp__sector"
+            href="#preventivo"
+            data-bp-scroll
+            data-sector="{{ b_label | escape }}"
+            data-reveal
+            {{ block.shopify_attributes }}
+          >
+            <span class="bp__sector-icon">
+              {%- render 'ricamo-sector-icon', icon: block.settings.icon -%}
+            </span>
+            <h3 class="bp__sector-title">{{ b_label }}</h3>
             {%- if block.settings.desc != blank -%}
               <p class="bp__body">{{ block.settings.desc }}</p>
             {%- endif -%}
-          </article>
+          </a>
         {%- endfor -%}
       </div>
     </div>
@@ -265,6 +278,7 @@
     { "type": "text", "id": "intro_eyebrow", "label": "Eyebrow intro" },
     { "type": "text", "id": "intro_heading", "label": "Titolo intro" },
     { "type": "textarea", "id": "intro_body", "label": "Testo intro" },
+    { "type": "text", "id": "intro_cta", "label": "Bottone intro (→ preventivo)" },
     { "type": "header", "content": "Servizi" },
     { "type": "text", "id": "services_eyebrow", "label": "Eyebrow servizi" },
     { "type": "text", "id": "services_heading", "label": "Titolo servizi" },
@@ -285,7 +299,23 @@
       "type": "settore",
       "name": "Settore",
       "settings": [
-        { "type": "image_picker", "id": "image", "label": "Foto" },
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icona",
+          "default": "needle",
+          "options": [
+            { "value": "needle", "label": "Ago e filo (default)" },
+            { "value": "hotel", "label": "Hotel" },
+            { "value": "restaurant", "label": "Ristorazione" },
+            { "value": "business", "label": "Aziende" },
+            { "value": "nautical", "label": "Nautica" },
+            { "value": "health", "label": "Sanitario" },
+            { "value": "school", "label": "Scuole" },
+            { "value": "events", "label": "Eventi" },
+            { "value": "association", "label": "Associazioni" }
+          ]
+        },
         { "type": "text", "id": "label", "label": "Settore", "default": "Settore" },
         { "type": "textarea", "id": "desc", "label": "Esempi di lavori" }
       ]
@@ -295,14 +325,14 @@
     {
       "name": "Brand · Ricameria",
       "blocks": [
-        { "type": "settore", "settings": { "label": "Hotel", "desc": "Accappatoi, asciugamani e biancheria con logo ricamato. Divise per reception, sala e housekeeping." } },
-        { "type": "settore", "settings": { "label": "Ristorazione", "desc": "Grembiuli, giacche da cuoco e camicie di sala personalizzate con nome e logo del locale." } },
-        { "type": "settore", "settings": { "label": "Aziende", "desc": "Divise da lavoro, polo e camicie con logo aziendale ricamato su misura." } },
-        { "type": "settore", "settings": { "label": "Nautica", "desc": "Polo, felpe e cappellini equipaggio con il nome dell’imbarcazione. Teli e accessori ricamati." } },
-        { "type": "settore", "settings": { "label": "Sanitario", "desc": "Camici, casacche e divise per cliniche e studi medici con logo e nome dello staff." } },
-        { "type": "settore", "settings": { "label": "Scuole", "desc": "Grembiuli, felpe e tute con lo stemma dell’istituto. Divise sportive e kit personalizzati." } },
-        { "type": "settore", "settings": { "label": "Eventi", "desc": "Ricami personalizzati per matrimoni, cerimonie e occasioni speciali. Monogrammi e date." } },
-        { "type": "settore", "settings": { "label": "Associazioni", "desc": "Magliette, felpe e gagliardetti con logo e stemma. Divise per squadre e gruppi." } }
+        { "type": "settore", "settings": { "icon": "hotel", "label": "Hotel", "desc": "Accappatoi, asciugamani e biancheria con logo ricamato. Divise per reception, sala e housekeeping." } },
+        { "type": "settore", "settings": { "icon": "restaurant", "label": "Ristorazione", "desc": "Grembiuli, giacche da cuoco e camicie di sala personalizzate con nome e logo del locale." } },
+        { "type": "settore", "settings": { "icon": "business", "label": "Aziende", "desc": "Divise da lavoro, polo e camicie con logo aziendale ricamato su misura." } },
+        { "type": "settore", "settings": { "icon": "nautical", "label": "Nautica", "desc": "Polo, felpe e cappellini equipaggio con il nome dell’imbarcazione. Teli e accessori ricamati." } },
+        { "type": "settore", "settings": { "icon": "health", "label": "Sanitario", "desc": "Camici, casacche e divise per cliniche e studi medici con logo e nome dello staff." } },
+        { "type": "settore", "settings": { "icon": "school", "label": "Scuole", "desc": "Grembiuli, felpe e tute con lo stemma dell’istituto. Divise sportive e kit personalizzati." } },
+        { "type": "settore", "settings": { "icon": "events", "label": "Eventi", "desc": "Ricami personalizzati per matrimoni, cerimonie e occasioni speciali. Monogrammi e date." } },
+        { "type": "settore", "settings": { "icon": "association", "label": "Associazioni", "desc": "Magliette, felpe e gagliardetti con logo e stemma. Divise per squadre e gruppi." } }
       ]
     }
   ]

@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin language editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "brand": {
     "ricameria": {
@@ -7,6 +16,7 @@
       "intro_eyebrow": "Il laboratorio",
       "intro_heading": "Ogni capo merita una seconda vita.",
       "intro_body": "Dall’orlo da sistemare al monogramma da ricamare, ci prendiamo cura dei dettagli con la precisione della sartoria. Niente è troppo piccolo per essere fatto bene.",
+      "intro_cta": "Richiedi un preventivo",
       "services_eyebrow": "Cosa facciamo",
       "services_heading": "Riparazioni e ricami",
       "service1_title": "Piccole riparazioni",

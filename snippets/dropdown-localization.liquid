@@ -19,18 +19,74 @@
   assign localization_font_size = '--menu-localization-font-size: [localization_font_size]; ' | replace: '[localization_font_size]', section.settings.localization_font_size
   assign color_shadow = '--color-shadow: rgb(var(--color-foreground-rgb) / var(--opacity-10-25));'
   assign form_style = localization_font | append: localization_font_size | append: color_shadow
+  assign language_label = 'content.language' | t
 %}
 
 {% if show_language and show_country == false %}
-  <div class="dropdown-localization mobile:hidden">
-    {% render 'localization-form',
-      show_country: show_country,
-      show_language: show_language,
-      localization_style: 'dropdown',
-      form_style: form_style,
-      block_id: block.id
-    %}
-  </div>
+  <dropdown-localization-component class="dropdown-localization dropdown-localization--language mobile:hidden">
+    <button
+      type="button"
+      class="button dropdown-localization__button localization-selector link link--text"
+      aria-expanded="false"
+      aria-controls="language-localization-results"
+      aria-label="{{ language_label }}"
+      ref="button"
+      on:click="/toggleSelector"
+      style="{{ localization_font }} {{ localization_font_size }}"
+    >
+      <span>{{ localization.language.iso_code | upcase }}</span>
+      <span class="svg-wrapper icon-caret">
+        {{- 'icon-caret.svg' | inline_asset_content -}}
+      </span>
+    </button>
+
+    <div
+      id="language-localization-results"
+      class="localization-wrapper language-popover {{ localization_position }}-bound color-{{ settings.popover_color_scheme }}"
+      hidden
+      ref="panel"
+    >
+      <localization-form-component
+        ref="localizationForm"
+        class="language-popover__inner"
+        style="{{ form_style }}"
+      >
+        {%- form 'localization',
+          id: 'LanguageLocalizationForm',
+          class: 'localization-form',
+          ref: 'form',
+          return_to: back,
+          aria-label: language_label
+        -%}
+          <ul
+            role="list"
+            class="list-unstyled language-popover__list"
+            aria-label="{{ language_label }}"
+          >
+            {%- for language in localization.available_languages -%}
+              <li>
+                <button
+                  type="submit"
+                  name="language_code"
+                  value="{{ language.iso_code }}"
+                  lang="{{ language.iso_code }}"
+                  class="localization-form__list-item language-popover__item"
+                  {% if language.iso_code == localization.language.iso_code %}
+                    aria-current="true"
+                  {% endif %}
+                >
+                  <span class="svg-wrapper icon-checkmark">
+                    {{- 'icon-checkmark.svg' | inline_asset_content -}}
+                  </span>
+                  <span class="country">{{ language.endonym_name | capitalize }}</span>
+                </button>
+              </li>
+            {%- endfor -%}
+          </ul>
+        {%- endform -%}
+      </localization-form-component>
+    </div>
+  </dropdown-localization-component>
 {% elsif show_country %}
   <dropdown-localization-component
     class="dropdown-localization mobile:hidden"
@@ -90,3 +146,54 @@
     </div>
   </dropdown-localization-component>
 {% endif %}
+
+{% stylesheet %}
+  /* Language-only popover (country selector disabled) */
+  .dropdown-localization--language .localization-wrapper.language-popover {
+    min-width: 12rem;
+    max-height: none;
+    padding: var(--padding-2xs);
+  }
+
+  .language-popover__inner {
+    display: block;
+    width: 100%;
+    font-family: var(--menu-localization-font);
+  }
+
+  .language-popover__inner .localization-form {
+    width: 100%;
+  }
+
+  .language-popover__list {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    font-size: 0.9375rem;
+  }
+
+  .language-popover__list li {
+    display: block;
+  }
+
+  /* Reset the <button> so it inherits the shared list-item styling cleanly */
+  .language-popover__item {
+    width: 100%;
+    margin: 0;
+    border: 0;
+    background-color: transparent;
+    color: var(--color-foreground);
+    font: inherit;
+    text-align: start;
+    cursor: pointer;
+    appearance: none;
+    box-shadow: none;
+  }
+
+  .language-popover__item .country {
+    letter-spacing: normal;
+    text-transform: none;
+  }
+{% endstylesheet %}

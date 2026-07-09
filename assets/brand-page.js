@@ -156,9 +156,48 @@
     });
   }
 
+  // --- Scroll morbido verso un'ancora in pagina (link con [data-bp-scroll]) ---
+  function initScrollLinks(scope) {
+    var links = scope.querySelectorAll('a[data-bp-scroll]');
+    links.forEach(function (a) {
+      if (a.dataset.bpScrollInit === '1') return;
+      a.dataset.bpScrollInit = '1';
+      a.addEventListener('click', function (e) {
+        var href = a.getAttribute('href') || '';
+        if (href.charAt(0) !== '#' || href.length < 2) return;
+        var tgt = document.querySelector(href);
+        if (!tgt) return;
+        e.preventDefault();
+        // Se il link è una card settore, pre-seleziona quel settore nel form
+        var sector = a.getAttribute('data-sector');
+        if (sector) {
+          var sel = document.getElementById('rp-settore');
+          if (sel) {
+            for (var i = 0; i < sel.options.length; i++) {
+              if (sel.options[i].value === sector) {
+                sel.selectedIndex = i;
+                break;
+              }
+            }
+          }
+        }
+        // Compensa l'header sticky per non nascondere il titolo di sezione
+        var header = document.getElementById('header-component');
+        var offset = header ? header.getBoundingClientRect().height : 0;
+        var y = window.scrollY + tgt.getBoundingClientRect().top - offset - 16;
+        var reduce =
+          window.matchMedia &&
+          window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // scrollTo JS (non la CSS scroll-behavior, che altrove rompe ScrollTrigger)
+        window.scrollTo({ top: Math.max(0, y), behavior: reduce ? 'auto' : 'smooth' });
+      });
+    });
+  }
+
   function boot() {
     document.querySelectorAll('[data-bp-root]').forEach(initAnim);
     document.querySelectorAll('.bp-gallery__track').forEach(initGallery);
+    initScrollLinks(document);
   }
 
   if (document.readyState === 'loading') {
@@ -172,5 +211,6 @@
     var root = e.target.querySelector('[data-bp-root]');
     if (root) initAnim(root);
     e.target.querySelectorAll('.bp-gallery__track').forEach(initGallery);
+    initScrollLinks(e.target);
   });
 })();
