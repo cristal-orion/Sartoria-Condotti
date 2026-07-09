@@ -302,7 +302,7 @@
           "type": "text",
           "name": "t:names.header",
           "settings": {
-            "text": "<h3>You may also like</h3>",
+            "text": "<h3>Potrebbe piacerti anche</h3>",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
