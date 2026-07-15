@@ -181,6 +181,21 @@
             }
           }
         }
+        // Variante generica: pre-seleziona un <select> qualsiasi in pagina
+        // (es. card capo del Noleggio → select "Capo" del form preventivo)
+        var selId = a.getAttribute('data-bp-select');
+        var selVal = a.getAttribute('data-bp-value');
+        if (selId && selVal) {
+          var sel2 = document.getElementById(selId);
+          if (sel2) {
+            for (var j = 0; j < sel2.options.length; j++) {
+              if (sel2.options[j].value === selVal) {
+                sel2.selectedIndex = j;
+                break;
+              }
+            }
+          }
+        }
         // Compensa l'header sticky per non nascondere il titolo di sezione
         var header = document.getElementById('header-component');
         var offset = header ? header.getBoundingClientRect().height : 0;

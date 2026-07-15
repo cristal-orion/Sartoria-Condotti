@@ -1,0 +1,135 @@
+/* ============================================================
+   Atelier dei Tessuti — Sarto a Domicilio
+   Tab Abiti/Camicie (pattern WAI-ARIA tabs) + scelta campione:
+   il capo nello stage cambia con crossfade a doppio buffer e la
+   scheda tecnica segue. I capi si caricano solo quando servono.
+   Senza JS resta visibile il primo capo con la sua scheda.
+   ============================================================ */
+(function () {
+  'use strict';
+
+  function initAtelier(root) {
+    if (root.dataset.atInit === '1') return;
+    root.dataset.atInit = '1';
+
+    var tabs = Array.prototype.slice.call(root.querySelectorAll('[data-at-tab]'));
+    var panels = Array.prototype.slice.call(root.querySelectorAll('[data-at-panel]'));
+
+    function activateTab(tab, focus) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.classList.toggle('is-active', on);
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+      });
+      panels.forEach(function (p) {
+        p.hidden = p.getAttribute('data-at-panel') !== tab.getAttribute('data-at-tab');
+      });
+      if (focus) tab.focus();
+    }
+
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () {
+        activateTab(tab, false);
+      });
+      tab.addEventListener('keydown', function (e) {
+        var idx = -1;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') idx = (i + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') idx = (i - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') idx = 0;
+        else if (e.key === 'End') idx = tabs.length - 1;
+        if (idx < 0) return;
+        e.preventDefault();
+        activateTab(tabs[idx], true);
+      });
+    });
+
+    panels.forEach(initPanel);
+  }
+
+  function initPanel(panel) {
+    var stage = panel.querySelector('[data-at-stage]');
+    var imgs = stage ? stage.querySelectorAll('.bp-atelier__img') : [];
+    var swatches = Array.prototype.slice.call(panel.querySelectorAll('[data-at-swatch]'));
+    var cards = Array.prototype.slice.call(panel.querySelectorAll('[data-at-card]'));
+    if (!stage || imgs.length < 2 || !swatches.length) return;
+
+    var current = 0; // indice del buffer attivo nello stage
+    var token = 0; // invalida gli swap in volo quando l'utente riclicca
+
+    function showCard(key) {
+      cards.forEach(function (c) {
+        c.classList.toggle('is-active', c.getAttribute('data-at-card') === key);
+      });
+    }
+
+    function select(swatch) {
+      if (swatch.getAttribute('aria-pressed') === 'true') return;
+      swatches.forEach(function (s) {
+        s.setAttribute('aria-pressed', s === swatch ? 'true' : 'false');
+      });
+      showCard(swatch.getAttribute('data-at-swatch'));
+
+      var myToken = ++token;
+      var next = imgs[1 - current];
+      var src = swatch.getAttribute('data-capo');
+      var done = false;
+
+      function swap() {
+        if (done || myToken !== token) return;
+        done = true;
+        var prev = imgs[current];
+        next.classList.add('is-active');
+        next.removeAttribute('aria-hidden');
+        prev.classList.remove('is-active');
+        prev.setAttribute('aria-hidden', 'true');
+        current = 1 - current;
+      }
+
+      next.alt = swatch.getAttribute('data-alt') || '';
+      if (next.getAttribute('src') === src) {
+        swap();
+        return;
+      }
+      next.src = src;
+      if (next.decode) {
+        next.decode().then(swap, swap);
+      } else {
+        next.addEventListener('load', swap, { once: true });
+      }
+      // Rete lenta o decode mai risolto: swap comunque (l'img appare quando pronta)
+      setTimeout(swap, 3000);
+    }
+
+    swatches.forEach(function (swatch) {
+      swatch.addEventListener('click', function () {
+        select(swatch);
+      });
+      // Preload soft: il capo si scarica appena l'utente mostra interesse
+      function preload() {
+        var src = swatch.getAttribute('data-capo');
+        if (!src || swatch.dataset.atPre === '1') return;
+        swatch.dataset.atPre = '1';
+        var im = new Image();
+        im.src = src;
+      }
+      swatch.addEventListener('pointerenter', preload);
+      swatch.addEventListener('focus', preload);
+    });
+  }
+
+  function boot() {
+    document.querySelectorAll('[data-bp-atelier]').forEach(initAtelier);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+
+  // Re-init nel theme editor di Shopify quando la sezione viene ricaricata
+  document.addEventListener('shopify:section:load', function (e) {
+    e.target.querySelectorAll('[data-bp-atelier]').forEach(initAtelier);
+  });
+})();

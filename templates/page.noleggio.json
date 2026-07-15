@@ -1,0 +1,39 @@
+{
+  "sections": {
+    "main": {
+      "type": "brand-noleggio",
+      "blocks": {
+        "frac": {
+          "type": "capo",
+          "settings": {
+            "nome": "Frac",
+            "img_file": "noleggio-frac.jpg",
+            "desc": "La massima espressione dell’eleganza da sera: giacca a code, gilet bianco e papillon bianco. Richiesto dal dress code white tie per serate di gala, concerti e matrimoni solenni.",
+            "taglie_note": ""
+          }
+        },
+        "smoking": {
+          "type": "capo",
+          "settings": {
+            "nome": "Smoking",
+            "img_file": "noleggio-smoking.jpg",
+            "desc": "Blu notte con revers a lancia in raso, per il dress code black tie: cerimonie serali, gala e ricevimenti. Il classico che non tramonta, pronto su di te.",
+            "taglie_note": ""
+          }
+        },
+        "tight": {
+          "type": "capo",
+          "settings": {
+            "nome": "Tight",
+            "img_file": "noleggio-tight.jpg",
+            "desc": "L’abito da giorno delle grandi occasioni: giacca a coda ampia, gilet e pantalone. La scelta d’ordinanza dello sposo per il matrimonio di mattina.",
+            "taglie_note": ""
+          }
+        }
+      },
+      "block_order": ["frac", "smoking", "tight"],
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}

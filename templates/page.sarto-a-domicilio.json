@@ -2,6 +2,178 @@
   "sections": {
     "main": {
       "type": "brand-sarto-domicilio",
+      "blocks": {
+        "tessuto-abito-1": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "abiti",
+            "nome": "Beige sabbia",
+            "composizione": "",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Un tinta unita caldo e materico, perfetto per l’abito estivo. Scheda tecnica in arrivo.",
+            "img_campione": "tessuto-abito-1-a.jpg",
+            "img_capo": "tessuto-abito-1-b.jpg"
+          }
+        },
+        "tessuto-abito-2": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "abiti",
+            "nome": "Bordeaux lana e seta",
+            "composizione": "77% lana, 14% seta, 9% lino",
+            "peso": "210 g",
+            "codice": "Fordan 090-WSL/2421 · Vitale Barberis Canonico",
+            "descrizione": "",
+            "img_campione": "tessuto-abito-2-a.jpg",
+            "img_capo": "tessuto-abito-2-b.jpg"
+          }
+        },
+        "tessuto-abito-3": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "abiti",
+            "nome": "Azzurro lino",
+            "composizione": "100% lino",
+            "peso": "250 g",
+            "codice": "Fordan 054-VL/2295",
+            "descrizione": "",
+            "img_campione": "tessuto-abito-3-a.jpg",
+            "img_capo": "tessuto-abito-3-b.jpg"
+          }
+        },
+        "tessuto-abito-4": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "abiti",
+            "nome": "Principe di Galles",
+            "composizione": "100% lana Super 140’s",
+            "peso": "260 g",
+            "codice": "Fordan 076-WXF/1372",
+            "descrizione": "",
+            "img_campione": "tessuto-abito-4-a.jpg",
+            "img_capo": "tessuto-abito-4-b.jpg"
+          }
+        },
+        "tessuto-abito-5": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "abiti",
+            "nome": "Tortora finestrato",
+            "composizione": "91% lana, 8% poliammide, 1% elastan",
+            "peso": "230/240 g",
+            "codice": "Fordan 072-TA/1989",
+            "descrizione": "",
+            "img_campione": "tessuto-abito-5-a.jpg",
+            "img_capo": "tessuto-abito-5-b.jpg"
+          }
+        },
+        "tessuto-abito-6": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "abiti",
+            "nome": "Blu gessato",
+            "composizione": "100% lana Super 130’s",
+            "peso": "240/250 g",
+            "codice": "Fordan 072-QF/2334",
+            "descrizione": "",
+            "img_campione": "tessuto-abito-6-a.jpg",
+            "img_capo": "tessuto-abito-6-b.jpg"
+          }
+        },
+        "tessuto-camicia-1": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "camicie",
+            "nome": "Lino bianco",
+            "composizione": "100% lino",
+            "peso": "160/170 g",
+            "codice": "S210",
+            "descrizione": "",
+            "img_campione": "tessuto-camicia-1-a.jpg",
+            "img_capo": "tessuto-camicia-1-b.jpg"
+          }
+        },
+        "tessuto-camicia-2": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "camicie",
+            "nome": "Lino",
+            "composizione": "100% lino",
+            "peso": "160/170 g",
+            "codice": "S215",
+            "descrizione": "",
+            "img_campione": "tessuto-camicia-2-a.jpg",
+            "img_capo": "tessuto-camicia-2-b.jpg"
+          }
+        },
+        "tessuto-camicia-3": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "camicie",
+            "nome": "Oxford",
+            "composizione": "100% cotone",
+            "peso": "180 g",
+            "codice": "1016",
+            "descrizione": "",
+            "img_campione": "tessuto-camicia-3-a.jpg",
+            "img_capo": "tessuto-camicia-3-b.jpg"
+          }
+        },
+        "tessuto-camicia-4": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "camicie",
+            "nome": "Popeline compatto",
+            "composizione": "100% cotone",
+            "peso": "150/160 g",
+            "codice": "6281",
+            "descrizione": "",
+            "img_campione": "tessuto-camicia-4-a.jpg",
+            "img_capo": "tessuto-camicia-4-b.jpg"
+          }
+        },
+        "tessuto-camicia-5": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "camicie",
+            "nome": "Popeline compatto",
+            "composizione": "100% cotone",
+            "peso": "150/160 g",
+            "codice": "6280",
+            "descrizione": "",
+            "img_campione": "tessuto-camicia-5-a.jpg",
+            "img_capo": "tessuto-camicia-5-b.jpg"
+          }
+        },
+        "tessuto-camicia-6": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "camicie",
+            "nome": "Popeline compatto",
+            "composizione": "100% cotone",
+            "peso": "150/160 g",
+            "codice": "6279",
+            "descrizione": "",
+            "img_campione": "tessuto-camicia-6-a.jpg",
+            "img_capo": "tessuto-camicia-6-b.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "tessuto-abito-1",
+        "tessuto-abito-2",
+        "tessuto-abito-3",
+        "tessuto-abito-4",
+        "tessuto-abito-5",
+        "tessuto-abito-6",
+        "tessuto-camicia-1",
+        "tessuto-camicia-2",
+        "tessuto-camicia-3",
+        "tessuto-camicia-4",
+        "tessuto-camicia-5",
+        "tessuto-camicia-6"
+      ],
       "settings": {
         "deposit_enabled": false,
         "cal_link": "sartoriacondotti/sarto-a-domicilio",

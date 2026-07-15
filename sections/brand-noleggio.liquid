@@ -1,0 +1,324 @@
+{%- liquid
+  assign s = section.settings
+  assign hero_title = s.hero_title | default: 'Noleggio'
+
+  # Testo: usa l'impostazione se compilata, altrimenti la traduzione (locales/*.json → brand.noleggio.*)
+  assign eyebrow = 'brand.noleggio.eyebrow' | t
+  assign eyebrow = s.eyebrow | default: eyebrow
+  assign hero_sub = 'brand.noleggio.hero_sub' | t
+  assign hero_sub = s.hero_sub | default: hero_sub
+  assign intro_eyebrow = 'brand.noleggio.intro_eyebrow' | t
+  assign intro_eyebrow = s.intro_eyebrow | default: intro_eyebrow
+  assign intro_heading = 'brand.noleggio.intro_heading' | t
+  assign intro_heading = s.intro_heading | default: intro_heading
+  assign intro_body = 'brand.noleggio.intro_body' | t
+  assign intro_body = s.intro_body | default: intro_body
+  assign intro_cta = 'brand.noleggio.intro_cta' | t
+  assign intro_cta = s.intro_cta | default: intro_cta
+  assign why_eyebrow = 'brand.noleggio.why_eyebrow' | t
+  assign why_eyebrow = s.why_eyebrow | default: why_eyebrow
+  assign why_heading = 'brand.noleggio.why_heading' | t
+  assign why_heading = s.why_heading | default: why_heading
+  assign garments_eyebrow = 'brand.noleggio.garments_eyebrow' | t
+  assign garments_eyebrow = s.garments_eyebrow | default: garments_eyebrow
+  assign garments_heading = 'brand.noleggio.garments_heading' | t
+  assign garments_heading = s.garments_heading | default: garments_heading
+  assign garments_body = 'brand.noleggio.garments_body' | t
+  assign garments_body = s.garments_body | default: garments_body
+  assign how_eyebrow = 'brand.noleggio.how_eyebrow' | t
+  assign how_eyebrow = s.how_eyebrow | default: how_eyebrow
+  assign how_heading = 'brand.noleggio.how_heading' | t
+  assign how_heading = s.how_heading | default: how_heading
+  assign form_eyebrow = 'brand.noleggio.form_eyebrow' | t
+  assign form_eyebrow = s.form_eyebrow | default: form_eyebrow
+  assign form_heading = 'brand.noleggio.form_heading' | t
+  assign form_heading = s.form_heading | default: form_heading
+  assign form_body = 'brand.noleggio.form_body' | t
+  assign form_body = s.form_body | default: form_body
+
+  assign contact_email = s.contact_email | default: 'infosartoriacondotti@gmail.com'
+  assign whatsapp = s.whatsapp | default: '393793480144'
+-%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap">
+{{ 'brand-page.css' | asset_url | stylesheet_tag }}
+
+<section class="bp" data-bp-root>
+  <!-- HERO -->
+  <header class="bp__hero">
+    <div class="bp__hero-media">
+      {%- if s.hero_image != blank -%}
+        {{ s.hero_image | image_url: width: 2400 | image_tag: widths: '900,1400,1900,2400', sizes: '100vw', fetchpriority: 'high' }}
+      {%- else -%}
+        <img src="{{ 'noleggio-hero.jpg' | asset_url }}" alt="" fetchpriority="high">
+      {%- endif -%}
+    </div>
+    <div class="bp__hero-inner bp__wrap">
+      <p class="bp__eyebrow" data-reveal>{{ eyebrow }}</p>
+      <h1 class="bp__display bp__hero-title" data-reveal>{{ hero_title }}</h1>
+      <p class="bp__hero-sub" data-reveal>{{ hero_sub }}</p>
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <div class="bp__section bp__wrap">
+    <div class="bp__intro">
+      <p class="bp__eyebrow" data-reveal>{{ intro_eyebrow }}</p>
+      <h2 class="bp__h2" data-reveal>{{ intro_heading }}</h2>
+      <p class="bp__lead bp__body" data-reveal>{{ intro_body }}</p>
+      <div class="bp__intro-actions" data-reveal>
+        <a class="bp__btn" href="#preventivo" data-bp-scroll>{{ intro_cta }}</a>
+      </div>
+    </div>
+  </div>
+
+  <span class="bp__stitch bp__wrap" aria-hidden="true">
+    <svg viewBox="0 0 1000 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="1000" y2="1" stroke="currentColor" stroke-width="1.4" stroke-dasharray="7 5" vector-effect="non-scaling-stroke"/></svg>
+  </span>
+
+  <!-- PERCHÉ NOLEGGIARE -->
+  <div class="bp__section bp__wrap">
+    <div class="bp__section-head">
+      <p class="bp__eyebrow" data-reveal>{{ why_eyebrow }}</p>
+      <h2 class="bp__h2" data-reveal>{{ why_heading }}</h2>
+    </div>
+    <div class="bp__steps">
+      <div class="bp__step" data-reveal>
+        <span class="bp__num">01</span>
+        <h3>{{ 'brand.noleggio.why_step1_title' | t }}</h3>
+        <p class="bp__body">{{ 'brand.noleggio.why_step1_body' | t }}</p>
+      </div>
+      <div class="bp__step" data-reveal>
+        <span class="bp__num">02</span>
+        <h3>{{ 'brand.noleggio.why_step2_title' | t }}</h3>
+        <p class="bp__body">{{ 'brand.noleggio.why_step2_body' | t }}</p>
+      </div>
+      <div class="bp__step" data-reveal>
+        <span class="bp__num">03</span>
+        <h3>{{ 'brand.noleggio.why_step3_title' | t }}</h3>
+        <p class="bp__body">{{ 'brand.noleggio.why_step3_body' | t }}</p>
+      </div>
+      <div class="bp__step" data-reveal>
+        <span class="bp__num">04</span>
+        <h3>{{ 'brand.noleggio.why_step4_title' | t }}</h3>
+        <p class="bp__body">{{ 'brand.noleggio.why_step4_body' | t }}</p>
+      </div>
+    </div>
+  </div>
+
+  <span class="bp__stitch bp__wrap" aria-hidden="true">
+    <svg viewBox="0 0 1000 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="1000" y2="1" stroke="currentColor" stroke-width="1.4" stroke-dasharray="7 5" vector-effect="non-scaling-stroke"/></svg>
+  </span>
+
+  <!-- I CAPI -->
+  {%- if section.blocks.size > 0 -%}
+    <div class="bp__section bp__wrap" id="capi">
+      <div class="bp__section-head">
+        <p class="bp__eyebrow" data-reveal>{{ garments_eyebrow }}</p>
+        <h2 class="bp__h2" data-reveal>{{ garments_heading }}</h2>
+      </div>
+      <p class="bp__lead bp__body" data-reveal style="max-width:52ch;">{{ garments_body }}</p>
+      <div class="bp__garments">
+        {%- for block in section.blocks -%}
+          <figure class="bp__garment" data-reveal {{ block.shopify_attributes }}>
+            <div class="bp__garment-media">
+              {%- assign capo_alt = block.settings.nome | escape -%}
+              {%- if block.settings.image != blank -%}
+                {{ block.settings.image | image_url: width: 1200 | image_tag: widths: '600,900,1200', sizes: '(min-width: 900px) 30vw, 90vw', loading: 'lazy', alt: capo_alt }}
+              {%- elsif block.settings.img_file != blank -%}
+                <img src="{{ block.settings.img_file | asset_url }}" width="1024" height="1536" loading="lazy" alt="{{ block.settings.nome | escape }}">
+              {%- endif -%}
+            </div>
+            <figcaption>
+              <h3>{{ block.settings.nome }}</h3>
+              {%- if block.settings.desc != blank -%}
+                <p class="bp__body">{{ block.settings.desc }}</p>
+              {%- endif -%}
+              <p class="bp__garment-taglie">
+                {%- if block.settings.taglie_note != blank -%}{{ block.settings.taglie_note }}{%- else -%}{{ 'brand.noleggio.garment_sizes' | t }}{%- endif -%}
+              </p>
+              <a class="bp__garment-cta" href="#preventivo" data-bp-scroll data-bp-select="nl-capo" data-bp-value="{{ block.settings.nome | escape }}">{{ 'brand.noleggio.garment_cta' | t }}</a>
+            </figcaption>
+          </figure>
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+
+  <!-- COME FUNZIONA + FORM PREVENTIVO (ink) -->
+  <div class="bp bp--ink" style="background:rgb(var(--bp-ink));color:rgb(var(--bp-cream));">
+    <div class="bp__section bp__wrap">
+      <div class="bp__section-head">
+        <p class="bp__eyebrow" data-reveal>{{ how_eyebrow }}</p>
+        <h2 class="bp__h2" data-reveal>{{ how_heading }}</h2>
+      </div>
+      <div class="bp__steps">
+        <div class="bp__step" data-reveal>
+          <span class="bp__num">01</span>
+          <h3>{{ 'brand.noleggio.how_step1_title' | t }}</h3>
+          <p class="bp__body">{{ 'brand.noleggio.how_step1_body' | t }}</p>
+        </div>
+        <div class="bp__step" data-reveal>
+          <span class="bp__num">02</span>
+          <h3>{{ 'brand.noleggio.how_step2_title' | t }}</h3>
+          <p class="bp__body">{{ 'brand.noleggio.how_step2_body' | t }}</p>
+        </div>
+        <div class="bp__step" data-reveal>
+          <span class="bp__num">03</span>
+          <h3>{{ 'brand.noleggio.how_step3_title' | t }}</h3>
+          <p class="bp__body">{{ 'brand.noleggio.how_step3_body' | t }}</p>
+        </div>
+        <div class="bp__step" data-reveal>
+          <span class="bp__num">04</span>
+          <h3>{{ 'brand.noleggio.how_step4_title' | t }}</h3>
+          <p class="bp__body">{{ 'brand.noleggio.how_step4_body' | t }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bp__section bp__wrap" id="preventivo">
+      <div class="bp__form-layout">
+        <div class="bp__diptych-text">
+          <p class="bp__eyebrow" data-reveal>{{ form_eyebrow }}</p>
+          <h2 class="bp__h2" data-reveal>{{ form_heading }}</h2>
+          <p class="bp__body" data-reveal>{{ form_body }}</p>
+          <div class="bp__intro-actions" data-reveal style="margin-top:1.6rem;display:flex;gap:.8rem;flex-wrap:wrap;">
+            <a class="bp__btn bp__btn--ghost" href="mailto:{{ contact_email }}?subject={{ 'brand.noleggio.mail_subject' | t | url_encode }}">{{ 'brand.noleggio.cta_email' | t }}</a>
+            <a class="bp__btn bp__btn--ghost" href="https://wa.me/{{ whatsapp }}" target="_blank" rel="noopener">{{ 'brand.noleggio.cta_whatsapp' | t }}</a>
+          </div>
+        </div>
+
+        <div data-reveal>
+          {%- form 'contact', id: 'noleggio-form' -%}
+            {%- if form.posted_successfully? -%}
+              <div class="bp__form-success">{{ 'brand.noleggio.form_success' | t }}</div>
+            {%- endif -%}
+            {%- if form.errors -%}
+              <div class="bp__form-success" style="background:rgba(180,60,40,.18);border-color:#b43c28;">
+                {{ form.errors | default_errors }}
+              </div>
+            {%- endif -%}
+
+            <input type="hidden" name="contact[Tipo richiesta]" value="Noleggio abiti">
+
+            <div class="bp__form">
+              <div class="bp__field">
+                <label for="nl-name">{{ 'brand.noleggio.fld_name' | t }}</label>
+                <input type="text" id="nl-name" name="contact[name]" required value="{{ form.name }}">
+              </div>
+              <div class="bp__field">
+                <label for="nl-email">{{ 'brand.noleggio.fld_email' | t }}</label>
+                <input type="email" id="nl-email" name="contact[email]" required value="{{ form.email }}">
+              </div>
+              <div class="bp__field">
+                <label for="nl-phone">{{ 'brand.noleggio.fld_phone' | t }}</label>
+                <input type="tel" id="nl-phone" name="contact[phone]" placeholder="+39" value="{{ form.phone }}">
+              </div>
+              <div class="bp__field">
+                <label for="nl-capo">{{ 'brand.noleggio.fld_capo' | t }}</label>
+                <select id="nl-capo" name="contact[Capo]">
+                  {%- for block in section.blocks -%}
+                    <option value="{{ block.settings.nome | escape }}">{{ block.settings.nome }}</option>
+                  {%- endfor -%}
+                  <option value="Non so ancora">{{ 'brand.noleggio.capo_other' | t }}</option>
+                </select>
+              </div>
+              <div class="bp__field">
+                <label for="nl-taglia">{{ 'brand.noleggio.fld_taglia' | t }}</label>
+                <input type="text" id="nl-taglia" name="contact[Taglia]" required placeholder="{{ 'brand.noleggio.taglia_placeholder' | t | escape }}">
+              </div>
+              <div class="bp__field">
+                <label for="nl-data">{{ 'brand.noleggio.fld_data' | t }}</label>
+                <input type="date" id="nl-data" name="contact[Data evento]">
+              </div>
+              <div class="bp__field">
+                <label for="nl-spedizione">{{ 'brand.noleggio.fld_spedizione' | t }}</label>
+                <select id="nl-spedizione" name="contact[Spedizione]">
+                  <option value="Ritiro in boutique">{{ 'brand.noleggio.sped_no' | t }}</option>
+                  <option value="Spedizione">{{ 'brand.noleggio.sped_si' | t }}</option>
+                </select>
+              </div>
+              <div class="bp__field">
+                <label for="nl-citta">{{ 'brand.noleggio.fld_citta' | t }}</label>
+                <input type="text" id="nl-citta" name="contact[Città]" placeholder="{{ 'brand.noleggio.citta_placeholder' | t | escape }}">
+              </div>
+              <div class="bp__field bp__field--full">
+                <label for="nl-note">{{ 'brand.noleggio.fld_note' | t }}</label>
+                <textarea id="nl-note" name="contact[body]" placeholder="{{ 'brand.noleggio.note_placeholder' | t | escape }}"></textarea>
+              </div>
+              <div class="bp__form-actions">
+                <button type="submit" class="bp__btn">{{ 'brand.noleggio.submit' | t }}</button>
+                <p class="bp__form-note">{{ 'brand.noleggio.form_note' | t }}</p>
+              </div>
+            </div>
+          {%- endform -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
+<script src="{{ 'ScrollTrigger.min.js' | asset_url }}" defer></script>
+<script src="{{ 'brand-page.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Brand · Noleggio",
+  "tag": "section",
+  "class": "brand-page-section",
+  "settings": [
+    { "type": "header", "content": "Hero" },
+    { "type": "image_picker", "id": "hero_image", "label": "Immagine hero", "info": "Vuota = usa noleggio-hero.jpg dagli assets." },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "info": "Vuoto = usa la traduzione (brand.noleggio.eyebrow)." },
+    { "type": "text", "id": "hero_title", "label": "Titolo", "default": "Noleggio" },
+    { "type": "textarea", "id": "hero_sub", "label": "Sottotitolo", "info": "Vuoto = usa la traduzione." },
+    { "type": "header", "content": "Intro" },
+    { "type": "text", "id": "intro_eyebrow", "label": "Eyebrow intro", "info": "Vuoto = usa la traduzione." },
+    { "type": "text", "id": "intro_heading", "label": "Titolo intro", "info": "Vuoto = usa la traduzione." },
+    { "type": "textarea", "id": "intro_body", "label": "Testo intro", "info": "Vuoto = usa la traduzione." },
+    { "type": "text", "id": "intro_cta", "label": "Etichetta bottone intro", "info": "Vuoto = usa la traduzione." },
+    { "type": "header", "content": "Perché noleggiare" },
+    { "type": "text", "id": "why_eyebrow", "label": "Eyebrow", "info": "Vuoto = usa la traduzione." },
+    { "type": "text", "id": "why_heading", "label": "Titolo", "info": "Vuoto = usa la traduzione." },
+    { "type": "header", "content": "I capi" },
+    { "type": "text", "id": "garments_eyebrow", "label": "Eyebrow", "info": "Vuoto = usa la traduzione." },
+    { "type": "text", "id": "garments_heading", "label": "Titolo", "info": "Vuoto = usa la traduzione." },
+    { "type": "textarea", "id": "garments_body", "label": "Testo", "info": "Vuoto = usa la traduzione." },
+    { "type": "header", "content": "Come funziona" },
+    { "type": "text", "id": "how_eyebrow", "label": "Eyebrow", "info": "Vuoto = usa la traduzione." },
+    { "type": "text", "id": "how_heading", "label": "Titolo", "info": "Vuoto = usa la traduzione." },
+    { "type": "header", "content": "Form preventivo" },
+    { "type": "text", "id": "form_eyebrow", "label": "Eyebrow form", "info": "Vuoto = usa la traduzione." },
+    { "type": "text", "id": "form_heading", "label": "Titolo form", "info": "Vuoto = usa la traduzione." },
+    { "type": "textarea", "id": "form_body", "label": "Testo form", "info": "Vuoto = usa la traduzione." },
+    { "type": "text", "id": "contact_email", "label": "Email preventivi", "default": "infosartoriacondotti@gmail.com" },
+    { "type": "text", "id": "whatsapp", "label": "WhatsApp (prefisso internazionale, senza +)", "default": "393793480144" }
+  ],
+  "blocks": [
+    {
+      "type": "capo",
+      "name": "Capo a noleggio",
+      "settings": [
+        { "type": "text", "id": "nome", "label": "Nome capo", "default": "Smoking" },
+        { "type": "image_picker", "id": "image", "label": "Foto", "info": "Vuota = usa il file indicato sotto." },
+        { "type": "text", "id": "img_file", "label": "Foto (file in assets)", "info": "Nome file, es. noleggio-smoking.jpg" },
+        { "type": "textarea", "id": "desc", "label": "Descrizione" },
+        { "type": "text", "id": "taglie_note", "label": "Nota taglie", "info": "Vuota = usa la traduzione (Disponibile in tutte le taglie)." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand · Noleggio",
+      "blocks": [
+        { "type": "capo", "settings": { "nome": "Frac", "img_file": "noleggio-frac.jpg" } },
+        { "type": "capo", "settings": { "nome": "Smoking", "img_file": "noleggio-smoking.jpg" } },
+        { "type": "capo", "settings": { "nome": "Tight", "img_file": "noleggio-tight.jpg" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

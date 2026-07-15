@@ -808,3 +808,299 @@ a.bp__diptych-media img {
     transition: none;
   }
 }
+
+/* ============================================================
+   Atelier dei Tessuti (Sarto a Domicilio)
+   Tab Abiti/Camicie · stage con crossfade · schede tecniche ·
+   strip di campioni cliccabili
+   ============================================================ */
+.bp-atelier {
+  margin-top: clamp(32px, 5vw, 56px);
+}
+
+.bp-atelier__tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0 0 clamp(26px, 4vw, 44px);
+}
+
+.bp-atelier__tab {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  background: transparent;
+  color: rgb(var(--bp-fg) / 0.7);
+  border: 1px solid rgb(var(--bp-fg) / 0.25);
+  border-radius: 999px;
+  padding: 0.62em 1.5em;
+  font-family: var(--font-body--family, system-ui);
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+}
+
+.bp-atelier__tab:hover {
+  border-color: rgb(var(--bp-fg) / 0.55);
+  color: rgb(var(--bp-fg));
+}
+
+.bp-atelier__tab.is-active {
+  background: rgb(var(--bp-gold));
+  border-color: rgb(var(--bp-gold));
+  color: rgb(var(--bp-ink));
+}
+
+.bp-atelier__tab:focus-visible {
+  outline: 2px solid rgb(var(--bp-gold));
+  outline-offset: 2px;
+}
+
+.bp-atelier__panel[hidden] {
+  display: none;
+}
+
+.bp-atelier__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
+}
+
+/* Stage: il capo realizzato, doppio buffer per il crossfade */
+.bp-atelier__stage {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  max-width: 560px;
+  background: rgb(var(--bp-bone));
+  overflow: hidden;
+}
+
+.bp-atelier__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.55s ease;
+}
+
+.bp-atelier__img.is-active {
+  opacity: 1;
+}
+
+/* Scheda tecnica: una card per tessuto, visibile solo l'attiva */
+.bp-atelier__card {
+  display: none;
+}
+
+.bp-atelier__card.is-active {
+  display: block;
+}
+
+.bp-atelier__name {
+  font-family: 'Fraunces', var(--font-heading--family, serif);
+  font-weight: 300;
+  font-variation-settings: 'opsz' 72;
+  font-size: clamp(1.6rem, 2.6vw, 2.1rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  margin: 0 0 1.1rem;
+}
+
+.bp-atelier__specs {
+  margin: 0 0 1.2rem;
+}
+
+.bp-atelier__specs > div {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.65fr) 1fr;
+  gap: 12px;
+  padding: 0.7rem 0;
+  border-top: 1px solid rgb(var(--bp-fg) / 0.14);
+}
+
+.bp-atelier__specs > div:last-child {
+  border-bottom: 1px solid rgb(var(--bp-fg) / 0.14);
+}
+
+.bp-atelier__specs dt {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgb(var(--bp-fg) / 0.7);
+  margin: 0;
+  align-self: center;
+}
+
+.bp-atelier__specs dd {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* Strip di campioni */
+.bp-atelier__swatches {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(8px, 1.2vw, 14px);
+  margin-top: clamp(20px, 3vw, 32px);
+}
+
+.bp-atelier__swatch {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding: 0;
+  background: rgb(var(--bp-bone));
+  border: 1px solid rgb(var(--bp-fg) / 0.15);
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.bp-atelier__swatch img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.bp-atelier__swatch:hover {
+  border-color: rgb(var(--bp-fg) / 0.5);
+}
+
+.bp-atelier__swatch[aria-pressed='true'] {
+  border: 2px solid rgb(var(--bp-gold));
+  transform: translateY(-2px);
+}
+
+.bp-atelier__swatch:focus-visible {
+  outline: 2px solid rgb(var(--bp-gold));
+  outline-offset: 2px;
+}
+
+.bp-atelier__hint {
+  margin: 14px 0 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgb(var(--bp-fg) / 0.64);
+}
+
+@media screen and (max-width: 900px) {
+  .bp-atelier__layout {
+    grid-template-columns: 1fr;
+  }
+  .bp-atelier__stage {
+    max-width: 480px;
+    margin-inline: auto;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  /* Strip scorrevole, come la gallery */
+  .bp-atelier__swatches {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-block: 4px;
+  }
+  .bp-atelier__swatches::-webkit-scrollbar {
+    display: none;
+  }
+  .bp-atelier__swatch {
+    flex: 0 0 88px;
+    scroll-snap-align: start;
+  }
+}
+
+/* ============================================================
+   Noleggio — griglia capi
+   ============================================================ */
+.bp__garments {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(20px, 3.5vw, 48px);
+  margin-top: clamp(36px, 6vw, 64px);
+}
+
+.bp__garment {
+  margin: 0;
+}
+
+.bp__garment-media {
+  display: block;
+  overflow: hidden;
+  background: rgb(var(--bp-bone));
+}
+
+.bp__garment-media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) {
+  .bp__garment-media:hover img {
+    transform: scale(1.04);
+  }
+}
+
+.bp__garment figcaption {
+  padding-top: 1.1rem;
+}
+
+.bp__garment h3 {
+  font-family: 'Fraunces', var(--font-heading--family, serif);
+  font-weight: 300;
+  font-variation-settings: 'opsz' 72;
+  font-size: 1.45rem;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.5rem;
+}
+
+.bp__garment-taglie {
+  margin: 0.6rem 0 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgb(var(--bp-fg) / 0.64);
+}
+
+.bp__garment-cta {
+  display: inline-block;
+  margin-top: 0.9rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgb(var(--bp-fg));
+  text-decoration: none;
+  border-bottom: 1px solid rgb(var(--bp-gold));
+  padding-bottom: 0.2em;
+}
+
+.bp__garment-cta:hover {
+  color: rgb(var(--bp-gold));
+}
+
+@media screen and (max-width: 900px) {
+  .bp__garments {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin-inline: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bp-atelier__img,
+  .bp-atelier__swatch,
+  .bp__garment-media img {
+    transition: none;
+  }
+}
