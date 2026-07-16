@@ -988,31 +988,33 @@ a.bp__diptych-media img {
 }
 
 @media screen and (max-width: 900px) {
+  /* minmax(0,1fr), non 1fr: 1fr ha min-width auto e lascia sforare la
+     pagina in orizzontale se un figlio (i campioni) è più largo. */
   .bp-atelier__layout {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* i due elementi in colonna devono poter rimpicciolire sotto il loro
+     contenuto, altrimenti spingono il layout oltre lo schermo */
+  .bp-atelier__stage,
+  .bp-atelier__side {
+    min-width: 0;
   }
   .bp-atelier__stage {
-    max-width: 480px;
+    width: 100%;
+    max-width: 440px;
     margin-inline: auto;
+  }
+  /* Il manichino sopra, la scheda e i campioni sotto */
+  .bp-atelier__side {
+    margin-top: clamp(24px, 5vw, 36px);
   }
 }
 
 @media screen and (max-width: 640px) {
-  /* Strip scorrevole, come la gallery */
+  /* Niente striscia scorrevole: tutti i campioni visibili su due righe,
+     più grandi, così si apprezza il tessuto e non serve scorrere di lato */
   .bp-atelier__swatches {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x proximity;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding-block: 4px;
-  }
-  .bp-atelier__swatches::-webkit-scrollbar {
-    display: none;
-  }
-  .bp-atelier__swatch {
-    flex: 0 0 88px;
-    scroll-snap-align: start;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
