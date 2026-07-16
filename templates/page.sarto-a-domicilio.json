@@ -8,10 +8,10 @@
           "settings": {
             "categoria": "abiti",
             "nome": "Beige sabbia",
-            "composizione": "",
-            "peso": "",
-            "codice": "",
-            "descrizione": "Un tinta unita caldo e materico, perfetto per l’abito estivo. Scheda tecnica in arrivo.",
+            "composizione": "100% lino",
+            "peso": "250 g",
+            "codice": "Fordan 054-VL/1043",
+            "descrizione": "Un lino tinta unita caldo e materico, perfetto per l’abito estivo.",
             "img_campione": "tessuto-abito-1-a.jpg",
             "img_capo": "tessuto-abito-1-b.jpg"
           }
