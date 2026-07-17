@@ -47,7 +47,7 @@
 
 <section class="bp" data-bp-root>
   <!-- HERO -->
-  <header class="bp__hero">
+  <header class="bp__hero bp__hero--noleggio">
     <div class="bp__hero-media">
       {%- if s.hero_image != blank -%}
         {{ s.hero_image | image_url: width: 2400 | image_tag: widths: '900,1400,1900,2400', sizes: '100vw', fetchpriority: 'high' }}

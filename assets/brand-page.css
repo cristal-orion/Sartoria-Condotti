@@ -1091,6 +1091,18 @@ a.bp__diptych-media img {
   color: rgb(var(--bp-gold));
 }
 
+/* Hero Noleggio: foto orizzontale coi tre modelli. La inquadriamo
+   dall'alto e disattiviamo il parallax (che alza l'immagine) così le
+   teste restano con aria sopra e non vengono tagliate dall'header. */
+.bp__hero--noleggio .bp__hero-media {
+  inset: 0;
+  transform: none !important;
+}
+.bp__hero--noleggio .bp__hero-media img {
+  height: 100%;
+  object-position: center top;
+}
+
 @media screen and (max-width: 900px) {
   .bp__garments {
     grid-template-columns: 1fr;

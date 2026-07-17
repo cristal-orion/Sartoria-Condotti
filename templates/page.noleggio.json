@@ -32,7 +32,9 @@
         }
       },
       "block_order": ["frac", "smoking", "tight"],
-      "settings": {}
+      "settings": {
+        "hero_title": "Noleggio Abiti"
+      }
     }
   },
   "order": ["main"]
