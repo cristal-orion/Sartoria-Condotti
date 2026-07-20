@@ -987,6 +987,29 @@ a.bp__diptych-media img {
   color: rgb(var(--bp-fg) / 0.64);
 }
 
+/* Colletti e polsini: figure di riferimento, impilate subito sotto i campioni (solo camicie) */
+.bp-atelier__extra {
+  margin-top: clamp(22px, 3.5vw, 34px);
+  padding-top: clamp(20px, 3vw, 30px);
+  border-top: 1px solid rgb(var(--bp-fg) / 0.14);
+  display: grid;
+  gap: clamp(20px, 3vw, 30px);
+}
+
+.bp-atelier__extra-title {
+  margin: 0 0 14px;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgb(var(--bp-fg) / 0.64);
+}
+
+.bp-atelier__extra-img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 @media screen and (max-width: 900px) {
   /* minmax(0,1fr), non 1fr: 1fr ha min-width auto e lascia sforare la
      pagina in orizzontale se un figlio (i campioni) è più largo. */
