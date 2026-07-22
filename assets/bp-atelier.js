@@ -45,6 +45,64 @@
     });
 
     panels.forEach(initPanel);
+    initLightbox(root);
+  }
+
+  // --- Lightbox: ingrandimento delle foto di dettaglio (tipologie, colletti, pence...) ---
+  function initLightbox(root) {
+    // Il markup della lightbox è FUORI da [data-bp-atelier] (è un fratello, non un figlio):
+    // sta dentro [data-reveal], che dopo l'animazione GSAP resta con un transform inline
+    // e romperebbe il position:fixed. Si cerca quindi a partire dal genitore comune.
+    var scope = root.parentElement || document;
+    var lightbox = scope.querySelector('[data-at-lightbox]');
+    var triggers = Array.prototype.slice.call(root.querySelectorAll('[data-at-zoom]'));
+    if (!lightbox || !triggers.length) return;
+
+    // Spostata a fine <body>: da dentro [data-reveal] erediterebbe il transform
+    // che GSAP lascia sull'elemento dopo l'animazione, rompendo il position:fixed.
+    document.body.appendChild(lightbox);
+
+    var img = lightbox.querySelector('[data-at-lightbox-img]');
+    var closeBtn = lightbox.querySelector('[data-at-lightbox-close]');
+    var lastTrigger = null;
+
+    function open(trigger) {
+      lastTrigger = trigger;
+      img.src = trigger.getAttribute('data-zoom-src') || '';
+      img.alt = trigger.getAttribute('data-zoom-alt') || '';
+      lightbox.hidden = false;
+      void lightbox.offsetWidth; // forza il reflow: senza, la transizione di apertura non parte
+      lightbox.classList.add('is-open');
+      closeBtn.focus();
+    }
+
+    function close() {
+      if (!lightbox.classList.contains('is-open')) return;
+      lightbox.classList.remove('is-open');
+      lightbox.addEventListener(
+        'transitionend',
+        function () {
+          lightbox.hidden = true;
+          img.src = '';
+        },
+        { once: true }
+      );
+      if (lastTrigger) lastTrigger.focus();
+    }
+
+    triggers.forEach(function (trigger) {
+      trigger.addEventListener('click', function () {
+        open(trigger);
+      });
+    });
+
+    closeBtn.addEventListener('click', close);
+    lightbox.addEventListener('click', function (e) {
+      if (e.target === lightbox) close();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') close();
+    });
   }
 
   function initPanel(panel) {

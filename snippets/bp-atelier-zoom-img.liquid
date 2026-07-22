@@ -1,0 +1,10 @@
+{%- comment -%}
+  Immagine di dettaglio con pulsante di ingrandimento (lightbox), per l'Atelier dei Tessuti.
+  Uso: {% render 'bp-atelier-zoom-img', img: 'tessuto-camicia-colletti.jpg', alt: tessuti_colletti %}
+{%- endcomment -%}
+<button type="button" class="bp-atelier__extra-zoom" data-at-zoom data-zoom-src="{{ img | asset_url }}" data-zoom-alt="{{ alt | escape }}" aria-label="{{ 'brand.sarto_domicilio.tessuti_zoom' | t }}: {{ alt | escape }}">
+  <img class="bp-atelier__extra-img" src="{{ img | asset_url }}" width="1600" height="800" loading="lazy" alt="{{ alt | escape }}">
+  <span class="bp-atelier__extra-zoom-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M21 16v3a2 2 0 0 1-2 2h-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+  </span>
+</button>

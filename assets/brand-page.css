@@ -987,7 +987,7 @@ a.bp__diptych-media img {
   color: rgb(var(--bp-fg) / 0.64);
 }
 
-/* Colletti e polsini: figure di riferimento, impilate subito sotto i campioni (solo camicie) */
+/* Figure di riferimento (colletti/polsini, tipologie giacca, pence/bustino pantalone, larghezza cravatta), impilate subito sotto i campioni, per categoria */
 .bp-atelier__extra {
   margin-top: clamp(22px, 3.5vw, 34px);
   padding-top: clamp(20px, 3vw, 30px);
@@ -1004,10 +1004,106 @@ a.bp__diptych-media img {
   color: rgb(var(--bp-fg) / 0.64);
 }
 
+.bp-atelier__extra-zoom {
+  display: block;
+  position: relative;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.bp-atelier__extra-zoom:focus-visible {
+  outline: 2px solid rgb(var(--bp-gold));
+  outline-offset: 4px;
+}
+
 .bp-atelier__extra-img {
   display: block;
   width: 100%;
   height: auto;
+}
+
+.bp-atelier__extra-zoom-icon {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgb(var(--bp-ink) / 0.72);
+  color: rgb(var(--bp-cream));
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.bp-atelier__extra-zoom:hover .bp-atelier__extra-zoom-icon,
+.bp-atelier__extra-zoom:focus-visible .bp-atelier__extra-zoom-icon {
+  background: rgb(var(--bp-gold));
+  color: rgb(var(--bp-ink));
+  transform: scale(1.08);
+}
+
+/* Lightbox di ingrandimento: spostata a fine <body> via JS (bp-atelier.js) così
+   il position:fixed non eredita il transform che GSAP lascia sugli antenati [data-reveal]. */
+.bp-atelier__lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5vw;
+  background: rgb(var(--bp-cream) / 0.97);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease;
+}
+
+.bp-atelier__lightbox[hidden] {
+  display: none;
+}
+
+.bp-atelier__lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.bp-atelier__lightbox-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  box-shadow: 0 20px 60px rgb(0 0 0 / 0.5);
+}
+
+.bp-atelier__lightbox-close {
+  position: absolute;
+  top: clamp(16px, 3vw, 32px);
+  right: clamp(16px, 3vw, 32px);
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgb(var(--bp-ink) / 0.25);
+  background: rgb(var(--bp-cream));
+  color: rgb(var(--bp-ink));
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.bp-atelier__lightbox-close:hover,
+.bp-atelier__lightbox-close:focus-visible {
+  background: rgb(var(--bp-ink) / 0.08);
+  border-color: rgb(var(--bp-ink) / 0.55);
 }
 
 @media screen and (max-width: 900px) {

@@ -81,6 +81,84 @@
             "img_capo": "tessuto-abito-6-b.jpg"
           }
         },
+        "tessuto-giacca-1": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "giacche",
+            "nome": "Grigio perla",
+            "composizione": "100% lana vergine",
+            "peso": "230 g",
+            "codice": "Condotti 068-ATU/2386",
+            "descrizione": "Grigio perla luminoso, la base più versatile da abbinare a pantaloni scuri o chiari.",
+            "img_campione": "tessuto-giacca-1-a.jpg",
+            "img_capo": "tessuto-giacca-1-b.jpg"
+          }
+        },
+        "tessuto-giacca-2": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "giacche",
+            "nome": "Blu navy microarmatura",
+            "composizione": "100% lana vergine",
+            "peso": "240/250 g",
+            "codice": "Condotti 074-HV/232",
+            "descrizione": "Blu navy con microarmatura, elegante e discreto: la giacca doppio uso ufficio e tempo libero.",
+            "img_campione": "tessuto-giacca-2-a.jpg",
+            "img_capo": "tessuto-giacca-2-b.jpg"
+          }
+        },
+        "tessuto-giacca-3": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "giacche",
+            "nome": "Beige lino a spina",
+            "composizione": "100% lino",
+            "peso": "250/260 g",
+            "codice": "Condotti 080-SSL/2320",
+            "descrizione": "Lino Solaro a spina beige, leggero e materico: la giacca destrutturata per l’estate.",
+            "img_campione": "tessuto-giacca-3-a.jpg",
+            "img_capo": "tessuto-giacca-3-b.jpg"
+          }
+        },
+        "tessuto-giacca-4": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "giacche",
+            "nome": "Sabbia lino a spina",
+            "composizione": "100% lino",
+            "peso": "250/260 g",
+            "codice": "Condotti 054-VL/2440",
+            "descrizione": "Lino a spina sabbia, caldo e materico: la giacca informale di mezza stagione.",
+            "img_campione": "tessuto-giacca-4-a.jpg",
+            "img_capo": "tessuto-giacca-4-b.jpg"
+          }
+        },
+        "tessuto-giacca-5": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "giacche",
+            "nome": "Blu lino a spina",
+            "composizione": "100% lino",
+            "peso": "250/260 g",
+            "codice": "Condotti 080-SSL/2325",
+            "descrizione": "Lino Solaro a spina blu, fresco e luminoso: la giacca en pendant con i pantaloni chiari.",
+            "img_campione": "tessuto-giacca-5-a.jpg",
+            "img_capo": "tessuto-giacca-5-b.jpg"
+          }
+        },
+        "tessuto-giacca-6": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "giacche",
+            "nome": "Blu notte a spina",
+            "composizione": "100% lino",
+            "peso": "250/260 g",
+            "codice": "",
+            "descrizione": "Spina blu notte, il più profondo della linea Lino Solaro: sartoriale e versatile.",
+            "img_campione": "tessuto-giacca-6-a.jpg",
+            "img_capo": "tessuto-giacca-6-b.jpg"
+          }
+        },
         "tessuto-camicia-1": {
           "type": "tessuto",
           "settings": {
@@ -301,6 +379,19 @@
             "img_campione": "tessuto-cravatta-5-a.jpg",
             "img_capo": "tessuto-cravatta-5-b.jpg"
           }
+        },
+        "tessuto-cravatta-6": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "cravatte",
+            "nome": "Giallo ocra a fiori",
+            "composizione": "100% seta",
+            "peso": "",
+            "codice": "Condotti 06",
+            "descrizione": "Giallo ocra con micro-fiori bianchi e blu, una nota di colore per spezzare il completo scuro.",
+            "img_campione": "tessuto-cravatta-6-a.jpg",
+            "img_capo": "tessuto-cravatta-6-b.jpg"
+          }
         }
       },
       "block_order": [
@@ -310,6 +401,12 @@
         "tessuto-abito-4",
         "tessuto-abito-5",
         "tessuto-abito-6",
+        "tessuto-giacca-1",
+        "tessuto-giacca-2",
+        "tessuto-giacca-3",
+        "tessuto-giacca-4",
+        "tessuto-giacca-5",
+        "tessuto-giacca-6",
         "tessuto-camicia-1",
         "tessuto-camicia-2",
         "tessuto-camicia-3",
@@ -326,7 +423,8 @@
         "tessuto-cravatta-2",
         "tessuto-cravatta-3",
         "tessuto-cravatta-4",
-        "tessuto-cravatta-5"
+        "tessuto-cravatta-5",
+        "tessuto-cravatta-6"
       ],
       "settings": {
         "deposit_enabled": false,
