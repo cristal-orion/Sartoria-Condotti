@@ -398,10 +398,10 @@
           "settings": {
             "categoria": "smoking",
             "nome": "Nero",
-            "composizione": "",
-            "peso": "",
+            "composizione": "TASMANIA",
+            "peso": "140 gr",
             "codice": "",
-            "descrizione": "Il nero classico dello smoking, senza tempo per la serata più formale.",
+            "descrizione": "Il nero classico dello smoking, con revers in raso di seta: senza tempo per la serata più formale.",
             "img_campione": "tessuto-smoking-1-a.jpg",
             "img_capo": "tessuto-smoking-1-b.jpg"
           }
@@ -411,10 +411,10 @@
           "settings": {
             "categoria": "smoking",
             "nome": "Blu scuro",
-            "composizione": "",
-            "peso": "",
+            "composizione": "TASMANIA",
+            "peso": "140 gr",
             "codice": "",
-            "descrizione": "Blu scuro intenso, un'alternativa moderna al nero per lo smoking da sera.",
+            "descrizione": "Blu scuro intenso con revers in raso di seta, un'alternativa moderna al nero per lo smoking da sera.",
             "img_campione": "tessuto-smoking-2-a.jpg",
             "img_capo": "tessuto-smoking-2-b.jpg"
           }
@@ -424,10 +424,10 @@
           "settings": {
             "categoria": "smoking",
             "nome": "Bianco panna",
-            "composizione": "",
-            "peso": "",
+            "composizione": "TASMANIA",
+            "peso": "140 gr",
             "codice": "",
-            "descrizione": "Bianco panna, per lo smoking estivo o le cerimonie in riva al mare.",
+            "descrizione": "Bianco panna con revers in raso di seta, per lo smoking estivo o le cerimonie in riva al mare.",
             "img_campione": "tessuto-smoking-3-a.jpg",
             "img_capo": "tessuto-smoking-3-b.jpg"
           }
