@@ -392,6 +392,45 @@
             "img_campione": "tessuto-cravatta-6-a.jpg",
             "img_capo": "tessuto-cravatta-6-b.jpg"
           }
+        },
+        "tessuto-smoking-1": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "smoking",
+            "nome": "Nero",
+            "composizione": "",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Il nero classico dello smoking, senza tempo per la serata più formale.",
+            "img_campione": "tessuto-smoking-1-a.jpg",
+            "img_capo": "tessuto-smoking-1-b.jpg"
+          }
+        },
+        "tessuto-smoking-2": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "smoking",
+            "nome": "Blu scuro",
+            "composizione": "",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Blu scuro intenso, un'alternativa moderna al nero per lo smoking da sera.",
+            "img_campione": "tessuto-smoking-2-a.jpg",
+            "img_capo": "tessuto-smoking-2-b.jpg"
+          }
+        },
+        "tessuto-smoking-3": {
+          "type": "tessuto",
+          "settings": {
+            "categoria": "smoking",
+            "nome": "Bianco panna",
+            "composizione": "",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Bianco panna, per lo smoking estivo o le cerimonie in riva al mare.",
+            "img_campione": "tessuto-smoking-3-a.jpg",
+            "img_capo": "tessuto-smoking-3-b.jpg"
+          }
         }
       },
       "block_order": [
@@ -424,7 +463,10 @@
         "tessuto-cravatta-3",
         "tessuto-cravatta-4",
         "tessuto-cravatta-5",
-        "tessuto-cravatta-6"
+        "tessuto-cravatta-6",
+        "tessuto-smoking-1",
+        "tessuto-smoking-2",
+        "tessuto-smoking-3"
       ],
       "settings": {
         "deposit_enabled": false,

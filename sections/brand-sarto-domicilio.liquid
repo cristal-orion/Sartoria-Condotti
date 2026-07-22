@@ -30,6 +30,7 @@
   assign tessuti_tab_camicie = 'brand.sarto_domicilio.tessuti_tab_camicie' | t
   assign tessuti_tab_pantaloni = 'brand.sarto_domicilio.tessuti_tab_pantaloni' | t
   assign tessuti_tab_cravatte = 'brand.sarto_domicilio.tessuti_tab_cravatte' | t
+  assign tessuti_tab_smoking = 'brand.sarto_domicilio.tessuti_tab_smoking' | t
   assign tessuti_tabs_aria = 'brand.sarto_domicilio.tessuti_tabs_aria' | t
   assign tessuti_lbl_composizione = 'brand.sarto_domicilio.tessuti_lbl_composizione' | t
   assign tessuti_lbl_peso = 'brand.sarto_domicilio.tessuti_lbl_peso' | t
@@ -42,6 +43,7 @@
   assign tessuti_pantalone_pence = 'brand.sarto_domicilio.tessuti_pantalone_pence' | t
   assign tessuti_pantalone_bustino = 'brand.sarto_domicilio.tessuti_pantalone_bustino' | t
   assign tessuti_cravatta_larghezza = 'brand.sarto_domicilio.tessuti_cravatta_larghezza' | t
+  assign tessuti_smoking_rever = 'brand.sarto_domicilio.tessuti_smoking_rever' | t
 
   assign has_negozio = false
   if s.cal_link != blank and s.cal_link_negozio != blank
@@ -114,6 +116,7 @@
       assign at_camicie_count = 0
       assign at_pantaloni_count = 0
       assign at_cravatte_count = 0
+      assign at_smoking_count = 0
       for block in section.blocks
         if block.settings.categoria == 'giacche'
           assign at_giacche_count = at_giacche_count | plus: 1
@@ -123,11 +126,13 @@
           assign at_pantaloni_count = at_pantaloni_count | plus: 1
         elsif block.settings.categoria == 'cravatte'
           assign at_cravatte_count = at_cravatte_count | plus: 1
+        elsif block.settings.categoria == 'smoking'
+          assign at_smoking_count = at_smoking_count | plus: 1
         else
           assign at_abiti_count = at_abiti_count | plus: 1
         endif
       endfor
-      assign at_cats = 'abiti,giacche,camicie,pantaloni,cravatte' | split: ','
+      assign at_cats = 'abiti,giacche,camicie,pantaloni,cravatte,smoking' | split: ','
     -%}
     <span class="bp__stitch bp__wrap" aria-hidden="true">
       <svg viewBox="0 0 1000 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="1000" y2="1" stroke="currentColor" stroke-width="1.4" stroke-dasharray="7 5" vector-effect="non-scaling-stroke"/></svg>
@@ -149,6 +154,7 @@
             {%- if cat == 'camicie' and at_camicie_count == 0 -%}{%- continue -%}{%- endif -%}
             {%- if cat == 'pantaloni' and at_pantaloni_count == 0 -%}{%- continue -%}{%- endif -%}
             {%- if cat == 'cravatte' and at_cravatte_count == 0 -%}{%- continue -%}{%- endif -%}
+            {%- if cat == 'smoking' and at_smoking_count == 0 -%}{%- continue -%}{%- endif -%}
             <button type="button"
                     class="bp-atelier__tab{% if at_first_tab %} is-active{% endif %}"
                     id="at-tab-{{ cat }}-{{ section.id }}"
@@ -157,7 +163,7 @@
                     aria-controls="at-panel-{{ cat }}-{{ section.id }}"
                     {% unless at_first_tab %}tabindex="-1"{% endunless %}
                     data-at-tab="{{ cat }}">
-              {%- if cat == 'abiti' -%}{{ tessuti_tab_abiti }}{%- elsif cat == 'giacche' -%}{{ tessuti_tab_giacche }}{%- elsif cat == 'camicie' -%}{{ tessuti_tab_camicie }}{%- elsif cat == 'pantaloni' -%}{{ tessuti_tab_pantaloni }}{%- else -%}{{ tessuti_tab_cravatte }}{%- endif -%}
+              {%- if cat == 'abiti' -%}{{ tessuti_tab_abiti }}{%- elsif cat == 'giacche' -%}{{ tessuti_tab_giacche }}{%- elsif cat == 'camicie' -%}{{ tessuti_tab_camicie }}{%- elsif cat == 'pantaloni' -%}{{ tessuti_tab_pantaloni }}{%- elsif cat == 'cravatte' -%}{{ tessuti_tab_cravatte }}{%- else -%}{{ tessuti_tab_smoking }}{%- endif -%}
             </button>
             {%- assign at_first_tab = false -%}
           {%- endfor -%}
@@ -170,6 +176,7 @@
           {%- if cat == 'camicie' and at_camicie_count == 0 -%}{%- continue -%}{%- endif -%}
           {%- if cat == 'pantaloni' and at_pantaloni_count == 0 -%}{%- continue -%}{%- endif -%}
           {%- if cat == 'cravatte' and at_cravatte_count == 0 -%}{%- continue -%}{%- endif -%}
+          {%- if cat == 'smoking' and at_smoking_count == 0 -%}{%- continue -%}{%- endif -%}
           <div class="bp-atelier__panel"
                id="at-panel-{{ cat }}-{{ section.id }}"
                role="tabpanel"
@@ -278,6 +285,14 @@
                     <div class="bp-atelier__extra-group">
                       <p class="bp-atelier__extra-title">{{ tessuti_cravatta_larghezza }}</p>
                       {%- render 'bp-atelier-zoom-img', img: 'tessuto-cravatta-larghezza.jpg', alt: tessuti_cravatta_larghezza -%}
+                    </div>
+                  </div>
+                {%- endif -%}
+                {%- if cat == 'smoking' -%}
+                  <div class="bp-atelier__extra">
+                    <div class="bp-atelier__extra-group">
+                      <p class="bp-atelier__extra-title">{{ tessuti_smoking_rever }}</p>
+                      {%- render 'bp-atelier-zoom-img', img: 'tessuto-smoking-rever.jpg', alt: tessuti_smoking_rever -%}
                     </div>
                   </div>
                 {%- endif -%}
@@ -556,7 +571,8 @@
             { "value": "giacche", "label": "Giacche" },
             { "value": "camicie", "label": "Camicie" },
             { "value": "pantaloni", "label": "Pantaloni" },
-            { "value": "cravatte", "label": "Cravatte" }
+            { "value": "cravatte", "label": "Cravatte" },
+            { "value": "smoking", "label": "Smoking" }
           ],
           "default": "abiti"
         },
