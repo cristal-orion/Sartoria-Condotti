@@ -209,7 +209,11 @@
                 <div class="bp-atelier__extra">
                   <div class="bp-atelier__extra-group">
                     <p class="bp-atelier__extra-title">{{ tessuti_giacca_tipologie }}</p>
-                    {%- render 'bp-atelier-zoom-img', img: 'tessuto-giacca-tipologie.jpg', alt: tessuti_giacca_tipologie -%}
+                    {%- if stagione == 'inverno' -%}
+                      {%- render 'bp-atelier-zoom-img', img: 'tessuto-giacca-inverno-tipologie.jpg', alt: tessuti_giacca_tipologie -%}
+                    {%- else -%}
+                      {%- render 'bp-atelier-zoom-img', img: 'tessuto-giacca-tipologie.jpg', alt: tessuti_giacca_tipologie -%}
+                    {%- endif -%}
                   </div>
                 </div>
               {%- endif -%}
@@ -217,11 +221,19 @@
                 <div class="bp-atelier__extra">
                   <div class="bp-atelier__extra-group">
                     <p class="bp-atelier__extra-title">{{ tessuti_colletti }}</p>
-                    {%- render 'bp-atelier-zoom-img', img: 'tessuto-camicia-colletti.jpg', alt: tessuti_colletti -%}
+                    {%- if stagione == 'inverno' -%}
+                      {%- render 'bp-atelier-zoom-img', img: 'tessuto-camicia-inverno-colletti.jpg', alt: tessuti_colletti -%}
+                    {%- else -%}
+                      {%- render 'bp-atelier-zoom-img', img: 'tessuto-camicia-colletti.jpg', alt: tessuti_colletti -%}
+                    {%- endif -%}
                   </div>
                   <div class="bp-atelier__extra-group">
                     <p class="bp-atelier__extra-title">{{ tessuti_polsini }}</p>
-                    {%- render 'bp-atelier-zoom-img', img: 'tessuto-camicia-polsini.jpg', alt: tessuti_polsini -%}
+                    {%- if stagione == 'inverno' -%}
+                      {%- render 'bp-atelier-zoom-img', img: 'tessuto-camicia-inverno-polsini.jpg', alt: tessuti_polsini -%}
+                    {%- else -%}
+                      {%- render 'bp-atelier-zoom-img', img: 'tessuto-camicia-polsini.jpg', alt: tessuti_polsini -%}
+                    {%- endif -%}
                   </div>
                 </div>
               {%- endif -%}
@@ -229,11 +241,19 @@
                 <div class="bp-atelier__extra">
                   <div class="bp-atelier__extra-group">
                     <p class="bp-atelier__extra-title">{{ tessuti_pantalone_pence }}</p>
-                    {%- render 'bp-atelier-zoom-img', img: 'tessuto-pantalone-pence.jpg', alt: tessuti_pantalone_pence -%}
+                    {%- if stagione == 'inverno' -%}
+                      {%- render 'bp-atelier-zoom-img', img: 'tessuto-pantalone-inverno-pence.jpg', alt: tessuti_pantalone_pence -%}
+                    {%- else -%}
+                      {%- render 'bp-atelier-zoom-img', img: 'tessuto-pantalone-pence.jpg', alt: tessuti_pantalone_pence -%}
+                    {%- endif -%}
                   </div>
                   <div class="bp-atelier__extra-group">
                     <p class="bp-atelier__extra-title">{{ tessuti_pantalone_bustino }}</p>
-                    {%- render 'bp-atelier-zoom-img', img: 'tessuto-pantalone-bustino.jpg', alt: tessuti_pantalone_bustino -%}
+                    {%- if stagione == 'inverno' -%}
+                      {%- render 'bp-atelier-zoom-img', img: 'tessuto-pantalone-inverno-bustino.jpg', alt: tessuti_pantalone_bustino -%}
+                    {%- else -%}
+                      {%- render 'bp-atelier-zoom-img', img: 'tessuto-pantalone-bustino.jpg', alt: tessuti_pantalone_bustino -%}
+                    {%- endif -%}
                   </div>
                 </div>
               {%- endif -%}

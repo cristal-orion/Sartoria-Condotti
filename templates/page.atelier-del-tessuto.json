@@ -641,6 +641,258 @@
             "img_campione": "tessuto-abito-inverno-6-a.jpg",
             "img_capo": "tessuto-abito-inverno-6-b.jpg"
           }
+        },
+        "tessuto-giacca-inverno-1": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "giacche",
+            "nome": "Grigio-azzurro",
+            "composizione": "100% lana",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Grigio-azzurro luminoso in pura lana, la giacca invernale più versatile da abbinare a pantaloni scuri o chiari.",
+            "img_campione": "tessuto-giacca-inverno-1-a.jpg",
+            "img_capo": "tessuto-giacca-inverno-1-b.jpg"
+          }
+        },
+        "tessuto-giacca-inverno-2": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "giacche",
+            "nome": "Principe di Galles rosso",
+            "composizione": "100% lana",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Principe di Galles grigio percorso da un filo rosso: un classico british dal carattere deciso.",
+            "img_campione": "tessuto-giacca-inverno-2-a.jpg",
+            "img_capo": "tessuto-giacca-inverno-2-b.jpg"
+          }
+        },
+        "tessuto-giacca-inverno-3": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "giacche",
+            "nome": "Cammello finestrato",
+            "composizione": "100% lana",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Cammello caldo con finestrato azzurro, una giacca sartoriale che spezza con eleganza i toni scuri dell'inverno.",
+            "img_campione": "tessuto-giacca-inverno-3-a.jpg",
+            "img_capo": "tessuto-giacca-inverno-3-b.jpg"
+          }
+        },
+        "tessuto-giacca-inverno-4": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "giacche",
+            "nome": "Tortora cashmere",
+            "composizione": "100% cashmere",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Puro cashmere tortora, morbidissimo al tatto: il massimo del comfort e della raffinatezza per la stagione fredda.",
+            "img_campione": "tessuto-giacca-inverno-4-a.jpg",
+            "img_capo": "tessuto-giacca-inverno-4-b.jpg"
+          }
+        },
+        "tessuto-giacca-inverno-5": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "giacche",
+            "nome": "Grigio antracite",
+            "composizione": "Lana e cashmere",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Antracite profondo in lana e cashmere, calda e avvolgente: la giacca elegante per ogni occasione invernale.",
+            "img_campione": "tessuto-giacca-inverno-5-a.jpg",
+            "img_capo": "tessuto-giacca-inverno-5-b.jpg"
+          }
+        },
+        "tessuto-giacca-inverno-6": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "giacche",
+            "nome": "Panna",
+            "composizione": "Velluto, cashmere e seta",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Panna luminoso in una mano preziosa di velluto, cashmere e seta: una giacca dal tocco morbido e materico.",
+            "img_campione": "tessuto-giacca-inverno-6-a.jpg",
+            "img_capo": "tessuto-giacca-inverno-6-b.jpg"
+          }
+        },
+        "tessuto-camicia-inverno-1": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "camicie",
+            "nome": "Quadri beige",
+            "composizione": "Flanella di cotone e lana",
+            "peso": "160/170 g",
+            "codice": "",
+            "descrizione": "Flanella morbida a quadri beige e grigio, calda e leggera: la camicia informale dell'inverno.",
+            "img_campione": "tessuto-camicia-inverno-1-a.jpg",
+            "img_capo": "tessuto-camicia-inverno-1-b.jpg"
+          }
+        },
+        "tessuto-camicia-inverno-2": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "camicie",
+            "nome": "Quadri verde salvia",
+            "composizione": "Flanella di cotone e lana",
+            "peso": "160/170 g",
+            "codice": "",
+            "descrizione": "Flanella a quadri verde salvia, un colore naturale e rilassato per i mesi freddi.",
+            "img_campione": "tessuto-camicia-inverno-2-a.jpg",
+            "img_capo": "tessuto-camicia-inverno-2-b.jpg"
+          }
+        },
+        "tessuto-camicia-inverno-3": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "camicie",
+            "nome": "Quadretti bordeaux e blu",
+            "composizione": "100% flanella di cotone",
+            "peso": "180 g",
+            "codice": "",
+            "descrizione": "Piccoli quadretti bordeaux e blu su fondo chiaro, una flanella di puro cotone dal gusto rétro.",
+            "img_campione": "tessuto-camicia-inverno-3-a.jpg",
+            "img_capo": "tessuto-camicia-inverno-3-b.jpg"
+          }
+        },
+        "tessuto-camicia-inverno-4": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "camicie",
+            "nome": "Quadri blu navy",
+            "composizione": "100% flanella di cotone",
+            "peso": "180 g",
+            "codice": "",
+            "descrizione": "Quadri blu navy e bianco in flanella di cotone, calda e avvolgente per il tempo libero invernale.",
+            "img_campione": "tessuto-camicia-inverno-4-a.jpg",
+            "img_capo": "tessuto-camicia-inverno-4-b.jpg"
+          }
+        },
+        "tessuto-camicia-inverno-5": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "camicie",
+            "nome": "Velluto tortora",
+            "composizione": "100% velluto di cotone",
+            "peso": "180 g",
+            "codice": "",
+            "descrizione": "Velluto di cotone tortora tinta unita, morbido e caldo: una camicia dal sapore materico.",
+            "img_campione": "tessuto-camicia-inverno-5-a.jpg",
+            "img_capo": "tessuto-camicia-inverno-5-b.jpg"
+          }
+        },
+        "tessuto-camicia-inverno-6": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "camicie",
+            "nome": "Velluto bordeaux",
+            "composizione": "100% velluto di cotone",
+            "peso": "180 g",
+            "codice": "",
+            "descrizione": "Velluto di cotone bordeaux tinta unita, profondo ed elegante: perfetto per le serate d'inverno.",
+            "img_campione": "tessuto-camicia-inverno-6-a.jpg",
+            "img_capo": "tessuto-camicia-inverno-6-b.jpg"
+          }
+        },
+        "tessuto-pantalone-inverno-1": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "pantaloni",
+            "nome": "Grigio Principe di Galles",
+            "composizione": "Flanella di lana",
+            "peso": "340 g",
+            "codice": "",
+            "descrizione": "Flanella di lana grigia a Principe di Galles, pesante e calda: il pantalone invernale per eccellenza.",
+            "img_campione": "tessuto-pantalone-inverno-1-a.jpg",
+            "img_capo": "tessuto-pantalone-inverno-1-b.jpg"
+          }
+        },
+        "tessuto-pantalone-inverno-2": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "pantaloni",
+            "nome": "Marrone Principe di Galles",
+            "composizione": "Flanella di lana",
+            "peso": "320 g",
+            "codice": "",
+            "descrizione": "Principe di Galles nei toni del marrone, una flanella di lana dal carattere caldo e sartoriale.",
+            "img_campione": "tessuto-pantalone-inverno-2-a.jpg",
+            "img_capo": "tessuto-pantalone-inverno-2-b.jpg"
+          }
+        },
+        "tessuto-pantalone-inverno-3": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "pantaloni",
+            "nome": "Sabbia",
+            "composizione": "Twill Cavalry di lana",
+            "peso": "350 g",
+            "codice": "",
+            "descrizione": "Twill Cavalry di lana color sabbia, robusto e dalla mano asciutta: il pantalone strutturato dell'inverno.",
+            "img_campione": "tessuto-pantalone-inverno-3-a.jpg",
+            "img_capo": "tessuto-pantalone-inverno-3-b.jpg"
+          }
+        },
+        "tessuto-pantalone-inverno-4": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "pantaloni",
+            "nome": "Grigio antracite",
+            "composizione": "Twill Cavalry di lana",
+            "peso": "350 g",
+            "codice": "",
+            "descrizione": "Twill Cavalry di lana antracite, compatto ed elegante: si abbina a ogni giacca scura.",
+            "img_campione": "tessuto-pantalone-inverno-4-a.jpg",
+            "img_capo": "tessuto-pantalone-inverno-4-b.jpg"
+          }
+        },
+        "tessuto-pantalone-inverno-5": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "pantaloni",
+            "nome": "Velluto cognac",
+            "composizione": "Velluto di cotone a coste",
+            "peso": "180 g",
+            "codice": "",
+            "descrizione": "Velluto di cotone a coste color cognac, caldo e materico: il pantalone informale della stagione fredda.",
+            "img_campione": "tessuto-pantalone-inverno-5-a.jpg",
+            "img_capo": "tessuto-pantalone-inverno-5-b.jpg"
+          }
+        },
+        "tessuto-pantalone-inverno-6": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "pantaloni",
+            "nome": "Velluto testa di moro",
+            "composizione": "Velluto di cotone a coste",
+            "peso": "180 g",
+            "codice": "",
+            "descrizione": "Velluto di cotone a coste testa di moro, profondo e avvolgente per l'inverno.",
+            "img_campione": "tessuto-pantalone-inverno-6-a.jpg",
+            "img_capo": "tessuto-pantalone-inverno-6-b.jpg"
+          }
         }
       },
       "block_order": [
@@ -688,7 +940,25 @@
         "tessuto-abito-inverno-3",
         "tessuto-abito-inverno-4",
         "tessuto-abito-inverno-5",
-        "tessuto-abito-inverno-6"
+        "tessuto-abito-inverno-6",
+        "tessuto-giacca-inverno-1",
+        "tessuto-giacca-inverno-2",
+        "tessuto-giacca-inverno-3",
+        "tessuto-giacca-inverno-4",
+        "tessuto-giacca-inverno-5",
+        "tessuto-giacca-inverno-6",
+        "tessuto-camicia-inverno-1",
+        "tessuto-camicia-inverno-2",
+        "tessuto-camicia-inverno-3",
+        "tessuto-camicia-inverno-4",
+        "tessuto-camicia-inverno-5",
+        "tessuto-camicia-inverno-6",
+        "tessuto-pantalone-inverno-1",
+        "tessuto-pantalone-inverno-2",
+        "tessuto-pantalone-inverno-3",
+        "tessuto-pantalone-inverno-4",
+        "tessuto-pantalone-inverno-5",
+        "tessuto-pantalone-inverno-6"
       ],
       "settings": {
         "eyebrow": "",
