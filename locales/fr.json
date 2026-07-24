@@ -172,6 +172,8 @@
       "tessuti_cravatta_larghezza": "Largeur",
       "tessuti_tab_smoking": "Smoking",
       "tessuti_smoking_rever": "Types de revers",
+      "tessuti_tab_scarpe": "Chaussures",
+      "tessuti_scarpa_modelli": "Modèles de chaussure",
       "tessuti_zoom": "Agrandir",
       "tessuti_zoom_close": "Fermer",
       "tessuti_tabs_aria": "Catégories de tissus",
@@ -180,6 +182,19 @@
       "tessuti_lbl_codice": "Lainier / code",
       "tessuti_swatches_aria": "Échantillons de tissu",
       "tessuti_hint": "Touchez un échantillon pour voir le vêtement"
+    },
+    "atelier_tessuto": {
+      "eyebrow": "Sartoria Condotti",
+      "hero_sub": "Chaque tissu raconte une saison. Choisissez la bonne pour découvrir les échantillons et voir le costume qui en naît.",
+      "season_estate_eyebrow": "Collection",
+      "season_estate_title": "Printemps — Été",
+      "season_estate_sub": "Lins, cotons et tissus légers pour les mois chauds.",
+      "season_estate_cta": "Découvrir les tissus",
+      "season_inverno_eyebrow": "Collection",
+      "season_inverno_title": "Automne — Hiver",
+      "season_inverno_sub": "Laines, flanelles et tissus plus lourds pour la saison froide.",
+      "season_inverno_cta": "Découvrir les tissus",
+      "change_season": "Changer de saison"
     },
     "noleggio": {
       "eyebrow": "Sartoria Condotti",

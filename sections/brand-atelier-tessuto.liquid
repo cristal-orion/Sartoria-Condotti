@@ -1,0 +1,162 @@
+{%- liquid
+  assign s = section.settings
+  assign eyebrow = 'brand.atelier_tessuto.eyebrow' | t
+  assign eyebrow = s.eyebrow | default: eyebrow
+  assign hero_title = s.hero_title | default: 'Atelier del Tessuto'
+
+  assign season_estate_eyebrow = 'brand.atelier_tessuto.season_estate_eyebrow' | t
+  assign season_estate_eyebrow = s.season_estate_eyebrow | default: season_estate_eyebrow
+  assign season_estate_title = 'brand.atelier_tessuto.season_estate_title' | t
+  assign season_estate_title = s.season_estate_title | default: season_estate_title
+  assign season_estate_sub = 'brand.atelier_tessuto.season_estate_sub' | t
+  assign season_estate_sub = s.season_estate_sub | default: season_estate_sub
+
+  assign season_inverno_eyebrow = 'brand.atelier_tessuto.season_inverno_eyebrow' | t
+  assign season_inverno_eyebrow = s.season_inverno_eyebrow | default: season_inverno_eyebrow
+  assign season_inverno_title = 'brand.atelier_tessuto.season_inverno_title' | t
+  assign season_inverno_title = s.season_inverno_title | default: season_inverno_title
+  assign season_inverno_sub = 'brand.atelier_tessuto.season_inverno_sub' | t
+  assign season_inverno_sub = s.season_inverno_sub | default: season_inverno_sub
+
+  # Inquadratura foto (regolabile dal personalizzatore): zoom = moltiplicatore, posizione = % del punto messo a fuoco
+  assign estate_zoom = s.season_estate_zoom | default: 140 | divided_by: 100.0
+  assign estate_x = s.season_estate_pos_x | default: 32
+  assign estate_y = s.season_estate_pos_y | default: 60
+  assign inverno_zoom = s.season_inverno_zoom | default: 100 | divided_by: 100.0
+  assign inverno_x = s.season_inverno_pos_x | default: 50
+  assign inverno_y = s.season_inverno_pos_y | default: 50
+-%}
+
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&display=swap">
+{{ 'brand-page.css' | asset_url | stylesheet_tag }}
+
+<section class="bp" data-bp-root>
+  <!-- SELETTORE STAGIONE: bloccante finche' non si sceglie -->
+  <div class="at-gate" data-at-gate>
+    <div class="at-gate__head bp__wrap">
+      <p class="bp__eyebrow">{{ eyebrow }}</p>
+      <h1 class="bp__display at-gate__title">{{ hero_title }}</h1>
+    </div>
+    <div class="at-seasons" data-at-seasons>
+      <button type="button" class="at-season" data-at-season-choice="estate">
+        <span class="at-season__media" style="--at-zoom: {{ estate_zoom }}; --at-focal-x: {{ estate_x }}%; --at-focal-y: {{ estate_y }}%;">
+          {%- if s.season_estate_image != blank -%}
+            {{ s.season_estate_image | image_url: width: 1600 | image_tag: widths: '600,900,1200,1600', sizes: '(min-width: 900px) 50vw, 100vw', loading: 'lazy' }}
+          {%- else -%}
+            <img src="{{ 'atelier-tessuto-hero-estate.jpg' | asset_url }}" width="1024" height="1536" loading="lazy" alt="">
+          {%- endif -%}
+        </span>
+        <span class="at-season__overlay" aria-hidden="true"></span>
+        <span class="at-season__content">
+          <span class="at-season__eyebrow">{{ season_estate_eyebrow }}</span>
+          <span class="at-season__title">{{ season_estate_title }}</span>
+          <span class="at-season__sub">{{ season_estate_sub }}</span>
+        </span>
+      </button>
+      <button type="button" class="at-season" data-at-season-choice="inverno">
+        <span class="at-season__media" style="--at-zoom: {{ inverno_zoom }}; --at-focal-x: {{ inverno_x }}%; --at-focal-y: {{ inverno_y }}%;">
+          {%- if s.season_inverno_image != blank -%}
+            {{ s.season_inverno_image | image_url: width: 1600 | image_tag: widths: '600,900,1200,1600', sizes: '(min-width: 900px) 50vw, 100vw', loading: 'lazy' }}
+          {%- else -%}
+            <img src="{{ 'atelier-tessuto-hero-inverno.jpg' | asset_url }}" width="1024" height="1536" loading="lazy" alt="">
+          {%- endif -%}
+        </span>
+        <span class="at-season__overlay" aria-hidden="true"></span>
+        <span class="at-season__content">
+          <span class="at-season__eyebrow">{{ season_inverno_eyebrow }}</span>
+          <span class="at-season__title">{{ season_inverno_title }}</span>
+          <span class="at-season__sub">{{ season_inverno_sub }}</span>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  {%- render 'bp-atelier-season', section: section, stagione: 'estate' -%}
+  {%- render 'bp-atelier-season', section: section, stagione: 'inverno' -%}
+
+  <div class="bp-atelier__lightbox" data-at-lightbox hidden>
+    <button type="button" class="bp-atelier__lightbox-close" data-at-lightbox-close aria-label="{{ 'brand.sarto_domicilio.tessuti_zoom_close' | t | escape }}">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+    <img class="bp-atelier__lightbox-img" data-at-lightbox-img src="" alt="">
+  </div>
+</section>
+
+<script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
+<script src="{{ 'ScrollTrigger.min.js' | asset_url }}" defer></script>
+<script src="{{ 'brand-page.js' | asset_url }}" defer></script>
+<script src="{{ 'bp-atelier.js' | asset_url }}" defer></script>
+<script src="{{ 'atelier-tessuto-gate.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Brand · Atelier Tessuto",
+  "tag": "section",
+  "class": "brand-page-section",
+  "settings": [
+    { "type": "header", "content": "Testata" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "info": "Vuoto = usa la traduzione." },
+    { "type": "text", "id": "hero_title", "label": "Titolo", "default": "Atelier del Tessuto" },
+    { "type": "header", "content": "Selettore stagione — Primavera/Estate" },
+    { "type": "image_picker", "id": "season_estate_image", "label": "Immagine", "info": "Vuoto = usa la foto caricata di default." },
+    { "type": "range", "id": "season_estate_zoom", "min": 100, "max": 220, "step": 5, "unit": "%", "label": "Zoom foto", "default": 140 },
+    { "type": "range", "id": "season_estate_pos_x", "min": 0, "max": 100, "step": 1, "unit": "%", "label": "Posizione orizzontale", "default": 32, "info": "0 = sinistra, 100 = destra." },
+    { "type": "range", "id": "season_estate_pos_y", "min": 0, "max": 100, "step": 1, "unit": "%", "label": "Posizione verticale", "default": 60, "info": "0 = alto, 100 = basso." },
+    { "type": "text", "id": "season_estate_eyebrow", "label": "Eyebrow", "info": "Vuoto = usa la traduzione." },
+    { "type": "text", "id": "season_estate_title", "label": "Titolo", "info": "Vuoto = usa la traduzione." },
+    { "type": "textarea", "id": "season_estate_sub", "label": "Sottotitolo", "info": "Vuoto = usa la traduzione." },
+    { "type": "header", "content": "Selettore stagione — Autunno/Inverno" },
+    { "type": "image_picker", "id": "season_inverno_image", "label": "Immagine", "info": "Vuoto = usa la foto caricata di default." },
+    { "type": "range", "id": "season_inverno_zoom", "min": 100, "max": 220, "step": 5, "unit": "%", "label": "Zoom foto", "default": 100 },
+    { "type": "range", "id": "season_inverno_pos_x", "min": 0, "max": 100, "step": 1, "unit": "%", "label": "Posizione orizzontale", "default": 50, "info": "0 = sinistra, 100 = destra." },
+    { "type": "range", "id": "season_inverno_pos_y", "min": 0, "max": 100, "step": 1, "unit": "%", "label": "Posizione verticale", "default": 50, "info": "0 = alto, 100 = basso." },
+    { "type": "text", "id": "season_inverno_eyebrow", "label": "Eyebrow", "info": "Vuoto = usa la traduzione." },
+    { "type": "text", "id": "season_inverno_title", "label": "Titolo", "info": "Vuoto = usa la traduzione." },
+    { "type": "textarea", "id": "season_inverno_sub", "label": "Sottotitolo", "info": "Vuoto = usa la traduzione." },
+    { "type": "header", "content": "Atelier", "info": "I tessuti si gestiscono con i blocchi della sezione: ogni blocco ha una categoria E una stagione." }
+  ],
+  "blocks": [
+    {
+      "type": "tessuto",
+      "name": "Tessuto",
+      "settings": [
+        {
+          "type": "select",
+          "id": "stagione",
+          "label": "Stagione",
+          "options": [
+            { "value": "estate", "label": "Primavera / Estate" },
+            { "value": "inverno", "label": "Autunno / Inverno" }
+          ],
+          "default": "estate"
+        },
+        {
+          "type": "select",
+          "id": "categoria",
+          "label": "Categoria",
+          "options": [
+            { "value": "abiti", "label": "Abiti" },
+            { "value": "giacche", "label": "Giacche" },
+            { "value": "camicie", "label": "Camicie" },
+            { "value": "pantaloni", "label": "Pantaloni" },
+            { "value": "cravatte", "label": "Cravatte" },
+            { "value": "smoking", "label": "Smoking" },
+            { "value": "scarpe", "label": "Scarpe" }
+          ],
+          "default": "abiti"
+        },
+        { "type": "text", "id": "nome", "label": "Nome tessuto", "default": "Tessuto" },
+        { "type": "text", "id": "composizione", "label": "Composizione", "info": "Es. 100% flanella. Vuoto = riga non mostrata." },
+        { "type": "text", "id": "peso", "label": "Grammatura", "info": "Vuoto = riga non mostrata." },
+        { "type": "text", "id": "codice", "label": "Lanificio / codice", "info": "Vuoto = riga non mostrata." },
+        { "type": "textarea", "id": "descrizione", "label": "Descrizione" },
+        { "type": "text", "id": "img_campione", "label": "Foto campione (file in assets)", "info": "Nome file, es. tessuto-abito-inverno-1-a.jpg" },
+        { "type": "text", "id": "img_capo", "label": "Foto capo realizzato (file in assets)", "info": "Nome file, es. tessuto-abito-inverno-1-b.jpg" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Brand · Atelier Tessuto" }]
+}
+{% endschema %}

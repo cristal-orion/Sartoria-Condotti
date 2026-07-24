@@ -1,0 +1,714 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "brand-atelier-tessuto",
+      "blocks": {
+        "tessuto-abito-1": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "abiti",
+            "nome": "Beige sabbia",
+            "composizione": "100% lino",
+            "peso": "250 g",
+            "codice": "Condotti 054-VL/1043",
+            "descrizione": "Un lino tinta unita caldo e materico, perfetto per l’abito estivo.",
+            "img_campione": "tessuto-abito-1-a.jpg",
+            "img_capo": "tessuto-abito-1-b.jpg"
+          }
+        },
+        "tessuto-abito-2": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "abiti",
+            "nome": "Bordeaux lana e seta",
+            "composizione": "77% lana, 14% seta, 9% lino",
+            "peso": "210 g",
+            "codice": "Condotti 090-WSL/2421 · Vitale Barberis Canonico",
+            "descrizione": "",
+            "img_campione": "tessuto-abito-2-a.jpg",
+            "img_capo": "tessuto-abito-2-b.jpg"
+          }
+        },
+        "tessuto-abito-3": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "abiti",
+            "nome": "Azzurro lino",
+            "composizione": "100% lino",
+            "peso": "250 g",
+            "codice": "Condotti 054-VL/2295",
+            "descrizione": "",
+            "img_campione": "tessuto-abito-3-a.jpg",
+            "img_capo": "tessuto-abito-3-b.jpg"
+          }
+        },
+        "tessuto-abito-4": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "abiti",
+            "nome": "Principe di Galles",
+            "composizione": "100% lana Super 140’s",
+            "peso": "260 g",
+            "codice": "Condotti 076-WXF/1372",
+            "descrizione": "",
+            "img_campione": "tessuto-abito-4-a.jpg",
+            "img_capo": "tessuto-abito-4-b.jpg"
+          }
+        },
+        "tessuto-abito-5": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "abiti",
+            "nome": "Tortora finestrato",
+            "composizione": "91% lana, 8% poliammide, 1% elastan",
+            "peso": "230/240 g",
+            "codice": "Condotti 072-TA/1989",
+            "descrizione": "",
+            "img_campione": "tessuto-abito-5-a.jpg",
+            "img_capo": "tessuto-abito-5-b.jpg"
+          }
+        },
+        "tessuto-abito-6": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "abiti",
+            "nome": "Blu gessato",
+            "composizione": "100% lana Super 130’s",
+            "peso": "240/250 g",
+            "codice": "Condotti 072-QF/2334",
+            "descrizione": "",
+            "img_campione": "tessuto-abito-6-a.jpg",
+            "img_capo": "tessuto-abito-6-b.jpg"
+          }
+        },
+        "tessuto-giacca-1": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "giacche",
+            "nome": "Grigio perla",
+            "composizione": "100% lana vergine",
+            "peso": "230 g",
+            "codice": "Condotti 068-ATU/2386",
+            "descrizione": "Grigio perla luminoso, la base più versatile da abbinare a pantaloni scuri o chiari.",
+            "img_campione": "tessuto-giacca-1-a.jpg",
+            "img_capo": "tessuto-giacca-1-b.jpg"
+          }
+        },
+        "tessuto-giacca-2": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "giacche",
+            "nome": "Blu navy microarmatura",
+            "composizione": "100% lana vergine",
+            "peso": "240/250 g",
+            "codice": "Condotti 074-HV/232",
+            "descrizione": "Blu navy con microarmatura, elegante e discreto: la giacca doppio uso ufficio e tempo libero.",
+            "img_campione": "tessuto-giacca-2-a.jpg",
+            "img_capo": "tessuto-giacca-2-b.jpg"
+          }
+        },
+        "tessuto-giacca-3": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "giacche",
+            "nome": "Beige lino a spina",
+            "composizione": "100% lino",
+            "peso": "250/260 g",
+            "codice": "Condotti 080-SSL/2320",
+            "descrizione": "Lino Solaro a spina beige, leggero e materico: la giacca destrutturata per l’estate.",
+            "img_campione": "tessuto-giacca-3-a.jpg",
+            "img_capo": "tessuto-giacca-3-b.jpg"
+          }
+        },
+        "tessuto-giacca-4": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "giacche",
+            "nome": "Sabbia lino a spina",
+            "composizione": "100% lino",
+            "peso": "250/260 g",
+            "codice": "Condotti 054-VL/2440",
+            "descrizione": "Lino a spina sabbia, caldo e materico: la giacca informale di mezza stagione.",
+            "img_campione": "tessuto-giacca-4-a.jpg",
+            "img_capo": "tessuto-giacca-4-b.jpg"
+          }
+        },
+        "tessuto-giacca-5": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "giacche",
+            "nome": "Blu lino a spina",
+            "composizione": "100% lino",
+            "peso": "250/260 g",
+            "codice": "Condotti 080-SSL/2325",
+            "descrizione": "Lino Solaro a spina blu, fresco e luminoso: la giacca en pendant con i pantaloni chiari.",
+            "img_campione": "tessuto-giacca-5-a.jpg",
+            "img_capo": "tessuto-giacca-5-b.jpg"
+          }
+        },
+        "tessuto-giacca-6": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "giacche",
+            "nome": "Blu notte a spina",
+            "composizione": "100% lino",
+            "peso": "250/260 g",
+            "codice": "",
+            "descrizione": "Spina blu notte, il più profondo della linea Lino Solaro: sartoriale e versatile.",
+            "img_campione": "tessuto-giacca-6-a.jpg",
+            "img_capo": "tessuto-giacca-6-b.jpg"
+          }
+        },
+        "tessuto-camicia-1": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "camicie",
+            "nome": "Lino bianco",
+            "composizione": "100% lino",
+            "peso": "160/170 g",
+            "codice": "S210",
+            "descrizione": "",
+            "img_campione": "tessuto-camicia-1-a.jpg",
+            "img_capo": "tessuto-camicia-1-b.jpg"
+          }
+        },
+        "tessuto-camicia-2": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "camicie",
+            "nome": "Lino",
+            "composizione": "100% lino",
+            "peso": "160/170 g",
+            "codice": "S215",
+            "descrizione": "",
+            "img_campione": "tessuto-camicia-2-a.jpg",
+            "img_capo": "tessuto-camicia-2-b.jpg"
+          }
+        },
+        "tessuto-camicia-3": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "camicie",
+            "nome": "Oxford",
+            "composizione": "100% cotone",
+            "peso": "180 g",
+            "codice": "1016",
+            "descrizione": "",
+            "img_campione": "tessuto-camicia-3-a.jpg",
+            "img_capo": "tessuto-camicia-3-b.jpg"
+          }
+        },
+        "tessuto-camicia-4": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "camicie",
+            "nome": "Popeline compatto",
+            "composizione": "100% cotone",
+            "peso": "150/160 g",
+            "codice": "6281",
+            "descrizione": "",
+            "img_campione": "tessuto-camicia-4-a.jpg",
+            "img_capo": "tessuto-camicia-4-b.jpg"
+          }
+        },
+        "tessuto-camicia-5": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "camicie",
+            "nome": "Popeline compatto",
+            "composizione": "100% cotone",
+            "peso": "150/160 g",
+            "codice": "6280",
+            "descrizione": "",
+            "img_campione": "tessuto-camicia-5-a.jpg",
+            "img_capo": "tessuto-camicia-5-b.jpg"
+          }
+        },
+        "tessuto-camicia-6": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "camicie",
+            "nome": "Popeline compatto",
+            "composizione": "100% cotone",
+            "peso": "150/160 g",
+            "codice": "6279",
+            "descrizione": "",
+            "img_campione": "tessuto-camicia-6-a.jpg",
+            "img_capo": "tessuto-camicia-6-b.jpg"
+          }
+        },
+        "tessuto-pantalone-1": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "pantaloni",
+            "nome": "Grigio ghiaccio",
+            "composizione": "TASMANIA",
+            "peso": "120 gr",
+            "codice": "Condotti 4101",
+            "descrizione": "Grigio chiaro dai riflessi azzurrati, ideale per un pantalone di mezza stagione.",
+            "img_campione": "tessuto-pantalone-1-a.jpg",
+            "img_capo": "tessuto-pantalone-1-b.jpg"
+          }
+        },
+        "tessuto-pantalone-2": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "pantaloni",
+            "nome": "Grigio antracite",
+            "composizione": "TASMANIA",
+            "peso": "120 gr",
+            "codice": "Condotti 4102",
+            "descrizione": "Un antracite profondo e versatile, il grigio più elegante per ogni completo.",
+            "img_campione": "tessuto-pantalone-2-a.jpg",
+            "img_capo": "tessuto-pantalone-2-b.jpg"
+          }
+        },
+        "tessuto-pantalone-3": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "pantaloni",
+            "nome": "Blu royal",
+            "composizione": "TASMANIA",
+            "peso": "120 gr",
+            "codice": "Condotti 4103",
+            "descrizione": "Blu intenso e luminoso, per un pantalone che dà carattere al look.",
+            "img_campione": "tessuto-pantalone-3-a.jpg",
+            "img_capo": "tessuto-pantalone-3-b.jpg"
+          }
+        },
+        "tessuto-pantalone-4": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "pantaloni",
+            "nome": "Grigio perla",
+            "composizione": "TASMANIA",
+            "peso": "120 gr",
+            "codice": "Condotti 4104",
+            "descrizione": "Grigio perla chiaro e luminoso, perfetto sotto giacche scure.",
+            "img_campione": "tessuto-pantalone-4-a.jpg",
+            "img_capo": "tessuto-pantalone-4-b.jpg"
+          }
+        },
+        "tessuto-pantalone-5": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "pantaloni",
+            "nome": "Sabbia",
+            "composizione": "TASMANIA",
+            "peso": "120 gr",
+            "codice": "Condotti 4105",
+            "descrizione": "Beige sabbia caldo, il naturale per gli abbinamenti estivi.",
+            "img_campione": "tessuto-pantalone-5-a.jpg",
+            "img_capo": "tessuto-pantalone-5-b.jpg"
+          }
+        },
+        "tessuto-pantalone-6": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "pantaloni",
+            "nome": "Blu notte",
+            "composizione": "TASMANIA",
+            "peso": "120 gr",
+            "codice": "Condotti 4106",
+            "descrizione": "Il classico blu notte, sicuro ed elegante in ogni stagione.",
+            "img_campione": "tessuto-pantalone-6-a.jpg",
+            "img_capo": "tessuto-pantalone-6-b.jpg"
+          }
+        },
+        "tessuto-cravatta-1": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "cravatte",
+            "nome": "Blu navy micro-fantasia",
+            "composizione": "100% seta",
+            "peso": "",
+            "codice": "Condotti 02",
+            "descrizione": "Blu navy con micro-fantasia a cerchietti, elegante e versatile.",
+            "img_campione": "tessuto-cravatta-1-a.jpg",
+            "img_capo": "tessuto-cravatta-1-b.jpg"
+          }
+        },
+        "tessuto-cravatta-2": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "cravatte",
+            "nome": "Regimental verde",
+            "composizione": "100% seta",
+            "peso": "",
+            "codice": "Condotti 07",
+            "descrizione": "Righe regimental verde e tortora, dal gusto british.",
+            "img_campione": "tessuto-cravatta-2-a.jpg",
+            "img_capo": "tessuto-cravatta-2-b.jpg"
+          }
+        },
+        "tessuto-cravatta-3": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "cravatte",
+            "nome": "Bordeaux a pois",
+            "composizione": "100% seta",
+            "peso": "",
+            "codice": "Condotti 19",
+            "descrizione": "Bordeaux a pois, un classico intramontabile.",
+            "img_campione": "tessuto-cravatta-3-a.jpg",
+            "img_capo": "tessuto-cravatta-3-b.jpg"
+          }
+        },
+        "tessuto-cravatta-4": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "cravatte",
+            "nome": "Marrone spina di pesce",
+            "composizione": "100% seta",
+            "peso": "",
+            "codice": "Condotti 01",
+            "descrizione": "Marrone testa di moro effetto spina di pesce, caldo e materico.",
+            "img_campione": "tessuto-cravatta-4-a.jpg",
+            "img_capo": "tessuto-cravatta-4-b.jpg"
+          }
+        },
+        "tessuto-cravatta-5": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "cravatte",
+            "nome": "Grigio foulard celeste",
+            "composizione": "100% seta",
+            "peso": "",
+            "codice": "Condotti 05",
+            "descrizione": "Grigio perla con medaglioni celesti, raffinato per le grandi occasioni.",
+            "img_campione": "tessuto-cravatta-5-a.jpg",
+            "img_capo": "tessuto-cravatta-5-b.jpg"
+          }
+        },
+        "tessuto-cravatta-6": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "cravatte",
+            "nome": "Giallo ocra a fiori",
+            "composizione": "100% seta",
+            "peso": "",
+            "codice": "Condotti 06",
+            "descrizione": "Giallo ocra con micro-fiori bianchi e blu, una nota di colore per spezzare il completo scuro.",
+            "img_campione": "tessuto-cravatta-6-a.jpg",
+            "img_capo": "tessuto-cravatta-6-b.jpg"
+          }
+        },
+        "tessuto-smoking-1": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "smoking",
+            "nome": "Nero",
+            "composizione": "TASMANIA",
+            "peso": "140 gr",
+            "codice": "",
+            "descrizione": "Il nero classico dello smoking, con revers in raso di seta: senza tempo per la serata più formale.",
+            "img_campione": "tessuto-smoking-1-a.jpg",
+            "img_capo": "tessuto-smoking-1-b.jpg"
+          }
+        },
+        "tessuto-smoking-2": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "smoking",
+            "nome": "Blu scuro",
+            "composizione": "TASMANIA",
+            "peso": "140 gr",
+            "codice": "",
+            "descrizione": "Blu scuro intenso con revers in raso di seta, un'alternativa moderna al nero per lo smoking da sera.",
+            "img_campione": "tessuto-smoking-2-a.jpg",
+            "img_capo": "tessuto-smoking-2-b.jpg"
+          }
+        },
+        "tessuto-smoking-3": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "smoking",
+            "nome": "Bianco panna",
+            "composizione": "TASMANIA",
+            "peso": "140 gr",
+            "codice": "",
+            "descrizione": "Bianco panna con revers in raso di seta, per lo smoking estivo o le cerimonie in riva al mare.",
+            "img_campione": "tessuto-smoking-3-a.jpg",
+            "img_capo": "tessuto-smoking-3-b.jpg"
+          }
+        },
+        "tessuto-scarpa-1": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "scarpe",
+            "nome": "Cognac",
+            "composizione": "100% pelle",
+            "peso": "",
+            "codice": "Condotti 8101",
+            "descrizione": "Un cognac caldo e vissuto: la tonalità inglese per eccellenza, perfetta con abiti color cammello, grigio chiaro o blu.",
+            "img_campione": "tessuto-scarpa-1-a.jpg",
+            "img_capo": "tessuto-scarpa-1-b.jpg"
+          }
+        },
+        "tessuto-scarpa-2": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "scarpe",
+            "nome": "Nero",
+            "composizione": "100% pelle",
+            "peso": "",
+            "codice": "Condotti 8102",
+            "descrizione": "Il nero pieno fiore, la scarpa più versatile per l'ufficio e le occasioni formali: si abbina a ogni abito scuro.",
+            "img_campione": "tessuto-scarpa-2-a.jpg",
+            "img_capo": "tessuto-scarpa-2-b.jpg"
+          }
+        },
+        "tessuto-scarpa-3": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "scarpe",
+            "nome": "Testa di moro",
+            "composizione": "100% pelle",
+            "peso": "",
+            "codice": "Condotti 8103",
+            "descrizione": "Un marrone scuro quasi bruno, elegante e meno scontato del nero classico.",
+            "img_campione": "tessuto-scarpa-3-a.jpg",
+            "img_capo": "tessuto-scarpa-3-b.jpg"
+          }
+        },
+        "tessuto-scarpa-4": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "scarpe",
+            "nome": "Bordeaux",
+            "composizione": "100% pelle",
+            "peso": "",
+            "codice": "Condotti 8104",
+            "descrizione": "Bordeaux lucido dal carattere deciso, per chi cerca un tocco di colore senza rinunciare alla sobrietà.",
+            "img_campione": "tessuto-scarpa-4-a.jpg",
+            "img_capo": "tessuto-scarpa-4-b.jpg"
+          }
+        },
+        "tessuto-scarpa-5": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "scarpe",
+            "nome": "Blu navy",
+            "composizione": "100% pelle",
+            "peso": "",
+            "codice": "Condotti 8105",
+            "descrizione": "Blu navy intenso, l'alternativa moderna al nero per abbinare abiti blu o grigi.",
+            "img_campione": "tessuto-scarpa-5-a.jpg",
+            "img_capo": "tessuto-scarpa-5-b.jpg"
+          }
+        },
+        "tessuto-scarpa-6": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "estate",
+            "categoria": "scarpe",
+            "nome": "Verde inglese",
+            "composizione": "100% pelle",
+            "peso": "",
+            "codice": "Condotti 8106",
+            "descrizione": "Verde inglese profondo, ispirato alla tradizione british: una scelta ricercata per distinguersi con eleganza.",
+            "img_campione": "tessuto-scarpa-6-a.jpg",
+            "img_capo": "tessuto-scarpa-6-b.jpg"
+          }
+        },
+        "tessuto-abito-inverno-1": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "abiti",
+            "nome": "Grigio gessato",
+            "composizione": "100% flanella",
+            "peso": "",
+            "codice": "Condotti 9101",
+            "descrizione": "Un grigio antracite gessato, il completo invernale per eccellenza: rigoroso e mai banale, perfetto in ufficio e nelle occasioni formali.",
+            "img_campione": "tessuto-abito-inverno-1-a.jpg",
+            "img_capo": "tessuto-abito-inverno-1-b.jpg"
+          }
+        },
+        "tessuto-abito-inverno-2": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "abiti",
+            "nome": "Tortora a quadri",
+            "composizione": "Lana e cashmere",
+            "peso": "",
+            "codice": "Condotti 9102",
+            "descrizione": "Tortora chiaro con un lieve motivo a quadri, morbido al tatto grazie al cashmere: una base elegante e distintiva per l'inverno.",
+            "img_campione": "tessuto-abito-inverno-2-a.jpg",
+            "img_capo": "tessuto-abito-inverno-2-b.jpg"
+          }
+        },
+        "tessuto-abito-inverno-3": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "abiti",
+            "nome": "Marrone spina di pesce",
+            "composizione": "100% lana",
+            "peso": "",
+            "codice": "Condotti 9103",
+            "descrizione": "Spina di pesce marrone dal carattere deciso, un classico senza tempo della sartoria inglese rivisitato per l'inverno italiano.",
+            "img_campione": "tessuto-abito-inverno-3-a.jpg",
+            "img_capo": "tessuto-abito-inverno-3-b.jpg"
+          }
+        },
+        "tessuto-abito-inverno-4": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "abiti",
+            "nome": "Grigio Principe di Galles",
+            "composizione": "Lana e seta",
+            "peso": "",
+            "codice": "Condotti 9104",
+            "descrizione": "Principe di Galles grigio-blu con sovrapposizione a righe: la seta dona lucentezza e un tocco di leggerezza al peso invernale.",
+            "img_campione": "tessuto-abito-inverno-4-a.jpg",
+            "img_capo": "tessuto-abito-inverno-4-b.jpg"
+          }
+        },
+        "tessuto-abito-inverno-5": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "abiti",
+            "nome": "Grigio medio",
+            "composizione": "100% Tasmania",
+            "peso": "",
+            "codice": "Condotti 9105",
+            "descrizione": "Grigio medio in purezza, il tessuto invernale più versatile: si abbina a ogni camicia e cravatta.",
+            "img_campione": "tessuto-abito-inverno-5-a.jpg",
+            "img_capo": "tessuto-abito-inverno-5-b.jpg"
+          }
+        },
+        "tessuto-abito-inverno-6": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "abiti",
+            "nome": "Grigio spina di pesce",
+            "composizione": "Pura lana vergine",
+            "peso": "",
+            "codice": "Condotti 9106",
+            "descrizione": "Spina di pesce grigio chiaro, texture materica e calda per l'inverno, elegante anche nelle giornate più rigide.",
+            "img_campione": "tessuto-abito-inverno-6-a.jpg",
+            "img_capo": "tessuto-abito-inverno-6-b.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "tessuto-abito-1",
+        "tessuto-abito-2",
+        "tessuto-abito-3",
+        "tessuto-abito-4",
+        "tessuto-abito-5",
+        "tessuto-abito-6",
+        "tessuto-giacca-1",
+        "tessuto-giacca-2",
+        "tessuto-giacca-3",
+        "tessuto-giacca-4",
+        "tessuto-giacca-5",
+        "tessuto-giacca-6",
+        "tessuto-camicia-1",
+        "tessuto-camicia-2",
+        "tessuto-camicia-3",
+        "tessuto-camicia-4",
+        "tessuto-camicia-5",
+        "tessuto-camicia-6",
+        "tessuto-pantalone-1",
+        "tessuto-pantalone-2",
+        "tessuto-pantalone-3",
+        "tessuto-pantalone-4",
+        "tessuto-pantalone-5",
+        "tessuto-pantalone-6",
+        "tessuto-cravatta-1",
+        "tessuto-cravatta-2",
+        "tessuto-cravatta-3",
+        "tessuto-cravatta-4",
+        "tessuto-cravatta-5",
+        "tessuto-cravatta-6",
+        "tessuto-smoking-1",
+        "tessuto-smoking-2",
+        "tessuto-smoking-3",
+        "tessuto-scarpa-1",
+        "tessuto-scarpa-2",
+        "tessuto-scarpa-3",
+        "tessuto-scarpa-4",
+        "tessuto-scarpa-5",
+        "tessuto-scarpa-6",
+        "tessuto-abito-inverno-1",
+        "tessuto-abito-inverno-2",
+        "tessuto-abito-inverno-3",
+        "tessuto-abito-inverno-4",
+        "tessuto-abito-inverno-5",
+        "tessuto-abito-inverno-6"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "hero_title": "Atelier del Tessuto",
+        "season_estate_zoom": 160,
+        "season_estate_pos_x": 32,
+        "season_estate_pos_y": 71,
+        "season_estate_eyebrow": "",
+        "season_estate_title": "",
+        "season_estate_sub": "",
+        "season_inverno_zoom": 125,
+        "season_inverno_pos_x": 20,
+        "season_inverno_pos_y": 57,
+        "season_inverno_eyebrow": "",
+        "season_inverno_title": "",
+        "season_inverno_sub": ""
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

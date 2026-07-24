@@ -172,6 +172,8 @@
       "tessuti_cravatta_larghezza": "Larghezza",
       "tessuti_tab_smoking": "Smoking",
       "tessuti_smoking_rever": "Tipi di rever",
+      "tessuti_tab_scarpe": "Scarpe",
+      "tessuti_scarpa_modelli": "Modelli di scarpa",
       "tessuti_zoom": "Ingrandisci",
       "tessuti_zoom_close": "Chiudi",
       "tessuti_tabs_aria": "Categorie di tessuti",
@@ -180,6 +182,19 @@
       "tessuti_lbl_codice": "Lanificio / codice",
       "tessuti_swatches_aria": "Campioni di tessuto",
       "tessuti_hint": "Tocca un campione per vedere il capo"
+    },
+    "atelier_tessuto": {
+      "eyebrow": "Sartoria Condotti",
+      "hero_sub": "Ogni tessuto racconta una stagione. Scegli quella giusta per scoprire i campioni e vedere l’abito che ne nasce.",
+      "season_estate_eyebrow": "Collezione",
+      "season_estate_title": "Primavera — Estate",
+      "season_estate_sub": "Lini, cotoni e tessuti leggeri per i mesi caldi.",
+      "season_estate_cta": "Scopri i tessuti",
+      "season_inverno_eyebrow": "Collezione",
+      "season_inverno_title": "Autunno — Inverno",
+      "season_inverno_sub": "Lane, flanelle e tessuti pesanti per la stagione fredda.",
+      "season_inverno_cta": "Scopri i tessuti",
+      "change_season": "Cambia stagione"
     },
     "noleggio": {
       "eyebrow": "Sartoria Condotti",

@@ -877,12 +877,17 @@ a.bp__diptych-media img {
   overflow: hidden;
 }
 
+/* Scarpe: foto capo quadrata, il riquadro segue la sua proporzione naturale invece del 2:3 */
+.bp-atelier__stage--square {
+  aspect-ratio: 1 / 1;
+}
+
 .bp-atelier__img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   opacity: 0;
   transition: opacity 0.55s ease;
 }
@@ -1234,6 +1239,218 @@ a.bp__diptych-media img {
   .bp-atelier__img,
   .bp-atelier__swatch,
   .bp__garment-media img {
+    transition: none;
+  }
+}
+
+/* Atelier del Tessuto: selettore stagione bloccante a schermo intero */
+html.at-locked,
+body.at-locked {
+  overflow: hidden;
+  height: 100%;
+}
+
+.at-gate {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+  background: rgb(var(--bp-ink));
+  transition: opacity 0.5s ease;
+}
+
+.at-gate--closing {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* .at-gate imposta display:flex, che altrimenti vince sempre sull'attributo
+   hidden (l'origine "author" batte lo user-agent a parita' di specificita') */
+.at-gate[hidden] {
+  display: none;
+}
+
+.at-gate__head {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  padding-block: clamp(20px, 3.4vh, 34px);
+  text-align: center;
+  color: rgb(var(--bp-cream));
+  pointer-events: none;
+}
+
+.at-gate__head .bp__eyebrow {
+  color: rgb(var(--bp-cream) / 0.75);
+}
+
+.at-gate__title {
+  margin-top: 0.3em;
+  font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+}
+
+.at-seasons {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+}
+
+.at-season {
+  appearance: none;
+  -webkit-appearance: none;
+  display: flex;
+  align-items: flex-start;
+  flex: 1 1 50%;
+  width: 100%;
+  min-height: 38vh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  isolation: isolate;
+  position: relative;
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  color: rgb(var(--bp-cream));
+  cursor: pointer;
+  background: none;
+}
+
+.at-season + .at-season {
+  border-top: 1px solid rgb(var(--bp-cream) / 0.15);
+}
+
+@media (min-width: 900px) {
+  .at-seasons {
+    flex-direction: row;
+  }
+  .at-season + .at-season {
+    border-top: 0;
+    border-left: 1px solid rgb(var(--bp-cream) / 0.15);
+  }
+}
+
+.at-season__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.at-season__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Inquadratura regolabile dal personalizzatore (variabili impostate inline sul .at-season__media) */
+  object-position: var(--at-focal-x, 50%) var(--at-focal-y, 50%);
+  transform: scale(var(--at-zoom, 1));
+  transform-origin: var(--at-focal-x, 50%) var(--at-focal-y, 50%);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.at-season__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to bottom, rgb(var(--bp-ink) / 0.78), rgb(var(--bp-ink) / 0.08) 42%, transparent 62%);
+  transition: background 0.5s ease;
+}
+
+.at-season__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  padding: clamp(28px, 4vw, 56px);
+  padding-top: clamp(104px, 15vh, 168px);
+}
+
+.at-season__eyebrow {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgb(var(--bp-cream) / 0.78);
+}
+
+.at-season__title {
+  font-family: 'Fraunces', var(--font-heading--family, serif);
+  font-weight: 300;
+  font-variation-settings: 'opsz' 144;
+  font-size: clamp(2rem, 4.2vw, 3.6rem);
+  line-height: 1.03;
+  letter-spacing: -0.01em;
+}
+
+.at-season__sub {
+  max-width: 32ch;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: rgb(var(--bp-cream) / 0.85);
+  transition: color 0.3s ease;
+}
+
+@media (hover: hover) {
+  .at-season:hover .at-season__media img {
+    transform: scale(calc(var(--at-zoom, 1) * 1.07));
+  }
+  .at-season:hover .at-season__overlay {
+    background: linear-gradient(to bottom, rgb(var(--bp-ink) / 0.85), rgb(var(--bp-ink) / 0.03) 48%, transparent 68%);
+  }
+  .at-season:hover .at-season__title {
+    color: rgb(var(--bp-gold));
+  }
+}
+
+.at-season:focus-visible {
+  outline: 2px solid rgb(var(--bp-gold));
+  outline-offset: -4px;
+}
+
+.at-season__title {
+  transition: color 0.3s ease;
+}
+
+/* Bottone "cambia stagione" dentro ciascun configuratore */
+.at-back {
+  appearance: none;
+  -webkit-appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  margin: 0 0 clamp(20px, 3vw, 32px);
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-body--family, system-ui);
+  font-size: 0.76rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(var(--bp-fg) / 0.6);
+  transition: color 0.25s ease, gap 0.25s ease;
+}
+
+.at-back:hover {
+  color: rgb(var(--bp-fg));
+  gap: 0.75em;
+}
+
+.at-back:focus-visible {
+  outline: 2px solid rgb(var(--bp-gold));
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .at-season__media img,
+  .at-season__overlay,
+  .at-season__title,
+  .at-gate,
+  .at-back {
     transition: none;
   }
 }

@@ -172,6 +172,8 @@
       "tessuti_cravatta_larghezza": "寬度",
       "tessuti_tab_smoking": "小禮服",
       "tessuti_smoking_rever": "翻領款式",
+      "tessuti_tab_scarpe": "鞋履",
+      "tessuti_scarpa_modelli": "鞋履款式",
       "tessuti_zoom": "放大",
       "tessuti_zoom_close": "關閉",
       "tessuti_tabs_aria": "布料類別",
@@ -180,6 +182,19 @@
       "tessuti_lbl_codice": "毛紡廠／編號",
       "tessuti_swatches_aria": "布料樣本",
       "tessuti_hint": "點選布樣即可查看成衣"
+    },
+    "atelier_tessuto": {
+      "eyebrow": "Sartoria Condotti",
+      "hero_sub": "每款布料訴說一個季節。選擇合適的季節，探索布樣並預覽由此而生的西裝。",
+      "season_estate_eyebrow": "系列",
+      "season_estate_title": "春夏",
+      "season_estate_sub": "亞麻、棉料與輕盈布料，適合炎熱月份。",
+      "season_estate_cta": "探索布料",
+      "season_inverno_eyebrow": "系列",
+      "season_inverno_title": "秋冬",
+      "season_inverno_sub": "羊毛、法蘭絨與厚重布料，適合寒冷季節。",
+      "season_inverno_cta": "探索布料",
+      "change_season": "切換季節"
     },
     "noleggio": {
       "eyebrow": "Sartoria Condotti",

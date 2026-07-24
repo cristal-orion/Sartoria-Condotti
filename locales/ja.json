@@ -172,6 +172,8 @@
       "tessuti_cravatta_larghezza": "幅",
       "tessuti_tab_smoking": "タキシード",
       "tessuti_smoking_rever": "ラペルの種類",
+      "tessuti_tab_scarpe": "靴",
+      "tessuti_scarpa_modelli": "靴のスタイル",
       "tessuti_zoom": "拡大",
       "tessuti_zoom_close": "閉じる",
       "tessuti_tabs_aria": "生地カテゴリー",
@@ -180,6 +182,19 @@
       "tessuti_lbl_codice": "毛織メーカー／品番",
       "tessuti_swatches_aria": "生地サンプル",
       "tessuti_hint": "サンプルをタップすると仕立て上がりをご覧いただけます"
+    },
+    "atelier_tessuto": {
+      "eyebrow": "Sartoria Condotti",
+      "hero_sub": "生地はそれぞれの季節を物語ります。適した季節を選んで、生地サンプルとそこから生まれるスーツをご覧ください。",
+      "season_estate_eyebrow": "コレクション",
+      "season_estate_title": "春夏",
+      "season_estate_sub": "暖かい季節のための麻、綿、軽やかな生地。",
+      "season_estate_cta": "生地を見る",
+      "season_inverno_eyebrow": "コレクション",
+      "season_inverno_title": "秋冬",
+      "season_inverno_sub": "寒い季節のためのウール、フランネル、厚手の生地。",
+      "season_inverno_cta": "生地を見る",
+      "change_season": "季節を変更"
     },
     "noleggio": {
       "eyebrow": "Sartoria Condotti",

@@ -1,0 +1,271 @@
+{%- comment -%}
+  Un intero atelier tessuti (tab categoria + pannelli + campioni + dettagli) filtrato per stagione.
+  Uso: {% render 'bp-atelier-season', section: section, stagione: 'estate' %}
+  Il blocco parte "hidden": lo rivela il selettore stagione (assets/atelier-tessuto-gate.js).
+{%- endcomment -%}
+{%- liquid
+  assign tessuti_eyebrow = 'brand.sarto_domicilio.tessuti_eyebrow' | t
+  assign tessuti_heading = 'brand.sarto_domicilio.tessuti_heading' | t
+  assign tessuti_body = 'brand.sarto_domicilio.tessuti_body' | t
+  assign tessuti_tab_abiti = 'brand.sarto_domicilio.tessuti_tab_abiti' | t
+  assign tessuti_tab_giacche = 'brand.sarto_domicilio.tessuti_tab_giacche' | t
+  assign tessuti_tab_camicie = 'brand.sarto_domicilio.tessuti_tab_camicie' | t
+  assign tessuti_tab_pantaloni = 'brand.sarto_domicilio.tessuti_tab_pantaloni' | t
+  assign tessuti_tab_cravatte = 'brand.sarto_domicilio.tessuti_tab_cravatte' | t
+  assign tessuti_tab_smoking = 'brand.sarto_domicilio.tessuti_tab_smoking' | t
+  assign tessuti_tab_scarpe = 'brand.sarto_domicilio.tessuti_tab_scarpe' | t
+  assign tessuti_tabs_aria = 'brand.sarto_domicilio.tessuti_tabs_aria' | t
+  assign tessuti_lbl_composizione = 'brand.sarto_domicilio.tessuti_lbl_composizione' | t
+  assign tessuti_lbl_peso = 'brand.sarto_domicilio.tessuti_lbl_peso' | t
+  assign tessuti_lbl_codice = 'brand.sarto_domicilio.tessuti_lbl_codice' | t
+  assign tessuti_swatches_aria = 'brand.sarto_domicilio.tessuti_swatches_aria' | t
+  assign tessuti_hint = 'brand.sarto_domicilio.tessuti_hint' | t
+  assign tessuti_colletti = 'brand.sarto_domicilio.tessuti_colletti' | t
+  assign tessuti_polsini = 'brand.sarto_domicilio.tessuti_polsini' | t
+  assign tessuti_giacca_tipologie = 'brand.sarto_domicilio.tessuti_giacca_tipologie' | t
+  assign tessuti_pantalone_pence = 'brand.sarto_domicilio.tessuti_pantalone_pence' | t
+  assign tessuti_pantalone_bustino = 'brand.sarto_domicilio.tessuti_pantalone_bustino' | t
+  assign tessuti_cravatta_larghezza = 'brand.sarto_domicilio.tessuti_cravatta_larghezza' | t
+  assign tessuti_smoking_rever = 'brand.sarto_domicilio.tessuti_smoking_rever' | t
+  assign tessuti_scarpa_modelli = 'brand.sarto_domicilio.tessuti_scarpa_modelli' | t
+  assign change_season = 'brand.atelier_tessuto.change_season' | t
+
+  assign at_abiti_count = 0
+  assign at_giacche_count = 0
+  assign at_camicie_count = 0
+  assign at_pantaloni_count = 0
+  assign at_cravatte_count = 0
+  assign at_smoking_count = 0
+  assign at_scarpe_count = 0
+  for block in section.blocks
+    if block.settings.stagione != stagione
+      continue
+    endif
+    if block.settings.categoria == 'giacche'
+      assign at_giacche_count = at_giacche_count | plus: 1
+    elsif block.settings.categoria == 'camicie'
+      assign at_camicie_count = at_camicie_count | plus: 1
+    elsif block.settings.categoria == 'pantaloni'
+      assign at_pantaloni_count = at_pantaloni_count | plus: 1
+    elsif block.settings.categoria == 'cravatte'
+      assign at_cravatte_count = at_cravatte_count | plus: 1
+    elsif block.settings.categoria == 'smoking'
+      assign at_smoking_count = at_smoking_count | plus: 1
+    elsif block.settings.categoria == 'scarpe'
+      assign at_scarpe_count = at_scarpe_count | plus: 1
+    else
+      assign at_abiti_count = at_abiti_count | plus: 1
+    endif
+  endfor
+  assign at_cats = 'abiti,giacche,camicie,pantaloni,cravatte,smoking,scarpe' | split: ','
+  assign at_total = at_abiti_count | plus: at_giacche_count | plus: at_camicie_count | plus: at_pantaloni_count | plus: at_cravatte_count | plus: at_smoking_count | plus: at_scarpe_count
+-%}
+{%- if at_total > 0 -%}
+  <div class="bp__section bp__wrap at-stagione" data-at-season-content="{{ stagione }}" id="tessuti-{{ stagione }}" hidden>
+    <button type="button" class="at-back" data-at-season-back>
+      <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+      {{ change_season }}
+    </button>
+    <div class="bp__section-head">
+      <p class="bp__eyebrow">{{ tessuti_eyebrow }}</p>
+      <h2 class="bp__h2">{{ tessuti_heading }}</h2>
+    </div>
+    <p class="bp__lead bp__body" style="max-width:52ch;">{{ tessuti_body }}</p>
+
+    <div class="bp-atelier" data-bp-atelier>
+      <div class="bp-atelier__tabs" role="tablist" aria-label="{{ tessuti_tabs_aria | escape }}">
+        {%- assign at_first_tab = true -%}
+        {%- for cat in at_cats -%}
+          {%- if cat == 'abiti' and at_abiti_count == 0 -%}{%- continue -%}{%- endif -%}
+          {%- if cat == 'giacche' and at_giacche_count == 0 -%}{%- continue -%}{%- endif -%}
+          {%- if cat == 'camicie' and at_camicie_count == 0 -%}{%- continue -%}{%- endif -%}
+          {%- if cat == 'pantaloni' and at_pantaloni_count == 0 -%}{%- continue -%}{%- endif -%}
+          {%- if cat == 'cravatte' and at_cravatte_count == 0 -%}{%- continue -%}{%- endif -%}
+          {%- if cat == 'smoking' and at_smoking_count == 0 -%}{%- continue -%}{%- endif -%}
+          {%- if cat == 'scarpe' and at_scarpe_count == 0 -%}{%- continue -%}{%- endif -%}
+          <button type="button"
+                  class="bp-atelier__tab{% if at_first_tab %} is-active{% endif %}"
+                  id="at-tab-{{ cat }}-{{ stagione }}-{{ section.id }}"
+                  role="tab"
+                  aria-selected="{% if at_first_tab %}true{% else %}false{% endif %}"
+                  aria-controls="at-panel-{{ cat }}-{{ stagione }}-{{ section.id }}"
+                  {% unless at_first_tab %}tabindex="-1"{% endunless %}
+                  data-at-tab="{{ cat }}">
+            {%- if cat == 'abiti' -%}{{ tessuti_tab_abiti }}{%- elsif cat == 'giacche' -%}{{ tessuti_tab_giacche }}{%- elsif cat == 'camicie' -%}{{ tessuti_tab_camicie }}{%- elsif cat == 'pantaloni' -%}{{ tessuti_tab_pantaloni }}{%- elsif cat == 'cravatte' -%}{{ tessuti_tab_cravatte }}{%- elsif cat == 'smoking' -%}{{ tessuti_tab_smoking }}{%- else -%}{{ tessuti_tab_scarpe }}{%- endif -%}
+          </button>
+          {%- assign at_first_tab = false -%}
+        {%- endfor -%}
+      </div>
+
+      {%- assign at_first_panel = true -%}
+      {%- for cat in at_cats -%}
+        {%- if cat == 'abiti' and at_abiti_count == 0 -%}{%- continue -%}{%- endif -%}
+        {%- if cat == 'giacche' and at_giacche_count == 0 -%}{%- continue -%}{%- endif -%}
+        {%- if cat == 'camicie' and at_camicie_count == 0 -%}{%- continue -%}{%- endif -%}
+        {%- if cat == 'pantaloni' and at_pantaloni_count == 0 -%}{%- continue -%}{%- endif -%}
+        {%- if cat == 'cravatte' and at_cravatte_count == 0 -%}{%- continue -%}{%- endif -%}
+        {%- if cat == 'smoking' and at_smoking_count == 0 -%}{%- continue -%}{%- endif -%}
+        {%- if cat == 'scarpe' and at_scarpe_count == 0 -%}{%- continue -%}{%- endif -%}
+        <div class="bp-atelier__panel"
+             id="at-panel-{{ cat }}-{{ stagione }}-{{ section.id }}"
+             role="tabpanel"
+             aria-labelledby="at-tab-{{ cat }}-{{ stagione }}-{{ section.id }}"
+             data-at-panel="{{ cat }}"
+             {% unless at_first_panel %}hidden{% endunless %}>
+          <div class="bp-atelier__layout">
+            <div class="bp-atelier__stage{% if cat == 'scarpe' %} bp-atelier__stage--square{% endif %}" data-at-stage>
+              {%- assign at_idx = 0 -%}
+              {%- for block in section.blocks -%}
+                {%- if block.settings.stagione != stagione -%}{%- continue -%}{%- endif -%}
+                {%- assign bcat = block.settings.categoria | default: 'abiti' -%}
+                {%- if bcat != cat -%}{%- continue -%}{%- endif -%}
+                {%- if at_idx == 0 -%}
+                  <img class="bp-atelier__img is-active"
+                       src="{{ block.settings.img_capo | asset_url }}"
+                       width="{% if cat == 'scarpe' %}1254{% else %}1024{% endif %}"
+                       height="{% if cat == 'scarpe' %}1254{% else %}1536{% endif %}"
+                       loading="lazy"
+                       alt="{{ block.settings.nome | escape }}">
+                  <img class="bp-atelier__img" alt="" aria-hidden="true">
+                {%- endif -%}
+                {%- assign at_idx = at_idx | plus: 1 -%}
+              {%- endfor -%}
+            </div>
+
+            <div class="bp-atelier__side">
+              <div class="bp-atelier__info" aria-live="polite">
+                {%- assign at_idx = 0 -%}
+                {%- for block in section.blocks -%}
+                  {%- if block.settings.stagione != stagione -%}{%- continue -%}{%- endif -%}
+                  {%- assign bcat = block.settings.categoria | default: 'abiti' -%}
+                  {%- if bcat != cat -%}{%- continue -%}{%- endif -%}
+                  <div class="bp-atelier__card{% if at_idx == 0 %} is-active{% endif %}" data-at-card="{{ at_idx }}">
+                    <h3 class="bp-atelier__name">{{ block.settings.nome }}</h3>
+                    {%- if block.settings.composizione != blank or block.settings.peso != blank or block.settings.codice != blank -%}
+                      <dl class="bp-atelier__specs">
+                        {%- if block.settings.composizione != blank -%}
+                          <div><dt>{{ tessuti_lbl_composizione }}</dt><dd>{{ block.settings.composizione }}</dd></div>
+                        {%- endif -%}
+                        {%- if block.settings.peso != blank -%}
+                          <div><dt>{{ tessuti_lbl_peso }}</dt><dd>{{ block.settings.peso }}</dd></div>
+                        {%- endif -%}
+                        {%- if block.settings.codice != blank -%}
+                          <div><dt>{{ tessuti_lbl_codice }}</dt><dd>{{ block.settings.codice }}</dd></div>
+                        {%- endif -%}
+                      </dl>
+                    {%- endif -%}
+                    {%- if block.settings.descrizione != blank -%}
+                      <p class="bp__body">{{ block.settings.descrizione }}</p>
+                    {%- endif -%}
+                  </div>
+                  {%- assign at_idx = at_idx | plus: 1 -%}
+                {%- endfor -%}
+              </div>
+
+              <div class="bp-atelier__swatches" role="group" aria-label="{{ tessuti_swatches_aria | escape }}">
+                {%- assign at_idx = 0 -%}
+                {%- for block in section.blocks -%}
+                  {%- if block.settings.stagione != stagione -%}{%- continue -%}{%- endif -%}
+                  {%- assign bcat = block.settings.categoria | default: 'abiti' -%}
+                  {%- if bcat != cat -%}{%- continue -%}{%- endif -%}
+                  <button type="button"
+                          class="bp-atelier__swatch"
+                          data-at-swatch="{{ at_idx }}"
+                          data-capo="{{ block.settings.img_capo | asset_url }}"
+                          data-alt="{{ block.settings.nome | escape }}"
+                          aria-pressed="{% if at_idx == 0 %}true{% else %}false{% endif %}"
+                          aria-label="{{ block.settings.nome | escape }}"
+                          {{ block.shopify_attributes }}>
+                    <img src="{{ block.settings.img_campione | asset_url }}" width="800" height="800" loading="lazy" alt="">
+                  </button>
+                  {%- assign at_idx = at_idx | plus: 1 -%}
+                {%- endfor -%}
+              </div>
+              <p class="bp-atelier__hint">{{ tessuti_hint }}</p>
+              {%- if cat == 'abiti' -%}
+                <div class="bp-atelier__extra">
+                  {%- if stagione == 'inverno' -%}
+                    <div class="bp-atelier__extra-group">
+                      <p class="bp-atelier__extra-title">{{ tessuti_giacca_tipologie }}</p>
+                      {%- render 'bp-atelier-zoom-img', img: 'tessuto-abito-inverno-giacca-modelli.jpg', alt: tessuti_giacca_tipologie -%}
+                    </div>
+                    <div class="bp-atelier__extra-group">
+                      <p class="bp-atelier__extra-title">{{ tessuti_pantalone_pence }}</p>
+                      {%- render 'bp-atelier-zoom-img', img: 'tessuto-abito-inverno-pantalone-pence.jpg', alt: tessuti_pantalone_pence -%}
+                    </div>
+                  {%- else -%}
+                    <div class="bp-atelier__extra-group">
+                      <p class="bp-atelier__extra-title">{{ tessuti_giacca_tipologie }}</p>
+                      {%- render 'bp-atelier-zoom-img', img: 'tessuto-giacca-tipologie.jpg', alt: tessuti_giacca_tipologie -%}
+                    </div>
+                    <div class="bp-atelier__extra-group">
+                      <p class="bp-atelier__extra-title">{{ tessuti_pantalone_pence }}</p>
+                      {%- render 'bp-atelier-zoom-img', img: 'tessuto-pantalone-pence.jpg', alt: tessuti_pantalone_pence -%}
+                    </div>
+                  {%- endif -%}
+                </div>
+              {%- endif -%}
+              {%- if cat == 'giacche' -%}
+                <div class="bp-atelier__extra">
+                  <div class="bp-atelier__extra-group">
+                    <p class="bp-atelier__extra-title">{{ tessuti_giacca_tipologie }}</p>
+                    {%- render 'bp-atelier-zoom-img', img: 'tessuto-giacca-tipologie.jpg', alt: tessuti_giacca_tipologie -%}
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if cat == 'camicie' -%}
+                <div class="bp-atelier__extra">
+                  <div class="bp-atelier__extra-group">
+                    <p class="bp-atelier__extra-title">{{ tessuti_colletti }}</p>
+                    {%- render 'bp-atelier-zoom-img', img: 'tessuto-camicia-colletti.jpg', alt: tessuti_colletti -%}
+                  </div>
+                  <div class="bp-atelier__extra-group">
+                    <p class="bp-atelier__extra-title">{{ tessuti_polsini }}</p>
+                    {%- render 'bp-atelier-zoom-img', img: 'tessuto-camicia-polsini.jpg', alt: tessuti_polsini -%}
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if cat == 'pantaloni' -%}
+                <div class="bp-atelier__extra">
+                  <div class="bp-atelier__extra-group">
+                    <p class="bp-atelier__extra-title">{{ tessuti_pantalone_pence }}</p>
+                    {%- render 'bp-atelier-zoom-img', img: 'tessuto-pantalone-pence.jpg', alt: tessuti_pantalone_pence -%}
+                  </div>
+                  <div class="bp-atelier__extra-group">
+                    <p class="bp-atelier__extra-title">{{ tessuti_pantalone_bustino }}</p>
+                    {%- render 'bp-atelier-zoom-img', img: 'tessuto-pantalone-bustino.jpg', alt: tessuti_pantalone_bustino -%}
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if cat == 'cravatte' -%}
+                <div class="bp-atelier__extra">
+                  <div class="bp-atelier__extra-group">
+                    <p class="bp-atelier__extra-title">{{ tessuti_cravatta_larghezza }}</p>
+                    {%- render 'bp-atelier-zoom-img', img: 'tessuto-cravatta-larghezza.jpg', alt: tessuti_cravatta_larghezza -%}
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if cat == 'smoking' -%}
+                <div class="bp-atelier__extra">
+                  <div class="bp-atelier__extra-group">
+                    <p class="bp-atelier__extra-title">{{ tessuti_smoking_rever }}</p>
+                    {%- render 'bp-atelier-zoom-img', img: 'tessuto-smoking-rever.jpg', alt: tessuti_smoking_rever -%}
+                  </div>
+                </div>
+              {%- endif -%}
+              {%- if cat == 'scarpe' -%}
+                <div class="bp-atelier__extra">
+                  <div class="bp-atelier__extra-group">
+                    <p class="bp-atelier__extra-title">{{ tessuti_scarpa_modelli }}</p>
+                    {%- render 'bp-atelier-zoom-img', img: 'tessuto-scarpa-modelli.jpg', alt: tessuti_scarpa_modelli -%}
+                  </div>
+                </div>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+        {%- assign at_first_panel = false -%}
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}

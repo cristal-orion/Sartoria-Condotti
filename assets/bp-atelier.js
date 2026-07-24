@@ -50,11 +50,10 @@
 
   // --- Lightbox: ingrandimento delle foto di dettaglio (tipologie, colletti, pence...) ---
   function initLightbox(root) {
-    // Il markup della lightbox è FUORI da [data-bp-atelier] (è un fratello, non un figlio):
-    // sta dentro [data-reveal], che dopo l'animazione GSAP resta con un transform inline
-    // e romperebbe il position:fixed. Si cerca quindi a partire dal genitore comune.
-    var scope = root.parentElement || document;
-    var lightbox = scope.querySelector('[data-at-lightbox]');
+    // Cerca nell'intero documento: [data-bp-atelier] puo' stare a profondita' diverse
+    // rispetto a [data-at-lightbox] a seconda della sezione (es. Atelier del Tessuto
+    // annida l'atelier dentro un wrapper di stagione).
+    var lightbox = document.querySelector('[data-at-lightbox]');
     var triggers = Array.prototype.slice.call(root.querySelectorAll('[data-at-zoom]'));
     if (!lightbox || !triggers.length) return;
 
