@@ -103,7 +103,7 @@
             "background_image_position": "cover",
             "border": "none",
             "border_radius": 0,
-            "placeholder": "sartoria34.png",
+            "placeholder": "sartoria34.webp",
             "toggle_overlay": true,
             "overlay_color": "#0000005c",
             "overlay_style": "gradient",
@@ -111,7 +111,8 @@
             "padding-block-start": 32,
             "padding-block-end": 40,
             "padding-inline-start": 24,
-            "padding-inline-end": 24
+            "padding-inline-end": 24,
+            "link_label": "Sartoria Condotti"
           },
           "blocks": {
             "spacer_1": {
@@ -186,7 +187,7 @@
             "background_image_position": "cover",
             "border": "none",
             "border_radius": 0,
-            "placeholder": "casual34.png",
+            "placeholder": "casual34.webp",
             "toggle_overlay": true,
             "overlay_color": "#0000005c",
             "overlay_style": "gradient",
@@ -194,7 +195,8 @@
             "padding-block-start": 32,
             "padding-block-end": 40,
             "padding-inline-start": 24,
-            "padding-inline-end": 24
+            "padding-inline-end": 24,
+            "link_label": "Condotti & Co"
           },
           "blocks": {
             "spacer_1": {
@@ -267,7 +269,7 @@
             "background_image_position": "cover",
             "border": "none",
             "border_radius": 0,
-            "placeholder": "sartodomicilio34.png",
+            "placeholder": "sartodomicilio34.webp",
             "toggle_overlay": true,
             "overlay_color": "#0000005c",
             "overlay_style": "gradient",
@@ -275,7 +277,8 @@
             "padding-block-start": 32,
             "padding-block-end": 40,
             "padding-inline-start": 24,
-            "padding-inline-end": 24
+            "padding-inline-end": 24,
+            "link_label": "Sarto a Domicilio"
           },
           "blocks": {
             "spacer_1": {
@@ -348,7 +351,7 @@
             "background_image_position": "cover",
             "border": "none",
             "border_radius": 0,
-            "placeholder": "ricameria34.png",
+            "placeholder": "ricameria34.webp",
             "toggle_overlay": true,
             "overlay_color": "#0000005c",
             "overlay_style": "gradient",
@@ -356,7 +359,8 @@
             "padding-block-start": 32,
             "padding-block-end": 40,
             "padding-inline-start": 24,
-            "padding-inline-end": 24
+            "padding-inline-end": 24,
+            "link_label": "Atelier del Ricamo"
           },
           "blocks": {
             "spacer_1": {

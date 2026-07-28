@@ -32,13 +32,30 @@
   data-testid="group-block"
 >
   {%- if settings.link != blank -%}
+    {%- comment -%}
+      Il link copre tutto il blocco ed è vuoto: senza un nome accessibile uno
+      screen reader annuncia solo «link» (è il controllo Lighthouse «Il nome del
+      link non è distinguibile», rosso sulle quattro piastrelle brand in home).
+      Ricaviamo il nome dall'ultimo segmento dell'URL: /pages/sartoria-condotti
+      diventa «Sartoria condotti». Non è elegante ma è vero, e non richiede al
+      cliente di compilare un campo in più.
+    {%- endcomment -%}
+    {%- liquid
+      assign link_name = settings.link_label | strip
+      if link_name == blank
+        assign link_name = settings.link | split: '?' | first | split: '#' | first | split: '/' | last | replace: '-', ' ' | replace: '_', ' ' | strip | capitalize
+      endif
+      if link_name == blank
+        assign link_name = shop.name
+      endif
+    -%}
     <a
       href="{{ settings.link }}"
       class="group-block__link"
       {% if settings.open_in_new_tab %}
         target="_blank" rel="noopener"
       {% endif %}
-    ></a>
+    ><span class="visually-hidden">{{ link_name | escape }}</span></a>
   {%- endif -%}
 
   <div class="group-block__media-wrapper">

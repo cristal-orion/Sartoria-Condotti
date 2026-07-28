@@ -56,7 +56,7 @@
       {%- if s.hero_image != blank -%}
         {{ s.hero_image | image_url: width: 2400 | image_tag: widths: '900,1400,1900,2400', sizes: '100vw', fetchpriority: 'high' }}
       {%- else -%}
-        <img src="{{ 'ricameria-hero.png' | asset_url }}" alt="" fetchpriority="high">
+        <img src="{{ 'ricameria-hero.webp' | asset_url }}" alt="" fetchpriority="high">
       {%- endif -%}
     </div>
     <div class="bp__hero-inner bp__wrap">

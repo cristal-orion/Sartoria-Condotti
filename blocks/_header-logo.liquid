@@ -47,6 +47,12 @@
     data-hidden-on-home-page
   {% endif %}
   href="{{ routes.root_url }}"
+  {%- comment -%}
+    Il logo caricato in admin non ha testo alternativo, quindi il link alla home
+    risultava senza nome accessibile (controllo Lighthouse rosso). L'aria-label
+    lo risolve dal tema, senza dipendere da un campo in admin.
+  {%- endcomment -%}
+  aria-label="{{ shop.name | escape }}"
   class="size-style spacing-style header-logo"
   style="
     {% render 'size-style', settings: block_settings %}
