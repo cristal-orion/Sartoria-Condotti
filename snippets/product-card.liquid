@@ -146,6 +146,9 @@
     "
   >
     {{ children }}
+    {%- unless onboarding -%}
+      {% render 'color-swatches', product: product %}
+    {%- endunless -%}
   </div>
 </product-card>
 {%- if settings.transition_to_main_product -%}

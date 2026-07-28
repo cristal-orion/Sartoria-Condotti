@@ -1,0 +1,97 @@
+{%- doc -%}
+  Renders clickable color-variant swatches below the product title on collection
+  grids, for products that are part of a color-variant group (see the
+  custom.varianti_colore metafield). Each color is a separate Shopify product;
+  clicking a swatch navigates to that color's product page. Swatches are solid
+  color dots (color looked up via color-hex.liquid), with the color name shown
+  as a tooltip on hover.
+
+  @param {object} product - The current product object
+{%- enddoc -%}
+
+{% liquid
+  assign siblings = product.metafields.custom.varianti_colore.value
+  assign sibling_count = siblings.size | default: 0
+%}
+{% if sibling_count > 0 %}
+  {% assign sorted_siblings = siblings | sort: 'title' %}
+  {% liquid
+    assign words = product.title | split: ' '
+    assign word_count = words.size
+    assign color_name = product.title
+    if word_count > 2
+      assign color_len = word_count | minus: 2
+      assign color_words = words | slice: 1, color_len
+      if color_words.first == 'monopetto' or color_words.first == 'doppiopetto'
+        assign color_words = color_words | slice: 1, 99
+      endif
+      assign color_name = color_words | join: ' '
+    endif
+  %}
+  {% capture active_hex %}{% render 'color-hex', name: color_name %}{% endcapture %}
+  <div class="color-swatches" role="list" aria-label="Colori disponibili">
+    <span
+      class="color-swatch color-swatch--active"
+      role="listitem"
+      title="{{ color_name | capitalize }}"
+      aria-current="true"
+      style="background-color: {{ active_hex | strip }};"
+    ></span>
+    {% for sibling in sorted_siblings %}
+      {% liquid
+        assign s_words = sibling.title | split: ' '
+        assign s_word_count = s_words.size
+        assign s_color_name = sibling.title
+        if s_word_count > 2
+          assign s_color_len = s_word_count | minus: 2
+          assign s_color_words = s_words | slice: 1, s_color_len
+          if s_color_words.first == 'monopetto' or s_color_words.first == 'doppiopetto'
+            assign s_color_words = s_color_words | slice: 1, 99
+          endif
+          assign s_color_name = s_color_words | join: ' '
+        endif
+      %}
+      {% capture s_hex %}{% render 'color-hex', name: s_color_name %}{% endcapture %}
+      <a
+        href="{{ sibling.url }}"
+        class="color-swatch"
+        role="listitem"
+        title="{{ s_color_name | capitalize }}"
+        style="background-color: {{ s_hex | strip }};"
+      >
+        <span class="visually-hidden">{{ s_color_name | capitalize }}</span>
+      </a>
+    {% endfor %}
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .color-swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-block-start: 6px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .color-swatch {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid rgba(10, 22, 40, 0.2);
+    cursor: pointer;
+    pointer-events: auto;
+    flex-shrink: 0;
+  }
+
+  .color-swatch--active {
+    border: 2px solid #0a1628;
+    cursor: default;
+  }
+
+  a.color-swatch:hover {
+    border-color: #0a1628;
+  }
+{% endstylesheet %}

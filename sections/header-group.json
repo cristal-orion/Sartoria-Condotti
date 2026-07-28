@@ -11,6 +11,50 @@
   "type": "header",
   "name": "Header",
   "sections": {
+    "header_announcements_qXpY6k": {
+      "type": "header-announcements",
+      "blocks": {
+        "announcement_dNrCNF": {
+          "type": "_announcement",
+          "settings": {
+            "text": "SALDI ESTIVI FINO AL -50%",
+            "link": "",
+            "font": "var(--font-subheading--family)",
+            "font_size": "1.125rem",
+            "weight": "700",
+            "letter_spacing": "normal",
+            "case": "uppercase"
+          },
+          "blocks": {}
+        },
+        "announcement_PFemcF": {
+          "type": "_announcement",
+          "settings": {
+            "text": "SPEDIZIONE GRATUITA DA 139€ · IN TUTTA ITALIA",
+            "link": "",
+            "font": "var(--font-subheading--family)",
+            "font_size": "1.125rem",
+            "weight": "700",
+            "letter_spacing": "normal",
+            "case": "uppercase"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "announcement_dNrCNF",
+        "announcement_PFemcF"
+      ],
+      "name": "t:names.announcement_bar",
+      "settings": {
+        "speed": 5,
+        "section_width": "page-width",
+        "color_scheme": "scheme-6",
+        "divider_width": 0,
+        "padding-block-start": 10,
+        "padding-block-end": 10
+      }
+    },
     "header_section": {
       "type": "header",
       "blocks": {
@@ -100,5 +144,9 @@
       }
     }
   },
-  "order": ["header_section", "custom_liquid_KJRnga"]
+  "order": [
+    "header_announcements_qXpY6k",
+    "header_section",
+    "custom_liquid_KJRnga"
+  ]
 }

@@ -47,6 +47,12 @@
     display: block;
     text-decoration: none;
     color: inherit;
+    position: relative;
+  }
+  #cs-{{ section.id }} .bpc__card-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
   }
   #cs-{{ section.id }} .bpc__media {
     position: relative;
@@ -74,7 +80,7 @@
   #cs-{{ section.id }} .bpc__card:focus-visible .bpc__media .bpc__img--alt {
     opacity: 1;
   }
-  #cs-{{ section.id }} .bpc__card:focus-visible {
+  #cs-{{ section.id }} .bpc__card-link:focus-visible {
     outline: 2px solid rgb(var(--bp-gold));
     outline-offset: 4px;
   }
@@ -168,7 +174,8 @@
       {%- if collection.products.size > 0 -%}
         <div class="bpc__grid">
           {%- for product in collection.products -%}
-            <a class="bpc__card" href="{{ product.url }}" data-cs-reveal>
+            <div class="bpc__card" data-cs-reveal>
+              <a class="bpc__card-link" href="{{ product.url }}" aria-label="{{ product.title }}"></a>
               <div class="bpc__media">
                 {%- if product.featured_media -%}
                   {{ product.featured_media | image_url: width: 900 | image_tag: widths: '400,600,900', sizes: '(max-width:749px) 100vw, 45vw', loading: 'lazy', alt: product.title }}
@@ -178,6 +185,7 @@
                 {%- endif -%}
               </div>
               <h2 class="bpc__name">{{ product.title }}</h2>
+              {% render 'color-swatches', product: product %}
               <p class="bpc__price">
                 {%- if product.compare_at_price > product.price -%}
                   <del>{{ product.compare_at_price | money }}</del>
@@ -188,7 +196,7 @@
                   {{ product.price | money }}
                 {%- endif -%}
               </p>
-            </a>
+            </div>
           {%- endfor -%}
         </div>
 
