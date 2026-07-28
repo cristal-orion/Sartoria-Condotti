@@ -1,0 +1,150 @@
+{%- doc -%}
+  Il cuore della lista dei desideri. Due forme:
+    style: 'icon'   -> solo cuore, per le griglie e la pagina preferiti
+    style: 'button' -> cuore + testo, per la scheda prodotto
+
+  Il cuore del tema (icon.liquid) è un contorno: il path disegna l'anello con
+  fill-rule. Per lo stato "salvato" serve una sagoma piena, quindi disegniamo
+  entrambe le versioni e le alterniamo via CSS su [data-saved]. Nessuno scambio
+  di icone in JavaScript.
+
+  @param {object} product - Il prodotto da salvare
+  @param {string} [style] - 'icon' (default) oppure 'button'
+  @param {string} [class] - Classi aggiuntive sul contenitore
+{%- enddoc -%}
+
+{% liquid
+  assign wl_style = style | default: 'icon'
+  assign label_add = 'wishlist.add' | t
+  assign label_saved = 'wishlist.saved' | t
+%}
+
+<wishlist-button
+  class="wishlist-button wishlist-button--{{ wl_style }}{% if class %} {{ class }}{% endif %}"
+  data-handle="{{ product.handle }}"
+  data-saved="false"
+>
+  <button
+    type="button"
+    class="wishlist-button__control"
+    aria-pressed="false"
+    aria-label="{{ label_add | escape }}"
+    data-label-add="{{ label_add | escape }}"
+    data-label-saved="{{ label_saved | escape }}"
+  >
+    <span class="wishlist-button__icons">
+      <svg
+        class="wishlist-button__icon wishlist-button__icon--outline"
+        aria-hidden="true"
+        focusable="false"
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+      >
+        {%- render 'icon', icon: 'heart' -%}
+      </svg>
+      <svg
+        class="wishlist-button__icon wishlist-button__icon--solid"
+        aria-hidden="true"
+        focusable="false"
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+      >
+        <path d="M10.765 3.06343C12.8777 0.978857 16.3029 0.978856 18.4155 3.06343C20.5282 5.148 20.5282 8.52779 18.4155 10.6124L10.72 18.2057C10.3224 18.5981 9.67763 18.5981 9.27996 18.2057L1.58446 10.6124C-0.528154 8.52779 -0.528154 5.14801 1.58446 3.06343C3.69708 0.978859 7.12233 0.978858 9.23495 3.06343L10 3.81832L10.765 3.06343Z" />
+      </svg>
+    </span>
+    {%- if wl_style == 'button' -%}
+      <span class="wishlist-button__text" data-wishlist-text>{{ label_add }}</span>
+    {%- endif -%}
+  </button>
+</wishlist-button>
+
+{% stylesheet %}
+  .wishlist-button {
+    display: inline-flex;
+  }
+
+  .wishlist-button__control {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-xs);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--color-foreground);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .wishlist-button__icons {
+    display: grid;
+    place-items: center;
+    width: 20px;
+    height: 20px;
+    flex: 0 0 auto;
+  }
+
+  .wishlist-button__icon {
+    grid-area: 1 / 1;
+    display: block;
+    fill: currentColor;
+    transition: opacity var(--animation-speed) var(--animation-easing);
+  }
+
+  .wishlist-button__icon--solid {
+    opacity: 0;
+  }
+
+  .wishlist-button[data-saved='true'] .wishlist-button__icon--outline {
+    opacity: 0;
+  }
+
+  .wishlist-button[data-saved='true'] .wishlist-button__icon--solid {
+    opacity: 1;
+  }
+
+  /* Sulle griglie: cerchio in alto a destra sopra la foto. Lo z-index sta sopra
+     il link che copre la card (stesso accorgimento dei pallini colore). */
+  .wishlist-button--icon {
+    position: absolute;
+    top: var(--padding-xs);
+    right: var(--padding-xs);
+    z-index: 3;
+  }
+
+  .wishlist-button--icon .wishlist-button__control {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--color-background);
+    border: var(--style-border-width) solid rgb(var(--color-foreground-rgb) / var(--opacity-10));
+  }
+
+  .wishlist-button--icon .wishlist-button__control:hover {
+    border-color: rgb(var(--color-foreground-rgb) / var(--opacity-40));
+  }
+
+  /* In scheda prodotto: bottone a piena larghezza, sotto i pulsanti d'acquisto. */
+  .wishlist-button--button {
+    width: 100%;
+  }
+
+  .wishlist-button--button .wishlist-button__control {
+    width: 100%;
+    min-height: 44px;
+    padding-inline: var(--padding-md);
+    border: var(--style-border-width) solid var(--color-border);
+    font-size: 0.875rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .wishlist-button--button .wishlist-button__control:hover {
+    border-color: rgb(var(--color-foreground-rgb) / var(--opacity-60));
+  }
+{% endstylesheet %}

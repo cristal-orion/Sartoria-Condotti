@@ -549,5 +549,10 @@
       "success_moderated": "Commento pubblicato, in attesa di moderazione",
       "success": "Commento pubblicato"
     }
+  },
+  "wishlist": {
+    "add": "Aggiungi ai preferiti",
+    "saved": "Nei preferiti",
+    "page_title": "I tuoi preferiti"
   }
 }

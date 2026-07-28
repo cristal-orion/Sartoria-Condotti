@@ -1,0 +1,194 @@
+{%- doc -%}
+  Pagina "I tuoi preferiti": intestazione, stato vuoto e griglia delle schede
+  salvate. La griglia la riempie assets/wishlist.js leggendo il browser e
+  chiedendo al server una scheda per ogni prodotto (sezione wishlist-card).
+
+  I testi sono impostazioni della sezione, così si traducono dall'admin come il
+  resto dei contenuti del sito e si riscrivono senza toccare il codice.
+{%- enddoc -%}
+
+<script
+  type="module"
+  src="{{ 'wishlist.js' | asset_url }}"
+  fetchpriority="low"
+></script>
+
+{% liquid
+  assign s = section.settings
+%}
+
+<div
+  id="wl-{{ section.id }}"
+  class="wishlist-page spacing-style{% if s.inherit_color_scheme == false %} color-{{ s.color_scheme }}{% endif %}"
+  style="{% render 'spacing-style', settings: s %}"
+>
+  <div class="wishlist-page__inner">
+    <header class="wishlist-page__head">
+      <h1 class="wishlist-page__title">{{ s.heading }}</h1>
+      {%- if s.subheading != blank -%}
+        <p class="wishlist-page__sub">{{ s.subheading }}</p>
+      {%- endif -%}
+    </header>
+
+    <wishlist-list data-card-section="wishlist-card">
+      <div class="wishlist-page__empty" data-wishlist-empty>
+        <p class="wishlist-page__empty-title">{{ s.empty_heading }}</p>
+        {%- if s.empty_text != blank -%}
+          <p class="wishlist-page__empty-text">{{ s.empty_text }}</p>
+        {%- endif -%}
+        {%- if s.empty_link != blank and s.empty_link_label != blank -%}
+          <a class="wishlist-page__empty-cta" href="{{ s.empty_link }}">{{ s.empty_link_label }}</a>
+        {%- endif -%}
+      </div>
+
+      <div class="wishlist-grid" data-wishlist-grid hidden></div>
+    </wishlist-list>
+  </div>
+</div>
+
+{% stylesheet %}
+  .wishlist-page__inner {
+    max-width: var(--page-width, 1400px);
+    margin-inline: auto;
+    padding-inline: var(--padding-lg);
+  }
+
+  .wishlist-page__head {
+    margin-block-end: var(--margin-2xl, 40px);
+  }
+
+  .wishlist-page__title {
+    margin: 0;
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    line-height: 1.05;
+    font-weight: 400;
+  }
+
+  .wishlist-page__sub {
+    margin: var(--margin-sm, 12px) 0 0;
+    max-width: 46ch;
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-60));
+  }
+
+  .wishlist-page__empty {
+    padding-block: var(--padding-2xl, 48px);
+    border-block-start: var(--style-border-width) solid var(--color-border);
+  }
+
+  .wishlist-page__empty-title {
+    margin: 0;
+    font-size: 1.125rem;
+  }
+
+  .wishlist-page__empty-text {
+    margin: 8px 0 0;
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-60));
+  }
+
+  .wishlist-page__empty-cta {
+    display: inline-block;
+    margin-block-start: var(--margin-lg, 20px);
+    padding: 12px 24px;
+    border: var(--style-border-width) solid var(--color-foreground);
+    font-size: 0.875rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-foreground);
+  }
+
+  .wishlist-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gap-lg, 24px) var(--gap-md, 16px);
+  }
+
+  @media screen and (min-width: 750px) {
+    .wishlist-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  wishlist-list[aria-busy='true'] .wishlist-grid {
+    opacity: 0.5;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Pagina preferiti",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titolo",
+      "default": "I tuoi preferiti"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Sottotitolo",
+      "default": "I capi che hai salvato restano qui, su questo dispositivo."
+    },
+    { "type": "header", "content": "Quando la lista è vuota" },
+    {
+      "type": "text",
+      "id": "empty_heading",
+      "label": "Titolo",
+      "default": "Non hai ancora salvato nulla"
+    },
+    {
+      "type": "text",
+      "id": "empty_text",
+      "label": "Testo",
+      "default": "Tocca il cuore su un capo per ritrovarlo qui quando torni."
+    },
+    {
+      "type": "text",
+      "id": "empty_link_label",
+      "label": "Testo del bottone",
+      "default": "Scopri le collezioni"
+    },
+    {
+      "type": "url",
+      "id": "empty_link",
+      "label": "Link del bottone"
+    },
+    { "type": "header", "content": "Aspetto" },
+    {
+      "type": "checkbox",
+      "id": "inherit_color_scheme",
+      "label": "Usa lo schema colore della pagina",
+      "default": true
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Schema colore",
+      "default": "scheme-1"
+    },
+    { "type": "header", "content": "Spaziatura" },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Sopra",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Sotto",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 80
+    }
+  ],
+  "presets": [{ "name": "Pagina preferiti" }]
+}
+{% endschema %}

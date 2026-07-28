@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "main": {
+      "type": "wishlist-page",
+      "settings": {
+        "heading": "I tuoi preferiti",
+        "subheading": "I capi che hai salvato restano qui, su questo dispositivo.",
+        "empty_heading": "Non hai ancora salvato nulla",
+        "empty_text": "Tocca il cuore su un capo per ritrovarlo qui quando torni.",
+        "empty_link_label": "Scopri le collezioni",
+        "empty_link": "/collections/vedi-tutto-sartoria",
+        "inherit_color_scheme": true,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 80
+      }
+    }
+  },
+  "order": ["main"]
+}

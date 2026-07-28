@@ -320,6 +320,15 @@
                 "row-sartoria",
                 "row-ritiro"
               ]
+            },
+            "wishlist_wl1": {
+              "type": "wishlist-button",
+              "settings": {
+                "padding-block-start": 8,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              }
             }
           },
           "block_order": [
@@ -328,6 +337,7 @@
             "divider_HrJgFt",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
+            "wishlist_wl1",
             "reassurance_rz1",
             "text_paySecHd1",
             "payment_icons_paySec1",

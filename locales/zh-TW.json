@@ -543,5 +543,10 @@
       "success_moderated": "已發布留言，正等待審核",
       "success": "已發布留言"
     }
+  },
+  "wishlist": {
+    "add": "加入收藏",
+    "saved": "已收藏",
+    "page_title": "你的收藏"
   }
 }

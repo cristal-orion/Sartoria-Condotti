@@ -1,0 +1,79 @@
+{%- doc -%}
+  Il cuore "Aggiungi ai preferiti" in scheda prodotto, come blocco spostabile
+  dall'editor del tema.
+{%- enddoc -%}
+
+{% liquid
+  assign product_resource = closest.product
+  if request.visual_preview_mode and product_resource == blank
+    assign product_resource = collections.all.products.first
+  endif
+%}
+
+{%- if product_resource != blank -%}
+  <div
+    class="wishlist-block spacing-style"
+    style="{% render 'spacing-style', settings: block.settings %}"
+    {{ block.shopify_attributes }}
+  >
+    {% render 'wishlist-button', product: product_resource, style: 'button' %}
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .wishlist-block {
+    display: flex;
+    width: 100%;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Preferiti (cuore)",
+  "tag": null,
+  "settings": [
+    { "type": "header", "content": "Spaziatura" },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Sopra",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Sotto",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "Sinistra",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "Destra",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [{ "name": "Preferiti (cuore)" }]
+}
+{% endschema %}

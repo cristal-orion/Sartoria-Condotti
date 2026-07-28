@@ -561,5 +561,10 @@
       "sold_out": "Sold out",
       "unavailable": "Unavailable"
     }
+  },
+  "wishlist": {
+    "add": "Add to wishlist",
+    "saved": "In your wishlist",
+    "page_title": "Your wishlist"
   }
 }

@@ -147,6 +147,7 @@
   >
     {{ children }}
     {%- unless onboarding -%}
+      {% render 'wishlist-button', product: product, style: 'icon' %}
       {% render 'color-swatches', product: product %}
     {%- endunless -%}
   </div>
