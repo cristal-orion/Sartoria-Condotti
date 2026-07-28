@@ -27,3 +27,21 @@ backup-*.csv
 /atelierdelricamonew.png
 /atelierdelricamonewvertical.png
 /condottiecologo.png
+
+# Foto sorgente arrivate dopo (nel repo vanno solo gli asset lavorati in assets/)
+TESSUTI*/
+DETTAGLI/
+ABITI Invernali/
+CAMICIE Invernali/
+GIACCHE invernali/
+PANTALONI invernali/
+NOLEGGIO ABITI/
+/Fotohomelogoblu.png
+/fotohomeverticalelogoblu.png
+/fototessutiestivi.png
+/fototessutiinvernali.png
+
+# Documenti (come la spec DOCX qui sopra): i PDF di piano lavoro sono
+# rigenerabili con genera-pdf-suddivisione-compiti.py, il documento del
+# cliente è un allegato ricevuto, non una fonte del tema.
+*.pdf
