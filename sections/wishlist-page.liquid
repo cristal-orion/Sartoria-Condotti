@@ -59,15 +59,22 @@
 
   .wishlist-page__title {
     margin: 0;
+    /* Header collezione/sezione unificato (Livello 2), come le altre sezioni */
     font-size: clamp(2.25rem, 5vw, 4rem);
-    line-height: 1.05;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
     font-weight: 400;
   }
 
+  /* Stessa misura dei paragrafi introduttivi del sito: 1rem, interlinea 1.6,
+     colore al 78%. Prima era al 60% e senza dimensione propria, e sotto un
+     titolo da 4rem sembrava una didascalia. */
   .wishlist-page__sub {
-    margin: var(--margin-sm, 12px) 0 0;
+    margin: 14px 0 0;
     max-width: 46ch;
-    color: rgb(var(--color-foreground-rgb) / var(--opacity-60));
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgb(var(--color-foreground-rgb) / 0.78);
   }
 
   .wishlist-page__empty {
