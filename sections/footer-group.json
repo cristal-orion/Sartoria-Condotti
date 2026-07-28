@@ -2,18 +2,6 @@
   "type": "footer",
   "name": "t:names.footer",
   "sections": {
-    "custom_liquid_8dn7HQ": {
-      "type": "custom-liquid",
-      "disabled": true,
-      "name": "t:names.custom_liquid",
-      "settings": {
-        "custom_liquid": "<div class=\"appointo-custom-btn\" data-appointo-product-handle=\"su-misura\" type=\"embed\"></div>",
-        "color_scheme": "",
-        "section_width": "page-width",
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
-    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -427,7 +415,6 @@
     }
   },
   "order": [
-    "custom_liquid_8dn7HQ",
     "footer"
   ]
 }

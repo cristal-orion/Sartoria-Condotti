@@ -131,22 +131,10 @@
         "enable_transparent_header_collection": true,
         "collection_color_scheme": "default"
       }
-    },
-    "custom_liquid_KJRnga": {
-      "type": "custom-liquid",
-      "name": "t:names.custom_liquid",
-      "settings": {
-        "custom_liquid": "<div class=\"appointo-custom-btn\" data-appointo-product-handle=\"su-misura\" type=\"embed\"></div>",
-        "color_scheme": "",
-        "section_width": "page-width",
-        "padding-block-start": 0,
-        "padding-block-end": 0
-      }
     }
   },
   "order": [
     "header_announcements_qXpY6k",
-    "header_section",
-    "custom_liquid_KJRnga"
+    "header_section"
   ]
 }
