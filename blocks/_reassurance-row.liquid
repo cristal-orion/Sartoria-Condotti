@@ -1,0 +1,77 @@
+{%- doc -%}
+  Una riga del riquadro di rassicurazione: icona + titolo + sottotitolo.
+  Blocco figlio di blocks/reassurance.liquid (non aggiungibile da solo).
+{%- enddoc -%}
+
+{% assign row = block.settings %}
+
+<div class="reassurance__row" {{ block.shopify_attributes }}>
+  {%- if row.icon != 'none' or row.image != blank -%}
+    <span class="reassurance__icon-wrap">
+      {%- render 'icon-or-image',
+        icon: row.icon,
+        image_upload: row.image,
+        width: 20,
+        class_name: 'reassurance__icon'
+      -%}
+    </span>
+  {%- endif -%}
+
+  <span class="reassurance__body">
+    {%- if row.heading != blank -%}
+      <span class="reassurance__heading">{{ row.heading }}</span>
+    {%- endif -%}
+    {%- if row.subheading != blank -%}
+      <span class="reassurance__sub">{{ row.subheading }}</span>
+    {%- endif -%}
+  </span>
+</div>
+
+{% schema %}
+{
+  "name": "Riga rassicurazione",
+  "tag": null,
+  "settings": [
+    {
+      "type": "select",
+      "id": "icon",
+      "label": "Icona",
+      "default": "truck",
+      "options": [
+        { "value": "none", "label": "Nessuna" },
+        { "value": "truck", "label": "Camion (spedizione)" },
+        { "value": "return", "label": "Freccia di ritorno (reso)" },
+        { "value": "ruler", "label": "Metro (sartoria)" },
+        { "value": "stopwatch", "label": "Cronometro (tempi)" },
+        { "value": "lock", "label": "Lucchetto (pagamenti)" },
+        { "value": "box", "label": "Scatola (imballo)" },
+        { "value": "shirt", "label": "Camicia" },
+        { "value": "leather", "label": "Pelle" },
+        { "value": "iron", "label": "Ferro (cura del capo)" },
+        { "value": "plane", "label": "Aereo (estero)" },
+        { "value": "star", "label": "Stella" },
+        { "value": "heart", "label": "Cuore" },
+        { "value": "whatsapp", "label": "WhatsApp" }
+      ]
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Immagine al posto dell'icona",
+      "info": "Facoltativa. Se la carichi, sostituisce l'icona."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Titolo",
+      "default": "SPEDIZIONE GRATUITA"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Riga sotto",
+      "default": "In tutta Italia"
+    }
+  ]
+}
+{% endschema %}

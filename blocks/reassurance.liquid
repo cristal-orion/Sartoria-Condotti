@@ -1,0 +1,188 @@
+{%- doc -%}
+  Riquadro di rassicurazione per la scheda prodotto (punto 2a del documento
+  cliente, esempio Farfetch): righe incorniciate con icona, un titolo breve e
+  una riga di spiegazione, che rispondono alle obiezioni di chi sta per
+  comprare — spedizione, reso, chi cuce il capo, ritiro in negozio.
+
+  Le righe sono blocchi figli (_reassurance-row), quindi si aggiungono,
+  riordinano e riscrivono dall'editor del tema senza toccare il codice.
+  Nota: i testi sono liberi di proposito. La soglia di spedizione gratuita è
+  scritta a mano nel titolo della prima riga: se cambia, si cambia da qui.
+{%- enddoc -%}
+
+{% assign block_settings = block.settings %}
+
+<div
+  class="reassurance spacing-style"
+  style="
+    --reassurance-radius: {{ block_settings.corner_radius }}px;
+    --reassurance-gap: {{ block_settings.row_gap }}px;
+    {% render 'spacing-style', settings: block_settings %}
+  "
+  {{ block.shopify_attributes }}
+>
+  {% content_for 'blocks' %}
+</div>
+
+{% stylesheet %}
+  .reassurance {
+    display: flex;
+    flex-direction: column;
+    gap: var(--reassurance-gap);
+    width: 100%;
+  }
+
+  .reassurance__row {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-sm);
+    padding: var(--padding-sm) var(--padding-md);
+    border: var(--style-border-width) solid var(--color-border);
+    border-radius: var(--reassurance-radius);
+  }
+
+  .reassurance__icon-wrap {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .reassurance__icon {
+    display: block;
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-80));
+  }
+
+  .reassurance__body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .reassurance__heading {
+    font-family: var(--font-subheading--family);
+    font-size: 0.8125rem;
+    line-height: 1.25;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-foreground);
+  }
+
+  .reassurance__sub {
+    font-size: 0.8125rem;
+    line-height: 1.3;
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-60));
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Riquadro rassicurazione",
+  "tag": null,
+  "blocks": [{ "type": "_reassurance-row" }],
+  "settings": [
+    {
+      "type": "range",
+      "id": "row_gap",
+      "label": "Spazio fra le righe",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "corner_radius",
+      "label": "Angoli",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    { "type": "header", "content": "Spaziatura" },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Sopra",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Sotto",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 8
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "Sinistra",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "Destra",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Riquadro rassicurazione",
+      "blocks": {
+        "row-spedizione": {
+          "type": "_reassurance-row",
+          "settings": {
+            "icon": "truck",
+            "heading": "SPEDIZIONE GRATUITA DA 139 €",
+            "subheading": "In tutta Italia"
+          }
+        },
+        "row-reso": {
+          "type": "_reassurance-row",
+          "settings": {
+            "icon": "return",
+            "heading": "RESO ENTRO 14 GIORNI",
+            "subheading": "Spedizione del reso a tuo carico"
+          }
+        },
+        "row-sartoria": {
+          "type": "_reassurance-row",
+          "settings": {
+            "icon": "ruler",
+            "heading": "SARTORIA NAPOLETANA",
+            "subheading": "Ogni capo cucito a mano, dal 1954"
+          }
+        },
+        "row-ritiro": {
+          "type": "_reassurance-row",
+          "settings": {
+            "icon": "stopwatch",
+            "heading": "RITIRO IN NEGOZIO A NAPOLI",
+            "subheading": "Pronto in circa 2 ore, Piazza dei Martiri"
+          }
+        }
+      },
+      "block_order": ["row-spedizione", "row-reso", "row-sartoria", "row-ritiro"]
+    }
+  ]
+}
+{% endschema %}

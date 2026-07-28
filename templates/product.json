@@ -269,6 +269,57 @@
                 "custom_liquid": "{%- assign dm = closest.product.metafields.custom.dettagli_modello -%}{%- if dm.value != blank -%}<style>.dm-accordion{width:100%;}.dm-accordion .dm-details{border-block-start:var(--style-border-width,1px) solid var(--color-border);}.dm-accordion .dm-summary{display:flex;align-items:center;justify-content:space-between;gap:1rem;cursor:pointer;list-style:none;padding-block:var(--padding-md,16px);min-height:var(--minimum-touch-target,44px);font-family:var(--font-h6--family);font-weight:var(--font-h6--weight);font-size:var(--font-h6--size);line-height:var(--font-h6--line-height);text-transform:var(--font-h6--case);color:var(--color-foreground);}.dm-accordion .dm-summary::-webkit-details-marker{display:none;}.dm-accordion .dm-caret{flex:0 0 auto;transition:transform .25s ease;}.dm-accordion .dm-details[open] .dm-caret{transform:rotate(180deg);}.dm-accordion .dm-content{padding-block-end:var(--padding-md,16px);}</style><div class=\"dm-accordion\"><details class=\"dm-details\"><summary class=\"dm-summary\"><span>Dettagli modello</span><svg class=\"dm-caret\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"m6 9 6 6 6-6\"/></svg></summary><div class=\"dm-content rte\">{{ dm.value | newline_to_br }}</div></details></div>{%- endif -%}"
               },
               "blocks": {}
+            },
+            "reassurance_rz1": {
+              "type": "reassurance",
+              "settings": {
+                "row_gap": 8,
+                "corner_radius": 0,
+                "padding-block-start": 16,
+                "padding-block-end": 8,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "row-spedizione": {
+                  "type": "_reassurance-row",
+                  "settings": {
+                    "icon": "truck",
+                    "heading": "SPEDIZIONE GRATUITA DA 139 €",
+                    "subheading": "In tutta Italia"
+                  }
+                },
+                "row-reso": {
+                  "type": "_reassurance-row",
+                  "settings": {
+                    "icon": "return",
+                    "heading": "RESO ENTRO 14 GIORNI",
+                    "subheading": "Spedizione del reso a tuo carico"
+                  }
+                },
+                "row-sartoria": {
+                  "type": "_reassurance-row",
+                  "settings": {
+                    "icon": "ruler",
+                    "heading": "SARTORIA NAPOLETANA",
+                    "subheading": "Ogni capo cucito a mano, dal 1954"
+                  }
+                },
+                "row-ritiro": {
+                  "type": "_reassurance-row",
+                  "settings": {
+                    "icon": "stopwatch",
+                    "heading": "RITIRO IN NEGOZIO A NAPOLI",
+                    "subheading": "Pronto in circa 2 ore, Piazza dei Martiri"
+                  }
+                }
+              },
+              "block_order": [
+                "row-spedizione",
+                "row-reso",
+                "row-sartoria",
+                "row-ritiro"
+              ]
             }
           },
           "block_order": [
@@ -277,6 +328,7 @@
             "divider_HrJgFt",
             "variant_picker_R3rGDr",
             "buy_buttons_eYQEYi",
+            "reassurance_rz1",
             "text_paySecHd1",
             "payment_icons_paySec1",
             "accordion_NKWPiW",
