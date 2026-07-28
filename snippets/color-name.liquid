@@ -1,0 +1,29 @@
+{%- doc -%}
+  Ricava il nome del colore dal titolo di un prodotto: prende le parole fra la
+  prima e l'ultima, saltando «monopetto»/«doppiopetto».
+  «T-shirt blu Fill» -> «blu», «Abito doppiopetto blu navy Philip» -> «blu navy».
+
+  Unico punto in cui vive questa regola: la usano sia color-swatches.liquid
+  (griglie) sia color-swatches-product.liquid (scheda prodotto). Il nome
+  ottenuto è la chiave con cui color-hex.liquid trova il colore del pallino.
+
+  @param {object} product - Il prodotto di cui ricavare il colore
+
+  @example
+  {% capture color_name %}{% render 'color-name', product: product %}{% endcapture %}
+  {% assign color_name = color_name | strip %}
+{%- enddoc -%}
+{%- liquid
+  assign words = product.title | split: ' '
+  assign word_count = words.size
+  assign color_name = product.title
+  if word_count > 2
+    assign color_len = word_count | minus: 2
+    assign color_words = words | slice: 1, color_len
+    if color_words.first == 'monopetto' or color_words.first == 'doppiopetto'
+      assign color_words = color_words | slice: 1, 99
+    endif
+    assign color_name = color_words | join: ' '
+  endif
+-%}
+{{- color_name -}}

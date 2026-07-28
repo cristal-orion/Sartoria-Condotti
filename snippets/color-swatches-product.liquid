@@ -1,0 +1,95 @@
+{%- doc -%}
+  Pallini colore per la SCHEDA PRODOTTO. Ogni colore è un prodotto Shopify a sé
+  (legati dal metafield custom.varianti_colore), quindi non sono varianti da
+  selezionare ma link: cliccando si va alla pagina di quel colore.
+
+  Sostituisce il selettore nativo dell'opzione colore quando quell'opzione ha un
+  solo valore — che da solo mostrerebbe un pallino singolo inutile e lascerebbe
+  il cliente in un vicolo cieco. La sostituzione avviene in
+  variant-main-picker.liquid.
+
+  Rispetta la struttura del selettore taglia (fieldset + legend) per avere la
+  stessa spaziatura e tipografia; il legend viene reso dal browser sul bordo del
+  fieldset, quindi finisce sopra i pallini come nelle altre opzioni.
+
+  Prodotto monocolore (nessun fratello) = non stampa nulla, come in griglia.
+
+  @param {object} product - Il prodotto corrente
+  @param {string} option_name - Nome dell'opzione colore così com'è su Shopify
+
+  @example
+  {% render 'color-swatches-product', product: product, option_name: 'Color' %}
+{%- enddoc -%}
+
+{% liquid
+  assign siblings = product.metafields.custom.varianti_colore.value
+  assign sibling_count = siblings.size | default: 0
+%}
+{% if sibling_count > 0 %}
+  {% assign sorted_siblings = siblings | sort: 'title' %}
+  {% capture color_name %}{% render 'color-name', product: product %}{% endcapture %}
+  {% assign color_name = color_name | strip %}
+  {% capture active_hex %}{% render 'color-hex', name: color_name %}{% endcapture %}
+
+  <fieldset class="variant-option variant-option--buttons color-option-links">
+    <legend>
+      {{ option_name | escape -}}
+      <span class="variant-option__swatch-value">{{ color_name | capitalize }}</span>
+    </legend>
+
+    <span
+      class="color-link-swatch color-link-swatch--active"
+      aria-current="true"
+      title="{{ color_name | capitalize }}"
+      style="background-color: {{ active_hex | strip }};"
+    ></span>
+
+    {% for sibling in sorted_siblings %}
+      {% capture s_color_name %}{% render 'color-name', product: sibling %}{% endcapture %}
+      {% assign s_color_name = s_color_name | strip %}
+      {% capture s_hex %}{% render 'color-hex', name: s_color_name %}{% endcapture %}
+      <a
+        class="color-link-swatch"
+        href="{{ sibling.url }}"
+        title="{{ s_color_name | capitalize }}"
+        style="background-color: {{ s_hex | strip }};"
+      >
+        <span class="visually-hidden">{{ s_color_name | capitalize }}</span>
+      </a>
+    {% endfor %}
+  </fieldset>
+{% endif %}
+
+{% stylesheet %}
+  /* I pallini sono figli diretti del fieldset: flex e gap arrivano da
+     .variant-option--buttons, come per i bottoni taglia. */
+  .color-link-swatch {
+    display: block;
+    flex: 0 0 auto;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid rgb(var(--color-foreground-rgb) / var(--opacity-20, 0.2));
+    transition: outline-color var(--animation-speed) var(--animation-easing);
+    outline: 1.5px solid transparent;
+    outline-offset: 2px;
+  }
+
+  .color-link-swatch--active {
+    outline-color: rgb(var(--color-foreground-rgb) / 0.85);
+    border-color: transparent;
+    cursor: default;
+  }
+
+  a.color-link-swatch:hover {
+    outline-color: rgb(var(--color-foreground-rgb) / 0.4);
+  }
+
+  a.color-link-swatch:focus-visible {
+    outline-color: rgb(var(--color-foreground-rgb) / 0.85);
+  }
+
+  .color-option-links {
+    align-items: center;
+  }
+{% endstylesheet %}

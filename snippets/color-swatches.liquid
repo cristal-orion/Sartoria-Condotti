@@ -15,19 +15,8 @@
 %}
 {% if sibling_count > 0 %}
   {% assign sorted_siblings = siblings | sort: 'title' %}
-  {% liquid
-    assign words = product.title | split: ' '
-    assign word_count = words.size
-    assign color_name = product.title
-    if word_count > 2
-      assign color_len = word_count | minus: 2
-      assign color_words = words | slice: 1, color_len
-      if color_words.first == 'monopetto' or color_words.first == 'doppiopetto'
-        assign color_words = color_words | slice: 1, 99
-      endif
-      assign color_name = color_words | join: ' '
-    endif
-  %}
+  {% capture color_name %}{% render 'color-name', product: product %}{% endcapture %}
+  {% assign color_name = color_name | strip %}
   {% capture active_hex %}{% render 'color-hex', name: color_name %}{% endcapture %}
   <div class="color-swatches" role="list" aria-label="Colori disponibili">
     <span
@@ -38,19 +27,8 @@
       style="background-color: {{ active_hex | strip }};"
     ></span>
     {% for sibling in sorted_siblings %}
-      {% liquid
-        assign s_words = sibling.title | split: ' '
-        assign s_word_count = s_words.size
-        assign s_color_name = sibling.title
-        if s_word_count > 2
-          assign s_color_len = s_word_count | minus: 2
-          assign s_color_words = s_words | slice: 1, s_color_len
-          if s_color_words.first == 'monopetto' or s_color_words.first == 'doppiopetto'
-            assign s_color_words = s_color_words | slice: 1, 99
-          endif
-          assign s_color_name = s_color_words | join: ' '
-        endif
-      %}
+      {% capture s_color_name %}{% render 'color-name', product: sibling %}{% endcapture %}
+      {% assign s_color_name = s_color_name | strip %}
       {% capture s_hex %}{% render 'color-hex', name: s_color_name %}{% endcapture %}
       <a
         href="{{ sibling.url }}"

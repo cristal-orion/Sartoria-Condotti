@@ -51,7 +51,39 @@
             assign option_id_attribute = 'data-option-id="' | append: fieldset_id | append: '"'
             assign longest_value = 0
           endif
+
+          # Qui i colori sono prodotti separati, non varianti (metafield
+          # custom.varianti_colore). Quando l'opzione colore ha un solo valore il
+          # selettore nativo mostrerebbe un pallino unico inutile: al suo posto
+          # rendiamo i colori del gruppo come link, così dalla scheda si passa da
+          # un colore all'altro invece di restare in un vicolo cieco.
+          # Se l'opzione ha più valori è una vera variante multi-colore: lì il
+          # selettore nativo è quello giusto e non tocchiamo niente.
+          # Monocolore (nessun fratello): il pallino unico non è una scelta, è
+          # rumore — il colore sta già nel titolo. Lo nascondiamo come in griglia,
+          # ma solo se resta almeno un'altra opzione da scegliere (la taglia),
+          # per non lasciare un selettore completamente vuoto.
+          assign color_siblings = product_resource.metafields.custom.varianti_colore.value
+          assign use_color_links = false
+          assign skip_lone_color = false
+          if swatch_count > 0 and product_option.values.size == 1
+            if color_siblings.size > 0
+              assign use_color_links = true
+            elsif product_resource.options_with_values.size > 1
+              assign skip_lone_color = true
+            endif
+          endif
         -%}
+
+        {%- if use_color_links -%}
+          {% render 'color-swatches-product',
+            product: product_resource,
+            option_name: product_option.name
+          %}
+          {%- continue -%}
+        {%- elsif skip_lone_color -%}
+          {%- continue -%}
+        {%- endif -%}
 
         {%- if variant_style == 'swatch' or block_settings.variant_style == 'buttons' -%}
           <fieldset
