@@ -181,7 +181,12 @@
       "tessuti_lbl_peso": "Grammage",
       "tessuti_lbl_codice": "Lainier / code",
       "tessuti_swatches_aria": "Échantillons de tissu",
-      "tessuti_hint": "Touchez un échantillon pour voir le vêtement"
+      "tessuti_hint": "Touchez un échantillon pour voir le vêtement",
+      "teaser_eyebrow": "Avant de réserver",
+      "teaser_heading": "Voyez ce que nous pouvons coudre pour vous",
+      "teaser_body": "Lins, flanelles, laines et cachemire : dans l’Atelier del Tessuto, choisissez un échantillon et découvrez le vêtement qui en naît. Arrivez au rendez-vous en sachant déjà ce que vous voulez.",
+      "teaser_cta": "Entrer dans l’Atelier del Tessuto",
+      "teaser_swatches_aria": "Échantillons de l’aperçu"
     },
     "atelier_tessuto": {
       "eyebrow": "Sartoria Condotti",
@@ -194,7 +199,11 @@
       "season_inverno_title": "Automne — Hiver",
       "season_inverno_sub": "Laines, flanelles et tissus plus lourds pour la saison froide.",
       "season_inverno_cta": "Découvrir les tissus",
-      "change_season": "Changer de saison"
+      "change_season": "Changer de saison",
+      "cta_eyebrow": "L’étape suivante",
+      "cta_heading": "Passons aux mesures",
+      "cta_body": "Le tailleur vient chez vous ou à votre bureau avec les échantillons en main : choisissez le jour et l’heure, nous nous occupons du reste.",
+      "cta_label": "Réserver le tailleur"
     },
     "noleggio": {
       "eyebrow": "Sartoria Condotti",

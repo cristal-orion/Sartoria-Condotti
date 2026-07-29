@@ -112,6 +112,9 @@
     </div>
   </div>
 
+  <!-- INVITO ALL'ATELIER DEL TESSUTO: prima di prenotare, guarda cosa si può fare -->
+  {%- render 'bp-tessuti-teaser', section: section -%}
+
   <!-- FORM RICHIESTA (ink) -->
   <div class="bp bp--ink" style="background:rgb(var(--bp-ink));color:rgb(var(--bp-cream));">
     <div class="bp__section bp__wrap" id="prenota">
@@ -311,6 +314,15 @@
     { "type": "header", "content": "Come funziona" },
     { "type": "text", "id": "how_eyebrow", "label": "Eyebrow", "info": "Vuoto = usa la traduzione." },
     { "type": "text", "id": "how_heading", "label": "Titolo", "info": "Vuoto = usa la traduzione." },
+    { "type": "header", "content": "Invito all'Atelier del Tessuto", "info": "Blocco tra “Come funziona” e la prenotazione: mostra un'anteprima animata dei tessuti e porta alla pagina Atelier del Tessuto." },
+    { "type": "checkbox", "id": "teaser_enabled", "label": "Mostra l'invito ai tessuti", "default": true },
+    { "type": "text", "id": "teaser_eyebrow", "label": "Eyebrow", "info": "Vuoto = usa la traduzione." },
+    { "type": "text", "id": "teaser_heading", "label": "Titolo", "info": "Vuoto = usa la traduzione." },
+    { "type": "textarea", "id": "teaser_body", "label": "Testo", "info": "Vuoto = usa la traduzione." },
+    { "type": "text", "id": "teaser_cta_label", "label": "Etichetta bottone", "info": "Vuoto = usa la traduzione." },
+    { "type": "url", "id": "teaser_link", "label": "Link", "info": "Vuoto = /pages/atelier-del-tessuto" },
+    { "type": "textarea", "id": "teaser_images", "label": "Foto dell'anteprima (file in assets/)", "info": "Una coppia per tessuto, separate da virgola. Formato: campione | capo | nome. Servono almeno due coppie perché l'anteprima si animi.", "default": "tessuto-abito-inverno-1-a.jpg | tessuto-abito-inverno-1-b.jpg | Grigio gessato, tessuto-abito-1-a.jpg | tessuto-abito-1-b.jpg | Beige sabbia, tessuto-giacca-inverno-4-a.jpg | tessuto-giacca-inverno-4-b.jpg | Tortora cashmere, tessuto-abito-3-a.jpg | tessuto-abito-3-b.jpg | Azzurro lino" },
+    { "type": "video", "id": "teaser_video", "label": "Video (opzionale)", "info": "Se carichi un video sostituisce l'anteprima animata. Parte da solo, muto e in loop." },
     { "type": "header", "content": "Acconto (prenotazione a pagamento)" },
     { "type": "checkbox", "id": "deposit_enabled", "label": "Richiedi acconto per prenotare", "info": "Se attivo, al posto del calendario/form compare il bottone per pagare l’acconto. Il link cal.com per scegliere data/ora va inserito nell’email di conferma ordine.", "default": false },
     { "type": "text", "id": "deposit_variant_id", "label": "ID variante prodotto acconto", "info": "ID numerico della variante del prodotto ‘Sarto a domicilio’ (100 €).", "default": "53840584933714" },

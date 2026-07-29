@@ -181,7 +181,12 @@
       "tessuti_lbl_peso": "Grammatura",
       "tessuti_lbl_codice": "Lanificio / codice",
       "tessuti_swatches_aria": "Campioni di tessuto",
-      "tessuti_hint": "Tocca un campione per vedere il capo"
+      "tessuti_hint": "Tocca un campione per vedere il capo",
+      "teaser_eyebrow": "Prima di prenotare",
+      "teaser_heading": "Guarda cosa possiamo cucire per te",
+      "teaser_body": "Lini, flanelle, lane e cashmere: nell’Atelier del Tessuto scegli il campione e vedi il capo che ne nasce. Arriva all’appuntamento sapendo già cosa vuoi.",
+      "teaser_cta": "Entra nell’Atelier del Tessuto",
+      "teaser_swatches_aria": "Campioni dell’anteprima"
     },
     "atelier_tessuto": {
       "eyebrow": "Sartoria Condotti",
@@ -194,7 +199,11 @@
       "season_inverno_title": "Autunno — Inverno",
       "season_inverno_sub": "Lane, flanelle e tessuti pesanti per la stagione fredda.",
       "season_inverno_cta": "Scopri i tessuti",
-      "change_season": "Cambia stagione"
+      "change_season": "Cambia stagione",
+      "cta_eyebrow": "Il passo successivo",
+      "cta_heading": "Ora le misure",
+      "cta_body": "Il sarto arriva a casa o in ufficio con i campioni in mano: scegli giorno e ora, al resto pensiamo noi.",
+      "cta_label": "Prenota il sarto"
     },
     "noleggio": {
       "eyebrow": "Sartoria Condotti",

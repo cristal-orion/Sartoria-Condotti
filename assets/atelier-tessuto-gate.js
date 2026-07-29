@@ -1,16 +1,13 @@
 /* ============================================================
-   Atelier del Tessuto — selettore stagione bloccante
-   Finche' l'utente non sceglie Estate/Inverno lo scroll resta
-   bloccato sul selettore. La scelta rivela il configuratore
-   corrispondente sulla stessa pagina (nessuna navigazione).
+   Atelier del Tessuto — selettore stagione
+   La scelta Estate/Inverno rivela il configuratore corrispondente
+   sulla stessa pagina (nessuna navigazione).
+   Lo scroll NON e' piu' bloccato: sotto le foto ci sono una fascia
+   di respiro e il footer, e i tessuti restano comunque fuori
+   portata finche' non si scegle (partono hidden).
    ============================================================ */
 (function () {
   'use strict';
-
-  function lockScroll(lock) {
-    document.documentElement.classList.toggle('at-locked', lock);
-    document.body.classList.toggle('at-locked', lock);
-  }
 
   function initGate(gate) {
     if (gate.dataset.atGateInit === '1') return;
@@ -38,7 +35,6 @@
         c.hidden = c.getAttribute('data-at-season-content') !== season;
       });
       closeGate();
-      lockScroll(false);
       window.scrollTo({ top: 0, behavior: 'auto' });
     }
 
@@ -57,12 +53,9 @@
         });
         gate.hidden = false;
         gate.classList.remove('at-gate--closing');
-        lockScroll(true);
         window.scrollTo({ top: 0, behavior: 'auto' });
       });
     });
-
-    lockScroll(true);
   }
 
   function boot() {

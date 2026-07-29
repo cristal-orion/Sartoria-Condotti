@@ -1,0 +1,92 @@
+{%- comment -%}
+  Invito all'Atelier del Tessuto, da mettere PRIMA della prenotazione:
+  "guarda cosa possiamo fare per te, poi prenota".
+  L'anteprima rifà in piccolo il gesto della pagina vera — il campione di tessuto
+  scelto e il capo che ne nasce — ciclando da sola le coppie di foto in assets/.
+  Se la sezione ha un video caricato, quello sostituisce l'animazione.
+  Uso: {% render 'bp-tessuti-teaser', section: section %}
+{%- endcomment -%}
+{%- liquid
+  assign s = section.settings
+  assign teaser_eyebrow = 'brand.sarto_domicilio.teaser_eyebrow' | t
+  assign teaser_eyebrow = s.teaser_eyebrow | default: teaser_eyebrow
+  assign teaser_heading = 'brand.sarto_domicilio.teaser_heading' | t
+  assign teaser_heading = s.teaser_heading | default: teaser_heading
+  assign teaser_body = 'brand.sarto_domicilio.teaser_body' | t
+  assign teaser_body = s.teaser_body | default: teaser_body
+  assign teaser_cta = 'brand.sarto_domicilio.teaser_cta' | t
+  assign teaser_cta = s.teaser_cta_label | default: teaser_cta
+  assign teaser_link = s.teaser_link | default: '/pages/atelier-del-tessuto'
+  assign teaser_swatches_aria = 'brand.sarto_domicilio.teaser_swatches_aria' | t
+  assign entries = s.teaser_images | split: ','
+-%}
+
+{%- if s.teaser_enabled -%}
+  <span class="bp__stitch bp__wrap" aria-hidden="true">
+    <svg viewBox="0 0 1000 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="1000" y2="1" stroke="currentColor" stroke-width="1.4" stroke-dasharray="7 5" vector-effect="non-scaling-stroke"/></svg>
+  </span>
+
+  <div class="bp__section bp__wrap">
+    <div class="bp-teaser" data-bp-teaser>
+      <div class="bp-teaser__media" data-reveal>
+        {%- if s.teaser_video != blank -%}
+          <div class="bp-teaser__stage">
+            {{ s.teaser_video | video_tag: image_size: '620x', autoplay: true, loop: true, muted: true, controls: false }}
+          </div>
+        {%- else -%}
+          {%- comment -%} Il link sulla foto e' un doppione del bottone: fuori dal giro di tab. {%- endcomment -%}
+          <a class="bp-teaser__stage" href="{{ teaser_link }}" tabindex="-1" aria-hidden="true">
+            {%- assign frame_idx = 0 -%}
+            {%- for entry in entries -%}
+              {%- assign parts = entry | split: '|' -%}
+              {%- assign campione = parts[0] | strip -%}
+              {%- assign capo = parts[1] | strip -%}
+              {%- if campione == blank or capo == blank -%}{%- continue -%}{%- endif -%}
+              {%- assign nome = parts[2] | strip -%}
+              <img class="bp-teaser__capo{% if frame_idx == 0 %} is-active{% endif %}"
+                   data-bp-teaser-capo="{{ frame_idx }}"
+                   data-nome="{{ nome | escape }}"
+                   src="{{ capo | asset_img_url: '620x' }}"
+                   width="620"
+                   height="930"
+                   loading="lazy"
+                   alt="{% if frame_idx == 0 %}{{ nome | escape }}{% endif %}">
+              {%- assign frame_idx = frame_idx | plus: 1 -%}
+            {%- endfor -%}
+          </a>
+
+          {%- if frame_idx > 1 -%}
+            <div class="bp-teaser__swatches" role="group" aria-label="{{ teaser_swatches_aria | escape }}">
+              {%- assign swatch_idx = 0 -%}
+              {%- for entry in entries -%}
+                {%- assign parts = entry | split: '|' -%}
+                {%- assign campione = parts[0] | strip -%}
+                {%- assign capo = parts[1] | strip -%}
+                {%- if campione == blank or capo == blank -%}{%- continue -%}{%- endif -%}
+                {%- assign nome = parts[2] | strip -%}
+                <button type="button"
+                        class="bp-teaser__swatch{% if swatch_idx == 0 %} is-active{% endif %}"
+                        data-bp-teaser-swatch="{{ swatch_idx }}"
+                        aria-pressed="{% if swatch_idx == 0 %}true{% else %}false{% endif %}"
+                        aria-label="{{ nome | escape }}">
+                  <img src="{{ campione | asset_img_url: '140x' }}" width="140" height="140" loading="lazy" alt="">
+                </button>
+                {%- assign swatch_idx = swatch_idx | plus: 1 -%}
+              {%- endfor -%}
+            </div>
+            <p class="bp-teaser__caption" data-bp-teaser-caption aria-hidden="true">
+              {%- assign first_parts = entries[0] | split: '|' -%}{{ first_parts[2] | strip }}
+            </p>
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+
+      <div class="bp-teaser__text">
+        <p class="bp__eyebrow" data-reveal>{{ teaser_eyebrow }}</p>
+        <h2 class="bp__h2" data-reveal>{{ teaser_heading }}</h2>
+        <p class="bp__body" data-reveal>{{ teaser_body }}</p>
+        <a class="bp__btn" href="{{ teaser_link }}" data-reveal>{{ teaser_cta }}{%- render 'bp-arrow' -%}</a>
+      </div>
+    </div>
+  </div>
+{%- endif -%}

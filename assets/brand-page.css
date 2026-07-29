@@ -1243,19 +1243,125 @@ a.bp__diptych-media img {
   }
 }
 
-/* Atelier del Tessuto: selettore stagione bloccante a schermo intero */
-html.at-locked,
-body.at-locked {
-  overflow: hidden;
-  height: 100%;
+/* ---- Invito all'Atelier del Tessuto (dentro Sarto a Domicilio) ---- */
+.bp-teaser {
+  display: grid;
+  grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+  gap: clamp(28px, 5vw, 76px);
+  align-items: center;
 }
 
+@media (max-width: 899px) {
+  .bp-teaser {
+    grid-template-columns: minmax(0, 1fr);
+    gap: clamp(24px, 5vw, 40px);
+  }
+  .bp-teaser__media {
+    max-width: 280px;
+  }
+}
+
+.bp-teaser__stage {
+  position: relative;
+  display: block;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  background: rgb(var(--bp-fg) / 0.06);
+}
+
+.bp-teaser__stage img,
+.bp-teaser__stage video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* I capi stanno impilati e si scambiano in dissolvenza */
+.bp-teaser__capo {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.bp-teaser__capo.is-active {
+  opacity: 1;
+}
+
+.bp-teaser__swatches {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.bp-teaser__swatch {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid rgb(var(--bp-fg) / 0.18);
+  overflow: hidden;
+  background: none;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.35s ease, border-color 0.35s ease, transform 0.35s ease;
+}
+
+.bp-teaser__swatch img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bp-teaser__swatch.is-active {
+  opacity: 1;
+  border-color: rgb(var(--bp-gold));
+  transform: translateY(-3px);
+}
+
+.bp-teaser__swatch:focus-visible {
+  outline: 2px solid rgb(var(--bp-gold));
+  outline-offset: 3px;
+}
+
+.bp-teaser__caption {
+  margin: 12px 0 0;
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgb(var(--bp-fg) / 0.6);
+}
+
+.bp-teaser__text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: clamp(14px, 1.6vw, 22px);
+}
+
+.bp-teaser__text .bp__h2 {
+  /* Titolo su due righe bilanciate: senza balance resta un "te" orfano da solo */
+  max-width: 26ch;
+  text-wrap: balance;
+}
+
+.bp-teaser__text .bp__body {
+  max-width: 46ch;
+}
+
+/* Atelier del Tessuto: selettore stagione.
+   Foto verticali nel loro rapporto naturale (2:3, quindi non ritagliate), testo e
+   tasto FUORI dalla foto su fondo chiaro: nessun fondo nero, nessuna sfumatura.
+   Lo scroll non e' bloccato: sotto c'e' la fascia di respiro e poi il footer, e i
+   tessuti restano comunque fuori portata finche' non si sceglie (partono hidden). */
 .at-gate {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 100svh;
-  background: rgb(var(--bp-ink));
   transition: opacity 0.5s ease;
 }
 
@@ -1270,73 +1376,72 @@ body.at-locked {
   display: none;
 }
 
+/* Il padding orizzontale arriva da .bp__wrap sullo stesso elemento */
 .at-gate__head {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 3;
-  padding-block: clamp(20px, 3.4vh, 34px);
+  padding-block: clamp(34px, 5.2vh, 66px) clamp(22px, 3.2vh, 38px);
   text-align: center;
-  color: rgb(var(--bp-cream));
-  pointer-events: none;
-}
-
-.at-gate__head .bp__eyebrow {
-  color: rgb(var(--bp-cream) / 0.75);
 }
 
 .at-gate__title {
-  margin-top: 0.3em;
-  font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+  margin-top: 0.26em;
+  font-size: clamp(2.1rem, 4vw, 3.2rem);
+}
+
+.at-gate__lead {
+  max-width: 48ch;
+  margin: 1em auto 0;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgb(var(--bp-fg) / 0.7);
 }
 
 .at-seasons {
+  /* L'altezza della foto arriva dal personalizzatore; la larghezza la ricava dal
+     rapporto 2:3, cosi' la foto si vede per intera senza tagli. */
+  --at-photo-h: clamp(360px, var(--at-seasons-h, 64svh), 960px);
   display: flex;
-  flex: 1 1 auto;
   flex-direction: column;
+  align-items: center;
+  gap: clamp(40px, 5vh, 68px);
+  padding-inline: var(--bp-pad-x);
 }
 
 .at-season {
   appearance: none;
   -webkit-appearance: none;
   display: flex;
-  align-items: flex-start;
-  flex: 1 1 50%;
-  width: 100%;
-  min-height: 38vh;
+  flex-direction: column;
+  flex: 0 1 auto;
+  width: min(100%, calc(var(--at-photo-h) * 0.667));
   margin: 0;
   padding: 0;
   border: 0;
-  overflow: hidden;
-  isolation: isolate;
-  position: relative;
+  background: none;
   font: inherit;
   text-align: left;
   text-decoration: none;
-  color: rgb(var(--bp-cream));
+  color: rgb(var(--bp-fg));
   cursor: pointer;
-  background: none;
-}
-
-.at-season + .at-season {
-  border-top: 1px solid rgb(var(--bp-cream) / 0.15);
 }
 
 @media (min-width: 900px) {
   .at-seasons {
     flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--at-gap, 18px);
   }
-  .at-season + .at-season {
-    border-top: 0;
-    border-left: 1px solid rgb(var(--bp-cream) / 0.15);
+  .at-season {
+    width: min(calc(var(--at-photo-h) * 0.667), calc((100% - var(--at-gap, 18px)) / 2));
   }
 }
 
 .at-season__media {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
+  display: block;
+  position: relative;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  background: rgb(var(--bp-bone));
 }
 
 .at-season__media img {
@@ -1344,75 +1449,99 @@ body.at-locked {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Inquadratura regolabile dal personalizzatore (variabili impostate inline sul .at-season__media) */
+  /* Inquadratura regolabile dal personalizzatore (variabili inline sul .at-season__media) */
   object-position: var(--at-focal-x, 50%) var(--at-focal-y, 50%);
   transform: scale(var(--at-zoom, 1));
   transform-origin: var(--at-focal-x, 50%) var(--at-focal-y, 50%);
   transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.at-season__overlay {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(to bottom, rgb(var(--bp-ink) / 0.78), rgb(var(--bp-ink) / 0.08) 42%, transparent 62%);
-  transition: background 0.5s ease;
-}
-
 .at-season__content {
-  position: relative;
-  z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 0.5em;
-  padding: clamp(28px, 4vw, 56px);
-  padding-top: clamp(104px, 15vh, 168px);
+  align-items: flex-start;
+  gap: 0.42em;
+  padding-block-start: clamp(18px, 1.6vw, 26px);
 }
 
 .at-season__eyebrow {
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 500;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: rgb(var(--bp-cream) / 0.78);
+  color: rgb(var(--bp-fg) / 0.6);
 }
 
 .at-season__title {
   font-family: 'Fraunces', var(--font-heading--family, serif);
   font-weight: 300;
   font-variation-settings: 'opsz' 144;
-  font-size: clamp(2rem, 4.2vw, 3.6rem);
-  line-height: 1.03;
+  font-size: clamp(1.7rem, 2.6vw, 2.4rem);
+  line-height: 1.05;
   letter-spacing: -0.01em;
+  transition: color 0.3s ease;
 }
 
 .at-season__sub {
-  max-width: 32ch;
+  max-width: 36ch;
   font-size: 0.95rem;
-  line-height: 1.5;
-  color: rgb(var(--bp-cream) / 0.85);
-  transition: color 0.3s ease;
+  line-height: 1.55;
+  color: rgb(var(--bp-fg) / 0.72);
+}
+
+/* Il tasto fuori dalla foto. E' uno <span>: la card intera e' gia' un <button>,
+   e un button dentro un button non e' HTML valido. */
+.at-season__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  margin-top: 0.9em;
+  padding: 0.95em 1.9em;
+  background: rgb(var(--bp-ink));
+  color: rgb(var(--bp-cream));
+  font-family: var(--font-body--family, system-ui);
+  font-size: 0.76rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+.at-season__cta svg {
+  flex: 0 0 auto;
+  transition: transform 0.35s ease;
 }
 
 @media (hover: hover) {
   .at-season:hover .at-season__media img {
-    transform: scale(calc(var(--at-zoom, 1) * 1.07));
-  }
-  .at-season:hover .at-season__overlay {
-    background: linear-gradient(to bottom, rgb(var(--bp-ink) / 0.85), rgb(var(--bp-ink) / 0.03) 48%, transparent 68%);
+    transform: scale(calc(var(--at-zoom, 1) * 1.04));
   }
   .at-season:hover .at-season__title {
     color: rgb(var(--bp-gold));
+  }
+  .at-season:hover .at-season__cta {
+    background: rgb(var(--bp-gold));
+    color: rgb(var(--bp-ink));
+  }
+  .at-season:hover .at-season__cta svg {
+    transform: translateX(5px);
   }
 }
 
 .at-season:focus-visible {
   outline: 2px solid rgb(var(--bp-gold));
-  outline-offset: -4px;
+  outline-offset: 4px;
 }
 
-.at-season__title {
-  transition: color 0.3s ease;
+/* Fascia vuota sotto le foto: da qui si arriva al footer */
+.at-gate__breath {
+  flex: 0 0 auto;
+  height: var(--at-breath, 140px);
+}
+
+/* Fascia finale di ogni stagione: dai tessuti alla prenotazione del sarto */
+.at-cta__body {
+  max-width: 46ch;
 }
 
 /* Bottone "cambia stagione" dentro ciascun configuratore */
@@ -1446,9 +1575,12 @@ body.at-locked {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .bp-teaser__capo,
+  .bp-teaser__swatch,
   .at-season__media img,
-  .at-season__overlay,
   .at-season__title,
+  .at-season__cta,
+  .at-season__cta svg,
   .at-gate,
   .at-back {
     transition: none;

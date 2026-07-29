@@ -175,8 +175,81 @@
     });
   }
 
+  /* --- Anteprima dell'Atelier del Tessuto dentro Sarto a Domicilio ---
+     Rifa' in piccolo il gesto della pagina vera (campione scelto -> capo che ne
+     nasce) ciclando da sola le coppie di foto. Gira solo quando e' a schermo e a
+     scheda attiva; con prefers-reduced-motion resta fermo il primo capo. */
+  function initTeaser(root) {
+    if (root.dataset.bpTeaserInit === '1') return;
+    root.dataset.bpTeaserInit = '1';
+
+    var capi = Array.prototype.slice.call(root.querySelectorAll('[data-bp-teaser-capo]'));
+    var swatches = Array.prototype.slice.call(root.querySelectorAll('[data-bp-teaser-swatch]'));
+    var caption = root.querySelector('[data-bp-teaser-caption]');
+    if (capi.length < 2) return;
+
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var idx = 0;
+    var timer = null;
+    var onScreen = false;
+
+    function show(n) {
+      idx = (n + capi.length) % capi.length;
+      capi.forEach(function (img, k) {
+        img.classList.toggle('is-active', k === idx);
+      });
+      swatches.forEach(function (b, k) {
+        var on = k === idx;
+        b.classList.toggle('is-active', on);
+        b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      if (caption) caption.textContent = capi[idx].getAttribute('data-nome') || '';
+    }
+
+    function stop() {
+      if (!timer) return;
+      window.clearInterval(timer);
+      timer = null;
+    }
+
+    function play() {
+      if (timer || reduce) return;
+      timer = window.setInterval(function () {
+        show(idx + 1);
+      }, 2600);
+    }
+
+    // Il clic su un campione porta al suo capo: l'anteprima riparte da lì
+    swatches.forEach(function (btn, k) {
+      btn.addEventListener('click', function () {
+        stop();
+        show(k);
+        if (onScreen && !document.hidden) play();
+      });
+    });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          onScreen = entry.isIntersecting;
+          if (onScreen && !document.hidden) play();
+          else stop();
+        });
+      }, { threshold: 0.3 }).observe(root);
+    } else {
+      onScreen = true;
+      play();
+    }
+
+    document.addEventListener('visibilitychange', function () {
+      if (document.hidden) stop();
+      else if (onScreen) play();
+    });
+  }
+
   function boot() {
     document.querySelectorAll('[data-bp-atelier]').forEach(initAtelier);
+    document.querySelectorAll('[data-bp-teaser]').forEach(initTeaser);
   }
 
   if (document.readyState === 'loading') {
@@ -188,5 +261,6 @@
   // Re-init nel theme editor di Shopify quando la sezione viene ricaricata
   document.addEventListener('shopify:section:load', function (e) {
     e.target.querySelectorAll('[data-bp-atelier]').forEach(initAtelier);
+    e.target.querySelectorAll('[data-bp-teaser]').forEach(initTeaser);
   });
 })();

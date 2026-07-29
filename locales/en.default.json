@@ -181,7 +181,12 @@
       "tessuti_lbl_peso": "Weight",
       "tessuti_lbl_codice": "Mill / code",
       "tessuti_swatches_aria": "Fabric swatches",
-      "tessuti_hint": "Tap a swatch to see the garment"
+      "tessuti_hint": "Tap a swatch to see the garment",
+      "teaser_eyebrow": "Before you book",
+      "teaser_heading": "See what we can tailor for you",
+      "teaser_body": "Linens, flannels, wools and cashmere: in the Atelier del Tessuto you pick a swatch and see the garment it becomes. Arrive at your appointment already knowing what you want.",
+      "teaser_cta": "Enter the Atelier del Tessuto",
+      "teaser_swatches_aria": "Preview swatches"
     },
     "atelier_tessuto": {
       "eyebrow": "Sartoria Condotti",
@@ -194,7 +199,11 @@
       "season_inverno_title": "Autumn — Winter",
       "season_inverno_sub": "Wools, flannels and heavier fabrics for the cold season.",
       "season_inverno_cta": "Discover the fabrics",
-      "change_season": "Change season"
+      "change_season": "Change season",
+      "cta_eyebrow": "The next step",
+      "cta_heading": "Now the measurements",
+      "cta_body": "The tailor comes to your home or office with the swatches in hand: pick a day and a time, we’ll take care of the rest.",
+      "cta_label": "Book the tailor"
     },
     "noleggio": {
       "eyebrow": "Sartoria Condotti",

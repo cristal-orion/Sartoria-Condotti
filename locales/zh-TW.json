@@ -181,7 +181,12 @@
       "tessuti_lbl_peso": "克重",
       "tessuti_lbl_codice": "毛紡廠／編號",
       "tessuti_swatches_aria": "布料樣本",
-      "tessuti_hint": "點選布樣即可查看成衣"
+      "tessuti_hint": "點選布樣即可查看成衣",
+      "teaser_eyebrow": "預約之前",
+      "teaser_heading": "先看看我們能為您縫製什麼",
+      "teaser_body": "亞麻、法蘭絨、羊毛與喀什米爾：在布料工坊選一款布樣，就能看到以它縫製的成衣。帶著明確的想法來赴約。",
+      "teaser_cta": "進入布料工坊",
+      "teaser_swatches_aria": "預覽布樣"
     },
     "atelier_tessuto": {
       "eyebrow": "Sartoria Condotti",
@@ -194,7 +199,11 @@
       "season_inverno_title": "秋冬",
       "season_inverno_sub": "羊毛、法蘭絨與厚重布料，適合寒冷季節。",
       "season_inverno_cta": "探索布料",
-      "change_season": "切換季節"
+      "change_season": "切換季節",
+      "cta_eyebrow": "下一步",
+      "cta_heading": "接下來，量身",
+      "cta_body": "裁縫師帶著布樣到您的家中或辦公室：選好日期與時間，其餘交給我們。",
+      "cta_label": "預約裁縫師"
     },
     "noleggio": {
       "eyebrow": "Sartoria Condotti",
