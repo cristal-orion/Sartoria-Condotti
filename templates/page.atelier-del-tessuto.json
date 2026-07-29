@@ -893,6 +893,216 @@
             "img_campione": "tessuto-pantalone-inverno-6-a.jpg",
             "img_capo": "tessuto-pantalone-inverno-6-b.jpg"
           }
+        },
+        "tessuto-cravatta-inverno-1": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "cravatte",
+            "nome": "Blu navy gessato",
+            "composizione": "100% lana",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Lana blu navy percorsa da un gessato bianco: la cravatta invernale più facile da abbinare a un completo scuro.",
+            "img_campione": "tessuto-cravatta-inverno-1-a.jpg",
+            "img_capo": "tessuto-cravatta-inverno-1-b.jpg"
+          }
+        },
+        "tessuto-cravatta-inverno-2": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "cravatte",
+            "nome": "Mattone Principe di Galles",
+            "composizione": "100% lana",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Principe di Galles nei toni del mattone, un colore caldo che spezza il grigio dell’inverno.",
+            "img_campione": "tessuto-cravatta-inverno-2-a.jpg",
+            "img_capo": "tessuto-cravatta-inverno-2-b.jpg"
+          }
+        },
+        "tessuto-cravatta-inverno-3": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "cravatte",
+            "nome": "Blu pied-de-poule",
+            "composizione": "100% cashmere",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Pied-de-poule blu in puro cashmere, morbidissimo al tatto: una fantasia discreta che dà profondità al nodo.",
+            "img_campione": "tessuto-cravatta-inverno-3-a.jpg",
+            "img_capo": "tessuto-cravatta-inverno-3-b.jpg"
+          }
+        },
+        "tessuto-cravatta-inverno-4": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "cravatte",
+            "nome": "Verde bosco",
+            "composizione": "100% cashmere",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Verde bosco tinta unita in cashmere, mano vellutata e colore profondo per le giornate più fredde.",
+            "img_campione": "tessuto-cravatta-inverno-4-a.jpg",
+            "img_capo": "tessuto-cravatta-inverno-4-b.jpg"
+          }
+        },
+        "tessuto-cravatta-inverno-5": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "cravatte",
+            "nome": "Ocra pied-de-poule",
+            "composizione": "Grenadine di seta",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Grenadine di seta ocra a pied-de-poule: la grana in rilievo tiene il nodo pieno e regolare.",
+            "img_campione": "tessuto-cravatta-inverno-5-a.jpg",
+            "img_capo": "tessuto-cravatta-inverno-5-b.jpg"
+          }
+        },
+        "tessuto-cravatta-inverno-6": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "cravatte",
+            "nome": "Bordeaux regimental",
+            "composizione": "Grenadine di seta",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Bordeaux con righe regimental blu e bianche in grenadine di seta: il classico delle grandi occasioni.",
+            "img_campione": "tessuto-cravatta-inverno-6-a.jpg",
+            "img_capo": "tessuto-cravatta-inverno-6-b.jpg"
+          }
+        },
+        "tessuto-scarpa-inverno-1": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "scarpe",
+            "nome": "Testa di moro",
+            "composizione": "100% pelle",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Derby testa di moro in pelle liscia: il marrone scuro che sostituisce il nero senza irrigidire il look.",
+            "img_campione": "tessuto-scarpa-inverno-1-a.jpg",
+            "img_capo": "tessuto-scarpa-inverno-1-b.jpg"
+          }
+        },
+        "tessuto-scarpa-inverno-2": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "scarpe",
+            "nome": "Nero",
+            "composizione": "100% pelle",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Derby nero, la scarpa formale dell’inverno: si abbina a ogni completo scuro.",
+            "img_campione": "tessuto-scarpa-inverno-2-a.jpg",
+            "img_capo": "tessuto-scarpa-inverno-2-b.jpg"
+          }
+        },
+        "tessuto-scarpa-inverno-3": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "scarpe",
+            "nome": "Bordeaux",
+            "composizione": "100% pelle",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Bordeaux lucido, un tocco di colore che resta sobrio anche sotto un cappotto blu.",
+            "img_campione": "tessuto-scarpa-inverno-3-a.jpg",
+            "img_capo": "tessuto-scarpa-inverno-3-b.jpg"
+          }
+        },
+        "tessuto-scarpa-inverno-4": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "scarpe",
+            "nome": "Marrone medio",
+            "composizione": "100% pelle",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Marrone medio caldo, il tono più versatile con i grigi e i blu di mezza stagione.",
+            "img_campione": "tessuto-scarpa-inverno-4-a.jpg",
+            "img_capo": "tessuto-scarpa-inverno-4-b.jpg"
+          }
+        },
+        "tessuto-scarpa-inverno-5": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "scarpe",
+            "nome": "Verde bosco scuro",
+            "composizione": "100% pelle",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Verde bosco profondo, la scelta ricercata di chi vuole distinguersi con misura.",
+            "img_campione": "tessuto-scarpa-inverno-5-a.jpg",
+            "img_capo": "tessuto-scarpa-inverno-5-b.jpg"
+          }
+        },
+        "tessuto-scarpa-inverno-6": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "scarpe",
+            "nome": "Tortora camoscio",
+            "composizione": "100% camoscio",
+            "peso": "",
+            "codice": "",
+            "descrizione": "Camoscio tortora, mano morbida e opaca: la scarpa informale della stagione fredda.",
+            "img_campione": "tessuto-scarpa-inverno-6-a.jpg",
+            "img_capo": "tessuto-scarpa-inverno-6-b.jpg"
+          }
+        },
+        "tessuto-smoking-inverno-1": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "smoking",
+            "nome": "Nero",
+            "composizione": "TASMANIA",
+            "peso": "140 gr",
+            "codice": "",
+            "descrizione": "Il nero classico dello smoking, con revers in raso di seta: senza tempo per la serata più formale.",
+            "img_campione": "tessuto-smoking-1-a.jpg",
+            "img_capo": "tessuto-smoking-1-b.jpg"
+          }
+        },
+        "tessuto-smoking-inverno-2": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "smoking",
+            "nome": "Blu scuro",
+            "composizione": "TASMANIA",
+            "peso": "140 gr",
+            "codice": "",
+            "descrizione": "Blu scuro intenso con revers in raso di seta, un'alternativa moderna al nero per lo smoking da sera.",
+            "img_campione": "tessuto-smoking-2-a.jpg",
+            "img_capo": "tessuto-smoking-2-b.jpg"
+          }
+        },
+        "tessuto-smoking-inverno-3": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "smoking",
+            "nome": "Bianco panna",
+            "composizione": "TASMANIA",
+            "peso": "140 gr",
+            "codice": "",
+            "descrizione": "Bianco panna con revers in raso di seta, per lo smoking estivo o le cerimonie in riva al mare.",
+            "img_campione": "tessuto-smoking-3-a.jpg",
+            "img_capo": "tessuto-smoking-3-b.jpg"
+          }
         }
       },
       "block_order": [
@@ -958,23 +1168,47 @@
         "tessuto-pantalone-inverno-3",
         "tessuto-pantalone-inverno-4",
         "tessuto-pantalone-inverno-5",
-        "tessuto-pantalone-inverno-6"
+        "tessuto-pantalone-inverno-6",
+        "tessuto-cravatta-inverno-1",
+        "tessuto-cravatta-inverno-2",
+        "tessuto-cravatta-inverno-3",
+        "tessuto-cravatta-inverno-4",
+        "tessuto-cravatta-inverno-5",
+        "tessuto-cravatta-inverno-6",
+        "tessuto-scarpa-inverno-1",
+        "tessuto-scarpa-inverno-2",
+        "tessuto-scarpa-inverno-3",
+        "tessuto-scarpa-inverno-4",
+        "tessuto-scarpa-inverno-5",
+        "tessuto-scarpa-inverno-6",
+        "tessuto-smoking-inverno-1",
+        "tessuto-smoking-inverno-2",
+        "tessuto-smoking-inverno-3"
       ],
       "settings": {
         "eyebrow": "",
         "hero_title": "Atelier del Tessuto",
-        "season_estate_zoom": 100,
+        "season_height": 77,
+        "season_gap": 18,
+        "gate_breath": 140,
+        "season_estate_zoom": 140,
         "season_estate_pos_x": 50,
-        "season_estate_pos_y": 50,
+        "season_estate_pos_y": 95,
         "season_estate_eyebrow": "",
         "season_estate_title": "",
         "season_estate_sub": "",
-        "season_inverno_zoom": 100,
-        "season_inverno_pos_x": 50,
-        "season_inverno_pos_y": 50,
+        "season_inverno_zoom": 120,
+        "season_inverno_pos_x": 33,
+        "season_inverno_pos_y": 90,
         "season_inverno_eyebrow": "",
         "season_inverno_title": "",
-        "season_inverno_sub": ""
+        "season_inverno_sub": "",
+        "cta_enabled": true,
+        "cta_eyebrow": "",
+        "cta_heading": "",
+        "cta_body": "",
+        "cta_label": "",
+        "cta_link": ""
       }
     }
   },

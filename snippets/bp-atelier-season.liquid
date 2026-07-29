@@ -273,7 +273,11 @@
                   <div class="bp-atelier__extra">
                     <div class="bp-atelier__extra-group">
                       <p class="bp-atelier__extra-title">{{ tessuti_cravatta_larghezza }}</p>
-                      {%- render 'bp-atelier-zoom-img', img: 'tessuto-cravatta-larghezza.jpg', alt: tessuti_cravatta_larghezza -%}
+                      {%- if stagione == 'inverno' -%}
+                        {%- render 'bp-atelier-zoom-img', img: 'tessuto-cravatta-inverno-larghezza.jpg', alt: tessuti_cravatta_larghezza -%}
+                      {%- else -%}
+                        {%- render 'bp-atelier-zoom-img', img: 'tessuto-cravatta-larghezza.jpg', alt: tessuti_cravatta_larghezza -%}
+                      {%- endif -%}
                     </div>
                   </div>
                 {%- endif -%}
@@ -289,7 +293,11 @@
                   <div class="bp-atelier__extra">
                     <div class="bp-atelier__extra-group">
                       <p class="bp-atelier__extra-title">{{ tessuti_scarpa_modelli }}</p>
-                      {%- render 'bp-atelier-zoom-img', img: 'tessuto-scarpa-modelli.jpg', alt: tessuti_scarpa_modelli -%}
+                      {%- if stagione == 'inverno' -%}
+                        {%- render 'bp-atelier-zoom-img', img: 'tessuto-scarpa-inverno-modelli.jpg', alt: tessuti_scarpa_modelli -%}
+                      {%- else -%}
+                        {%- render 'bp-atelier-zoom-img', img: 'tessuto-scarpa-modelli.jpg', alt: tessuti_scarpa_modelli -%}
+                      {%- endif -%}
                     </div>
                   </div>
                 {%- endif -%}
