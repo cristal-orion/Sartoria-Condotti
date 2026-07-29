@@ -440,7 +440,7 @@
             "nome": "Nero",
             "composizione": "TASMANIA",
             "peso": "140 gr",
-            "codice": "",
+            "codice": "Condotti 8201",
             "descrizione": "Il nero classico dello smoking, con revers in raso di seta: senza tempo per la serata più formale.",
             "img_campione": "tessuto-smoking-1-a.jpg",
             "img_capo": "tessuto-smoking-1-b.jpg"
@@ -454,7 +454,7 @@
             "nome": "Blu scuro",
             "composizione": "TASMANIA",
             "peso": "140 gr",
-            "codice": "",
+            "codice": "Condotti 8202",
             "descrizione": "Blu scuro intenso con revers in raso di seta, un'alternativa moderna al nero per lo smoking da sera.",
             "img_campione": "tessuto-smoking-2-a.jpg",
             "img_capo": "tessuto-smoking-2-b.jpg"
@@ -468,7 +468,7 @@
             "nome": "Bianco panna",
             "composizione": "TASMANIA",
             "peso": "140 gr",
-            "codice": "",
+            "codice": "Condotti 8203",
             "descrizione": "Bianco panna con revers in raso di seta, per lo smoking estivo o le cerimonie in riva al mare.",
             "img_campione": "tessuto-smoking-3-a.jpg",
             "img_capo": "tessuto-smoking-3-b.jpg"
@@ -650,7 +650,7 @@
             "nome": "Grigio-azzurro",
             "composizione": "100% lana",
             "peso": "",
-            "codice": "",
+            "codice": "Condotti 9201",
             "descrizione": "Grigio-azzurro luminoso in pura lana, la giacca invernale più versatile da abbinare a pantaloni scuri o chiari.",
             "img_campione": "tessuto-giacca-inverno-1-a.jpg",
             "img_capo": "tessuto-giacca-inverno-1-b.jpg"
@@ -664,7 +664,7 @@
             "nome": "Principe di Galles rosso",
             "composizione": "100% lana",
             "peso": "",
-            "codice": "",
+            "codice": "Condotti 9202",
             "descrizione": "Principe di Galles grigio percorso da un filo rosso: un classico british dal carattere deciso.",
             "img_campione": "tessuto-giacca-inverno-2-a.jpg",
             "img_capo": "tessuto-giacca-inverno-2-b.jpg"
@@ -678,7 +678,7 @@
             "nome": "Cammello finestrato",
             "composizione": "100% lana",
             "peso": "",
-            "codice": "",
+            "codice": "Condotti 9203",
             "descrizione": "Cammello caldo con finestrato azzurro, una giacca sartoriale che spezza con eleganza i toni scuri dell'inverno.",
             "img_campione": "tessuto-giacca-inverno-3-a.jpg",
             "img_capo": "tessuto-giacca-inverno-3-b.jpg"
@@ -692,7 +692,7 @@
             "nome": "Tortora cashmere",
             "composizione": "100% cashmere",
             "peso": "",
-            "codice": "",
+            "codice": "Condotti 9204",
             "descrizione": "Puro cashmere tortora, morbidissimo al tatto: il massimo del comfort e della raffinatezza per la stagione fredda.",
             "img_campione": "tessuto-giacca-inverno-4-a.jpg",
             "img_capo": "tessuto-giacca-inverno-4-b.jpg"
@@ -706,7 +706,7 @@
             "nome": "Grigio antracite",
             "composizione": "Lana e cashmere",
             "peso": "",
-            "codice": "",
+            "codice": "Condotti 9205",
             "descrizione": "Antracite profondo in lana e cashmere, calda e avvolgente: la giacca elegante per ogni occasione invernale.",
             "img_campione": "tessuto-giacca-inverno-5-a.jpg",
             "img_capo": "tessuto-giacca-inverno-5-b.jpg"
@@ -720,7 +720,7 @@
             "nome": "Panna",
             "composizione": "Velluto, cashmere e seta",
             "peso": "",
-            "codice": "",
+            "codice": "Condotti 9206",
             "descrizione": "Panna luminoso in una mano preziosa di velluto, cashmere e seta: una giacca dal tocco morbido e materico.",
             "img_campione": "tessuto-giacca-inverno-6-a.jpg",
             "img_capo": "tessuto-giacca-inverno-6-b.jpg"
@@ -734,7 +734,7 @@
             "nome": "Quadri beige",
             "composizione": "Flanella di cotone e lana",
             "peso": "160/170 g",
-            "codice": "",
+            "codice": "Condotti 9301",
             "descrizione": "Flanella morbida a quadri beige e grigio, calda e leggera: la camicia informale dell'inverno.",
             "img_campione": "tessuto-camicia-inverno-1-a.jpg",
             "img_capo": "tessuto-camicia-inverno-1-b.jpg"
@@ -748,7 +748,7 @@
             "nome": "Quadri verde salvia",
             "composizione": "Flanella di cotone e lana",
             "peso": "160/170 g",
-            "codice": "",
+            "codice": "Condotti 9302",
             "descrizione": "Flanella a quadri verde salvia, un colore naturale e rilassato per i mesi freddi.",
             "img_campione": "tessuto-camicia-inverno-2-a.jpg",
             "img_capo": "tessuto-camicia-inverno-2-b.jpg"
@@ -762,7 +762,7 @@
             "nome": "Quadretti bordeaux e blu",
             "composizione": "100% flanella di cotone",
             "peso": "180 g",
-            "codice": "",
+            "codice": "Condotti 9303",
             "descrizione": "Piccoli quadretti bordeaux e blu su fondo chiaro, una flanella di puro cotone dal gusto rétro.",
             "img_campione": "tessuto-camicia-inverno-3-a.jpg",
             "img_capo": "tessuto-camicia-inverno-3-b.jpg"
@@ -776,7 +776,7 @@
             "nome": "Quadri blu navy",
             "composizione": "100% flanella di cotone",
             "peso": "180 g",
-            "codice": "",
+            "codice": "Condotti 9304",
             "descrizione": "Quadri blu navy e bianco in flanella di cotone, calda e avvolgente per il tempo libero invernale.",
             "img_campione": "tessuto-camicia-inverno-4-a.jpg",
             "img_capo": "tessuto-camicia-inverno-4-b.jpg"
@@ -790,7 +790,7 @@
             "nome": "Velluto tortora",
             "composizione": "100% velluto di cotone",
             "peso": "180 g",
-            "codice": "",
+            "codice": "Condotti 9305",
             "descrizione": "Velluto di cotone tortora tinta unita, morbido e caldo: una camicia dal sapore materico.",
             "img_campione": "tessuto-camicia-inverno-5-a.jpg",
             "img_capo": "tessuto-camicia-inverno-5-b.jpg"
@@ -804,7 +804,7 @@
             "nome": "Velluto bordeaux",
             "composizione": "100% velluto di cotone",
             "peso": "180 g",
-            "codice": "",
+            "codice": "Condotti 9306",
             "descrizione": "Velluto di cotone bordeaux tinta unita, profondo ed elegante: perfetto per le serate d'inverno.",
             "img_campione": "tessuto-camicia-inverno-6-a.jpg",
             "img_capo": "tessuto-camicia-inverno-6-b.jpg"
@@ -818,7 +818,7 @@
             "nome": "Grigio Principe di Galles",
             "composizione": "Flanella di lana",
             "peso": "340 g",
-            "codice": "",
+            "codice": "Condotti 9401",
             "descrizione": "Flanella di lana grigia a Principe di Galles, pesante e calda: il pantalone invernale per eccellenza.",
             "img_campione": "tessuto-pantalone-inverno-1-a.jpg",
             "img_capo": "tessuto-pantalone-inverno-1-b.jpg"
@@ -832,7 +832,7 @@
             "nome": "Marrone Principe di Galles",
             "composizione": "Flanella di lana",
             "peso": "320 g",
-            "codice": "",
+            "codice": "Condotti 9402",
             "descrizione": "Principe di Galles nei toni del marrone, una flanella di lana dal carattere caldo e sartoriale.",
             "img_campione": "tessuto-pantalone-inverno-2-a.jpg",
             "img_capo": "tessuto-pantalone-inverno-2-b.jpg"
@@ -846,7 +846,7 @@
             "nome": "Sabbia",
             "composizione": "Twill Cavalry di lana",
             "peso": "350 g",
-            "codice": "",
+            "codice": "Condotti 9403",
             "descrizione": "Twill Cavalry di lana color sabbia, robusto e dalla mano asciutta: il pantalone strutturato dell'inverno.",
             "img_campione": "tessuto-pantalone-inverno-3-a.jpg",
             "img_capo": "tessuto-pantalone-inverno-3-b.jpg"
@@ -860,7 +860,7 @@
             "nome": "Grigio antracite",
             "composizione": "Twill Cavalry di lana",
             "peso": "350 g",
-            "codice": "",
+            "codice": "Condotti 9404",
             "descrizione": "Twill Cavalry di lana antracite, compatto ed elegante: si abbina a ogni giacca scura.",
             "img_campione": "tessuto-pantalone-inverno-4-a.jpg",
             "img_capo": "tessuto-pantalone-inverno-4-b.jpg"
@@ -874,7 +874,7 @@
             "nome": "Velluto cognac",
             "composizione": "Velluto di cotone a coste",
             "peso": "180 g",
-            "codice": "",
+            "codice": "Condotti 9405",
             "descrizione": "Velluto di cotone a coste color cognac, caldo e materico: il pantalone informale della stagione fredda.",
             "img_campione": "tessuto-pantalone-inverno-5-a.jpg",
             "img_capo": "tessuto-pantalone-inverno-5-b.jpg"
@@ -888,7 +888,7 @@
             "nome": "Velluto testa di moro",
             "composizione": "Velluto di cotone a coste",
             "peso": "180 g",
-            "codice": "",
+            "codice": "Condotti 9406",
             "descrizione": "Velluto di cotone a coste testa di moro, profondo e avvolgente per l'inverno.",
             "img_campione": "tessuto-pantalone-inverno-6-a.jpg",
             "img_capo": "tessuto-pantalone-inverno-6-b.jpg"
@@ -902,7 +902,7 @@
             "nome": "Blu navy gessato",
             "composizione": "100% lana",
             "peso": "",
-            "codice": "",
+            "codice": "Condotti 9501",
             "descrizione": "Lana blu navy percorsa da un gessato bianco: la cravatta invernale più facile da abbinare a un completo scuro.",
             "img_campione": "tessuto-cravatta-inverno-1-a.jpg",
             "img_capo": "tessuto-cravatta-inverno-1-b.jpg"
@@ -916,7 +916,7 @@
             "nome": "Mattone Principe di Galles",
             "composizione": "100% lana",
             "peso": "",
-            "codice": "",
+            "codice": "Condotti 9502",
             "descrizione": "Principe di Galles nei toni del mattone, un colore caldo che spezza il grigio dell’inverno.",
             "img_campione": "tessuto-cravatta-inverno-2-a.jpg",
             "img_capo": "tessuto-cravatta-inverno-2-b.jpg"
@@ -930,7 +930,7 @@
             "nome": "Blu pied-de-poule",
             "composizione": "100% cashmere",
             "peso": "",
-            "codice": "",
+            "codice": "Condotti 9503",
             "descrizione": "Pied-de-poule blu in puro cashmere, morbidissimo al tatto: una fantasia discreta che dà profondità al nodo.",
             "img_campione": "tessuto-cravatta-inverno-3-a.jpg",
             "img_capo": "tessuto-cravatta-inverno-3-b.jpg"
@@ -944,7 +944,7 @@
             "nome": "Verde bosco",
             "composizione": "100% cashmere",
             "peso": "",
-            "codice": "",
+            "codice": "Condotti 9504",
             "descrizione": "Verde bosco tinta unita in cashmere, mano vellutata e colore profondo per le giornate più fredde.",
             "img_campione": "tessuto-cravatta-inverno-4-a.jpg",
             "img_capo": "tessuto-cravatta-inverno-4-b.jpg"
@@ -958,7 +958,7 @@
             "nome": "Ocra pied-de-poule",
             "composizione": "Grenadine di seta",
             "peso": "",
-            "codice": "",
+            "codice": "Condotti 9505",
             "descrizione": "Grenadine di seta ocra a pied-de-poule: la grana in rilievo tiene il nodo pieno e regolare.",
             "img_campione": "tessuto-cravatta-inverno-5-a.jpg",
             "img_capo": "tessuto-cravatta-inverno-5-b.jpg"
@@ -972,7 +972,7 @@
             "nome": "Bordeaux regimental",
             "composizione": "Grenadine di seta",
             "peso": "",
-            "codice": "",
+            "codice": "Condotti 9506",
             "descrizione": "Bordeaux con righe regimental blu e bianche in grenadine di seta: il classico delle grandi occasioni.",
             "img_campione": "tessuto-cravatta-inverno-6-a.jpg",
             "img_capo": "tessuto-cravatta-inverno-6-b.jpg"
@@ -986,7 +986,7 @@
             "nome": "Testa di moro",
             "composizione": "100% pelle",
             "peso": "",
-            "codice": "",
+            "codice": "Condotti 9601",
             "descrizione": "Derby testa di moro in pelle liscia: il marrone scuro che sostituisce il nero senza irrigidire il look.",
             "img_campione": "tessuto-scarpa-inverno-1-a.jpg",
             "img_capo": "tessuto-scarpa-inverno-1-b.jpg"
@@ -1000,7 +1000,7 @@
             "nome": "Nero",
             "composizione": "100% pelle",
             "peso": "",
-            "codice": "",
+            "codice": "Condotti 9602",
             "descrizione": "Derby nero, la scarpa formale dell’inverno: si abbina a ogni completo scuro.",
             "img_campione": "tessuto-scarpa-inverno-2-a.jpg",
             "img_capo": "tessuto-scarpa-inverno-2-b.jpg"
@@ -1014,7 +1014,7 @@
             "nome": "Bordeaux",
             "composizione": "100% pelle",
             "peso": "",
-            "codice": "",
+            "codice": "Condotti 9603",
             "descrizione": "Bordeaux lucido, un tocco di colore che resta sobrio anche sotto un cappotto blu.",
             "img_campione": "tessuto-scarpa-inverno-3-a.jpg",
             "img_capo": "tessuto-scarpa-inverno-3-b.jpg"
@@ -1028,7 +1028,7 @@
             "nome": "Marrone medio",
             "composizione": "100% pelle",
             "peso": "",
-            "codice": "",
+            "codice": "Condotti 9604",
             "descrizione": "Marrone medio caldo, il tono più versatile con i grigi e i blu di mezza stagione.",
             "img_campione": "tessuto-scarpa-inverno-4-a.jpg",
             "img_capo": "tessuto-scarpa-inverno-4-b.jpg"
@@ -1042,7 +1042,7 @@
             "nome": "Verde bosco scuro",
             "composizione": "100% pelle",
             "peso": "",
-            "codice": "",
+            "codice": "Condotti 9605",
             "descrizione": "Verde bosco profondo, la scelta ricercata di chi vuole distinguersi con misura.",
             "img_campione": "tessuto-scarpa-inverno-5-a.jpg",
             "img_capo": "tessuto-scarpa-inverno-5-b.jpg"
@@ -1056,7 +1056,7 @@
             "nome": "Tortora camoscio",
             "composizione": "100% camoscio",
             "peso": "",
-            "codice": "",
+            "codice": "Condotti 9606",
             "descrizione": "Camoscio tortora, mano morbida e opaca: la scarpa informale della stagione fredda.",
             "img_campione": "tessuto-scarpa-inverno-6-a.jpg",
             "img_capo": "tessuto-scarpa-inverno-6-b.jpg"
@@ -1070,7 +1070,7 @@
             "nome": "Nero",
             "composizione": "TASMANIA",
             "peso": "140 gr",
-            "codice": "",
+            "codice": "Condotti 8201",
             "descrizione": "Il nero classico dello smoking, con revers in raso di seta: senza tempo per la serata più formale.",
             "img_campione": "tessuto-smoking-1-a.jpg",
             "img_capo": "tessuto-smoking-1-b.jpg"
@@ -1084,7 +1084,7 @@
             "nome": "Blu scuro",
             "composizione": "TASMANIA",
             "peso": "140 gr",
-            "codice": "",
+            "codice": "Condotti 8202",
             "descrizione": "Blu scuro intenso con revers in raso di seta, un'alternativa moderna al nero per lo smoking da sera.",
             "img_campione": "tessuto-smoking-2-a.jpg",
             "img_capo": "tessuto-smoking-2-b.jpg"
@@ -1098,7 +1098,7 @@
             "nome": "Bianco panna",
             "composizione": "TASMANIA",
             "peso": "140 gr",
-            "codice": "",
+            "codice": "Condotti 8203",
             "descrizione": "Bianco panna con revers in raso di seta, per lo smoking estivo o le cerimonie in riva al mare.",
             "img_campione": "tessuto-smoking-3-a.jpg",
             "img_capo": "tessuto-smoking-3-b.jpg"
