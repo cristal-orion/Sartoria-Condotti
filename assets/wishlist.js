@@ -10,14 +10,16 @@
  * pagina preferiti vengono chieste al server (sezione `wishlist-card`), così
  * prezzi, sconti e foto sono sempre quelli veri e non una copia che invecchia.
  *
- * Tre elementi:
+ * Quattro elementi:
  *   <wishlist-button data-handle="...">  il cuore (scheda prodotto e griglie)
  *   <wishlist-count>                     il contatore nell'header
  *   <wishlist-list>                      la pagina "I tuoi preferiti"
+ *   <wishlist-signup>                    l'invito a iscriversi al primo salvataggio
  */
 
 const STORAGE_KEY = 'sc:wishlist:v1';
 const CHANGE_EVENT = 'wishlist:change';
+const ADD_EVENT = 'wishlist:add';
 
 /** @returns {string[]} gli handle salvati, dal più recente */
 function read() {
@@ -65,7 +67,11 @@ class WishlistButton extends HTMLElement {
     this.onClick = (event) => {
       event.preventDefault();
       event.stopPropagation();
-      toggle(this.handle);
+      // Solo l'aggiunta è un evento a sé: è l'unico momento in cui ha senso
+      // proporre l'iscrizione (vedi <wishlist-signup>).
+      if (toggle(this.handle)) {
+        document.dispatchEvent(new CustomEvent(ADD_EVENT, { detail: { handle: this.handle } }));
+      }
     };
     this.onChange = () => this.sync();
 
@@ -196,6 +202,227 @@ class WishlistList extends HTMLElement {
   }
 }
 
+/* ---------------------------------------------------------------------------
+ * L'invito a iscriversi (snippets/wishlist-signup-modal.liquid).
+ *
+ * Compare al primo capo salvato: l'email in cambio del codice di benvenuto.
+ * Chi chiude non perde niente — la lista resta nel browser esattamente come
+ * prima — e non se lo ritrova addosso: torna al massimo altre due volte, e solo
+ * dopo i giorni di attesa impostati nel tema.
+ * ------------------------------------------------------------------------ */
+
+const SIGNUP_KEY = 'sc:wishlist:signup:v1';
+const SIGNUP_PENDING_KEY = 'sc:wishlist:signup:pending';
+const MAX_DISMISSALS = 3;
+const DAY = 24 * 60 * 60 * 1000;
+
+/** @returns {{done: boolean, dismissed: number, at: number}} */
+function readSignup() {
+  try {
+    const state = JSON.parse(localStorage.getItem(SIGNUP_KEY) || 'null');
+    if (state && typeof state === 'object') return { done: false, dismissed: 0, at: 0, ...state };
+  } catch {
+    /* come per la lista: se non possiamo leggere, ripartiamo da zero */
+  }
+  return { done: false, dismissed: 0, at: 0 };
+}
+
+function writeSignup(state) {
+  try {
+    localStorage.setItem(SIGNUP_KEY, JSON.stringify(state));
+  } catch {
+    /* niente memoria: l'invito ricomparirà, è il male minore */
+  }
+}
+
+/** Il dataLayer di GTM c'è su ogni pagina (layout/theme.liquid). */
+function track(event, detail = {}) {
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event, ...detail });
+}
+
+class WishlistSignup extends HTMLElement {
+  connectedCallback() {
+    this.dialog = this.querySelector('dialog');
+    this.form = this.querySelector('form');
+    if (!this.dialog) return;
+
+    this.onAdd = () => this.maybeOpen();
+    this.onDialogClose = () => this.afterClose();
+    this.onSubmit = () => this.submit();
+    this.onBackdrop = (event) => {
+      // Il click sullo sfondo ha come target il dialog stesso.
+      if (event.target === this.dialog) this.dismiss();
+    };
+    this.onEscape = (event) => {
+      if (event.key === 'Escape') this.dismiss();
+    };
+
+    document.addEventListener(ADD_EVENT, this.onAdd);
+    // L'evento `close` copre la chiusura fatta dal browser; le nostre chiusure
+    // passano da dismiss(). afterClose() è scritto per reggere entrambe le
+    // strade senza contare due volte, così lo sblocco dello scroll non dipende
+    // da un solo evento.
+    this.dialog.addEventListener('close', this.onDialogClose);
+    this.dialog.addEventListener('click', this.onBackdrop);
+    this.dialog.addEventListener('keydown', this.onEscape);
+    this.querySelectorAll('[data-wl-close]').forEach((el) => {
+      el.addEventListener('click', () => this.dismiss());
+    });
+    this.form?.addEventListener('submit', this.onSubmit);
+    this.querySelector('[data-wl-copy]')?.addEventListener('click', (event) => this.copy(event.currentTarget));
+
+    this.restore();
+  }
+
+  disconnectedCallback() {
+    document.removeEventListener(ADD_EVENT, this.onAdd);
+  }
+
+  maybeOpen() {
+    if (this.dialog.open) return;
+    const state = readSignup();
+    if (state.done || state.dismissed >= MAX_DISMISSALS) return;
+
+    const cooldown = Number(this.dataset.cooldownDays || 30) * DAY;
+    if (state.at && Date.now() - state.at < cooldown) return;
+
+    // Mezzo secondo: prima si vede il cuore riempirsi, poi arriva la domanda.
+    window.setTimeout(() => {
+      this.showPanel('form');
+      this.open();
+    }, 450);
+  }
+
+  open() {
+    if (this.dialog.open) return;
+    this.tallied = false;
+    this.dialog.showModal();
+    document.documentElement.setAttribute('scroll-lock', '');
+    track('wishlist_signup_shown');
+  }
+
+  dismiss() {
+    this.dialog.close();
+    this.afterClose();
+  }
+
+  afterClose() {
+    document.documentElement.removeAttribute('scroll-lock');
+    // Chiusa da noi per lasciare spazio alla verifica anti-spam: non è un rifiuto.
+    if (this.submitting || this.tallied) return;
+    this.tallied = true;
+    const state = readSignup();
+    if (state.done) return;
+    state.dismissed += 1;
+    state.at = Date.now();
+    writeSignup(state);
+    track('wishlist_signup_dismissed', { wishlist_signup_dismissals: state.dismissed });
+  }
+
+  showPanel(name) {
+    this.querySelectorAll('[data-wl-panel]').forEach((panel) => {
+      panel.hidden = panel.dataset.wlPanel !== name;
+    });
+  }
+
+  setError(on) {
+    const box = this.querySelector('[data-wl-error]');
+    if (box) box.hidden = !on;
+    if (on) this.querySelector('input[type="email"]')?.focus();
+  }
+
+  succeed() {
+    const state = readSignup();
+    state.done = true;
+    state.at = Date.now();
+    writeSignup(state);
+    this.showPanel('success');
+    track('wishlist_signup_completed');
+  }
+
+  /**
+   * L'invio resta quello nativo del browser, di proposito.
+   *
+   * Il negozio ha la protezione anti-spam di Shopify sui form cliente: il token
+   * CAPTCHA lo aggiunge uno script di Shopify agganciato all'invio nativo, e un
+   * POST fatto a mano con fetch si prende un 400 "Missing CAPTCHA token".
+   * Quindi lasciamo partire il form: la pagina si ricarica e restore() riapre la
+   * modale sul risultato — con in mano il codice, se è andata bene.
+   */
+  submit() {
+    this.submitting = true;
+    this.setError(false);
+    this.querySelector('[data-wl-submit]')?.setAttribute('aria-busy', 'true');
+    try {
+      sessionStorage.setItem(SIGNUP_PENDING_KEY, '1');
+    } catch {
+      /* senza sessionStorage si perde solo la riapertura dopo il ricaricamento */
+    }
+
+    // Di norma la pagina se ne va prima che scatti. Se invece l'anti-spam mostra
+    // una verifica da fare a mano, la modale è in top layer e la coprirebbe:
+    // dopo mezzo secondo si toglie di mezzo.
+    window.setTimeout(() => {
+      if (this.dialog.open) this.dialog.close();
+    }, 800);
+  }
+
+  /** Riapertura dopo il ricaricamento: la modale torna sul risultato dell'invio. */
+  restore() {
+    let pending = null;
+    try {
+      pending = sessionStorage.getItem(SIGNUP_PENDING_KEY);
+      if (pending) sessionStorage.removeItem(SIGNUP_PENDING_KEY);
+    } catch {
+      /* niente sessionStorage: nessuna riapertura, la pagina resta com'è */
+    }
+    if (!pending) return;
+
+    if (this.querySelector('[data-wl-signup-error]')) {
+      this.showPanel('form');
+      this.open();
+      return;
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('customer_posted') !== 'true') return;
+
+    params.delete('customer_posted');
+    const query = params.toString();
+    window.history.replaceState(
+      {},
+      '',
+      `${window.location.pathname}${query ? `?${query}` : ''}${window.location.hash}`
+    );
+    this.succeed();
+    this.open();
+  }
+
+  async copy(button) {
+    const node = this.querySelector('[data-wl-code]');
+    const code = node?.textContent.trim();
+    if (!code || !button) return;
+    try {
+      await navigator.clipboard.writeText(code);
+    } catch {
+      // Appunti negati (permessi, http): almeno lo selezioniamo, così il codice
+      // si copia a mano senza doverlo ribattere.
+      const range = document.createRange();
+      range.selectNodeContents(node);
+      const selection = window.getSelection();
+      selection?.removeAllRanges();
+      selection?.addRange(range);
+      return;
+    }
+    button.textContent = button.dataset.labelCopied || button.textContent;
+    window.setTimeout(() => {
+      button.textContent = button.dataset.labelCopy || '';
+    }, 2000);
+  }
+}
+
 if (!customElements.get('wishlist-button')) customElements.define('wishlist-button', WishlistButton);
 if (!customElements.get('wishlist-count')) customElements.define('wishlist-count', WishlistCount);
 if (!customElements.get('wishlist-list')) customElements.define('wishlist-list', WishlistList);
+if (!customElements.get('wishlist-signup')) customElements.define('wishlist-signup', WishlistSignup);

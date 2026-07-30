@@ -73,6 +73,51 @@
     ]
   },
   {
+    "name": "Preferiti — invito account",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Quando un visitatore salva il primo capo nei preferiti, compare una finestra che chiede l'email in cambio dello sconto di benvenuto: crea la scheda cliente (con consenso marketing e tag «preferiti») e mostra subito il codice. Chi la chiude tiene comunque la sua lista salvata nel browser."
+      },
+      {
+        "type": "checkbox",
+        "id": "wishlist_signup_enabled",
+        "label": "Mostra l'invito al primo capo salvato",
+        "info": "Non compare mai a chi ha già fatto l'accesso.",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "wishlist_signup_discount_code",
+        "label": "Codice sconto di benvenuto",
+        "info": "Deve esistere in Sconti, scritto identico. Lascia vuoto per non mostrare nessun codice nella finestra.",
+        "default": "BENVENUTO10"
+      },
+      {
+        "type": "range",
+        "id": "wishlist_signup_discount_percent",
+        "label": "Percentuale scritta nei testi",
+        "min": 5,
+        "max": 30,
+        "step": 1,
+        "unit": "%",
+        "info": "Cambia solo il numero scritto nella finestra: lo sconto vero è quello impostato in Sconti.",
+        "default": 10
+      },
+      {
+        "type": "range",
+        "id": "wishlist_signup_cooldown_days",
+        "label": "Attesa prima di riproporlo",
+        "min": 0,
+        "max": 90,
+        "step": 5,
+        "unit": "g",
+        "info": "A chi chiude senza iscriversi l'invito torna dopo questi giorni, e comunque non più di tre volte in tutto.",
+        "default": 30
+      }
+    ]
+  },
+  {
     "name": "t:names.colors",
     "settings": [
       {

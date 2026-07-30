@@ -16,6 +16,13 @@
   #cs-{{ section.id }} {
     padding-block: clamp(48px, 7vw, 110px);
   }
+  /* Con l'header trasparente la barra sta SOPRA il contenuto: senza questo
+     scostamento l'occhiello finisce dietro la barra di ricerca. Il tema lo fa da
+     sé solo per le sezioni con .spacing-style, che questa non ha. Con header
+     normale il fattore vale 0 e non cambia niente. */
+  main > .shopify-section:first-child #cs-{{ section.id }} {
+    margin-block-start: calc(var(--header-height) * var(--transparent-header-offset-boolean, 0));
+  }
   #cs-{{ section.id }} .bpc__inner {
     max-width: var(--bp-maxw);
     margin-inline: auto;

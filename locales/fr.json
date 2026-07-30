@@ -562,6 +562,26 @@
   "wishlist": {
     "add": "Ajouter aux favoris",
     "saved": "Dans vos favoris",
-    "page_title": "Vos favoris"
+    "page_title": "Vos favoris",
+    "signup": {
+      "eyebrow": "Ajouté à vos favoris",
+      "heading": "Une bienvenue de l'atelier",
+      "body": "Votre liste reste enregistrée sur cet appareil. Laissez-nous votre e-mail : recevez {{ percent }} % sur votre première commande, et nous n'écrivons que lorsqu'il y a quelque chose à voir.",
+      "email_label": "Adresse e-mail",
+      "email_placeholder": "votre@email.fr",
+      "consent": "J'accepte de recevoir les e-mails de l'atelier (nouveautés et offres).",
+      "submit": "Recevoir {{ percent }} %",
+      "error": "Vérifiez votre adresse e-mail et réessayez.",
+      "fineprint": "Pas d'envois inutiles, désinscription quand vous voulez.",
+      "login": "J'ai déjà un compte",
+      "dismiss": "Continuer sans m'inscrire",
+      "success_eyebrow": "Inscription confirmée",
+      "success_heading": "Voici vos {{ percent }} %",
+      "success_body": "Saisissez ce code au moment du paiement : il s'applique à votre première commande.",
+      "copy": "Copier",
+      "copied": "Copié",
+      "success_cta": "Voir vos favoris",
+      "keep_browsing": "Continuer la visite"
+    }
   }
 }

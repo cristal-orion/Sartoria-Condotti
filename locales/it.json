@@ -562,6 +562,26 @@
   "wishlist": {
     "add": "Aggiungi ai preferiti",
     "saved": "Nei preferiti",
-    "page_title": "I tuoi preferiti"
+    "page_title": "I tuoi preferiti",
+    "signup": {
+      "eyebrow": "Salvato nei preferiti",
+      "heading": "Un benvenuto dalla sartoria",
+      "body": "La tua lista resta salvata su questo dispositivo. Lasciaci l'email: ricevi subito il {{ percent }}% sul primo ordine e ti scriviamo solo quando c'è qualcosa che vale la pena vedere.",
+      "email_label": "Indirizzo email",
+      "email_placeholder": "la-tua@email.it",
+      "consent": "Acconsento a ricevere email con le novità e le offerte della sartoria.",
+      "submit": "Ricevi il {{ percent }}%",
+      "error": "Controlla l'indirizzo email e riprova.",
+      "fineprint": "Niente invii inutili, ti cancelli quando vuoi.",
+      "login": "Ho già un account",
+      "dismiss": "Continua senza iscrivermi",
+      "success_eyebrow": "Iscrizione confermata",
+      "success_heading": "Ecco il tuo {{ percent }}%",
+      "success_body": "Inserisci questo codice al momento del pagamento: vale sul tuo primo ordine.",
+      "copy": "Copia",
+      "copied": "Copiato",
+      "success_cta": "Vedi i tuoi preferiti",
+      "keep_browsing": "Continua a guardare"
+    }
   }
 }

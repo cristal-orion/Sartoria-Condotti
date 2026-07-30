@@ -289,6 +289,15 @@
   body:has(#header-group #header-component[data-sticky-state='active']) .product-details.sticky-content--desktop {
     --sticky-header-offset: var(--header-height);
   }
+
+  /* Sartoria Condotti — la stessa cosa per la galleria, che nel tema non ce
+     l'aveva: senza questa riga la foto resta appiccicata a filo sotto la barra
+     che ritorna e si vede tagliata di netto (testa del modello mozzata). I 40 px
+     in più sono lo stesso dito d'aria che le lasciamo in cima alla pagina (vedi
+     header.liquid), così la foto non tocca mai il logo. */
+  body:has(#header-group #header-component[data-sticky-state='active']) .product-information__media .sticky-content {
+    --sticky-header-offset: calc(var(--header-height) + 40px);
+  }
 {% endstylesheet %}
 
 {% schema %}

@@ -574,6 +574,26 @@
   "wishlist": {
     "add": "Add to wishlist",
     "saved": "In your wishlist",
-    "page_title": "Your wishlist"
+    "page_title": "Your wishlist",
+    "signup": {
+      "eyebrow": "Saved to your wishlist",
+      "heading": "A welcome from the atelier",
+      "body": "Your list stays saved on this device. Leave us your email: get {{ percent }}% off your first order, and we'll only write when there's something worth seeing.",
+      "email_label": "Email address",
+      "email_placeholder": "your@email.com",
+      "consent": "I agree to receive emails with news and offers from the atelier.",
+      "submit": "Get {{ percent }}% off",
+      "error": "Check your email address and try again.",
+      "fineprint": "No clutter, unsubscribe whenever you like.",
+      "login": "I already have an account",
+      "dismiss": "Continue without signing up",
+      "success_eyebrow": "You're in",
+      "success_heading": "Here's your {{ percent }}%",
+      "success_body": "Enter this code at checkout: it applies to your first order.",
+      "copy": "Copy",
+      "copied": "Copied",
+      "success_cta": "See your wishlist",
+      "keep_browsing": "Keep browsing"
+    }
   }
 }

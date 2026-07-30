@@ -352,6 +352,41 @@
     --color-border-rgb: inherit;
     --color-primary-button-background: inherit;
     --color-primary-button-text: inherit;
+
+    /* Header trasparente: sparisce lo sfondo ma il bordo inferiore restava
+       disegnato, e si vedeva come una riga che taglia la foto sotto. Togliamo
+       il colore, non la larghezza: niente scatto di layout, e la transizione su
+       border-color (già dichiarata sopra) lo fa ricomparire morbido quando
+       l'header torna pieno. */
+    &,
+    & .header__columns {
+      border-bottom-color: transparent;
+    }
+  }
+
+  /* Sartoria Condotti — la foto prodotto è appiccicata in cima (media-gallery è
+     sticky top:0) e l'header trasparente le scorreva sopra: per un attimo il
+     logo finiva addosso alla foto. Appena si scorre, l'header si riprende il suo
+     fondo (la transizione su background-color è già dichiarata sopra), così la
+     foto gli passa sotto; in cima alla pagina resta trasparente com'è disegnato.
+     L'attributo lo mette lo script in fondo alla sezione: niente animazioni
+     legate allo scorrimento, che su Firefox non esistono. */
+  html[data-page-scrolled] body:has(main[data-template='product']) .header[transparent] .header__row {
+    background-color: var(--color-background);
+  }
+
+  /* Home: l'header sta sopra la hero. Finché le due ante sono chiuse il fondo è
+     blu notte e "Menu", la lingua e le icone si perdono: li scriviamo in bianco.
+     Appena le ante si aprono, sotto c'è la foto chiara e tornano scuri. Non vale
+     quando la barra è tornata appiccicata (lì ha il fondo pieno e il bianco
+     sparirebbe). L'attributo lo mette assets/hero-cucitura.js. */
+  html[data-hero-over-header]
+    :is(.header[transparent]:not([data-sticky-state='active']), .header[transparent='always'][data-sticky-state='active']) {
+    /* Sull'header, non sulla riga: quando è trasparente il tema scrive
+       `--color-foreground: inherit` sulla riga, quindi il colore va cambiato
+       alla sorgente da cui eredita, altrimenti serve una guerra di specificità. */
+    --color-foreground: rgb(255, 255, 255);
+    --color-foreground-rgb: 255 255 255;
   }
 
   .header--inherit-color-scheme-on-menu-open:has(.mega-menu__list:hover) .header__row,
@@ -636,8 +671,38 @@
     .sticky-content {
       margin-top: calc(var(--header-height) * var(--transparent-header-offset-boolean) * -1);
     }
+
+    /* Sartoria Condotti — la galleria prodotto no: tirata su di tutta l'altezza
+       della barra, la foto arrivava a filo del logo. Le lasciamo un dito d'aria
+       (con la spaziatura attuale della sezione, 60 px di tiraggio invece di 151
+       = 40 px fra barra e foto). L'aria non si consuma scorrendo, perché barra e
+       foto salgono insieme, e sparisce da sé quando la barra è uscita di scena:
+       da lì in poi la foto sta attaccata in cima come prima. */
+    .product-information__media .sticky-content {
+      margin-top: calc(60px * var(--transparent-header-offset-boolean) * -1);
+    }
   }
 {% endstylesheet %}
+
+{%- comment -%}
+  Segna sull'elemento <html> che la pagina non è più in cima. Serve all'header
+  trasparente per riprendersi il fondo appena si scorre (vedi la regola
+  html[data-page-scrolled] qui sopra), così la foto prodotto — che resta
+  appiccicata in cima — gli passa sotto invece di toccare il logo.
+{%- endcomment -%}
+<script>
+  if (!window.scPageScrolledWatcher) {
+    window.scPageScrolledWatcher = true;
+    (function () {
+      var root = document.documentElement;
+      var update = function () {
+        root.toggleAttribute('data-page-scrolled', window.scrollY > 40);
+      };
+      update();
+      window.addEventListener('scroll', update, { passive: true });
+    })();
+  }
+</script>
 
 {% unless request.design_mode %}
   <script type="module">

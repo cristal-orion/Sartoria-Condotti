@@ -27,6 +27,34 @@
     const { gsap, ScrollTrigger } = window;
     gsap.registerPlugin(ScrollTrigger);
 
+    // L'header sta sopra la hero. Finché l'anta superiore lo copre, sotto c'è il
+    // blu notte e "Menu", lingua e icone vanno scritti in bianco (ci pensa il CSS
+    // in sections/header.liquid, legato a questo attributo); appena l'anta scorre
+    // via sotto c'è la foto chiara e devono tornare scuri. Il confronto è
+    // geometrico — niente soglie inventate sulla percentuale di animazione — e
+    // cambia a metà header, il punto in cui il bianco smette di convenire.
+    const doc = document.documentElement;
+    function syncHeaderOverHero() {
+      const header = document.getElementById('header-component');
+      if (!header || !top) return;
+      const bar = header.getBoundingClientRect();
+      const panel = top.getBoundingClientRect();
+      doc.toggleAttribute('data-hero-over-header', bar.bottom > 0 && panel.bottom >= (bar.top + bar.bottom) / 2);
+    }
+
+    let toneQueued = false;
+    const queueHeaderTone = () => {
+      if (toneQueued) return;
+      toneQueued = true;
+      requestAnimationFrame(() => {
+        toneQueued = false;
+        syncHeaderOverHero();
+      });
+    };
+    window.addEventListener('scroll', queueHeaderTone, { passive: true });
+    window.addEventListener('resize', queueHeaderTone);
+    queueHeaderTone();
+
     if (reduced) {
       gsap.set(top, { yPercent: -100 });
       gsap.set(bot, { yPercent: 100 });
@@ -61,6 +89,8 @@
           pinSpacing: true,
           scrub: 0.8,
           invalidateOnRefresh: true,
+          onUpdate: syncHeaderOverHero,
+          onRefresh: syncHeaderOverHero,
         },
       });
       tl.to(top, { yPercent: -100, ease: 'none', duration: OPEN }, 0)

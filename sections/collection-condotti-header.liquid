@@ -22,6 +22,16 @@
 </div>
 
 {% stylesheet %}
+  /* Con l'header trasparente la barra sta SOPRA il contenuto: senza questo
+     scostamento il titolo della collezione finisce sotto il logo e la barra di
+     ricerca. Il tema lo fa da sé solo per le sezioni con .spacing-style, che
+     questa non ha — e il padding qui arriva da uno style inline (impostazione
+     della sezione), quindi si aggiunge con un margine, non toccando il padding.
+     Quando l'header non è trasparente il fattore vale 0 e non cambia niente. */
+  main > .shopify-section:first-child .cc-collhead {
+    margin-block-start: calc(var(--header-height) * var(--transparent-header-offset-boolean, 0));
+  }
+
   .cc-collhead__inner {
     max-width: var(--page-width, 1400px);
     margin-inline: auto;

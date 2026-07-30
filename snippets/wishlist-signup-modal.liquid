@@ -1,0 +1,436 @@
+{%- doc -%}
+  Invito a iscriversi che compare alla prima aggiunta ai preferiti.
+
+  Il negozio usa i "nuovi account cliente" di Shopify (passwordless, pagina
+  ospitata su shopify.com): non esiste un form "crea account" da mettere in
+  pagina. Qui raccogliamo l'email col form cliente del tema — che crea comunque
+  la scheda cliente con consenso marketing, cioè quello che serve per il
+  tracking e il post-vendita — e in cambio mostriamo subito il codice sconto.
+  Chi vuole l'account vero e proprio ha il link "Ho già un account / Accedi".
+
+  Chi chiude senza iscriversi non perde niente: la lista resta nel browser
+  esattamente come prima. L'invito non torna prima di
+  settings.wishlist_signup_cooldown_days giorni e si arrende dopo tre rifiuti
+  (vedi assets/wishlist.js).
+
+  Reso una volta sola, in fondo a layout/theme.liquid. Nascosto ai clienti già
+  loggati.
+{%- enddoc -%}
+
+{%- liquid
+  # I default sono ripetuti qui di proposito: finché un setting nuovo non entra
+  # in settings_data.json il valore arriva vuoto, e la modale sparirebbe in
+  # silenzio invece di partire accesa.
+  assign wl_code = settings.wishlist_signup_discount_code | default: 'BENVENUTO10' | strip
+  assign wl_percent = settings.wishlist_signup_discount_percent | default: 10
+  assign wl_cooldown = settings.wishlist_signup_cooldown_days | default: 30
+-%}
+
+{%- if settings.wishlist_signup_enabled != false and customer == blank -%}
+  <wishlist-signup
+    class="wl-signup"
+    data-cooldown-days="{{ wl_cooldown }}"
+  >
+    <dialog
+      class="wl-signup__dialog color-{{ settings.popover_color_scheme }}"
+      aria-labelledby="WishlistSignupHeading"
+    >
+      <button
+        type="button"
+        class="button button-unstyled close-button wl-signup__close"
+        data-wl-close
+        aria-label="{{ 'actions.close_dialog' | t }}"
+      >
+        <span
+          class="svg-wrapper"
+          aria-hidden="true"
+        >
+          {{- 'icon-close.svg' | inline_asset_content -}}
+        </span>
+      </button>
+
+      {%- comment -%} Pannello 1: la richiesta {%- endcomment -%}
+      <div
+        class="wl-signup__panel"
+        data-wl-panel="form"
+      >
+        <p class="wl-signup__eyebrow">
+          <svg
+            class="wl-signup__heart"
+            aria-hidden="true"
+            focusable="false"
+            xmlns="http://www.w3.org/2000/svg"
+            width="14"
+            height="14"
+            viewBox="0 0 20 20"
+          >
+            <path d="M10.765 3.06343C12.8777 0.978857 16.3029 0.978856 18.4155 3.06343C20.5282 5.148 20.5282 8.52779 18.4155 10.6124L10.72 18.2057C10.3224 18.5981 9.67763 18.5981 9.27996 18.2057L1.58446 10.6124C-0.528154 8.52779 -0.528154 5.14801 1.58446 3.06343C3.69708 0.978859 7.12233 0.978858 9.23495 3.06343L10 3.81832L10.765 3.06343Z" />
+          </svg>
+          {{ 'wishlist.signup.eyebrow' | t }}
+        </p>
+
+        <h2
+          id="WishlistSignupHeading"
+          class="wl-signup__heading"
+        >
+          {{ 'wishlist.signup.heading' | t }}
+        </h2>
+        <p class="wl-signup__body">{{ 'wishlist.signup.body' | t: percent: wl_percent }}</p>
+
+        {%- form 'customer', id: 'WishlistSignupForm', class: 'wl-signup__form' -%}
+          {%- comment -%}
+            Il tag distingue in Admin chi è arrivato dai preferiti da chi si è
+            iscritto dal footer: serve per i flussi post-vendita.
+          {%- endcomment -%}
+          <input
+            type="hidden"
+            name="contact[tags]"
+            value="preferiti"
+          >
+
+          <label
+            class="visually-hidden"
+            for="WishlistSignupEmail"
+          >
+            {{ 'wishlist.signup.email_label' | t }}
+          </label>
+          <div class="field wl-signup__field">
+            <input
+              id="WishlistSignupEmail"
+              class="field__input"
+              type="email"
+              name="contact[email]"
+              placeholder="{{ 'wishlist.signup.email_placeholder' | t | escape }}"
+              autocomplete="email"
+              autocorrect="off"
+              autocapitalize="off"
+              spellcheck="false"
+              required
+            >
+          </div>
+
+          <label class="wl-signup__consent">
+            <input
+              type="checkbox"
+              name="contact[accepts_marketing]"
+              value="true"
+              required
+            >
+            <span>{{ 'wishlist.signup.consent' | t }}</span>
+          </label>
+
+          <button
+            type="submit"
+            class="button wl-signup__submit"
+            data-wl-submit
+          >
+            {{ 'wishlist.signup.submit' | t: percent: wl_percent }}
+          </button>
+
+          {%- comment -%}
+            Senza JavaScript (o se il fetch fallisce) il form parte davvero: la
+            pagina si ricarica e questo marcatore dice a wishlist.js di
+            riaprire la modale sull'errore invece che sul successo.
+          {%- endcomment -%}
+          {%- if form.errors -%}
+            <div
+              class="wl-signup__error"
+              data-wl-signup-error="true"
+            >
+              {{- 'wishlist.signup.error' | t -}}
+            </div>
+          {%- endif -%}
+
+          <div
+            class="wl-signup__error"
+            data-wl-error
+            role="alert"
+            hidden
+          >
+            {{- 'wishlist.signup.error' | t -}}
+          </div>
+        {%- endform -%}
+
+        <p class="wl-signup__fineprint">
+          {{- 'wishlist.signup.fineprint' | t }}
+          {%- if shop.privacy_policy != blank %}
+            <a href="{{ shop.privacy_policy.url }}">{{ shop.privacy_policy.title }}</a>
+          {%- endif -%}
+        </p>
+
+        <div class="wl-signup__alt">
+          {%- if shop.customer_accounts_enabled -%}
+            <a
+              class="wl-signup__link"
+              href="{{ routes.account_login_url }}"
+            >
+              {{- 'wishlist.signup.login' | t -}}
+            </a>
+          {%- endif -%}
+          <button
+            type="button"
+            class="button button-unstyled wl-signup__link"
+            data-wl-close
+          >
+            {{- 'wishlist.signup.dismiss' | t -}}
+          </button>
+        </div>
+      </div>
+
+      {%- comment -%} Pannello 2: il grazie, col codice {%- endcomment -%}
+      <div
+        class="wl-signup__panel"
+        data-wl-panel="success"
+        hidden
+      >
+        <p class="wl-signup__eyebrow">{{ 'wishlist.signup.success_eyebrow' | t }}</p>
+        <h2 class="wl-signup__heading">{{ 'wishlist.signup.success_heading' | t: percent: wl_percent }}</h2>
+        <p class="wl-signup__body">{{ 'wishlist.signup.success_body' | t: percent: wl_percent }}</p>
+
+        {%- if wl_code != blank -%}
+          <div class="wl-signup__code">
+            <span
+              class="wl-signup__code-value"
+              data-wl-code
+            >
+              {{- wl_code -}}
+            </span>
+            <button
+              type="button"
+              class="button button-secondary wl-signup__copy"
+              data-wl-copy
+              data-label-copy="{{ 'wishlist.signup.copy' | t | escape }}"
+              data-label-copied="{{ 'wishlist.signup.copied' | t | escape }}"
+            >
+              {{- 'wishlist.signup.copy' | t -}}
+            </button>
+          </div>
+        {%- endif -%}
+
+        {%- assign wl_page = pages['preferiti'] -%}
+        {%- if wl_page != blank -%}
+          <a
+            class="button wl-signup__submit"
+            href="{{ wl_page.url }}"
+          >
+            {{- 'wishlist.signup.success_cta' | t -}}
+          </a>
+        {%- endif -%}
+
+        <div class="wl-signup__alt">
+          <button
+            type="button"
+            class="button button-unstyled wl-signup__link"
+            data-wl-close
+          >
+            {{- 'wishlist.signup.keep_browsing' | t -}}
+          </button>
+        </div>
+      </div>
+    </dialog>
+  </wishlist-signup>
+{%- endif -%}
+
+{% stylesheet %}
+  .wl-signup__dialog {
+    width: min(440px, calc(100vw - 2 * var(--padding-md)));
+    max-width: 100%;
+    /* Telefono piccolo con la tastiera aperta: scorre invece di tagliare. */
+    max-height: calc(100dvh - 2 * var(--padding-md));
+    overflow-y: auto;
+    padding: var(--padding-2xl);
+    border: none;
+    border-radius: var(--style-border-radius-popover);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    box-shadow: var(--shadow-popover);
+  }
+
+  .wl-signup__dialog::backdrop {
+    background: rgb(0 0 0 / 0.45);
+  }
+
+  .wl-signup__dialog[open] {
+    animation: wl-signup-in 0.32s var(--animation-easing) both;
+  }
+
+  @keyframes wl-signup-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wl-signup__dialog[open] {
+      animation: none;
+    }
+  }
+
+  .wl-signup__close {
+    position: absolute;
+    inset-block-start: var(--padding-xs);
+    inset-inline-end: var(--padding-xs);
+    color: var(--color-foreground);
+    background-color: transparent;
+  }
+
+  .wl-signup__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-2xs, 0.375rem);
+    margin: 0 0 var(--margin-sm);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgb(var(--color-foreground-rgb) / 0.6);
+  }
+
+  .wl-signup__heart {
+    fill: currentColor;
+  }
+
+  .wl-signup__heading {
+    margin: 0 0 var(--margin-sm);
+    font-size: clamp(1.5rem, 3.5vw, 1.875rem);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+  }
+
+  .wl-signup__body {
+    margin: 0 0 var(--margin-lg);
+    font-size: 1rem;
+    line-height: 1.6;
+    color: rgb(var(--color-foreground-rgb) / 0.78);
+  }
+
+  .wl-signup__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-sm);
+  }
+
+  .wl-signup__field .field__input {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .wl-signup__consent {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--gap-2xs, 0.5rem);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: rgb(var(--color-foreground-rgb) / 0.78);
+    cursor: pointer;
+  }
+
+  .wl-signup__consent input {
+    margin: 0.15em 0 0;
+    flex: 0 0 auto;
+    accent-color: var(--color-primary);
+  }
+
+  .wl-signup__submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 48px;
+    text-decoration: none;
+  }
+
+  .wl-signup__submit[aria-busy='true'] {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .wl-signup__error {
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: rgb(180 40 40);
+  }
+
+  .wl-signup__error[hidden] {
+    display: none;
+  }
+
+  .wl-signup__fineprint {
+    margin: var(--margin-sm) 0 0;
+    font-size: 0.75rem;
+    line-height: 1.5;
+    color: rgb(var(--color-foreground-rgb) / 0.55);
+  }
+
+  .wl-signup__fineprint a {
+    color: inherit;
+  }
+
+  .wl-signup__alt {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--gap-md);
+    margin-block-start: var(--margin-lg);
+    padding-block-start: var(--padding-md);
+    border-block-start: var(--style-border-width) solid var(--color-border);
+  }
+
+  .wl-signup__link {
+    width: auto;
+    font-size: 0.8125rem;
+    /* .button porterebbe il maiuscolo dei pulsanti: qui sono due scritte pari. */
+    text-transform: none;
+    letter-spacing: 0.02em;
+    color: rgb(var(--color-foreground-rgb) / 0.7);
+    text-decoration: underline;
+    text-underline-offset: 0.25em;
+    cursor: pointer;
+  }
+
+  .wl-signup__link:hover {
+    color: var(--color-foreground);
+  }
+
+  /* Il codice: monospaziato e distanziato, si legge anche a colpo d'occhio. */
+  .wl-signup__code {
+    display: flex;
+    align-items: stretch;
+    gap: var(--gap-sm);
+    margin-block-end: var(--margin-lg);
+  }
+
+  .wl-signup__code-value {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding-inline: var(--padding-md);
+    border: var(--style-border-width) dashed rgb(var(--color-foreground-rgb) / 0.35);
+    font-family: ui-monospace, "SFMono-Regular", "Menlo", monospace;
+    font-size: 1.125rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .wl-signup__copy {
+    flex: 0 0 auto;
+    min-height: 48px;
+    padding-inline: var(--padding-md);
+    font-size: 0.8125rem;
+  }
+
+  @media screen and (max-width: 749px) {
+    .wl-signup__dialog {
+      width: calc(100vw - 2 * var(--padding-md));
+      padding: var(--padding-xl) var(--padding-lg) var(--padding-lg);
+    }
+  }
+{% endstylesheet %}

@@ -556,6 +556,26 @@
   "wishlist": {
     "add": "加入收藏",
     "saved": "已收藏",
-    "page_title": "你的收藏"
+    "page_title": "你的收藏",
+    "signup": {
+      "eyebrow": "已加入收藏",
+      "heading": "來自工坊的歡迎禮",
+      "body": "您的收藏清單會保存在這台裝置上。留下電子郵件，即可獲得首次訂單 {{ percent }}% 折扣；只有真正值得一看的新品，我們才會來信。",
+      "email_label": "電子郵件",
+      "email_placeholder": "your@email.com",
+      "consent": "我同意接收工坊的新品與優惠通知。",
+      "submit": "領取 {{ percent }}% 折扣",
+      "error": "請確認電子郵件地址後再試一次。",
+      "fineprint": "不會濫發信件，隨時可取消訂閱。",
+      "login": "我已經有帳號",
+      "dismiss": "先不註冊，繼續瀏覽",
+      "success_eyebrow": "訂閱完成",
+      "success_heading": "這是您的 {{ percent }}% 折扣",
+      "success_body": "結帳時輸入此折扣碼，適用於您的首次訂單。",
+      "copy": "複製",
+      "copied": "已複製",
+      "success_cta": "查看我的收藏",
+      "keep_browsing": "繼續瀏覽"
+    }
   }
 }
