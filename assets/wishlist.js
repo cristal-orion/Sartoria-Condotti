@@ -52,6 +52,25 @@ function toggle(handle) {
   return at < 0;
 }
 
+/**
+ * Il tema ri-renderizza pezzi di pagina dal server e li FONDE nel DOM invece di
+ * ricrearli (l'header si idrata da solo dopo il caricamento, le griglie si
+ * aggiornano coi filtri). La fusione riporta cuore e contatore allo stato del
+ * server — cuore vuoto, contatore spento — ma il nodo resta lo stesso, quindi
+ * connectedCallback non riparte e lo stato del browser sembra perso. Capitava a
+ * caso, a volte al contatore a volte ai cuori, secondo chi finiva per ultimo.
+ *
+ * Invece di esentarli dalla fusione (fragile: una card che diventa un altro
+ * prodotto si porterebbe dietro il cuore sbagliato) ce ne accorgiamo e ci
+ * risincronizziamo. Le sync() scrivono solo quando il valore cambia davvero,
+ * così la nostra stessa correzione non ci richiama in un ciclo infinito.
+ */
+function healOnOverwrite(element, options, heal) {
+  const observer = new MutationObserver(heal);
+  observer.observe(element, options);
+  return observer;
+}
+
 /** Radice con prefisso lingua (/, /en/, /fr/…), per non perdere la traduzione. */
 function rootUrl() {
   const root = window.Shopify?.routes?.root || '/';
@@ -78,6 +97,12 @@ class WishlistButton extends HTMLElement {
     this.button.addEventListener('click', this.onClick);
     document.addEventListener(CHANGE_EVENT, this.onChange);
     window.addEventListener('storage', this.onChange);
+    // Rileggiamo anche l'handle: se la fusione ha trasformato questa card in un
+    // altro prodotto, il cuore deve seguire il prodotto nuovo.
+    this.observer = healOnOverwrite(this, { attributes: true, attributeFilter: ['data-saved', 'data-handle'] }, () => {
+      this.handle = this.dataset.handle;
+      this.sync();
+    });
     this.sync();
   }
 
@@ -85,16 +110,18 @@ class WishlistButton extends HTMLElement {
     this.button?.removeEventListener('click', this.onClick);
     document.removeEventListener(CHANGE_EVENT, this.onChange);
     window.removeEventListener('storage', this.onChange);
+    this.observer?.disconnect();
   }
 
   sync() {
-    const saved = read().includes(this.handle);
-    this.dataset.saved = String(saved);
-    this.button.setAttribute('aria-pressed', String(saved));
-    const label = saved ? this.button.dataset.labelSaved : this.button.dataset.labelAdd;
-    if (label) this.button.setAttribute('aria-label', label);
+    const saved = String(read().includes(this.handle));
+    if (this.dataset.saved !== saved) this.dataset.saved = saved;
+    if (this.button.getAttribute('aria-pressed') !== saved) this.button.setAttribute('aria-pressed', saved);
+
+    const label = saved === 'true' ? this.button.dataset.labelSaved : this.button.dataset.labelAdd;
+    if (label && this.button.getAttribute('aria-label') !== label) this.button.setAttribute('aria-label', label);
     const text = this.querySelector('[data-wishlist-text]');
-    if (text && label) text.textContent = label;
+    if (text && label && text.textContent !== label) text.textContent = label;
   }
 }
 
@@ -103,18 +130,27 @@ class WishlistCount extends HTMLElement {
     this.onChange = () => this.sync();
     document.addEventListener(CHANGE_EVENT, this.onChange);
     window.addEventListener('storage', this.onChange);
+    // L'header si ri-renderizza dal server dopo il caricamento: senza questo il
+    // numero si spegneva da solo a pagina già pronta.
+    this.observer = healOnOverwrite(
+      this,
+      { childList: true, characterData: true, subtree: true, attributes: true, attributeFilter: ['hidden'] },
+      () => this.sync()
+    );
     this.sync();
   }
 
   disconnectedCallback() {
     document.removeEventListener(CHANGE_EVENT, this.onChange);
     window.removeEventListener('storage', this.onChange);
+    this.observer?.disconnect();
   }
 
   sync() {
     const n = read().length;
-    this.textContent = n ? String(n) : '';
-    this.hidden = n === 0;
+    const text = n ? String(n) : '';
+    if (this.textContent !== text) this.textContent = text;
+    if (this.hidden !== (n === 0)) this.hidden = n === 0;
   }
 }
 
@@ -426,3 +462,10 @@ if (!customElements.get('wishlist-button')) customElements.define('wishlist-butt
 if (!customElements.get('wishlist-count')) customElements.define('wishlist-count', WishlistCount);
 if (!customElements.get('wishlist-list')) customElements.define('wishlist-list', WishlistList);
 if (!customElements.get('wishlist-signup')) customElements.define('wishlist-signup', WishlistSignup);
+
+// Ritorno col tasto "indietro": la pagina viene ripescata dalla cache del
+// browser così com'era, ma nel frattempo la lista può essere cambiata in
+// un'altra scheda. Un giro di sincronizzazione e tutto torna coerente.
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted) document.dispatchEvent(new CustomEvent(CHANGE_EVENT, { detail: { list: read() } }));
+});
