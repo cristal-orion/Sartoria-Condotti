@@ -1103,6 +1103,174 @@
             "img_campione": "tessuto-smoking-3-a.jpg",
             "img_capo": "tessuto-smoking-3-b.jpg"
           }
+        },
+        "tessuto-cappotto-inverno-1": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "cappotti",
+            "nome": "Cammello",
+            "composizione": "Lana e cashmere",
+            "peso": "",
+            "codice": "Condotti 9701",
+            "descrizione": "Il cammello del cappotto classico: caldo e luminoso, sta bene sul blu come sul grigio.",
+            "img_campione": "tessuto-cappotto-inverno-1-a.jpg",
+            "img_capo": "tessuto-cappotto-inverno-1-b.jpg"
+          }
+        },
+        "tessuto-cappotto-inverno-2": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "cappotti",
+            "nome": "Nero",
+            "composizione": "Lana e cashmere",
+            "peso": "",
+            "codice": "Condotti 9702",
+            "descrizione": "Nero pieno, la scelta più formale: sopra l'abito scuro e sulla sera non sbaglia mai.",
+            "img_campione": "tessuto-cappotto-inverno-2-a.jpg",
+            "img_capo": "tessuto-cappotto-inverno-2-b.jpg"
+          }
+        },
+        "tessuto-cappotto-inverno-3": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "cappotti",
+            "nome": "Blu notte",
+            "composizione": "Lana e cashmere",
+            "peso": "",
+            "codice": "Condotti 9703",
+            "descrizione": "Blu notte profondo, l'alternativa napoletana al nero: formale ma più caldo, anche di giorno.",
+            "img_campione": "tessuto-cappotto-inverno-3-a.jpg",
+            "img_capo": "tessuto-cappotto-inverno-3-b.jpg"
+          }
+        },
+        "tessuto-cappotto-inverno-4": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "cappotti",
+            "nome": "Grigio antracite",
+            "composizione": "Lana e cashmere",
+            "peso": "",
+            "codice": "Condotti 9704",
+            "descrizione": "Grigio antracite dal disegno appena percettibile: il cappotto da ufficio che regge ogni abbinamento.",
+            "img_campione": "tessuto-cappotto-inverno-4-a.jpg",
+            "img_capo": "tessuto-cappotto-inverno-4-b.jpg"
+          }
+        },
+        "tessuto-cappotto-inverno-5": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "cappotti",
+            "nome": "Verde bosco",
+            "composizione": "Lana e cashmere",
+            "peso": "",
+            "codice": "Condotti 9705",
+            "descrizione": "Verde bosco intenso, per chi vuole un cappotto riconoscibile senza alzare la voce.",
+            "img_campione": "tessuto-cappotto-inverno-5-a.jpg",
+            "img_capo": "tessuto-cappotto-inverno-5-b.jpg"
+          }
+        },
+        "tessuto-cappotto-inverno-6": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "cappotti",
+            "nome": "Testa di moro",
+            "composizione": "Lana e cashmere",
+            "peso": "",
+            "codice": "Condotti 9706",
+            "descrizione": "Testa di moro caldo, ottimo sui grigi e sui beige: un classico inglese addolcito dal cashmere.",
+            "img_campione": "tessuto-cappotto-inverno-6-a.jpg",
+            "img_capo": "tessuto-cappotto-inverno-6-b.jpg"
+          }
+        },
+        "tessuto-pullover-inverno-1": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "pullover",
+            "nome": "Azzurro polvere",
+            "composizione": "100% cashmere",
+            "peso": "",
+            "codice": "Condotti 9801",
+            "descrizione": "Azzurro polvere, il cashmere di tutti i giorni: sotto la giacca o da solo sulla camicia bianca.",
+            "img_campione": "tessuto-pullover-inverno-1-a.jpg",
+            "img_capo": "tessuto-pullover-inverno-1-b.jpg"
+          }
+        },
+        "tessuto-pullover-inverno-2": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "pullover",
+            "nome": "Bordeaux",
+            "composizione": "100% cashmere",
+            "peso": "",
+            "codice": "Condotti 9802",
+            "descrizione": "Bordeaux profondo, il colore che scalda un guardaroba di grigi e di blu.",
+            "img_campione": "tessuto-pullover-inverno-2-a.jpg",
+            "img_capo": "tessuto-pullover-inverno-2-b.jpg"
+          }
+        },
+        "tessuto-pullover-inverno-3": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "pullover",
+            "nome": "Cammello",
+            "composizione": "100% cashmere",
+            "peso": "",
+            "codice": "Condotti 9803",
+            "descrizione": "Cammello morbido, si abbina al cappotto dello stesso colore o spezza un completo scuro.",
+            "img_campione": "tessuto-pullover-inverno-3-a.jpg",
+            "img_capo": "tessuto-pullover-inverno-3-b.jpg"
+          }
+        },
+        "tessuto-pullover-inverno-4": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "pullover",
+            "nome": "Turchese",
+            "composizione": "100% cashmere",
+            "peso": "",
+            "codice": "Condotti 9804",
+            "descrizione": "Turchese acceso, per chi al pullover chiede un colore e non un ripiego.",
+            "img_campione": "tessuto-pullover-inverno-4-a.jpg",
+            "img_capo": "tessuto-pullover-inverno-4-b.jpg"
+          }
+        },
+        "tessuto-pullover-inverno-5": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "pullover",
+            "nome": "Panna",
+            "composizione": "100% cashmere",
+            "peso": "",
+            "codice": "Condotti 9805",
+            "descrizione": "Panna naturale, il neutro più elegante: pulito sotto la giacca blu, giusto in montagna.",
+            "img_campione": "tessuto-pullover-inverno-5-a.jpg",
+            "img_capo": "tessuto-pullover-inverno-5-b.jpg"
+          }
+        },
+        "tessuto-pullover-inverno-6": {
+          "type": "tessuto",
+          "settings": {
+            "stagione": "inverno",
+            "categoria": "pullover",
+            "nome": "Blu notte",
+            "composizione": "100% cashmere",
+            "peso": "",
+            "codice": "Condotti 9806",
+            "descrizione": "Blu notte fitto, il pullover che non manca mai: sotto ogni giacca, per tutto l'inverno.",
+            "img_campione": "tessuto-pullover-inverno-6-a.jpg",
+            "img_capo": "tessuto-pullover-inverno-6-b.jpg"
+          }
         }
       },
       "block_order": [
@@ -1183,7 +1351,19 @@
         "tessuto-scarpa-inverno-6",
         "tessuto-smoking-inverno-1",
         "tessuto-smoking-inverno-2",
-        "tessuto-smoking-inverno-3"
+        "tessuto-smoking-inverno-3",
+        "tessuto-cappotto-inverno-1",
+        "tessuto-cappotto-inverno-2",
+        "tessuto-cappotto-inverno-3",
+        "tessuto-cappotto-inverno-4",
+        "tessuto-cappotto-inverno-5",
+        "tessuto-cappotto-inverno-6",
+        "tessuto-pullover-inverno-1",
+        "tessuto-pullover-inverno-2",
+        "tessuto-pullover-inverno-3",
+        "tessuto-pullover-inverno-4",
+        "tessuto-pullover-inverno-5",
+        "tessuto-pullover-inverno-6"
       ],
       "settings": {
         "eyebrow": "",
