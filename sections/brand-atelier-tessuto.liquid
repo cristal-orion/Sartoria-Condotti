@@ -47,7 +47,7 @@
           {%- if s.season_estate_image != blank -%}
             {{ s.season_estate_image | image_url: width: 1200 | image_tag: widths: '420,600,900,1200', sizes: '(min-width: 900px) 34vw, 88vw', loading: 'lazy' }}
           {%- else -%}
-            <img src="{{ 'atelier-tessuto-hero-estate.jpg' | asset_url }}" width="1024" height="1536" loading="lazy" alt="">
+            <img src="{{ 'atelier-tessuto-hero-estate.webp' | asset_url }}" width="1024" height="1536" loading="lazy" alt="">
           {%- endif -%}
         </span>
         <span class="at-season__content">
@@ -65,7 +65,7 @@
           {%- if s.season_inverno_image != blank -%}
             {{ s.season_inverno_image | image_url: width: 1200 | image_tag: widths: '420,600,900,1200', sizes: '(min-width: 900px) 34vw, 88vw', loading: 'lazy' }}
           {%- else -%}
-            <img src="{{ 'atelier-tessuto-hero-inverno.jpg' | asset_url }}" width="1024" height="1536" loading="lazy" alt="">
+            <img src="{{ 'atelier-tessuto-hero-inverno.webp' | asset_url }}" width="1024" height="1536" loading="lazy" alt="">
           {%- endif -%}
         </span>
         <span class="at-season__content">
@@ -92,7 +92,8 @@
     <button type="button" class="bp-atelier__lightbox-close" data-at-lightbox-close aria-label="{{ 'brand.sarto_domicilio.tessuti_zoom_close' | t | escape }}">
       <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
-    <img class="bp-atelier__lightbox-img" data-at-lightbox-img src="" alt="">
+    {%- comment -%} Niente src="": si risolverebbe all'URL della pagina e il browser riscaricherebbe l'HTML come immagine. Lo imposta bp-atelier.js all'apertura. {%- endcomment -%}
+    <img class="bp-atelier__lightbox-img" data-at-lightbox-img alt="">
   </div>
 </section>
 
@@ -176,8 +177,8 @@
         { "type": "text", "id": "peso", "label": "Grammatura", "info": "Vuoto = riga non mostrata." },
         { "type": "text", "id": "codice", "label": "Lanificio / codice", "info": "Vuoto = riga non mostrata." },
         { "type": "textarea", "id": "descrizione", "label": "Descrizione" },
-        { "type": "text", "id": "img_campione", "label": "Foto campione (file in assets)", "info": "Nome file, es. tessuto-abito-inverno-1-a.jpg" },
-        { "type": "text", "id": "img_capo", "label": "Foto capo realizzato (file in assets)", "info": "Nome file, es. tessuto-abito-inverno-1-b.jpg" }
+        { "type": "text", "id": "img_campione", "label": "Foto campione (file in assets)", "info": "Nome file, es. tessuto-abito-inverno-1-a.webp" },
+        { "type": "text", "id": "img_capo", "label": "Foto capo realizzato (file in assets)", "info": "Nome file, es. tessuto-abito-inverno-1-b.webp" }
       ]
     }
   ],

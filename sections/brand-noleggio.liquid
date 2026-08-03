@@ -52,7 +52,7 @@
       {%- if s.hero_image != blank -%}
         {{ s.hero_image | image_url: width: 2400 | image_tag: widths: '900,1400,1900,2400', sizes: '100vw', fetchpriority: 'high' }}
       {%- else -%}
-        <img src="{{ 'noleggio-hero.jpg' | asset_url }}" alt="" fetchpriority="high">
+        <img src="{{ 'noleggio-hero.webp' | asset_url }}" alt="" fetchpriority="high">
       {%- endif -%}
     </div>
     <div class="bp__hero-inner bp__wrap">
@@ -271,7 +271,7 @@
   "class": "brand-page-section",
   "settings": [
     { "type": "header", "content": "Hero" },
-    { "type": "image_picker", "id": "hero_image", "label": "Immagine hero", "info": "Vuota = usa noleggio-hero.jpg dagli assets." },
+    { "type": "image_picker", "id": "hero_image", "label": "Immagine hero", "info": "Vuota = usa noleggio-hero.webp dagli assets." },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "info": "Vuoto = usa la traduzione (brand.noleggio.eyebrow)." },
     { "type": "text", "id": "hero_title", "label": "Titolo", "default": "Noleggio" },
     { "type": "textarea", "id": "hero_sub", "label": "Sottotitolo", "info": "Vuoto = usa la traduzione." },
@@ -304,7 +304,7 @@
       "settings": [
         { "type": "text", "id": "nome", "label": "Nome capo", "default": "Smoking" },
         { "type": "image_picker", "id": "image", "label": "Foto", "info": "Vuota = usa il file indicato sotto." },
-        { "type": "text", "id": "img_file", "label": "Foto (file in assets)", "info": "Nome file, es. noleggio-smoking.jpg" },
+        { "type": "text", "id": "img_file", "label": "Foto (file in assets)", "info": "Nome file, es. noleggio-smoking.webp" },
         { "type": "textarea", "id": "desc", "label": "Descrizione" },
         { "type": "text", "id": "taglie_note", "label": "Nota taglie", "info": "Vuota = usa la traduzione (Disponibile in tutte le taglie)." }
       ]
@@ -314,9 +314,9 @@
     {
       "name": "Brand · Noleggio",
       "blocks": [
-        { "type": "capo", "settings": { "nome": "Frac", "img_file": "noleggio-frac.jpg" } },
-        { "type": "capo", "settings": { "nome": "Smoking", "img_file": "noleggio-smoking.jpg" } },
-        { "type": "capo", "settings": { "nome": "Tight", "img_file": "noleggio-tight.jpg" } }
+        { "type": "capo", "settings": { "nome": "Frac", "img_file": "noleggio-frac.webp" } },
+        { "type": "capo", "settings": { "nome": "Smoking", "img_file": "noleggio-smoking.webp" } },
+        { "type": "capo", "settings": { "nome": "Tight", "img_file": "noleggio-tight.webp" } }
       ]
     }
   ]

@@ -23,10 +23,8 @@
   assign services_heading = 'brand.ricameria.services_heading' | t
   assign services_heading = s.services_heading | default: services_heading
 
-  assign sectors_eyebrow = 'brand.ricameria.sectors_eyebrow' | t
-  assign sectors_eyebrow = s.sectors_eyebrow | default: sectors_eyebrow
-  assign sectors_heading = 'brand.ricameria.sectors_heading' | t
-  assign sectors_heading = s.sectors_heading | default: sectors_heading
+  # sectors_body è il testo che introduceva la griglia di tessere: la griglia non
+  # c'è più, il testo vive ora sopra le linguette degli esempi.
   assign sectors_body = 'brand.ricameria.sectors_body' | t
   assign sectors_body = s.sectors_body | default: sectors_body
   assign sector_fallback = 'brand.ricameria.sector_fallback' | t
@@ -116,39 +114,107 @@
     </div>
   </div>
 
-  <!-- CAMPI DI APPLICAZIONE / SETTORI -->
-  {%- if section.blocks.size > 0 -%}
+  {%- comment -%}
+    CAMPI DI APPLICAZIONE — una tavola per settore, mostrata una per volta.
+    Ha preso il posto della vecchia griglia di tessere con le icone: diceva le
+    stesse cose di queste linguette. Le descrizioni dei settori e il testo
+    introduttivo vivono qui dentro, così non si è perso niente di quei testi.
+
+    ESEMPI DI LAVORI — una tavola per settore, mostrata una per volta.
+    Riusa il meccanismo dell'Atelier dei Tessuti (assets/bp-atelier.js): le
+    linguette sono [data-at-tab]/[data-at-panel] e l'ingrandimento è
+    [data-at-zoom] + [data-at-lightbox]. Nessun JS nuovo da mantenere.
+    initPanel() esce subito se non trova i campioni, quindi qui non fa nulla.
+
+    Un settore entra nella fascia solo se ha una foto: quella caricata dal
+    personalizzatore, oppure il file in assets che porta il nome della tavola
+    (ricamo-esempio-<chiave>.webp). Un settore senza tavola non compare qui,
+    senza buchi né immagini rotte, e resta comunque nel menu del preventivo.
+  {%- endcomment -%}
+  {%- liquid
+    assign examples_eyebrow = 'brand.ricameria.examples_eyebrow' | t
+    assign examples_eyebrow = s.examples_eyebrow | default: examples_eyebrow
+    assign examples_heading = 'brand.ricameria.examples_heading' | t
+    assign examples_heading = s.examples_heading | default: examples_heading
+    assign examples_tabs_aria = 'brand.ricameria.examples_tabs_aria' | t
+
+    assign ricami_icons = 'hotel,restaurant,business,nautical,health,school,events,association' | split: ','
+    assign ricami_count = 0
+    for block in section.blocks
+      assign b_icon = block.settings.icon | default: 'needle'
+      if block.settings.foto != blank or ricami_icons contains b_icon
+        assign ricami_count = ricami_count | plus: 1
+      endif
+    endfor
+  -%}
+  {%- if ricami_count > 0 -%}
     <span class="bp__stitch bp__wrap" aria-hidden="true">
       <svg viewBox="0 0 1000 2" preserveAspectRatio="none"><line x1="0" y1="1" x2="1000" y2="1" stroke="currentColor" stroke-width="1.4" stroke-dasharray="7 5" vector-effect="non-scaling-stroke"/></svg>
     </span>
 
     <div class="bp__section bp__wrap">
       <div class="bp__section-head">
-        <p class="bp__eyebrow" data-reveal>{{ sectors_eyebrow }}</p>
-        <h2 class="bp__h2" data-reveal>{{ sectors_heading }}</h2>
-        <p class="bp__body" data-reveal>{{ sectors_body }}</p>
+        <p class="bp__eyebrow" data-reveal>{{ examples_eyebrow }}</p>
+        <h2 class="bp__h2" data-reveal>{{ examples_heading }}</h2>
+        {%- if sectors_body != blank -%}
+          <p class="bp__body" data-reveal>{{ sectors_body }}</p>
+        {%- endif -%}
       </div>
-      <div class="bp__sectors">
+
+      <div class="bp-ricami" data-bp-atelier>
+        <div class="bp-atelier__tabs" role="tablist" aria-label="{{ examples_tabs_aria | escape }}">
+          {%- assign ric_first = true -%}
+          {%- for block in section.blocks -%}
+            {%- assign b_icon = block.settings.icon | default: 'needle' -%}
+            {%- unless block.settings.foto != blank or ricami_icons contains b_icon -%}{%- continue -%}{%- endunless -%}
+            <button type="button"
+                    class="bp-atelier__tab{% if ric_first %} is-active{% endif %}"
+                    id="ric-tab-{{ block.id }}"
+                    role="tab"
+                    aria-selected="{% if ric_first %}true{% else %}false{% endif %}"
+                    aria-controls="ric-panel-{{ block.id }}"
+                    {% unless ric_first %}tabindex="-1"{% endunless %}
+                    data-at-tab="{{ block.id }}">
+              {{ block.settings.label | default: sector_fallback }}
+            </button>
+            {%- assign ric_first = false -%}
+          {%- endfor -%}
+        </div>
+
+        {%- assign ric_first = true -%}
         {%- for block in section.blocks -%}
+          {%- assign b_icon = block.settings.icon | default: 'needle' -%}
+          {%- unless block.settings.foto != blank or ricami_icons contains b_icon -%}{%- continue -%}{%- endunless -%}
           {%- assign b_label = block.settings.label | default: sector_fallback -%}
-          <a
-            class="bp__sector"
-            href="#preventivo"
-            data-bp-scroll
-            data-sector="{{ b_label | escape }}"
-            data-reveal
-            {{ block.shopify_attributes }}
-          >
-            <span class="bp__sector-icon">
-              {%- render 'ricamo-sector-icon', icon: block.settings.icon -%}
-            </span>
-            <h3 class="bp__sector-title">{{ b_label }}</h3>
-            {%- if block.settings.desc != blank -%}
-              <p class="bp__body">{{ block.settings.desc }}</p>
+          <div class="bp-ricami__panel"
+               id="ric-panel-{{ block.id }}"
+               role="tabpanel"
+               aria-labelledby="ric-tab-{{ block.id }}"
+               data-at-panel="{{ block.id }}"
+               {% unless ric_first %}hidden{% endunless %}
+               {{ block.shopify_attributes }}>
+            {%- if block.settings.foto != blank -%}
+              {%- assign ric_src = block.settings.foto | image_url: width: 1400 -%}
+              {%- render 'bp-atelier-zoom-img', src: ric_src, alt: b_label, w: 1200, h: 960, class: 'bp-ricami__zoom' -%}
+            {%- else -%}
+              {%- assign ric_file = 'ricamo-esempio-' | append: b_icon | append: '.webp' -%}
+              {%- render 'bp-atelier-zoom-img', img: ric_file, alt: b_label, w: 1200, h: 960, class: 'bp-ricami__zoom' -%}
             {%- endif -%}
-          </a>
+            {%- if block.settings.desc != blank -%}
+              <p class="bp__body bp-ricami__desc">{{ block.settings.desc }}</p>
+            {%- endif -%}
+          </div>
+          {%- assign ric_first = false -%}
         {%- endfor -%}
       </div>
+    </div>
+
+    <div class="bp-atelier__lightbox" data-at-lightbox hidden>
+      <button type="button" class="bp-atelier__lightbox-close" data-at-lightbox-close aria-label="{{ 'brand.sarto_domicilio.tessuti_zoom_close' | t | escape }}">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      {%- comment -%} Niente src="": si risolverebbe all'URL della pagina e il browser riscaricherebbe l'HTML come immagine. Lo imposta bp-atelier.js all'apertura. {%- endcomment -%}
+      <img class="bp-atelier__lightbox-img" data-at-lightbox-img alt="">
     </div>
   {%- endif -%}
 
@@ -262,6 +328,7 @@
 <script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
 <script src="{{ 'ScrollTrigger.min.js' | asset_url }}" defer></script>
 <script src="{{ 'brand-page.js' | asset_url }}" defer></script>
+<script src="{{ 'bp-atelier.js' | asset_url }}" defer></script>
 
 {% schema %}
 {
@@ -285,10 +352,10 @@
     { "type": "header", "content": "Come funziona" },
     { "type": "text", "id": "how_eyebrow", "label": "Eyebrow" },
     { "type": "text", "id": "how_heading", "label": "Titolo" },
-    { "type": "header", "content": "Campi di applicazione", "info": "I settori si gestiscono come blocchi qui sotto. Le stesse voci compaiono nel menu a tendina del form preventivo." },
-    { "type": "text", "id": "sectors_eyebrow", "label": "Eyebrow" },
-    { "type": "text", "id": "sectors_heading", "label": "Titolo" },
-    { "type": "textarea", "id": "sectors_body", "label": "Testo introduttivo" },
+    { "type": "header", "content": "Campi di applicazione", "info": "Una tavola per settore, mostrata una per volta. I settori si gestiscono come blocchi qui sotto: le stesse voci fanno le linguette e il menu a tendina del form preventivo." },
+    { "type": "text", "id": "examples_eyebrow", "label": "Eyebrow", "info": "Vuoto = usa la traduzione." },
+    { "type": "text", "id": "examples_heading", "label": "Titolo", "info": "Vuoto = usa la traduzione." },
+    { "type": "textarea", "id": "sectors_body", "label": "Testo introduttivo", "info": "Vuoto = usa la traduzione." },
     { "type": "header", "content": "Form preventivo" },
     { "type": "text", "id": "form_eyebrow", "label": "Eyebrow form" },
     { "type": "text", "id": "form_heading", "label": "Titolo form" },
@@ -302,10 +369,11 @@
         {
           "type": "select",
           "id": "icon",
-          "label": "Icona",
+          "label": "Tavola di esempio",
+          "info": "Sceglie quale delle tavole già caricate mostrare per questo settore. \"Nessuna tavola\" = il settore resta solo nel menu del preventivo.",
           "default": "needle",
           "options": [
-            { "value": "needle", "label": "Ago e filo (default)" },
+            { "value": "needle", "label": "Nessuna tavola" },
             { "value": "hotel", "label": "Hotel" },
             { "value": "restaurant", "label": "Ristorazione" },
             { "value": "business", "label": "Aziende" },
@@ -317,7 +385,8 @@
           ]
         },
         { "type": "text", "id": "label", "label": "Settore", "default": "Settore" },
-        { "type": "textarea", "id": "desc", "label": "Esempi di lavori" }
+        { "type": "textarea", "id": "desc", "label": "Esempi di lavori", "info": "Compare sotto la tavola di questo settore." },
+        { "type": "image_picker", "id": "foto", "label": "Foto di esempio", "info": "Sostituisce la tavola già caricata. Vuoto = usa quella scelta qui sopra." }
       ]
     }
   ],

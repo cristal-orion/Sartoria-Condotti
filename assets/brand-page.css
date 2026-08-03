@@ -365,79 +365,9 @@
   background: rgb(var(--bp-gold));
 }
 
-/* ---- Settori / Campi di applicazione ---- */
-.bp__sectors {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: clamp(10px, 1.4vw, 18px);
-  max-width: 940px;
-  margin-inline: auto;
-}
-
-@media (min-width: 700px) {
-  .bp__sectors {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
-/* Card settore: tile cliccabile con icona (porta al form preventivo) */
-.bp__sector {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 10px;
-  padding: clamp(18px, 2vw, 26px) 14px;
-  text-decoration: none;
-  color: inherit;
-  border: 1px solid rgb(var(--bp-fg) / 0.12);
-  border-radius: 3px;
-  background: rgb(var(--bp-bone) / 0.45);
-  transition: border-color 0.35s ease, background 0.35s ease, transform 0.35s ease;
-}
-
-@media (hover: hover) {
-  .bp__sector:hover {
-    border-color: rgb(var(--bp-gold));
-    background: rgb(var(--bp-bone));
-    transform: translateY(-3px);
-  }
-}
-
-.bp__sector:focus-visible {
-  outline: 2px solid rgb(var(--bp-gold));
-  outline-offset: 3px;
-}
-
-.bp__sector-icon {
-  display: inline-flex;
-  width: clamp(34px, 3.4vw, 44px);
-  height: clamp(34px, 3.4vw, 44px);
-  color: rgb(var(--bp-gold));
-}
-
-.bp__sector-icon .ricamo-sector-icon__svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.bp__sector-title {
-  font-family: 'Fraunces', var(--font-heading--family, serif);
-  font-weight: 300;
-  font-variation-settings: 'opsz' 60;
-  font-size: 1.08rem;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  margin: 0;
-}
-
-.bp__sector .bp__body {
-  font-size: 0.8rem;
-  line-height: 1.5;
-  color: rgb(var(--bp-fg) / 0.72);
-  margin: 0;
-}
+/* Le regole della griglia di tessere settore (.bp__sectors / .bp__sector) sono
+   state rimosse insieme alla griglia stessa: le linguette degli esempi
+   dicevano le stesse cose. Se servisse tornare indietro, sta nella storia git. */
 
 /* ---- Product showcase ---- */
 .bp__products {
@@ -992,6 +922,14 @@ a.bp__diptych-media img {
   color: rgb(var(--bp-fg) / 0.64);
 }
 
+/* Tavola della giacca sartoriale: è il contenuto della linguetta omonima, una
+   per stagione. Quadrata e fitta di didascalie, sta larga (900px) perché le
+   scritte si leggano già in pagina, e resta ingrandibile con la lightbox. */
+.at-anatomia {
+  margin: 0;
+  max-width: 900px;
+}
+
 /* Figure di riferimento (colletti/polsini, tipologie giacca, pence/bustino pantalone, larghezza cravatta), impilate subito sotto i campioni, per categoria */
 .bp-atelier__extra {
   margin-top: clamp(22px, 3.5vw, 34px);
@@ -1053,6 +991,37 @@ a.bp__diptych-media img {
   background: rgb(var(--bp-gold));
   color: rgb(var(--bp-ink));
   transform: scale(1.08);
+}
+
+/* ---- Esempi di lavori (Atelier del Ricamo): una tavola per settore ----
+   Le tavole arrivano con rapporti diversi (quadrate e 5:4). La cornice fissa
+   il rapporto una volta per tutte e la foto ci sta dentro intera con
+   object-fit: contain: niente salti di altezza cambiando linguetta e nessun
+   taglio sulle didascalie, che in queste tavole sono il contenuto.
+   Sta dopo .bp-atelier__extra-zoom di proposito: quello azzera bordo e sfondo
+   e, a pari specificità, vincerebbe l'ultimo dichiarato. */
+.bp-ricami {
+  margin-top: clamp(26px, 4vw, 44px);
+}
+
+.bp-ricami__zoom {
+  aspect-ratio: 5 / 4;
+  max-width: 900px;
+  background: rgb(var(--bp-bone) / 0.45);
+  border: 1px solid rgb(var(--bp-fg) / 0.12);
+}
+
+.bp-ricami__zoom .bp-atelier__extra-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* La descrizione del settore: veniva dalle vecchie tessere con le icone e ora
+   sta sotto la tavola, incolonnata con lei. */
+.bp-ricami__desc {
+  margin: clamp(14px, 2vw, 20px) 0 0;
+  max-width: 60ch;
 }
 
 /* Lightbox di ingrandimento: spostata a fine <body> via JS (bp-atelier.js) così
