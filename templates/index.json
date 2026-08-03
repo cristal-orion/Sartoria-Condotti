@@ -475,7 +475,7 @@
           "type": "image",
           "settings": {
             "image": "",
-            "placeholder": "sartoria-store-storico.jpg",
+            "placeholder": "sartoria-store-storico.webp",
             "image_ratio": "adapt",
             "width": "custom",
             "custom_width": 38
@@ -665,19 +665,21 @@
             "address": "80121 Napoli",
             "phone": "081 0382204",
             "whatsapp": "+39 379 348 0144",
-            "hours": "Lun–Sab 09–20 · Dom 10–14 / 16–20"
+            "hours": "Lun–Sab 09–20 · Dom 10–14 / 16–20",
+            "img_file": "punto-vendita-santa-caterina.webp"
           }
         },
         "loc2": {
           "type": "location",
           "settings": {
-            "brand": "Sartoria Condotti",
+            "brand": "Condotti & Co",
             "tag": "Boutique",
             "name": "Via Vittoria Colonna, 15/D",
             "address": "80121 Napoli",
             "phone": "081 4104424",
             "whatsapp": "+39 379 348 0144",
-            "hours": "Lun–Sab 09:00–20:00 · Dom 10:00–14:00"
+            "hours": "Lun–Sab 09:00–20:00 · Dom 10:00–14:00",
+            "img_file": "punto-vendita-vittoria-colonna-15.webp"
           }
         },
         "loc3": {
@@ -690,19 +692,21 @@
             "phone": "081 0674136",
             "whatsapp": "+39 379 348 0144",
             "hours": "Lun–Sab 10–19 · Dom chiuso",
-            "maps_url": "https://www.google.com/maps/search/?api=1&query=Via%20Vittoria%20Colonna%2C%208%2C%2080121%20Napoli"
+            "maps_url": "https://www.google.com/maps/search/?api=1&query=Via%20Vittoria%20Colonna%2C%208%2C%2080121%20Napoli",
+            "img_file": "punto-vendita-vittoria-colonna-8.webp"
           }
         },
         "loc4": {
           "type": "location",
           "settings": {
-            "brand": "Condotti & Co",
+            "brand": "Sartoria su misura",
             "tag": "Store",
-            "name": "Condotti & Co",
-            "address": "Viale Comandante Umberto Maddalena, 136\n80144 Napoli",
+            "name": "Viale Comandante Umberto Maddalena, 136",
+            "address": "80144 Napoli",
             "phone": "081 1786 1111",
             "whatsapp": "+39 379 348 0144",
-            "hours": "Lun–Sab 10–19 · Dom chiuso"
+            "hours": "Lun–Sab 10–19 · Dom chiuso",
+            "img_file": "punto-vendita-maddalena-136.webp"
           }
         }
       },

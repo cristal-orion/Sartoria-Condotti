@@ -36,10 +36,51 @@
             assign q = b.name | append: ' ' | append: b.address | url_encode
             assign maps_url = 'https://www.google.com/maps/search/?api=1&query=' | append: q
           endif
+
+          assign has_media = false
+          if b.image != blank or b.img_file != blank
+            assign has_media = true
+          endif
+          assign media_alt = 'Vetrina ' | append: b.brand | append: ' — ' | append: b.name
+          if b.brand == blank or b.brand == b.name
+            assign media_alt = 'Vetrina ' | append: b.name | default: 'Punto vendita'
+          endif
         -%}
-        <li class="dt__card" data-dt-reveal {{ block.shopify_attributes }}>
+        <li class="dt__card{% if has_media %} dt__card--media{% endif %}" data-dt-reveal {{ block.shopify_attributes }}>
+          {%- if has_media -%}
+            <div class="dt__media">
+              <div class="dt__media-clip">
+                {%- if b.image != blank -%}
+                  {{ b.image | image_url: width: 1200 | image_tag:
+                    widths: '400,600,800,1000,1200',
+                    sizes: '(min-width: 991px) 25vw, (min-width: 561px) 45vw, 90vw',
+                    loading: 'lazy',
+                    class: 'dt__media-img',
+                    alt: media_alt
+                  }}
+                {%- else -%}
+                  <img
+                    class="dt__media-img"
+                    src="{{ b.img_file | asset_url }}"
+                    width="1000"
+                    height="1250"
+                    loading="lazy"
+                    decoding="async"
+                    alt="{{ media_alt | escape }}"
+                  >
+                {%- endif -%}
+                <span class="dt__media-veil" aria-hidden="true"></span>
+                <span class="dt__media-sheen" aria-hidden="true"></span>
+                {%- if b.tag != blank -%}
+                  <span class="dt__media-tag">{{ b.tag }}</span>
+                {%- endif -%}
+              </div>
+            </div>
+          {%- endif -%}
+
+          <div class="dt__card-body">
           {%- if b.brand != blank -%}<p class="dt__card-brand">{{ b.brand }}</p>{%- endif -%}
-          {%- if b.tag != blank -%}<span class="dt__card-tag">{{ b.tag }}</span>{%- endif -%}
+          {%- if b.tag != blank and has_media == false -%}<span class="dt__card-tag">{{ b.tag }}</span>{%- endif -%}
           <h3 class="dt__card-name">{{ b.name | default: 'Punto vendita' }}</h3>
 
           {%- if b.address != blank -%}
@@ -72,6 +113,7 @@
               <span>Indicazioni</span>
             </a>
           {%- endif -%}
+          </div>
         </li>
       {%- endfor -%}
     </ul>
@@ -171,6 +213,137 @@
     border-color: rgb(var(--dt-gold-rgb) / 0.6);
     background: rgb(var(--dt-fg-rgb) / 0.04);
     transform: translateY(-3px);
+  }
+
+  /* ── Vetrina: la foto del punto vendita ───────────────────────────────
+     A riposo la foto è smorzata da un velo crema, come vista di giorno
+     con le luci spente. Al passaggio del mouse la vetrina "si accende":
+     colore pieno, zoom lento, e un riflesso dorato che scorre sul vetro. */
+  .dt__card--media {
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .dt__card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1 1 auto;
+    width: 100%;
+    min-width: 0;
+  }
+  .dt__card--media .dt__card-body { padding: clamp(20px, 2.2vw, 28px); }
+
+  .dt__media {
+    width: 100%;
+    background: rgb(var(--dt-fg-rgb) / 0.06);
+  }
+
+  .dt__media-clip {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    /* serranda abbassata: si alza al reveal */
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 0.95s cubic-bezier(0.22, 1, 0.36, 1) 0.12s;
+  }
+  .dt__card.is-in .dt__media-clip { clip-path: inset(0 0 0 0); }
+
+  .dt__media-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 42%;
+    transform: scale(1.1);
+    filter: saturate(0.68) brightness(0.95) contrast(1.02);
+    transition:
+      transform 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+      filter 0.75s ease;
+  }
+  .dt__card.is-in .dt__media-img { transform: scale(1); }
+
+  /* velo crema, prende il colore di sfondo della sezione */
+  .dt__media-veil {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(to bottom, rgb(var(--dt-bg-rgb) / 0.22), rgb(var(--dt-bg-rgb) / 0.1) 55%, rgb(var(--dt-fg-rgb) / 0.22));
+    transition: opacity 0.75s ease;
+  }
+
+  /* riflesso dorato che attraversa il vetro, una volta sola */
+  .dt__media-sheen {
+    position: absolute;
+    top: -25%;
+    bottom: -25%;
+    left: 0;
+    width: 42%;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(
+      100deg,
+      transparent,
+      rgb(var(--dt-gold-rgb) / 0.16) 42%,
+      rgb(255 255 255 / 0.34) 52%,
+      rgb(var(--dt-gold-rgb) / 0.16) 62%,
+      transparent
+    );
+    transform: translateX(-140%) skewX(-14deg);
+  }
+
+  .dt__media-tag {
+    position: absolute;
+    left: clamp(14px, 1.4vw, 18px);
+    bottom: clamp(14px, 1.4vw, 18px);
+    padding: 0.3em 0.85em;
+    font-family: var(--font-body--family, system-ui);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgb(var(--dt-bg-rgb));
+    background: rgb(var(--dt-fg-rgb) / 0.42);
+    border: 1px solid rgb(var(--dt-bg-rgb) / 0.45);
+    border-radius: 999px;
+    backdrop-filter: blur(6px);
+    transition: color 0.45s ease, background 0.45s ease, border-color 0.45s ease;
+  }
+
+  @keyframes dt-sheen {
+    0%   { opacity: 0; transform: translateX(-140%) skewX(-14deg); }
+    18%  { opacity: 1; }
+    82%  { opacity: 1; }
+    100% { opacity: 0; transform: translateX(320%) skewX(-14deg); }
+  }
+
+  @media (hover: hover) {
+    .dt__card--media:hover .dt__media-img,
+    .dt__card--media:focus-within .dt__media-img {
+      transform: scale(1.07);
+      filter: saturate(1.04) brightness(1.03) contrast(1);
+    }
+    .dt__card--media:hover .dt__media-veil,
+    .dt__card--media:focus-within .dt__media-veil { opacity: 0; }
+    .dt__card--media:hover .dt__media-sheen {
+      animation: dt-sheen 1.05s cubic-bezier(0.35, 0, 0.2, 1);
+    }
+    .dt__card--media:hover .dt__media-tag,
+    .dt__card--media:focus-within .dt__media-tag {
+      color: rgb(var(--dt-gold-rgb));
+      background: rgb(var(--dt-fg-rgb) / 0.6);
+      border-color: rgb(var(--dt-gold-rgb) / 0.75);
+    }
+  }
+
+  /* touch: nessun hover, la vetrina è già accesa */
+  @media (hover: none) {
+    .dt__media-img { filter: none; }
+    .dt__media-veil {
+      background: linear-gradient(to bottom, transparent 45%, rgb(var(--dt-fg-rgb) / 0.3));
+    }
   }
 
   .dt__card-brand {
@@ -282,6 +455,13 @@
   @media (prefers-reduced-motion: reduce) {
     [data-dt-reveal] { opacity: 1 !important; transform: none !important; transition: none; }
     .dt__card, .dt__card:hover { transform: none; }
+    .dt__media-clip { clip-path: none; transition: none; }
+    .dt__media-img,
+    .dt__card--media:hover .dt__media-img {
+      transform: none;
+      transition: filter 0.4s ease;
+    }
+    .dt__media-sheen { display: none; }
   }
 {% endstylesheet %}
 
@@ -339,7 +519,10 @@
         { "type": "text", "id": "phone", "label": "Telefono", "default": "379 348 0144" },
         { "type": "text", "id": "whatsapp", "label": "WhatsApp (numero)", "default": "+39 379 348 0144", "info": "Es. +39 379 348 0144. Genera un link che apre direttamente la chat WhatsApp." },
         { "type": "text", "id": "hours", "label": "Orari", "default": "Tutti i giorni · 09:00–20:00" },
-        { "type": "url", "id": "maps_url", "label": "Link Google Maps (opzionale)", "info": "Se vuoto, viene generato da nome + indirizzo." }
+        { "type": "url", "id": "maps_url", "label": "Link Google Maps (opzionale)", "info": "Se vuoto, viene generato da nome + indirizzo." },
+        { "type": "header", "content": "Foto della vetrina" },
+        { "type": "image_picker", "id": "image", "label": "Foto", "info": "Verticale, taglio 4:5. Vuota = usa il file negli assets indicato sotto." },
+        { "type": "text", "id": "img_file", "label": "File negli assets", "info": "Es. punto-vendita-santa-caterina.webp" }
       ]
     }
   ],
@@ -349,10 +532,10 @@
       "name": "Dove trovarci",
       "category": "Storefront",
       "blocks": [
-        { "type": "location", "settings": { "brand": "Sartoria Condotti", "tag": "Boutique", "name": "Sartoria Condotti", "address": "Via S. Caterina, 69\n80121 Napoli", "phone": "081 038 2204", "hours": "Lun–Sab 09–20 · Dom 10–14 / 16–20" } },
-        { "type": "location", "settings": { "brand": "Sartoria Condotti", "tag": "Boutique", "name": "Sartoria Condotti", "address": "Via Vittoria Colonna, 15/D\n80121 Napoli", "phone": "081 1918 5682", "hours": "Lun–Sab 09:00–20:00 · Dom 10:00–14:00" } },
-        { "type": "location", "settings": { "brand": "Atelier del Ricamo", "tag": "Atelier", "name": "Atelier del Ricamo", "address": "Via Vittoria Colonna, 8\n80121 Napoli", "phone": "081 06 74 136", "hours": "Lun–Sab 10–19 · Dom chiuso" } },
-        { "type": "location", "settings": { "brand": "Condotti & Co", "tag": "Store", "name": "Condotti & Co", "address": "Viale Comandante Umberto Maddalena, 136\n80144 Napoli", "phone": "081 1786 1111", "hours": "Lun–Sab 10–19 · Dom chiuso" } }
+        { "type": "location", "settings": { "brand": "Sartoria Condotti", "tag": "Boutique", "name": "Sartoria Condotti", "address": "Via S. Caterina, 69\n80121 Napoli", "phone": "081 038 2204", "hours": "Lun–Sab 09–20 · Dom 10–14 / 16–20", "img_file": "punto-vendita-santa-caterina.webp" } },
+        { "type": "location", "settings": { "brand": "Condotti & Co", "tag": "Boutique", "name": "Via Vittoria Colonna, 15/D", "address": "80121 Napoli", "phone": "081 1918 5682", "hours": "Lun–Sab 09:00–20:00 · Dom 10:00–14:00", "img_file": "punto-vendita-vittoria-colonna-15.webp" } },
+        { "type": "location", "settings": { "brand": "Atelier del Ricamo", "tag": "Atelier", "name": "Atelier del Ricamo", "address": "Via Vittoria Colonna, 8\n80121 Napoli", "phone": "081 06 74 136", "hours": "Lun–Sab 10–19 · Dom chiuso", "img_file": "punto-vendita-vittoria-colonna-8.webp" } },
+        { "type": "location", "settings": { "brand": "Sartoria su misura", "tag": "Store", "name": "Viale Comandante Umberto Maddalena, 136", "address": "80144 Napoli", "phone": "081 1786 1111", "hours": "Lun–Sab 10–19 · Dom chiuso", "img_file": "punto-vendita-maddalena-136.webp" } }
       ]
     }
   ]
